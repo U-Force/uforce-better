@@ -429,7 +429,11 @@ export function main(): void {
   }
 }
 
-// Run if executed directly
-if (typeof require !== 'undefined' && require.main === module) {
+// Run from Node.js CLI only – avoid executing when bundled for the browser.
+if (
+  typeof require !== 'undefined' &&
+  typeof module !== 'undefined' &&
+  require.main === module
+) {
   main();
 }
