@@ -17,6 +17,12 @@ export * from './modules';
 // Scenarios
 import { normalStartupScenario } from './scenarios/startup';
 import { pumpTripScenario } from './scenarios/pump-trip';
+import { introControlsScenario } from './scenarios/intro-controls';
+import { reactivityBasicsScenario } from './scenarios/reactivity-basics';
+import { coolantSystemScenario } from './scenarios/coolant-system';
+import { powerManeuveringScenario } from './scenarios/power-maneuvering';
+import { feedwaterLossScenario } from './scenarios/feedwater-loss';
+import { locaScenario } from './scenarios/loca';
 import type { TrainingScenario } from './types';
 
 /**
@@ -24,8 +30,19 @@ import type { TrainingScenario } from './types';
  * All available training scenarios
  */
 export const SCENARIOS: TrainingScenario[] = [
+  // Basics
+  introControlsScenario,
+  reactivityBasicsScenario,
+  // Systems
+  coolantSystemScenario,
+  // Normal Operations
   normalStartupScenario,
+  powerManeuveringScenario,
+  // Transients
   pumpTripScenario,
+  feedwaterLossScenario,
+  // Emergency
+  locaScenario,
 ];
 
 /**

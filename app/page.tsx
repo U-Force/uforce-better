@@ -446,6 +446,13 @@ export default function SimulatorPage() {
                   ⚠ SCRAM ACTIVE - Rods were inserted to 0% (still adjustable)
                 </div>
               )}
+              {learningMode && (
+                <div style={learningHint}>
+                  💡 <strong>Control Rods:</strong> Absorb neutrons to control the fission chain reaction.
+                  Inserting rods (lower %) reduces power. Withdrawing rods (higher %) increases power.
+                  Move slowly to maintain control!
+                </div>
+              )}
             </div>
 
             {/* Pump & Scram */}
@@ -471,6 +478,19 @@ export default function SimulatorPage() {
                 </span>
               </button>
             </div>
+
+            {learningMode && (
+              <div style={controlGroup}>
+                <div style={learningHint}>
+                  💡 <strong>Primary Pump:</strong> Circulates coolant through the reactor core to remove heat.
+                  Turning OFF the pump reduces cooling efficiency - temperatures will rise!
+                </div>
+                <div style={{...learningHint, marginTop: "8px"}}>
+                  💡 <strong>SCRAM:</strong> Emergency shutdown button. Instantly inserts all control rods to 0%
+                  and stops the chain reaction. Use this if power or temperature gets too high!
+                </div>
+              </div>
+            )}
 
             {/* Quick Guide */}
             <div style={hintBox}>
@@ -502,6 +522,12 @@ export default function SimulatorPage() {
               <div style={powerBar}>
                 <div style={powerBarFill(power)} />
               </div>
+              {learningMode && (
+                <div style={{...learningHint, marginTop: "12px"}}>
+                  💡 <strong>Reactor Power:</strong> Shows how much thermal energy the reactor is producing.
+                  100% = 3000 MWth (3 billion watts). Power above 110% triggers automatic shutdown!
+                </div>
+              )}
             </div>
 
             {/* Power History Graph */}
@@ -550,6 +576,13 @@ export default function SimulatorPage() {
               </div>
             </div>
 
+            {learningMode && (
+              <div style={learningHint}>
+                💡 <strong>Temperatures:</strong> Fuel heats up from fission. Coolant removes this heat.
+                As temperatures rise, negative feedback reduces reactivity - this is the reactor's natural safety mechanism!
+              </div>
+            )}
+
             {/* Reactivity Breakdown */}
             <div style={reactivityPanel}>
               <div style={panelHeader}>
@@ -576,6 +609,13 @@ export default function SimulatorPage() {
                   </span>
                 </div>
               </div>
+              {learningMode && (
+                <div style={{...learningHint, marginTop: "12px"}}>
+                  💡 <strong>Reactivity:</strong> Measures the balance of the chain reaction in "pcm" (parts per million).
+                  Positive = power rising, Negative = power falling, Zero = stable.
+                  External = rod position, Doppler & Moderator = temperature feedback effects.
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -857,6 +897,50 @@ const speedButton = (active: boolean): React.CSSProperties => ({
   background: active ? "#ff9900" : "rgba(0, 0, 0, 0.4)",
   color: active ? "#000" : "#888",
 });
+
+const learningModeSection: React.CSSProperties = {
+  marginBottom: "16px",
+  padding: "12px",
+  background: "rgba(0, 255, 170, 0.05)",
+  border: "1px solid rgba(0, 255, 170, 0.2)",
+  borderRadius: "4px",
+};
+
+const learningModeButton = (active: boolean): React.CSSProperties => ({
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "12px 16px",
+  borderRadius: "3px",
+  fontSize: "12px",
+  fontWeight: "bold",
+  letterSpacing: "1.5px",
+  fontFamily: "'Share Tech Mono', monospace",
+  textTransform: "uppercase",
+  cursor: "pointer",
+  border: active ? "2px solid #00ffaa" : "2px solid #444",
+  background: active
+    ? "linear-gradient(180deg, rgba(0, 255, 170, 0.2) 0%, rgba(0, 255, 170, 0.1) 100%)"
+    : "linear-gradient(180deg, #333 0%, #222 100%)",
+  color: active ? "#00ffaa" : "#888",
+  boxShadow: active
+    ? "0 0 15px rgba(0, 255, 170, 0.4), 0 4px 0 rgba(0,0,0,0.3)"
+    : "0 4px 0 rgba(0,0,0,0.3)",
+  transition: "all 0.2s",
+});
+
+const learningHint: React.CSSProperties = {
+  marginTop: "12px",
+  padding: "10px",
+  background: "rgba(0, 255, 170, 0.1)",
+  border: "1px solid rgba(0, 255, 170, 0.3)",
+  borderRadius: "3px",
+  fontSize: "11px",
+  color: "#00ffaa",
+  lineHeight: 1.6,
+  fontFamily: "'Share Tech Mono', monospace",
+};
 
 const controlGroup: React.CSSProperties = {
   marginBottom: "16px",

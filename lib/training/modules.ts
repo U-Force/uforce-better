@@ -32,7 +32,7 @@ export const TRAINING_MODULES: TrainingModule[] = [
     description: 'Fundamental reactor physics and control principles',
     order: 1,
     color: '#00ffaa',
-    scenarioIds: [], // To be populated as we add basic scenarios
+    scenarioIds: ['PWR_INTRO_01', 'PWR_BASICS_02'],
   },
   {
     id: ModuleId.SYSTEMS,
@@ -40,7 +40,7 @@ export const TRAINING_MODULES: TrainingModule[] = [
     description: 'Reactor systems and component operation',
     order: 2,
     color: '#00aaff',
-    scenarioIds: [], // To be populated as we add system scenarios
+    scenarioIds: ['PWR_SYSTEMS_01'],
   },
   {
     id: ModuleId.NORMAL_OPS,
@@ -48,7 +48,7 @@ export const TRAINING_MODULES: TrainingModule[] = [
     description: 'Standard operational procedures and startup/shutdown',
     order: 3,
     color: '#00ff00',
-    scenarioIds: ['PWR_STARTUP_01'], // Normal startup scenario
+    scenarioIds: ['PWR_STARTUP_01', 'PWR_NORMAL_02'],
   },
   {
     id: ModuleId.TRANSIENTS,
@@ -56,7 +56,7 @@ export const TRAINING_MODULES: TrainingModule[] = [
     description: 'Handling abnormal conditions and upsets',
     order: 4,
     color: '#ffaa00',
-    scenarioIds: ['PWR_PUMP_TRIP_01'], // Pump trip scenario
+    scenarioIds: ['PWR_PUMP_TRIP_01', 'PWR_TRANSIENT_02'],
   },
   {
     id: ModuleId.EMERGENCY,
@@ -64,7 +64,7 @@ export const TRAINING_MODULES: TrainingModule[] = [
     description: 'Emergency procedures and accident mitigation',
     order: 5,
     color: '#ff5555',
-    scenarioIds: [], // To be populated as we add emergency scenarios
+    scenarioIds: ['PWR_EMERGENCY_01'],
   },
 ];
 

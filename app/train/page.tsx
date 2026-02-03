@@ -48,6 +48,7 @@ export default function TrainingPage() {
   const [pumpOn, setPumpOn] = useState(true);
   const [scram, setScram] = useState(false);
   const [speed, setSpeed] = useState(0.5); // Start at 0.5x speed - balanced pace
+  const [learningMode, setLearningMode] = useState(false); // Learning hints toggle
 
   // Simulation states
   const [isRunning, setIsRunning] = useState(false);
