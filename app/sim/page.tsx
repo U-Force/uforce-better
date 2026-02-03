@@ -47,7 +47,7 @@ export default function SimulatorPage() {
   // Initialize model
   const initializeModel = useCallback(() => {
     const { state: initialState, rodPosition } = createCriticalSteadyState(
-      1.0,
+      0.2,
       DEFAULT_PARAMS,
       true
     );
@@ -121,19 +121,28 @@ export default function SimulatorPage() {
     let currentScram = scram;
     const controls: ControlInputs = { rod, pumpOn, scram: currentScram };
 
-    for (let i = 0; i < stepsNeeded; i++) {
-      const newState = modelRef.current.step(DT, { ...controls, scram: currentScram });
+    try {
+      for (let i = 0; i < stepsNeeded; i++) {
+        const newState = modelRef.current.step(DT, { ...controls, scram: currentScram });
 
-      // Check protection system
-      if (!tripActive && !currentScram) {
-        const { trip, reason } = checkTrips(newState);
-        if (trip) {
-          setTripActive(true);
-          setTripReason(reason);
-          setScram(true);
-          currentScram = true;
+        // Check protection system
+        if (!tripActive && !currentScram) {
+          const { trip, reason } = checkTrips(newState);
+          if (trip) {
+            setTripActive(true);
+            setTripReason(reason);
+            setScram(true);
+            currentScram = true;
+          }
         }
       }
+    } catch (error) {
+      console.error("Simulation error:", error);
+      setTripActive(true);
+      setTripReason("SIMULATION ERROR");
+      setScram(true);
+      handleStop();
+      return;
     }
 
     const currentState = modelRef.current.getState();
@@ -368,7 +377,7 @@ export default function SimulatorPage() {
                 {/* Power line */}
                 <polyline
                   fill="none"
-                  stroke="#00ffff"
+                  stroke="#ff9900"
                   strokeWidth="2"
                   points={history.map((p, i) => {
                     const x = (i / HISTORY_LENGTH) * 100;
@@ -464,7 +473,7 @@ const breadcrumbs: React.CSSProperties = {
 
 const breadcrumbLink: React.CSSProperties = {
   textDecoration: "none",
-  color: "#00ffff",
+  color: "#ff9900",
 };
 
 const breadcrumbSeparator: React.CSSProperties = { opacity: 0.6 };
@@ -473,7 +482,7 @@ const breadcrumbCurrent: React.CSSProperties = { color: "#aaa" };
 const title: React.CSSProperties = {
   fontSize: "28px",
   margin: "0 0 4px",
-  color: "#00ffff",
+  color: "#ff9900",
   letterSpacing: "2px",
 };
 
@@ -548,7 +557,7 @@ const panelIndicator = (active: boolean): React.CSSProperties => ({
 const panelTitle: React.CSSProperties = {
   fontSize: "12px",
   letterSpacing: "2px",
-  color: "#00ffff",
+  color: "#ff9900",
   fontWeight: "bold",
 };
 
@@ -571,9 +580,9 @@ const buttonBase: React.CSSProperties = {
 
 const startButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(135deg, #003d3d, #005555)",
-  color: "#00ffff",
-  border: "1px solid #00ffff",
+  background: "linear-gradient(135deg, #3d2200, #554400)",
+  color: "#ff9900",
+  border: "1px solid #ff9900",
 };
 
 const pauseButton: React.CSSProperties = {
@@ -617,7 +626,7 @@ const speedButton = (active: boolean): React.CSSProperties => ({
   fontWeight: "bold",
   cursor: "pointer",
   border: "none",
-  background: active ? "#00ffff" : "rgba(0, 0, 0, 0.4)",
+  background: active ? "#ff9900" : "rgba(0, 0, 0, 0.4)",
   color: active ? "#000" : "#888",
 });
 
@@ -635,13 +644,13 @@ const label: React.CSSProperties = {
 };
 
 const labelValue: React.CSSProperties = {
-  color: "#00ffbf",
+  color: "#ff9900",
   fontWeight: "bold",
 };
 
 const slider: React.CSSProperties = {
   width: "100%",
-  accentColor: "#00ffff",
+  accentColor: "#ff9900",
 };
 
 const helpText: React.CSSProperties = {
@@ -669,8 +678,8 @@ const toggleButton: React.CSSProperties = {
 };
 
 const toggleButtonActive: React.CSSProperties = {
-  borderColor: "#00ffbf",
-  boxShadow: "0 0 10px rgba(0, 255, 191, 0.3)",
+  borderColor: "#ff9900",
+  boxShadow: "0 0 10px rgba(255, 153, 0, 0.3)",
 };
 
 const scramButton: React.CSSProperties = {
@@ -703,7 +712,7 @@ const hintBox: React.CSSProperties = {
 const hintTitle: React.CSSProperties = {
   fontSize: "11px",
   letterSpacing: "1px",
-  color: "#00ffff",
+  color: "#ff9900",
   marginBottom: "8px",
 };
 
@@ -751,7 +760,7 @@ const powerValueContainer: React.CSSProperties = {
 const powerValue = (power: number): React.CSSProperties => ({
   fontSize: "48px",
   fontWeight: "bold",
-  color: power > 110 ? "#ff5555" : power > 105 ? "#ffaa00" : "#00ffbf",
+  color: power > 110 ? "#ff5555" : power > 105 ? "#ffaa00" : "#ff9900",
   fontFamily: "monospace",
 });
 
@@ -771,7 +780,7 @@ const powerBar: React.CSSProperties = {
 const powerBarFill = (power: number): React.CSSProperties => ({
   height: "100%",
   width: `${Math.min(power, 120)}%`,
-  background: power > 110 ? "#ff5555" : power > 105 ? "#ffaa00" : "#00ffbf",
+  background: power > 110 ? "#ff5555" : power > 105 ? "#ffaa00" : "#ff9900",
   transition: "width 0.1s, background 0.3s",
 });
 
@@ -797,7 +806,7 @@ const graphTitle: React.CSSProperties = {
 
 const graphTime: React.CSSProperties = {
   fontSize: "12px",
-  color: "#00ffff",
+  color: "#ff9900",
   fontFamily: "monospace",
 };
 
@@ -838,7 +847,7 @@ const metricLabel: React.CSSProperties = {
 const metricValue = (warning: boolean): React.CSSProperties => ({
   fontSize: "24px",
   fontWeight: "bold",
-  color: warning ? "#ff5555" : "#00ffbf",
+  color: warning ? "#ff5555" : "#ff9900",
   fontFamily: "monospace",
 });
 
@@ -885,6 +894,6 @@ const reactivityValue: React.CSSProperties = {
 
 const reactivityValueTotal = (rho: number): React.CSSProperties => ({
   ...reactivityValue,
-  color: rho > 0.0001 ? "#ffaa00" : rho < -0.0001 ? "#00aaff" : "#00ff00",
+  color: rho > 0.0001 ? "#ffaa00" : rho < -0.0001 ? "#66aaff" : "#00ff00",
   fontWeight: "bold",
 });

@@ -3,15 +3,25 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import {
   ReactorModel,
-  createCriticalSteadyState,
   DEFAULT_PARAMS,
   type ControlInputs,
   type ReactorState,
   type ReactivityComponents,
-} from "../lib/reactor";
+} from "../../lib/reactor";
+import {
+  SCENARIOS,
+  TrainingRole,
+  type TrainingScenario,
+  type TrainingSession,
+  MetricsCollector,
+  getRolePermissions,
+} from "../../lib/training";
+import ScenarioSelector from "../../components/ScenarioSelector";
+import ScenarioBriefing from "../../components/ScenarioBriefing";
+import ScenarioDebrief from "../../components/ScenarioDebrief";
 
-const DT = 0.01; // 10ms timestep for smooth simulation
-const HISTORY_LENGTH = 500; // 5 seconds of history at 100 samples/s
+const DT = 0.01; // 10ms timestep
+const HISTORY_LENGTH = 500; // 5 seconds of history
 
 interface HistoryPoint {
   t: number;
@@ -21,9 +31,17 @@ interface HistoryPoint {
   rho: number;
 }
 
-export default function SimulatorPage() {
+type AppState = 'selector' | 'briefing' | 'running' | 'debrief';
+
+export default function TrainingPage() {
+  // App state
+  const [appState, setAppState] = useState<AppState>('selector');
+  const [selectedScenario, setSelectedScenario] = useState<TrainingScenario | null>(null);
+  const [currentRole, setCurrentRole] = useState<TrainingRole>(TrainingRole.RO);
+  const [metricsCollector, setMetricsCollector] = useState<MetricsCollector | null>(null);
+
   // Control states
-  const [rod, setRod] = useState(1);
+  const [rod, setRod] = useState(0.05);
   const [pumpOn, setPumpOn] = useState(true);
   const [scram, setScram] = useState(false);
   const [speed, setSpeed] = useState(1);
@@ -36,31 +54,42 @@ export default function SimulatorPage() {
   const [history, setHistory] = useState<HistoryPoint[]>([]);
   const [tripActive, setTripActive] = useState(false);
   const [tripReason, setTripReason] = useState<string | null>(null);
-  const [initError, setInitError] = useState<string | null>(null);
 
-  // Refs for animation
+  // Refs
   const modelRef = useRef<ReactorModel | null>(null);
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
   const accumulatedRef = useRef<number>(0);
+  const scenarioTimeRef = useRef<number>(0);
 
-  // Initialize model
-  const initializeModel = useCallback(() => {
+  // Get role permissions
+  const permissions = getRolePermissions(currentRole);
+
+  // Initialize model for scenario or free play
+  const initializeModel = useCallback((scenario?: TrainingScenario) => {
     try {
-      setInitError(null);
+      let initialState: ReactorState;
+      let initialRod: number;
 
-      // Simple initial state - shutdown condition
-      const initialState: ReactorState = {
-        t: 0,
-        P: 0.0001,  // Near zero power (shutdown)
-        Tf: 500,  // Cool fuel temperature in K
-        Tc: 500,  // Cool coolant temperature in K
-        C: [0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001],  // Very small precursors (shutdown)
-      };
+      if (scenario) {
+        initialState = scenario.initialState.reactorState;
+        initialRod = scenario.initialState.controls.rod;
+        setSpeed(scenario.initialState.timeAcceleration);
+      } else {
+        // Free play mode
+        initialState = {
+          t: 0,
+          P: 0.0001,
+          Tf: 500,
+          Tc: 500,
+          C: [0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001],
+        };
+        initialRod = 0.05;
+      }
 
       modelRef.current = new ReactorModel(initialState, DEFAULT_PARAMS);
       setState(initialState);
-      setRod(0.05);  // Start with rods mostly inserted (subcritical)
+      setRod(initialRod);
       setScram(false);
       setPumpOn(true);
       setTripActive(false);
@@ -73,33 +102,15 @@ export default function SimulatorPage() {
         rho: 0,
       }]);
 
-      // Compute initial reactivity
-      const controls: ControlInputs = { rod: 0.05, pumpOn: true, scram: false };
+      const controls: ControlInputs = { rod: initialRod, pumpOn: true, scram: false };
       const rho = modelRef.current.getReactivity(controls);
       setReactivity(rho);
+
+      scenarioTimeRef.current = 0;
     } catch (error) {
       console.error("Initialization error:", error);
-      setInitError(error instanceof Error ? error.message : "Failed to initialize reactor model");
-      // Set default fallback state
-      setState({
-        t: 0,
-        P: 0.0001,
-        Tf: 500,
-        Tc: 500,
-        C: [0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001],
-      });
     }
   }, []);
-
-  // Initialize on mount
-  useEffect(() => {
-    initializeModel();
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [initializeModel]);
 
   // Protection system check
   const checkTrips = useCallback((currentState: ReactorState): { trip: boolean; reason: string | null } => {
@@ -129,11 +140,10 @@ export default function SimulatorPage() {
     const deltaMs = timestamp - lastTimeRef.current;
     lastTimeRef.current = timestamp;
 
-    // Accumulate simulation time
     const simDelta = (deltaMs / 1000) * speed;
     accumulatedRef.current += simDelta;
+    scenarioTimeRef.current += simDelta;
 
-    // Step simulation
     const stepsNeeded = Math.floor(accumulatedRef.current / DT);
     accumulatedRef.current -= stepsNeeded * DT;
 
@@ -152,6 +162,11 @@ export default function SimulatorPage() {
             setTripReason(reason);
             setScram(true);
             currentScram = true;
+
+            // Record trip in metrics
+            if (metricsCollector) {
+              metricsCollector.recordState(newState, rod, pumpOn, true);
+            }
           }
         }
       }
@@ -170,6 +185,11 @@ export default function SimulatorPage() {
     setState(currentState);
     setReactivity(currentReactivity);
 
+    // Record metrics if in training mode
+    if (metricsCollector) {
+      metricsCollector.recordState(currentState, rod, pumpOn, scram);
+    }
+
     // Update history
     setHistory(prev => {
       const newPoint: HistoryPoint = {
@@ -184,7 +204,7 @@ export default function SimulatorPage() {
     });
 
     animationRef.current = requestAnimationFrame(tick);
-  }, [isPaused, speed, rod, pumpOn, scram, tripActive, checkTrips]);
+  }, [isPaused, speed, rod, pumpOn, scram, tripActive, checkTrips, metricsCollector]);
 
   // Start/Stop handlers
   const handleStart = () => {
@@ -210,11 +230,12 @@ export default function SimulatorPage() {
     }
     setIsRunning(false);
     setIsPaused(false);
-  };
 
-  const handleReset = () => {
-    handleStop();
-    initializeModel();
+    // Finalize metrics if in training mode
+    if (metricsCollector && selectedScenario && state) {
+      const finalMetrics = metricsCollector.finalize(state, selectedScenario);
+      setAppState('debrief');
+    }
   };
 
   const handleScram = () => {
@@ -223,12 +244,83 @@ export default function SimulatorPage() {
     setTripReason("MANUAL SCRAM");
   };
 
+  // Scenario selection handlers
+  const handleSelectScenario = (scenario: TrainingScenario) => {
+    setSelectedScenario(scenario);
+    setCurrentRole(scenario.recommendedRole);
+    setAppState('briefing');
+  };
+
+  const handleSelectFreePlay = () => {
+    setSelectedScenario(null);
+    setCurrentRole(TrainingRole.FREE_PLAY);
+    initializeModel();
+    setAppState('running');
+  };
+
+  const handleStartScenario = () => {
+    if (selectedScenario) {
+      initializeModel(selectedScenario);
+      const collector = new MetricsCollector(selectedScenario.id);
+      setMetricsCollector(collector);
+      setAppState('running');
+      handleStart();
+    }
+  };
+
+  const handleBackToSelector = () => {
+    handleStop();
+    setSelectedScenario(null);
+    setMetricsCollector(null);
+    setAppState('selector');
+  };
+
+  const handleRestartScenario = () => {
+    if (selectedScenario) {
+      setAppState('briefing');
+    }
+  };
+
   // Computed values
-  const power = state ? state.P * 100 : 100;
-  const fuelTemp = state ? state.Tf : 600;
-  const coolantTemp = state ? state.Tc : 560;
+  const power = state ? state.P * 100 : 0;
+  const fuelTemp = state ? state.Tf : 500;
+  const coolantTemp = state ? state.Tc : 500;
   const simTime = state ? state.t : 0;
 
+  // Render based on app state
+  if (appState === 'selector') {
+    return (
+      <ScenarioSelector
+        scenarios={SCENARIOS}
+        onSelectScenario={handleSelectScenario}
+        onSelectFreePlay={handleSelectFreePlay}
+      />
+    );
+  }
+
+  if (appState === 'briefing' && selectedScenario) {
+    return (
+      <ScenarioBriefing
+        scenario={selectedScenario}
+        role={currentRole}
+        onStart={handleStartScenario}
+        onBack={handleBackToSelector}
+      />
+    );
+  }
+
+  if (appState === 'debrief' && metricsCollector && selectedScenario) {
+    return (
+      <ScenarioDebrief
+        metrics={metricsCollector.getMetrics()}
+        scenario={selectedScenario}
+        onRestart={handleRestartScenario}
+        onBackToScenarios={handleBackToSelector}
+      />
+    );
+  }
+
+  // Running state - show simulator
   return (
     <>
       <style jsx global>{`
@@ -248,30 +340,25 @@ export default function SimulatorPage() {
             <div style={titleContainer}>
               <img src="/logo.png" alt="U-FORCE Logo" style={logoIcon} />
               <div>
-                <h1 style={title}>U-FORCE Reactor Simulator</h1>
+                <h1 style={title}>
+                  {selectedScenario ? selectedScenario.name : 'U-FORCE Reactor Simulator'}
+                </h1>
                 <p style={subtitle}>
-                  Free Play Mode - Real-time point kinetics simulation
+                  {selectedScenario
+                    ? `Training Mode - ${currentRole}`
+                    : 'Free Play Mode - Real-time point kinetics simulation'}
                 </p>
               </div>
             </div>
-            <div style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
-              <a href="/train" style={trainingLink}>
-                🎓 TRAINING MODE
-              </a>
-              <div style={statusBadge(isRunning, isPaused, tripActive)}>
-                {tripActive ? "TRIP" : isRunning ? (isPaused ? "PAUSED" : "RUNNING") : "READY"}
-              </div>
+            <div>
+              <button style={exitButton} onClick={handleBackToSelector}>
+                ← EXIT
+              </button>
             </div>
           </div>
         </header>
 
-        {/* Error/Trip Alert Banners */}
-        {initError && (
-          <div style={tripBanner}>
-            <span style={tripIcon}>⚠</span>
-            <span>INITIALIZATION ERROR: {initError}</span>
-          </div>
-        )}
+        {/* Trip Alert Banner */}
         {tripActive && tripReason && (
           <div style={tripBanner}>
             <span style={tripIcon}>⚠</span>
@@ -297,7 +384,6 @@ export default function SimulatorPage() {
                 <button style={pauseButton} onClick={handlePause}>⏸ PAUSE</button>
               )}
               <button style={stopButton} onClick={handleStop} disabled={!isRunning}>⏹ STOP</button>
-              <button style={resetButton} onClick={handleReset}>↺ RESET</button>
             </div>
 
             {/* Speed Control */}
@@ -327,12 +413,17 @@ export default function SimulatorPage() {
                 step={0.01}
                 value={rod}
                 onChange={(e) => setRod(parseFloat(e.target.value))}
-                disabled={tripActive}
+                disabled={tripActive || !permissions.canControlRods}
                 style={slider}
               />
               <div style={helpText}>
                 0% = fully inserted (subcritical) · 100% = fully withdrawn
               </div>
+              {!permissions.canControlRods && (
+                <div style={warningText}>
+                  ⚠ Rod control disabled for this role
+                </div>
+              )}
             </div>
 
             {/* Pump & Scram */}
@@ -341,6 +432,7 @@ export default function SimulatorPage() {
                 type="button"
                 style={{ ...toggleButton, ...(pumpOn ? toggleButtonActive : {}) }}
                 onClick={() => setPumpOn(v => !v)}
+                disabled={!permissions.canControlPump}
               >
                 <span style={toggleLabel}>PRIMARY PUMP</span>
                 <span style={pumpOn ? statusOn : statusOff}>{pumpOn ? "ON" : "OFF"}</span>
@@ -350,24 +442,13 @@ export default function SimulatorPage() {
                 type="button"
                 style={{ ...scramButton, ...(tripActive ? scramActive : {}) }}
                 onClick={handleScram}
-                disabled={tripActive}
+                disabled={tripActive || !permissions.canScram}
               >
                 <span style={toggleLabel}>SCRAM</span>
                 <span style={tripActive ? statusOff : statusArmed}>
                   {tripActive ? "FIRED" : "ARMED"}
                 </span>
               </button>
-            </div>
-
-            {/* Quick Guide */}
-            <div style={hintBox}>
-              <div style={hintTitle}>Quick Guide</div>
-              <ul style={hintList as React.CSSProperties}>
-                <li>Start simulation, then slowly withdraw rods to increase power</li>
-                <li>Watch thermal feedback stabilize the reactor</li>
-                <li>Trip pump to see coolant temperature rise</li>
-                <li>Protection system auto-trips at 110% power</li>
-              </ul>
             </div>
           </div>
 
@@ -397,12 +478,10 @@ export default function SimulatorPage() {
                 <span style={graphTime}>{simTime.toFixed(1)}s</span>
               </div>
               <svg width="100%" height="80" style={graphSvg}>
-                {/* Grid lines */}
                 <line x1="0" y1="40" x2="100%" y2="40" stroke="#333" strokeDasharray="4" />
                 <line x1="0" y1="20" x2="100%" y2="20" stroke="#222" strokeDasharray="2" />
                 <line x1="0" y1="60" x2="100%" y2="60" stroke="#222" strokeDasharray="2" />
 
-                {/* Power line */}
                 <polyline
                   fill="none"
                   stroke="#ff9900"
@@ -414,7 +493,6 @@ export default function SimulatorPage() {
                   }).join(" ")}
                 />
 
-                {/* 100% reference line */}
                 <line x1="0" y1="0" x2="100%" y2="0" stroke="#00ff00" strokeWidth="1" opacity="0.3" />
               </svg>
               <div style={graphLabels}>
@@ -471,7 +549,7 @@ export default function SimulatorPage() {
 }
 
 // ============================================================================
-// STYLES
+// STYLES (abbreviated for length - includes all existing styles plus new ones)
 // ============================================================================
 
 const container: React.CSSProperties = {
@@ -504,42 +582,28 @@ const logoIcon: React.CSSProperties = {
 };
 
 const title: React.CSSProperties = {
-  fontSize: "28px",
+  fontSize: "24px",
   margin: "0 0 4px",
   color: "#ff9900",
   letterSpacing: "2px",
 };
 
 const subtitle: React.CSSProperties = {
-  fontSize: "13px",
+  fontSize: "12px",
   color: "#888",
   margin: 0,
 };
 
-const trainingLink: React.CSSProperties = {
+const exitButton: React.CSSProperties = {
   padding: "8px 16px",
+  background: "rgba(0, 0, 0, 0.4)",
+  color: "#888",
+  border: "1px solid #444",
   borderRadius: "4px",
   fontSize: "12px",
   fontWeight: "bold",
-  letterSpacing: "1px",
-  background: "linear-gradient(135deg, #ff9900, #ff6600)",
-  color: "#000",
-  textDecoration: "none",
-  border: "none",
   cursor: "pointer",
-  transition: "all 0.2s",
 };
-
-const statusBadge = (running: boolean, paused: boolean, trip: boolean): React.CSSProperties => ({
-  padding: "6px 12px",
-  borderRadius: "4px",
-  fontSize: "12px",
-  fontWeight: "bold",
-  letterSpacing: "1px",
-  background: trip ? "rgba(255, 0, 0, 0.2)" : running ? (paused ? "rgba(255, 170, 0, 0.2)" : "rgba(0, 255, 0, 0.2)") : "rgba(255, 255, 255, 0.1)",
-  color: trip ? "#ff5555" : running ? (paused ? "#ffaa00" : "#00ff00") : "#888",
-  border: `1px solid ${trip ? "#ff0000" : running ? (paused ? "#ffaa00" : "#00ff00") : "#444"}`,
-});
 
 const tripBanner: React.CSSProperties = {
   display: "flex",
@@ -637,13 +701,6 @@ const stopButton: React.CSSProperties = {
   border: "1px solid #444",
 };
 
-const resetButton: React.CSSProperties = {
-  ...buttonBase,
-  background: "rgba(0, 0, 0, 0.4)",
-  color: "#888",
-  border: "1px solid #444",
-};
-
 const speedControl: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
@@ -697,6 +754,13 @@ const helpText: React.CSSProperties = {
   color: "#666",
 };
 
+const warningText: React.CSSProperties = {
+  marginTop: "4px",
+  fontSize: "10px",
+  color: "#ff5555",
+  fontWeight: "bold",
+};
+
 const controlRow: React.CSSProperties = {
   display: "flex",
   gap: "8px",
@@ -740,29 +804,6 @@ const statusOn: React.CSSProperties = { fontSize: "12px", color: "#00ff00", font
 const statusOff: React.CSSProperties = { fontSize: "12px", color: "#ff5555", fontWeight: "bold" };
 const statusArmed: React.CSSProperties = { fontSize: "12px", color: "#ffaa00", fontWeight: "bold" };
 
-const hintBox: React.CSSProperties = {
-  padding: "12px",
-  borderRadius: "4px",
-  border: "1px solid #333",
-  background: "rgba(0, 0, 0, 0.4)",
-};
-
-const hintTitle: React.CSSProperties = {
-  fontSize: "11px",
-  letterSpacing: "1px",
-  color: "#ff9900",
-  marginBottom: "8px",
-};
-
-const hintList: React.CSSProperties = {
-  margin: 0,
-  paddingLeft: "16px",
-  fontSize: "11px",
-  color: "#888",
-  lineHeight: 1.6,
-};
-
-// Display styles
 const powerDisplay: React.CSSProperties = {
   padding: "16px",
   borderRadius: "4px",
