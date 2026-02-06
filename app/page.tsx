@@ -12,6 +12,7 @@ import NavigationBar from "../components/NavigationBar";
 
 const DT = 0.01; // 10ms timestep for smooth simulation
 const HISTORY_LENGTH = 500; // 5 seconds of history at 100 samples/s
+const ROD_SPEED = 0.05; // 5%/second max rod movement rate
 
 interface HistoryPoint {
   t: number;
@@ -38,6 +39,7 @@ export default function SimulatorPage() {
   const [tripActive, setTripActive] = useState(false);
   const [tripReason, setTripReason] = useState<string | null>(null);
   const [initError, setInitError] = useState<string | null>(null);
+  const [rodActual, setRodActual] = useState(0.05); // Actual rod position (rate-limited)
 
   // Refs for animation
   const modelRef = useRef<ReactorModel | null>(null);
@@ -49,6 +51,7 @@ export default function SimulatorPage() {
   const rodRef = useRef(rod);
   const pumpRef = useRef(pumpOn);
   const scramRef = useRef(scram);
+  const rodActualRef = useRef(rod); // Actual rod position sent to model (rate-limited)
 
   // Keep refs in sync with state
   useEffect(() => { rodRef.current = rod; }, [rod]);
@@ -88,6 +91,8 @@ export default function SimulatorPage() {
       const initialRod = 0.0;
       setRod(initialRod);
       rodRef.current = initialRod;
+      rodActualRef.current = initialRod;
+      setRodActual(initialRod);
 
       setScram(false);
       scramRef.current = false;
@@ -168,10 +173,16 @@ export default function SimulatorPage() {
     const stepsNeeded = Math.floor(accumulatedRef.current / DT);
     accumulatedRef.current -= stepsNeeded * DT;
 
+    // Rate-limit rod movement
+    const rodTarget = rodRef.current;
+    const rodActualNow = rodActualRef.current;
+    const maxDelta = ROD_SPEED * simDelta;
+    rodActualRef.current = rodActualNow + Math.max(-maxDelta, Math.min(maxDelta, rodTarget - rodActualNow));
+
     // Use refs for real-time control values
     let currentScram = scramRef.current;
     const controls: ControlInputs = {
-      rod: rodRef.current,
+      rod: rodActualRef.current,
       pumpOn: pumpRef.current,
       scram: currentScram
     };
@@ -190,6 +201,7 @@ export default function SimulatorPage() {
             scramRef.current = true;
             setRod(0); // Auto-trip: Insert all rods
             rodRef.current = 0;
+            rodActualRef.current = 0; // Trip bypasses rate limit
             currentScram = true;
           }
         }
@@ -202,6 +214,7 @@ export default function SimulatorPage() {
       scramRef.current = true;
       setRod(0); // Error: Insert all rods
       rodRef.current = 0;
+      rodActualRef.current = 0;
       handleStop();
       return;
     }
@@ -211,6 +224,7 @@ export default function SimulatorPage() {
 
     setState(currentState);
     setReactivity(currentReactivity);
+    setRodActual(rodActualRef.current);
 
     // Update history
     setHistory(prev => {
@@ -264,6 +278,7 @@ export default function SimulatorPage() {
     scramRef.current = true;
     setRod(0); // SCRAM: Insert all rods immediately
     rodRef.current = 0;
+    rodActualRef.current = 0; // SCRAM bypasses rate limit
     setTripActive(true);
     setTripReason("MANUAL SCRAM");
   };
@@ -420,7 +435,7 @@ export default function SimulatorPage() {
             {/* Rod Control */}
             <div style={controlGroup}>
               <label style={label}>
-                CONTROL ROD POSITION
+                CONTROL ROD TARGET
                 <span style={labelValue}>{Math.round(rod * 100)}%</span>
               </label>
               <input
@@ -433,6 +448,9 @@ export default function SimulatorPage() {
                 disabled={false}
                 style={slider}
               />
+              <div style={rodActualDisplay}>
+                ACTUAL: {Math.round(rodActual * 100)}%
+              </div>
               <div style={helpText}>
                 0% = fully inserted (subcritical) · 100% = fully withdrawn
               </div>
@@ -980,6 +998,16 @@ const helpText: React.CSSProperties = {
   color: "#555",
   fontFamily: "'Share Tech Mono', monospace",
   letterSpacing: "0.5px",
+};
+
+const rodActualDisplay: React.CSSProperties = {
+  marginTop: "4px",
+  fontSize: "11px",
+  color: "#00ff00",
+  fontWeight: "bold",
+  letterSpacing: "1px",
+  fontFamily: "'Share Tech Mono', monospace",
+  textShadow: "0 0 8px rgba(0, 255, 0, 0.5)",
 };
 
 const activeControlHint: React.CSSProperties = {

@@ -13,6 +13,7 @@ import {
 
 const DT = 0.01; // 10ms timestep for smooth simulation
 const HISTORY_LENGTH = 500; // 5 seconds of history at 100 samples/s
+const ROD_SPEED = 0.05; // 5%/second max rod movement rate
 
 interface HistoryPoint {
   t: number;
@@ -37,12 +38,24 @@ export default function SimulatorPage() {
   const [history, setHistory] = useState<HistoryPoint[]>([]);
   const [tripActive, setTripActive] = useState(false);
   const [tripReason, setTripReason] = useState<string | null>(null);
+  const [rodActual, setRodActual] = useState(1); // Actual rod position (rate-limited)
 
   // Refs for animation
   const modelRef = useRef<ReactorModel | null>(null);
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
   const accumulatedRef = useRef<number>(0);
+
+  // Refs for real-time controls (avoid stale closures)
+  const rodRef = useRef(rod);
+  const pumpRef = useRef(pumpOn);
+  const scramRef = useRef(scram);
+  const rodActualRef = useRef(rod); // Actual rod position sent to model (rate-limited)
+
+  // Keep refs in sync with state
+  useEffect(() => { rodRef.current = rod; }, [rod]);
+  useEffect(() => { pumpRef.current = pumpOn; }, [pumpOn]);
+  useEffect(() => { scramRef.current = scram; }, [scram]);
 
   // Initialize model
   const initializeModel = useCallback(() => {
@@ -54,8 +67,13 @@ export default function SimulatorPage() {
     modelRef.current = new ReactorModel(initialState, DEFAULT_PARAMS);
     setState(initialState);
     setRod(rodPosition);
+    rodRef.current = rodPosition;
+    rodActualRef.current = rodPosition;
+    setRodActual(rodPosition);
     setScram(false);
+    scramRef.current = false;
     setPumpOn(true);
+    pumpRef.current = true;
     setTripActive(false);
     setTripReason(null);
     setHistory([{
@@ -118,8 +136,19 @@ export default function SimulatorPage() {
     const stepsNeeded = Math.floor(accumulatedRef.current / DT);
     accumulatedRef.current -= stepsNeeded * DT;
 
-    let currentScram = scram;
-    const controls: ControlInputs = { rod, pumpOn, scram: currentScram };
+    // Rate-limit rod movement
+    const rodTarget = rodRef.current;
+    const rodActual = rodActualRef.current;
+    const maxDelta = ROD_SPEED * simDelta;
+    rodActualRef.current = rodActual + Math.max(-maxDelta, Math.min(maxDelta, rodTarget - rodActual));
+
+    // Use refs for real-time control values
+    let currentScram = scramRef.current;
+    const controls: ControlInputs = {
+      rod: rodActualRef.current,
+      pumpOn: pumpRef.current,
+      scram: currentScram
+    };
 
     try {
       for (let i = 0; i < stepsNeeded; i++) {
@@ -132,6 +161,8 @@ export default function SimulatorPage() {
             setTripActive(true);
             setTripReason(reason);
             setScram(true);
+            scramRef.current = true;
+            rodActualRef.current = 0; // Trip bypasses rate limit
             currentScram = true;
           }
         }
@@ -141,15 +172,18 @@ export default function SimulatorPage() {
       setTripActive(true);
       setTripReason("SIMULATION ERROR");
       setScram(true);
+      scramRef.current = true;
+      rodActualRef.current = 0;
       handleStop();
       return;
     }
 
     const currentState = modelRef.current.getState();
-    const currentReactivity = modelRef.current.getReactivity({ rod, pumpOn, scram: currentScram });
+    const currentReactivity = modelRef.current.getReactivity(controls);
 
     setState(currentState);
     setReactivity(currentReactivity);
+    setRodActual(rodActualRef.current);
 
     // Update history
     setHistory(prev => {
@@ -165,7 +199,7 @@ export default function SimulatorPage() {
     });
 
     animationRef.current = requestAnimationFrame(tick);
-  }, [isPaused, speed, rod, pumpOn, scram, tripActive, checkTrips]);
+  }, [isPaused, speed, tripActive, checkTrips]);
 
   // Start/Stop handlers
   const handleStart = () => {
@@ -200,6 +234,8 @@ export default function SimulatorPage() {
 
   const handleScram = () => {
     setScram(true);
+    scramRef.current = true;
+    rodActualRef.current = 0; // SCRAM bypasses rate limit
     setTripActive(true);
     setTripReason("MANUAL SCRAM");
   };
@@ -289,7 +325,7 @@ export default function SimulatorPage() {
             {/* Rod Control */}
             <div style={controlGroup}>
               <label style={label}>
-                CONTROL ROD POSITION
+                CONTROL ROD TARGET
                 <span style={labelValue}>{Math.round(rod * 100)}%</span>
               </label>
               <input
@@ -302,6 +338,9 @@ export default function SimulatorPage() {
                 disabled={tripActive}
                 style={slider}
               />
+              <div style={rodActualDisplay}>
+                ACTUAL: {Math.round(rodActual * 100)}%
+              </div>
               <div style={helpText}>
                 0% = fully inserted (subcritical) · 100% = fully withdrawn
               </div>
@@ -657,6 +696,14 @@ const helpText: React.CSSProperties = {
   marginTop: "4px",
   fontSize: "10px",
   color: "#666",
+};
+
+const rodActualDisplay: React.CSSProperties = {
+  marginTop: "4px",
+  fontSize: "11px",
+  color: "#ff9900",
+  fontWeight: "bold",
+  letterSpacing: "1px",
 };
 
 const controlRow: React.CSSProperties = {

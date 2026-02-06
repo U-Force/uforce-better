@@ -140,14 +140,14 @@ export const SCRAM_TAU: number = 1.0;
  * Makes temperature feedback kick in more quickly.
  * Units: [kg]
  */
-export const MASS_FUEL: number = 15000; // 15 tonnes (reduced for faster response)
+export const MASS_FUEL: number = 35000; // 35 tonnes (realistic fuel time constant ~0.42s)
 
 /**
  * Effective coolant mass in core.
  * Reduced from 25,000 to 8,000 kg for faster thermal response.
  * Units: [kg]
  */
-export const MASS_COOLANT: number = 8000; // 8 tonnes (reduced for faster response)
+export const MASS_COOLANT: number = 18000; // 18 tonnes (realistic coolant time constant ~1.65s)
 
 /**
  * Fuel specific heat capacity.
@@ -230,7 +230,14 @@ export const DT_MAX_EULER: number = 0.01;
  * Prevents runaway in case of numerical issues.
  * Units: [dimensionless]
  */
-export const P_MAX: number = 5.0; // 500% nominal power
+export const P_MAX: number = 3.0; // 300% nominal power (tighter safety clamp)
+
+/**
+ * Shutdown margin: minimum subcritical reactivity with all rods inserted.
+ * Ensures the reactor is subcritical at cold shutdown.
+ * Units: [Δk/k]
+ */
+export const SHUTDOWN_MARGIN: number = 0.003; // 300 pcm
 
 /**
  * Minimum allowed normalized power.
@@ -302,6 +309,9 @@ export interface ReactorParams {
   TcInlet: number;
   powerNominal: number;
   
+  // Safety
+  shutdownMargin: number;
+
   // Limits
   dtMin: number;
   dtMaxRk4: number;
@@ -341,6 +351,8 @@ export const DEFAULT_PARAMS: ReactorParams = {
   TcInlet: TC_INLET,
   powerNominal: POWER_NOMINAL,
   
+  shutdownMargin: SHUTDOWN_MARGIN,
+
   dtMin: DT_MIN,
   dtMaxRk4: DT_MAX_RK4,
   dtMaxEuler: DT_MAX_EULER,

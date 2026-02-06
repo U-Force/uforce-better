@@ -100,7 +100,7 @@ export function computeExternalReactivity(
     }
   }
   
-  return rodContribution + scramContribution;
+  return rodContribution + scramContribution - params.shutdownMargin;
 }
 
 /**
@@ -669,8 +669,9 @@ export function computeCriticalRodPosition(
   const rhoMod = params.alphaCoolant * (Tc - params.TcRef);
   const rhoFeedback = rhoDoppler + rhoMod;
   
-  // Need: rodWorthMax * rodWorthCurve(rod) = -rhoFeedback
-  const targetWorth = -rhoFeedback;
+  // Need: rodWorthMax * rodWorthCurve(rod) - shutdownMargin = -rhoFeedback
+  // So: rodWorthMax * rodWorthCurve(rod) = shutdownMargin - rhoFeedback
+  const targetWorth = params.shutdownMargin - rhoFeedback;
   
   if (targetWorth < 0 || targetWorth > params.rodWorthMax) {
     // Cannot achieve criticality with rods alone
