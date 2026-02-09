@@ -82,6 +82,8 @@ export default function SimulatorPage() {
         Tf: coldTemp,
         Tc: coldTemp,
         C: precursors,
+        I135: 0, // No xenon at cold shutdown
+        Xe135: 0,
       };
 
       modelRef.current = new ReactorModel(shutdownState, DEFAULT_PARAMS);
@@ -309,7 +311,7 @@ export default function SimulatorPage() {
         body {
           background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
           margin: 0;
-          font-family: 'Share Tech Mono', monospace;
+          font-family: 'Inter', sans-serif;
         }
 
         @keyframes pulse {
@@ -573,7 +575,7 @@ export default function SimulatorPage() {
                 />
 
                 {/* 100% reference line */}
-                <line x1="0" y1="0" x2="100%" y2="0" stroke="#00ff00" strokeWidth="1" opacity="0.3" />
+                <line x1="0" y1="0" x2="100%" y2="0" stroke="#10b981" strokeWidth="1" opacity="0.3" />
               </svg>
               <div style={graphLabels}>
                 <span>0%</span>
@@ -620,6 +622,13 @@ export default function SimulatorPage() {
                   <span style={reactivityLabel}>Moderator</span>
                   <span style={reactivityValue}>{reactivity ? (reactivity.rhoMod * 1e5).toFixed(0) : 0} pcm</span>
                 </div>
+                <div style={reactivityRow}>
+                  <span style={reactivityLabel}>Xenon-135</span>
+                  <span style={reactivityValue}>{reactivity ? (reactivity.rhoXenon * 1e5).toFixed(0) : 0} pcm</span>
+                </div>
+                <div style={xenonAccelNote}>
+                  <span style={{opacity: 0.6}}>⚡ Xenon dynamics accelerated 500× for simulation</span>
+                </div>
                 <div style={reactivityRowTotal}>
                   <span style={reactivityLabel}>TOTAL</span>
                   <span style={reactivityValueTotal(reactivity?.rhoTotal || 0)}>
@@ -652,17 +661,17 @@ const container: React.CSSProperties = {
   margin: "0",
   padding: "16px",
   paddingTop: "76px", // Account for 60px nav bar + 16px spacing
-  background: "radial-gradient(ellipse at top, #1a1a1a, #0a0a0a)",
+  background: "#0f1419",
   position: "relative",
 };
 
 const header: React.CSSProperties = {
   marginBottom: "16px",
-  background: "linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)",
-  border: "2px solid #333",
-  borderRadius: "4px",
+  background: "rgba(20, 25, 30, 0.8)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "6px",
   padding: "12px 20px",
-  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.8)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
   position: "relative",
 };
 
@@ -689,40 +698,36 @@ const logoIcon: React.CSSProperties = {
 const title: React.CSSProperties = {
   fontSize: "24px",
   margin: "0 0 2px",
-  color: "#00ff88",
-  letterSpacing: "3px",
-  textTransform: "uppercase",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 10px rgba(0, 255, 136, 0.5)",
+  color: "#10b981",
+  letterSpacing: "0px",
+  textTransform: "none",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow: "0 0 10px rgba(0, 255, 136, 0.5)",
 };
 
 const subtitle: React.CSSProperties = {
   fontSize: "11px",
   color: "#6f6",
   margin: 0,
-  fontFamily: "'Share Tech Mono', monospace",
+  fontFamily: "'Inter', sans-serif",
   letterSpacing: "1px",
 };
 
 const statusBadge = (running: boolean, paused: boolean, trip: boolean): React.CSSProperties => ({
   padding: "8px 16px",
-  borderRadius: "2px",
+  borderRadius: "6px",
   fontSize: "13px",
   fontWeight: "bold",
-  letterSpacing: "2px",
-  fontFamily: "'Share Tech Mono', monospace",
+  letterSpacing: "0.5px",
+  fontFamily: "'Inter', sans-serif",
   background: trip
-    ? "linear-gradient(180deg, #ff0000 0%, #aa0000 100%)"
+    ? "rgba(239, 68, 68, 0.2)"
     : running
-      ? (paused ? "linear-gradient(180deg, #ffaa00 0%, #cc7700 100%)" : "linear-gradient(180deg, #00ff00 0%, #00aa00 100%)")
-      : "linear-gradient(180deg, #444 0%, #222 100%)",
-  color: trip ? "#000" : running ? "#000" : "#888",
-  border: `2px solid ${trip ? "#ff5555" : running ? (paused ? "#ffcc00" : "#00ff00") : "#555"}`,
-  boxShadow: trip ? "0 0 20px rgba(255, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.3)"
-    : running ? "0 0 15px rgba(0, 255, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.3)"
-    : "inset 0 1px 0 rgba(255,255,255,0.1)",
+      ? (paused ? "rgba(245, 158, 11, 0.2)" : "rgba(16, 185, 129, 0.2)")
+      : "rgba(100, 116, 139, 0.2)",
+  color: trip ? "#ef4444" : running ? (paused ? "#f59e0b" : "#10b981") : "#94a3b8",
+  border: `1px solid ${trip ? "#ef4444" : running ? (paused ? "#f59e0b" : "#10b981") : "#64748b"}`,
   animation: trip ? "blink 0.5s infinite" : "none",
-  textShadow: trip || running ? "0 0 5px rgba(0, 0, 0, 0.5)" : "none",
 });
 
 const tripBanner: React.CSSProperties = {
@@ -731,18 +736,15 @@ const tripBanner: React.CSSProperties = {
   gap: "16px",
   padding: "16px 20px",
   marginBottom: "16px",
-  background: "linear-gradient(180deg, #ff0000 0%, #aa0000 100%)",
-  border: "3px solid #ff5555",
-  borderRadius: "2px",
-  color: "#000",
+  background: "rgba(239, 68, 68, 0.15)",
+  border: "2px solid #ef4444",
+  borderRadius: "6px",
+  color: "#ef4444",
   fontSize: "15px",
   fontWeight: "bold",
-  letterSpacing: "3px",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  letterSpacing: "0.5px",
+  fontFamily: "'Inter', sans-serif",
   animation: "blink 0.5s infinite",
-  boxShadow: "0 0 30px rgba(255, 0, 0, 0.8), inset 0 2px 0 rgba(255,255,255,0.3), 0 4px 0 rgba(0,0,0,0.3)",
-  textShadow: "0 1px 0 rgba(255,255,255,0.5)",
 };
 
 const tripIcon: React.CSSProperties = {
@@ -758,20 +760,20 @@ const layout: React.CSSProperties = {
 };
 
 const controlColumn: React.CSSProperties = {
-  background: "linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)",
-  border: "3px solid #444",
-  borderRadius: "4px",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "6px",
   padding: "16px",
-  boxShadow: "inset 0 2px 4px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.8)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
   position: "relative",
 };
 
 const displayColumn: React.CSSProperties = {
-  background: "linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)",
-  border: "3px solid #444",
-  borderRadius: "4px",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "6px",
   padding: "20px",
-  boxShadow: "inset 0 2px 4px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.8)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
   position: "relative",
 };
 
@@ -781,33 +783,27 @@ const panelHeader: React.CSSProperties = {
   gap: "10px",
   marginBottom: "16px",
   padding: "8px 12px",
-  background: "linear-gradient(180deg, #333 0%, #222 100%)",
-  border: "1px solid #444",
-  borderRadius: "2px",
-  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1)",
+  background: "rgba(15, 20, 25, 0.4)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "6px",
 };
 
 const panelIndicator = (active: boolean): React.CSSProperties => ({
-  width: "12px",
-  height: "12px",
+  width: "10px",
+  height: "10px",
   borderRadius: "50%",
-  background: active
-    ? "radial-gradient(circle, #00ff00 0%, #00aa00 100%)"
-    : "radial-gradient(circle, #444 0%, #222 100%)",
-  boxShadow: active
-    ? "0 0 10px #00ff00, 0 0 20px #00ff00, inset 0 0 5px rgba(255,255,255,0.5)"
-    : "inset 0 2px 4px rgba(0,0,0,0.8)",
-  border: active ? "2px solid #00ff00" : "2px solid #333",
-  animation: active ? "pulse 2s ease-in-out infinite" : "none",
+  background: active ? "#10b981" : "#374151",
+  boxShadow: active ? "0 0 8px rgba(16, 185, 129, 0.6)" : "none",
+  border: active ? "2px solid #6ee7b7" : "2px solid #4b5563",
 });
 
 const panelTitle: React.CSSProperties = {
   fontSize: "13px",
-  letterSpacing: "2px",
-  color: "#00ffaa",
+  letterSpacing: "0.5px",
+  color: "#6ee7b7",
   fontWeight: "bold",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
   flex: 1,
 };
 
@@ -825,8 +821,8 @@ const buttonBase: React.CSSProperties = {
   fontWeight: "bold",
   letterSpacing: "1.5px",
   cursor: "pointer",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
   transition: "all 0.15s",
   position: "relative",
   boxShadow: "0 4px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
@@ -834,34 +830,30 @@ const buttonBase: React.CSSProperties = {
 
 const startButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(180deg, #00aa00 0%, #008800 100%)",
+  background: "#10b981",
   color: "#000",
-  border: "2px solid #00ff00",
-  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
+  border: "1px solid #6ee7b7",
 };
 
 const pauseButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(180deg, #ffaa00 0%, #cc8800 100%)",
+  background: "#f59e0b",
   color: "#000",
-  border: "2px solid #ffcc00",
-  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
+  border: "1px solid #fbbf24",
 };
 
 const stopButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(180deg, #555 0%, #333 100%)",
-  color: "#aaa",
-  border: "2px solid #666",
-  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
+  background: "#64748b",
+  color: "#fff",
+  border: "1px solid #94a3b8",
 };
 
 const resetButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(180deg, #555 0%, #333 100%)",
-  color: "#aaa",
-  border: "2px solid #666",
-  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
+  background: "#64748b",
+  color: "#fff",
+  border: "1px solid #94a3b8",
 };
 
 const tripResetSection: React.CSSProperties = {
@@ -869,19 +861,19 @@ const tripResetSection: React.CSSProperties = {
   padding: "12px",
   background: "rgba(255, 85, 85, 0.1)",
   border: "1px solid #ff5555",
-  borderRadius: "4px",
+  borderRadius: "6px",
 };
 
 const tripResetButton: React.CSSProperties = {
   width: "100%",
   padding: "10px",
-  border: "none",
-  borderRadius: "4px",
+  border: "1px solid #ff5555",
+  borderRadius: "6px",
   fontSize: "12px",
   fontWeight: "bold",
   letterSpacing: "1px",
   cursor: "pointer",
-  background: "linear-gradient(135deg, #ff5555, #ff3333)",
+  background: "#ef4444",
   color: "#fff",
 };
 
@@ -921,7 +913,7 @@ const learningModeSection: React.CSSProperties = {
   padding: "12px",
   background: "rgba(0, 255, 170, 0.05)",
   border: "1px solid rgba(0, 255, 170, 0.2)",
-  borderRadius: "4px",
+  borderRadius: "6px",
 };
 
 const learningModeButton = (active: boolean): React.CSSProperties => ({
@@ -934,14 +926,14 @@ const learningModeButton = (active: boolean): React.CSSProperties => ({
   fontSize: "12px",
   fontWeight: "bold",
   letterSpacing: "1.5px",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
   cursor: "pointer",
-  border: active ? "2px solid #00ffaa" : "2px solid #444",
+  border: active ? "2px solid #6ee7b7" : "2px solid #444",
   background: active
     ? "linear-gradient(180deg, rgba(0, 255, 170, 0.2) 0%, rgba(0, 255, 170, 0.1) 100%)"
     : "linear-gradient(180deg, #333 0%, #222 100%)",
-  color: active ? "#00ffaa" : "#888",
+  color: active ? "#6ee7b7" : "#888",
   boxShadow: active
     ? "0 0 15px rgba(0, 255, 170, 0.4), 0 4px 0 rgba(0,0,0,0.3)"
     : "0 4px 0 rgba(0,0,0,0.3)",
@@ -955,9 +947,9 @@ const learningHint: React.CSSProperties = {
   border: "1px solid rgba(0, 255, 170, 0.3)",
   borderRadius: "3px",
   fontSize: "11px",
-  color: "#00ffaa",
+  color: "#6ee7b7",
   lineHeight: 1.6,
-  fontFamily: "'Share Tech Mono', monospace",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const controlGroup: React.CSSProperties = {
@@ -969,26 +961,26 @@ const label: React.CSSProperties = {
   justifyContent: "space-between",
   fontSize: "11px",
   letterSpacing: "1.5px",
-  color: "#00ffaa",
+  color: "#6ee7b7",
   marginBottom: "8px",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const labelValue: React.CSSProperties = {
-  color: "#00ff00",
+  color: "#10b981",
   fontWeight: "bold",
   fontSize: "13px",
-  textShadow: "0 0 10px rgba(0, 255, 0, 0.5)",
-  fontFamily: "'Share Tech Mono', monospace",
+  textShadow: "none",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const slider: React.CSSProperties = {
   width: "100%",
   height: "8px",
-  accentColor: "#00ff00",
-  background: "#222",
-  borderRadius: "4px",
+  accentColor: "#10b981",
+  background: "rgba(15, 20, 25, 0.5)",
+  borderRadius: "6px",
   cursor: "pointer",
 };
 
@@ -996,27 +988,27 @@ const helpText: React.CSSProperties = {
   marginTop: "6px",
   fontSize: "9px",
   color: "#555",
-  fontFamily: "'Share Tech Mono', monospace",
+  fontFamily: "'Inter', sans-serif",
   letterSpacing: "0.5px",
 };
 
 const rodActualDisplay: React.CSSProperties = {
   marginTop: "4px",
   fontSize: "11px",
-  color: "#00ff00",
+  color: "#10b981",
   fontWeight: "bold",
   letterSpacing: "1px",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 8px rgba(0, 255, 0, 0.5)",
+  fontFamily: "'Inter', sans-serif",
+  textShadow: "none",
 };
 
 const activeControlHint: React.CSSProperties = {
   marginTop: "6px",
   fontSize: "9px",
-  color: "#00ff00",
+  color: "#10b981",
   fontWeight: "bold",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 5px rgba(0, 255, 0, 0.5)",
+  fontFamily: "'Inter', sans-serif",
+  textShadow: "none",
   letterSpacing: "1px",
 };
 
@@ -1025,8 +1017,8 @@ const warningText: React.CSSProperties = {
   fontSize: "9px",
   color: "#ff5555",
   fontWeight: "bold",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 5px rgba(255, 85, 85, 0.5)",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow: "0 0 5px rgba(255, 85, 85, 0.5)",
   letterSpacing: "1px",
   animation: "blink 1s infinite",
 };
@@ -1040,50 +1032,46 @@ const controlRow: React.CSSProperties = {
 const toggleButton: React.CSSProperties = {
   flex: 1,
   padding: "14px 16px",
-  borderRadius: "3px",
-  border: "3px solid #444",
-  background: "linear-gradient(180deg, #333 0%, #1a1a1a 100%)",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(15, 20, 25, 0.4)",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   cursor: "pointer",
-  boxShadow: "0 4px 0 rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
   transition: "all 0.15s",
 };
 
 const toggleButtonActive: React.CSSProperties = {
-  borderColor: "#00ff00",
-  boxShadow: "0 4px 0 rgba(0,0,0,0.4), 0 0 20px rgba(0, 255, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)",
-  background: "linear-gradient(180deg, #1a3a1a 0%, #0a1a0a 100%)",
+  borderColor: "#10b981",
+  background: "rgba(16, 185, 129, 0.1)",
 };
 
 const scramButton: React.CSSProperties = {
   ...toggleButton,
-  borderColor: "#aa0000",
-  background: "linear-gradient(180deg, #3a1a1a 0%, #1a0a0a 100%)",
+  borderColor: "rgba(239, 68, 68, 0.3)",
+  background: "rgba(15, 20, 25, 0.4)",
 };
 
 const scramActive: React.CSSProperties = {
-  borderColor: "#ff0000",
-  boxShadow: "0 4px 0 rgba(0,0,0,0.4), 0 0 25px rgba(255, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.2)",
-  background: "linear-gradient(180deg, #ff0000 0%, #aa0000 100%)",
-  animation: "glow 1s ease-in-out infinite",
+  borderColor: "#ef4444",
+  background: "rgba(239, 68, 68, 0.2)",
 };
 
 const toggleLabel: React.CSSProperties = {
   fontSize: "10px",
   letterSpacing: "1.5px",
-  color: "#00ffaa",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const statusOn: React.CSSProperties = {
   fontSize: "12px",
-  color: "#00ff00",
+  color: "#10b981",
   fontWeight: "bold",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 10px rgba(0, 255, 0, 0.8)",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow: "0 0 10px rgba(0, 255, 0, 0.8)",
   letterSpacing: "1px",
 };
 
@@ -1091,8 +1079,8 @@ const statusOff: React.CSSProperties = {
   fontSize: "12px",
   color: "#ff5555",
   fontWeight: "bold",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 10px rgba(255, 85, 85, 0.8)",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow: "0 0 10px rgba(255, 85, 85, 0.8)",
   letterSpacing: "1px",
 };
 
@@ -1100,14 +1088,14 @@ const statusArmed: React.CSSProperties = {
   fontSize: "12px",
   color: "#ffaa00",
   fontWeight: "bold",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 10px rgba(255, 170, 0, 0.8)",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow: "0 0 10px rgba(255, 170, 0, 0.8)",
   letterSpacing: "1px",
 };
 
 const hintBox: React.CSSProperties = {
   padding: "12px",
-  borderRadius: "4px",
+  borderRadius: "6px",
   border: "1px solid #333",
   background: "rgba(0, 0, 0, 0.4)",
 };
@@ -1130,11 +1118,11 @@ const hintList: React.CSSProperties = {
 // Display styles
 const powerDisplay: React.CSSProperties = {
   padding: "20px",
-  borderRadius: "4px",
-  border: "3px solid #222",
-  background: "linear-gradient(180deg, #0a0a0a 0%, #000 100%)",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
   marginBottom: "20px",
-  boxShadow: "inset 0 0 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.5)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
   position: "relative",
 };
 
@@ -1144,25 +1132,25 @@ const powerHeader: React.CSSProperties = {
   marginBottom: "12px",
   padding: "6px 10px",
   background: "rgba(0, 255, 170, 0.05)",
-  borderRadius: "2px",
+  borderRadius: "6px",
 };
 
 const powerLabel: React.CSSProperties = {
   fontSize: "12px",
-  letterSpacing: "2px",
-  color: "#00ffaa",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  letterSpacing: "0.5px",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const powerStatus = (power: number): React.CSSProperties => ({
   fontSize: "11px",
   fontWeight: "bold",
   letterSpacing: "1px",
-  fontFamily: "'Share Tech Mono', monospace",
-  color: power > 105 ? "#ff0000" : power < 50 ? "#ffaa00" : "#00ff00",
-  textShadow: `0 0 10px ${power > 105 ? "#ff0000" : power < 50 ? "#ffaa00" : "#00ff00"}`,
-  animation: power > 105 ? "blink 0.5s infinite" : "none",
+  fontFamily: "'Inter', sans-serif",
+  color: power > 105 ? "#ff0000" : power < 50 ? "#ffaa00" : "#10b981",
+  // textShadow removed for cleaner look
+  animation: "none",
 });
 
 const powerValueContainer: React.CSSProperties = {
@@ -1170,31 +1158,31 @@ const powerValueContainer: React.CSSProperties = {
   alignItems: "baseline",
   gap: "8px",
   padding: "10px",
-  background: "#000",
-  border: "2px solid #333",
-  borderRadius: "2px",
-  boxShadow: "inset 0 2px 8px rgba(0,0,0,0.8)",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.25)",
+  borderRadius: "6px",
+  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.3)",
 };
 
 const powerValue = (power: number): React.CSSProperties => ({
   fontSize: "64px",
   fontWeight: "bold",
-  color: power > 110 ? "#ff0000" : power > 105 ? "#ffaa00" : "#00ff00",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: `0 0 20px ${power > 110 ? "#ff0000" : power > 105 ? "#ffaa00" : "#00ff00"}, 0 0 40px ${power > 110 ? "#ff0000" : power > 105 ? "#ffaa00" : "#00ff00"}`,
-  letterSpacing: "2px",
+  color: power > 110 ? "#ff0000" : power > 105 ? "#ffaa00" : "#10b981",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow removed for cleaner look
+  letterSpacing: "0.5px",
 });
 
 const powerUnit: React.CSSProperties = {
   fontSize: "28px",
   color: "#666",
-  fontFamily: "'Share Tech Mono', monospace",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const powerBar: React.CSSProperties = {
   height: "8px",
-  background: "#222",
-  borderRadius: "4px",
+  background: "rgba(15, 20, 25, 0.5)",
+  borderRadius: "6px",
   overflow: "hidden",
   marginTop: "8px",
 };
@@ -1208,11 +1196,11 @@ const powerBarFill = (power: number): React.CSSProperties => ({
 
 const graphContainer: React.CSSProperties = {
   padding: "16px",
-  borderRadius: "4px",
-  border: "3px solid #222",
-  background: "linear-gradient(180deg, #0a0a0a 0%, #000 100%)",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
   marginBottom: "20px",
-  boxShadow: "inset 0 0 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.5)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
 };
 
 const graphHeader: React.CSSProperties = {
@@ -1221,38 +1209,38 @@ const graphHeader: React.CSSProperties = {
   marginBottom: "12px",
   padding: "6px 10px",
   background: "rgba(0, 255, 170, 0.05)",
-  borderRadius: "2px",
+  borderRadius: "6px",
 };
 
 const graphTitle: React.CSSProperties = {
   fontSize: "12px",
-  letterSpacing: "2px",
-  color: "#00ffaa",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  letterSpacing: "0.5px",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const graphTime: React.CSSProperties = {
   fontSize: "13px",
-  color: "#00ff00",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: "0 0 10px rgba(0, 255, 0, 0.5)",
+  color: "#10b981",
+  fontFamily: "'Inter', sans-serif",
+  textShadow: "none",
 };
 
 const graphSvg: React.CSSProperties = {
-  background: "#000",
+  background: "rgba(20, 25, 30, 0.6)",
   border: "2px solid #1a1a1a",
-  borderRadius: "2px",
-  boxShadow: "inset 0 2px 8px rgba(0,0,0,0.8)",
+  borderRadius: "6px",
+  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.3)",
 };
 
 const graphLabels: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   fontSize: "10px",
-  color: "#00ffaa",
+  color: "#6ee7b7",
   marginTop: "8px",
-  fontFamily: "'Share Tech Mono', monospace",
+  fontFamily: "'Inter', sans-serif",
   letterSpacing: "1px",
 };
 
@@ -1265,43 +1253,43 @@ const metricsGrid: React.CSSProperties = {
 
 const metricCard: React.CSSProperties = {
   padding: "14px",
-  borderRadius: "4px",
-  border: "3px solid #222",
-  background: "linear-gradient(180deg, #0a0a0a 0%, #000 100%)",
-  boxShadow: "inset 0 0 15px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.5)",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
 };
 
 const metricLabel: React.CSSProperties = {
   fontSize: "10px",
   letterSpacing: "1.5px",
-  color: "#00ffaa",
+  color: "#6ee7b7",
   marginBottom: "8px",
-  fontFamily: "'Share Tech Mono', monospace",
-  textTransform: "uppercase",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const metricValue = (warning: boolean): React.CSSProperties => ({
   fontSize: "28px",
   fontWeight: "bold",
-  color: warning ? "#ff0000" : "#00ff00",
-  fontFamily: "'Share Tech Mono', monospace",
-  textShadow: `0 0 15px ${warning ? "#ff0000" : "#00ff00"}`,
+  color: warning ? "#ff0000" : "#10b981",
+  fontFamily: "'Inter', sans-serif",
+  // textShadow removed for cleaner look
   letterSpacing: "1px",
 });
 
 const metricUnit: React.CSSProperties = {
   fontSize: "14px",
-  color: "#00ffaa",
+  color: "#6ee7b7",
   marginLeft: "4px",
-  fontFamily: "'Share Tech Mono', monospace",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const reactivityPanel: React.CSSProperties = {
   padding: "16px",
-  borderRadius: "4px",
-  border: "3px solid #222",
-  background: "linear-gradient(180deg, #0a0a0a 0%, #000 100%)",
-  boxShadow: "inset 0 0 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.5)",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
 };
 
 const reactivityGrid: React.CSSProperties = {
@@ -1316,12 +1304,23 @@ const reactivityRow: React.CSSProperties = {
   fontSize: "12px",
   padding: "6px 8px",
   background: "rgba(0, 255, 170, 0.03)",
-  borderRadius: "2px",
+  borderRadius: "6px",
+};
+
+const xenonAccelNote: React.CSSProperties = {
+  fontSize: "9px",
+  color: "#6ee7b7",
+  textAlign: "center",
+  padding: "4px 8px",
+  marginTop: "-4px",
+  marginBottom: "4px",
+  fontFamily: "'Inter', sans-serif",
+  fontStyle: "italic",
 };
 
 const reactivityRowTotal: React.CSSProperties = {
   ...reactivityRow,
-  borderTop: "2px solid #00ffaa",
+  borderTop: "2px solid #6ee7b7",
   paddingTop: "10px",
   marginTop: "8px",
   background: "rgba(0, 255, 170, 0.08)",
@@ -1329,22 +1328,22 @@ const reactivityRowTotal: React.CSSProperties = {
 };
 
 const reactivityLabel: React.CSSProperties = {
-  color: "#00ffaa",
-  fontFamily: "'Share Tech Mono', monospace",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
   letterSpacing: "1px",
 };
 
 const reactivityValue: React.CSSProperties = {
-  color: "#00ff00",
-  fontFamily: "'Share Tech Mono', monospace",
+  color: "#10b981",
+  fontFamily: "'Inter', sans-serif",
   letterSpacing: "1px",
-  textShadow: "0 0 8px rgba(0, 255, 0, 0.5)",
+  textShadow: "none",
 };
 
 const reactivityValueTotal = (rho: number): React.CSSProperties => ({
   ...reactivityValue,
-  color: rho > 0.0001 ? "#ffaa00" : rho < -0.0001 ? "#66aaff" : "#00ff00",
+  color: rho > 0.0001 ? "#ffaa00" : rho < -0.0001 ? "#66aaff" : "#10b981",
   fontWeight: "bold",
   fontSize: "14px",
-  textShadow: `0 0 12px ${rho > 0.0001 ? "rgba(255, 170, 0, 0.8)" : rho < -0.0001 ? "rgba(102, 170, 255, 0.8)" : "rgba(0, 255, 0, 0.8)"}`,
+  // textShadow removed for cleaner look
 });

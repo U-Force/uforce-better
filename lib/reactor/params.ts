@@ -274,6 +274,77 @@ export const TC_MAX: number = 650; // ~377°C (below critical point)
 export const TC_MIN: number = 293; // ~20°C
 
 // ============================================================================
+// XENON POISONING PARAMETERS
+// ============================================================================
+
+/**
+ * Iodine-135 fission yield (fraction of fissions producing I-135).
+ * I-135 is a precursor to Xe-135.
+ * Units: [dimensionless]
+ */
+export const GAMMA_I: number = 0.061; // ~6.1% fission yield
+
+/**
+ * Xenon-135 direct fission yield (fraction of fissions producing Xe-135 directly).
+ * Most Xe-135 comes from I-135 decay, but some is produced directly.
+ * Units: [dimensionless]
+ */
+export const GAMMA_XE: number = 0.003; // ~0.3% direct yield
+
+/**
+ * Iodine-135 decay constant.
+ * Half-life = 6.57 hours → λ = ln(2) / t_half
+ * Units: [1/s]
+ */
+export const LAMBDA_I135: number = 2.93e-5; // ~6.57 hour half-life
+
+/**
+ * Xenon-135 decay constant.
+ * Half-life = 9.14 hours → λ = ln(2) / t_half
+ * Units: [1/s]
+ */
+export const LAMBDA_XE135: number = 2.11e-5; // ~9.14 hour half-life
+
+/**
+ * Xenon-135 microscopic absorption cross-section.
+ * Xe-135 has an enormous thermal neutron cross-section (~2.6 million barns).
+ * This is what makes it such a strong poison.
+ * Units: [barns] = [10^-24 cm²]
+ */
+export const SIGMA_XE: number = 2.6e6; // barns
+
+/**
+ * Average thermal neutron flux at full power.
+ * Used to calculate xenon burnout rate (σ × φ × Xe).
+ * Typical PWR: ~3-4 × 10^13 n/cm²/s
+ * Units: [n/(cm²·s)]
+ */
+export const FLUX_NOMINAL: number = 3.5e13; // neutrons per cm² per second
+
+/**
+ * Equilibrium xenon worth (reactivity effect at full power equilibrium).
+ * Typical PWR: -2800 to -3000 pcm at equilibrium
+ * Peak transient xenon can be -4000+ pcm after shutdown
+ * Units: [Δk/k]
+ */
+export const XENON_WORTH_EQUILIBRIUM: number = -0.028; // -2800 pcm
+
+/**
+ * Xenon time acceleration factor for educational purposes.
+ * Real xenon dynamics occur over 10+ hours, which is too slow for interactive simulation.
+ * This factor speeds up xenon evolution while maintaining correct equilibrium behavior.
+ *
+ * Suggested values:
+ * - 1 = realistic timescale (hours/days)
+ * - 100 = observable in tens of minutes
+ * - 500 = observable in minutes (recommended for interactive use)
+ * - 1000 = very fast, observable in seconds
+ *
+ * Units: [dimensionless multiplier]
+ */
+export const XENON_TIME_ACCELERATION: number = 500; // 500x faster for interactive simulation
+
+// ============================================================================
 // PARAMETER PACK FOR EASY OVERRIDE
 // ============================================================================
 
@@ -311,6 +382,16 @@ export interface ReactorParams {
   
   // Safety
   shutdownMargin: number;
+
+  // Xenon poisoning
+  gammaI: number;
+  gammaXe: number;
+  lambdaI135: number;
+  lambdaXe135: number;
+  sigmaXe: number;
+  fluxNominal: number;
+  xenonWorthEquilibrium: number;
+  xenonTimeAcceleration: number;
 
   // Limits
   dtMin: number;
@@ -352,6 +433,15 @@ export const DEFAULT_PARAMS: ReactorParams = {
   powerNominal: POWER_NOMINAL,
   
   shutdownMargin: SHUTDOWN_MARGIN,
+
+  gammaI: GAMMA_I,
+  gammaXe: GAMMA_XE,
+  lambdaI135: LAMBDA_I135,
+  lambdaXe135: LAMBDA_XE135,
+  sigmaXe: SIGMA_XE,
+  fluxNominal: FLUX_NOMINAL,
+  xenonWorthEquilibrium: XENON_WORTH_EQUILIBRIUM,
+  xenonTimeAcceleration: XENON_TIME_ACCELERATION,
 
   dtMin: DT_MIN,
   dtMaxRk4: DT_MAX_RK4,

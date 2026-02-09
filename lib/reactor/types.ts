@@ -18,22 +18,28 @@ export const NUM_PRECURSOR_GROUPS = 6;
 export interface ReactorState {
   /** Simulation time [s] */
   t: number;
-  
+
   /** Normalized reactor power [unitless], where 1.0 = nominal full power */
   P: number;
-  
-  /** 
+
+  /**
    * Delayed neutron precursor concentrations [unitless, normalized].
    * Array of 6 groups representing different fission product families.
    * C[i] corresponds to precursor group i with decay constant λ[i].
    */
   C: number[];
-  
+
   /** Lumped fuel temperature [K] - average fuel pellet temperature */
   Tf: number;
-  
+
   /** Lumped coolant temperature [K] - average primary coolant temperature */
   Tc: number;
+
+  /** Iodine-135 concentration [atoms/cm³] - precursor to Xe-135 */
+  I135: number;
+
+  /** Xenon-135 concentration [atoms/cm³] - strong neutron poison */
+  Xe135: number;
 }
 
 /**
@@ -69,14 +75,17 @@ export interface ControlInputs {
 export interface ReactivityComponents {
   /** External reactivity from control rods and scram [Δk/k] */
   rhoExt: number;
-  
+
   /** Doppler reactivity feedback from fuel temperature [Δk/k] */
   rhoDoppler: number;
-  
+
   /** Moderator temperature reactivity feedback [Δk/k] */
   rhoMod: number;
-  
-  /** Total reactivity = rhoExt + rhoDoppler + rhoMod [Δk/k] */
+
+  /** Xenon-135 reactivity feedback (negative) [Δk/k] */
+  rhoXenon: number;
+
+  /** Total reactivity = rhoExt + rhoDoppler + rhoMod + rhoXenon [Δk/k] */
   rhoTotal: number;
 }
 

@@ -26,6 +26,8 @@ export const feedwaterLossScenario: TrainingScenario = {
       Tf: 420,
       Tc: 370,
       C: [0.002, 0.002, 0.002, 0.002, 0.002, 0.002],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.65,

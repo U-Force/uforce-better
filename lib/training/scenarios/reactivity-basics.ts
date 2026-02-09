@@ -26,6 +26,8 @@ export const reactivityBasicsScenario: TrainingScenario = {
       Tf: 325,
       Tc: 315,
       C: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.2, // 20% withdrawal

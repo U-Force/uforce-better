@@ -22,6 +22,7 @@ import ScenarioBriefing from "../../components/ScenarioBriefing";
 import ScenarioDebrief from "../../components/ScenarioDebrief";
 import TrainingModulesSidebar from "../../components/TrainingModulesSidebar";
 import NavigationBar from "../../components/NavigationBar";
+import { LiveCheckpointPanel } from "../../components/LiveCheckpointPanel";
 
 const DT = 0.01; // 10ms timestep
 const HISTORY_LENGTH = 500; // 5 seconds of history
@@ -60,6 +61,28 @@ export default function TrainingPage() {
   const [tripActive, setTripActive] = useState(false);
   const [tripReason, setTripReason] = useState<string | null>(null);
   const [rodActual, setRodActual] = useState(0.05); // Actual rod position (rate-limited)
+
+  // Real-time metrics for checkpoint evaluation
+  const [liveMetrics, setLiveMetrics] = useState({
+    timeElapsed: 0,
+    tripCount: 0,
+    scramCount: 0,
+    maxPower: 0,
+    maxFuelTemp: 0,
+    maxCoolantTemp: 0,
+    currentPower: 0,
+    rodPosition: 0,
+    rodWithdrawalRate: 0,
+    timeToFirstCriticality: -1, // -1 = not yet critical
+    powerChangeCount: 0,
+    observationTime: 0,
+    finalPower: 0,
+    timeAt50Percent: 0,
+    maxPowerRate: 0,
+  });
+  const lastRodPositionRef = useRef(0.05);
+  const lastRodTimestampRef = useRef(0);
+  const lastPowerRef = useRef(0);
 
   // Refs
   const modelRef = useRef<ReactorModel | null>(null);
@@ -110,6 +133,8 @@ export default function TrainingPage() {
           Tf: coldTemp,
           Tc: coldTemp,
           C: precursors,
+          I135: 0, // No xenon at cold shutdown
+          Xe135: 0,
         };
         initialRod = 0.0; // Start with rods fully inserted (0%) - truly shutdown
       }
@@ -251,6 +276,48 @@ export default function TrainingPage() {
     // Record metrics if in training mode
     if (metricsCollector) {
       metricsCollector.recordState(currentState, rodRef.current, pumpRef.current, scramRef.current);
+    }
+
+    // Update live metrics for checkpoint evaluation
+    if (selectedScenario) {
+      const currentPowerPercent = currentState.P * 100;
+
+      // Calculate rod withdrawal rate
+      const rodDelta = rodRef.current - lastRodPositionRef.current;
+      const timeDelta = currentState.t - lastRodTimestampRef.current;
+      const rodRate = timeDelta > 0 ? Math.abs(rodDelta * 100 / (timeDelta / 60)) : 0; // %/minute
+
+      if (rodDelta !== 0) {
+        lastRodPositionRef.current = rodRef.current;
+        lastRodTimestampRef.current = currentState.t;
+      }
+
+      // Track power changes (significant changes > 5%)
+      const powerChanged = Math.abs(currentPowerPercent - lastPowerRef.current) > 5;
+      if (powerChanged) {
+        lastPowerRef.current = currentPowerPercent;
+      }
+
+      setLiveMetrics(prev => ({
+        timeElapsed: currentState.t,
+        tripCount: tripActive ? prev.tripCount + (prev.tripCount === 0 ? 1 : 0) : prev.tripCount,
+        scramCount: scramRef.current ? prev.scramCount + (prev.scramCount === 0 ? 1 : 0) : prev.scramCount,
+        maxPower: Math.max(prev.maxPower, currentPowerPercent),
+        maxFuelTemp: Math.max(prev.maxFuelTemp, currentState.Tf),
+        maxCoolantTemp: Math.max(prev.maxCoolantTemp, currentState.Tc),
+        currentPower: currentPowerPercent,
+        rodPosition: rodRef.current * 100,
+        rodWithdrawalRate: rodRate,
+        timeToFirstCriticality:
+          prev.timeToFirstCriticality === -1 && currentState.P > 0.001
+            ? currentState.t
+            : prev.timeToFirstCriticality,
+        powerChangeCount: prev.powerChangeCount + (powerChanged ? 1 : 0),
+        observationTime: currentState.t,
+        finalPower: currentPowerPercent,
+        timeAt50Percent: metricsCollector ? metricsCollector.getLiveMetricValue('timeAt50Percent') : 0,
+        maxPowerRate: metricsCollector ? metricsCollector.getLiveMetricValue('maxPowerRate') : 0,
+      }));
     }
 
     // Update history
@@ -418,13 +485,21 @@ export default function TrainingPage() {
     <>
       <NavigationBar />
       <style jsx global>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.7; transform: scale(1.05); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+          box-sizing: border-box;
         }
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
+
+        body {
+          background: #0f1419;
+          margin: 0;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
       `}</style>
 
@@ -612,7 +687,7 @@ export default function TrainingPage() {
                   }).join(" ")}
                 />
 
-                <line x1="0" y1="0" x2="100%" y2="0" stroke="#00ff00" strokeWidth="1" opacity="0.3" />
+                <line x1="0" y1="0" x2="100%" y2="0" stroke="#10b981" strokeWidth="1" opacity="0.3" />
               </svg>
               <div style={graphLabels}>
                 <span>0%</span>
@@ -652,6 +727,13 @@ export default function TrainingPage() {
                   <span style={reactivityLabel}>Moderator</span>
                   <span style={reactivityValue}>{reactivity ? (reactivity.rhoMod * 1e5).toFixed(0) : 0} pcm</span>
                 </div>
+                <div style={reactivityRow}>
+                  <span style={reactivityLabel}>Xenon-135</span>
+                  <span style={reactivityValue}>{reactivity ? (reactivity.rhoXenon * 1e5).toFixed(0) : 0} pcm</span>
+                </div>
+                <div style={xenonAccelNote}>
+                  <span style={{opacity: 0.6}}>⚡ Xenon dynamics accelerated 500× for simulation</span>
+                </div>
                 <div style={reactivityRowTotal}>
                   <span style={reactivityLabel}>TOTAL</span>
                   <span style={reactivityValueTotal(reactivity?.rhoTotal || 0)}>
@@ -660,7 +742,24 @@ export default function TrainingPage() {
                 </div>
               </div>
             </div>
+
           </div>
+
+          {/* Right Column - Mission Objectives (only in training mode) */}
+          {selectedScenario && state && (
+            <div style={objectivesColumn}>
+              <LiveCheckpointPanel
+                objectives={selectedScenario.objectives}
+                reactorState={state}
+                currentMetrics={liveMetrics}
+                onObjectiveComplete={(objectiveId) => {
+                  if (metricsCollector) {
+                    metricsCollector.completeObjective(objectiveId);
+                  }
+                }}
+              />
+            </div>
+          )}
         </section>
       </main>
     </>
@@ -672,14 +771,23 @@ export default function TrainingPage() {
 // ============================================================================
 
 const container: React.CSSProperties = {
-  maxWidth: "1200px",
-  margin: "0 auto",
-  padding: "24px",
-  paddingTop: "84px", // Account for 60px nav bar + 24px spacing
+  maxWidth: "100vw",
+  minHeight: "100vh",
+  margin: "0",
+  padding: "20px",
+  paddingTop: "80px",
+  background: "#0f1419",
+  position: "relative",
 };
 
 const header: React.CSSProperties = {
   marginBottom: "20px",
+  background: "rgba(20, 25, 30, 0.8)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "8px",
+  padding: "16px 24px",
+  boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+  position: "relative",
 };
 
 const headerRow: React.CSSProperties = {
@@ -696,91 +804,127 @@ const titleContainer: React.CSSProperties = {
 };
 
 const logoIcon: React.CSSProperties = {
-  width: "48px",
-  height: "48px",
-  filter: "brightness(0) saturate(100%) invert(60%) sepia(98%) saturate(2000%) hue-rotate(0deg) brightness(98%) contrast(101%) drop-shadow(0 0 15px rgba(255, 153, 0, 0.8))",
+  width: "40px",
+  height: "40px",
+  filter: "brightness(0) saturate(100%) invert(40%) sepia(98%) saturate(2000%) hue-rotate(200deg)",
 };
 
 const title: React.CSSProperties = {
-  fontSize: "24px",
+  fontSize: "20px",
   margin: "0 0 4px",
-  color: "#ff9900",
-  letterSpacing: "2px",
+  color: "#10b981",
+  fontWeight: "600",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const subtitle: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#888",
+  fontSize: "13px",
   margin: 0,
+  fontFamily: "'Inter', sans-serif",
+  color: "#6ee7b7",
+  fontWeight: "400",
 };
 
 const exitButton: React.CSSProperties = {
   padding: "8px 16px",
-  background: "rgba(0, 0, 0, 0.4)",
-  color: "#888",
-  border: "1px solid #444",
-  borderRadius: "4px",
-  fontSize: "12px",
-  fontWeight: "bold",
+  borderRadius: "6px",
+  fontSize: "14px",
+  fontWeight: "500",
+  fontFamily: "'Inter', sans-serif",
+  background: "rgba(20, 25, 30, 0.6)",
+  color: "#6ee7b7",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
   cursor: "pointer",
+  transition: "all 0.2s",
 };
 
 const tripBanner: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   gap: "12px",
-  padding: "12px 16px",
-  marginBottom: "16px",
-  background: "rgba(255, 0, 0, 0.15)",
-  border: "2px solid #ff0000",
-  borderRadius: "4px",
-  color: "#ff5555",
-  fontSize: "14px",
+  padding: "12px 20px",
+  marginBottom: "20px",
+  background: "#fef2f2",
+  border: "1px solid #fecaca",
+  borderRadius: "8px",
+  color: "#991b1b",
+  fontSize: "15px",
   fontWeight: "bold",
-  letterSpacing: "1px",
-  animation: "blink 1s infinite",
+  letterSpacing: "0px",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
+  boxShadow: "0 0 30px rgba(255, 0, 0, 0.8), inset 0 2px 0 rgba(255,255,255,0.3), 0 4px 0 rgba(0,0,0,0.3)",
+  textShadow: "0 1px 0 rgba(255,255,255,0.5)",
 };
 
 const tripIcon: React.CSSProperties = {
-  fontSize: "20px",
+  fontSize: "28px",
 };
 
 const layout: React.CSSProperties = {
-  display: "flex",
-  gap: "24px",
-  flexWrap: "wrap",
+  display: "grid",
+  gridTemplateColumns: "400px 1fr 380px",
+  gap: "16px",
+  minHeight: "calc(100vh - 120px)",
 };
 
 const controlColumn: React.CSSProperties = {
-  flex: "1 1 320px",
-  minWidth: "300px",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "8px",
+  padding: "20px",
+  boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+  position: "relative",
+};
+
+const objectivesColumn: React.CSSProperties = {
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "8px",
+  padding: "0",
+  boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+  position: "relative",
+  overflow: "hidden",
 };
 
 const displayColumn: React.CSSProperties = {
-  flex: "2 1 500px",
-  minWidth: "400px",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "8px",
+  padding: "20px",
+  boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+  position: "relative",
 };
 
 const panelHeader: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
-  gap: "8px",
-  marginBottom: "12px",
+  gap: "10px",
+  marginBottom: "16px",
+  padding: "8px 12px",
+  background: "rgba(15, 20, 25, 0.4)",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  borderRadius: "6px",
+  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1)",
 };
 
 const panelIndicator = (active: boolean): React.CSSProperties => ({
-  width: "8px",
-  height: "8px",
+  width: "10px",
+  height: "10px",
   borderRadius: "50%",
-  background: active ? "#00ff00" : "#444",
-  boxShadow: active ? "0 0 8px #00ff00" : "none",
+  background: active ? "#10b981" : "#374151",
+  boxShadow: active ? "0 0 8px rgba(16, 185, 129, 0.6)" : "none",
+  border: active ? "2px solid #6ee7b7" : "2px solid #4b5563",
 });
 
 const panelTitle: React.CSSProperties = {
-  fontSize: "12px",
-  letterSpacing: "2px",
-  color: "#ff9900",
+  fontSize: "13px",
+  letterSpacing: "0px",
+  color: "#6ee7b7",
   fontWeight: "bold",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
+  flex: 1,
 };
 
 const simControls: React.CSSProperties = {
@@ -791,34 +935,41 @@ const simControls: React.CSSProperties = {
 
 const buttonBase: React.CSSProperties = {
   flex: 1,
-  padding: "10px",
-  border: "none",
-  borderRadius: "4px",
-  fontSize: "12px",
+  padding: "12px 8px",
+  borderRadius: "6px",
+  fontSize: "11px",
   fontWeight: "bold",
-  letterSpacing: "1px",
+  letterSpacing: "0px",
   cursor: "pointer",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
+  transition: "all 0.15s",
+  position: "relative",
+  boxShadow: "0 1px 2px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.2)",
 };
 
 const startButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(135deg, #3d2200, #554400)",
-  color: "#ff9900",
-  border: "1px solid #ff9900",
+  background: "#10b981",
+  color: "#000",
+  border: "2px solid #10b981",
+  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
 };
 
 const pauseButton: React.CSSProperties = {
   ...buttonBase,
-  background: "linear-gradient(135deg, #3d3d00, #555500)",
-  color: "#ffaa00",
-  border: "1px solid #ffaa00",
+  background: "#f59e0b",
+  color: "#000",
+  border: "2px solid #ffcc00",
+  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
 };
 
 const stopButton: React.CSSProperties = {
   ...buttonBase,
-  background: "rgba(0, 0, 0, 0.4)",
-  color: "#888",
-  border: "1px solid #444",
+  background: "#64748b",
+  color: "#aaa",
+  border: "2px solid #666",
+  textShadow: "0 1px 0 rgba(0,0,0,0.5)",
 };
 
 const tripResetSection: React.CSSProperties = {
@@ -826,14 +977,14 @@ const tripResetSection: React.CSSProperties = {
   padding: "12px",
   background: "rgba(255, 85, 85, 0.1)",
   border: "1px solid #ff5555",
-  borderRadius: "4px",
+  borderRadius: "6px",
 };
 
 const tripResetButton: React.CSSProperties = {
   width: "100%",
   padding: "10px",
   border: "none",
-  borderRadius: "4px",
+  borderRadius: "6px",
   fontSize: "12px",
   fontWeight: "bold",
   letterSpacing: "1px",
@@ -858,13 +1009,13 @@ const speedControl: React.CSSProperties = {
 
 const speedLabel: React.CSSProperties = {
   fontSize: "11px",
-  color: "#888",
+  color: "#6ee7b7",
   letterSpacing: "1px",
 };
 
 const speedButton = (active: boolean): React.CSSProperties => ({
   padding: "4px 8px",
-  borderRadius: "3px",
+  borderRadius: "6px",
   fontSize: "11px",
   fontWeight: "bold",
   cursor: "pointer",
@@ -881,47 +1032,62 @@ const label: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   fontSize: "11px",
-  letterSpacing: "1px",
-  color: "#ccc",
-  marginBottom: "6px",
+  letterSpacing: "0px",
+  color: "#6ee7b7",
+  marginBottom: "8px",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const labelValue: React.CSSProperties = {
-  color: "#ff9900",
+  color: "#10b981",
   fontWeight: "bold",
+  fontSize: "13px",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const slider: React.CSSProperties = {
   width: "100%",
-  accentColor: "#ff9900",
+  height: "8px",
+  accentColor: "#10b981",
+  background: "rgba(15, 20, 25, 0.5)",
+  borderRadius: "6px",
+  cursor: "pointer",
 };
 
 const helpText: React.CSSProperties = {
-  marginTop: "4px",
-  fontSize: "10px",
-  color: "#666",
+  marginTop: "6px",
+  fontSize: "9px",
+  color: "#86efac",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "0.5px",
 };
 
 const rodActualDisplay: React.CSSProperties = {
   marginTop: "4px",
   fontSize: "11px",
-  color: "#ff9900",
+  color: "#10b981",
   fontWeight: "bold",
   letterSpacing: "1px",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const activeControlHint: React.CSSProperties = {
-  marginTop: "4px",
-  fontSize: "10px",
-  color: "#00ff00",
+  marginTop: "6px",
+  fontSize: "9px",
+  color: "#10b981",
   fontWeight: "bold",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
 };
 
 const warningText: React.CSSProperties = {
-  marginTop: "4px",
-  fontSize: "10px",
+  marginTop: "6px",
+  fontSize: "9px",
   color: "#ff5555",
   fontWeight: "bold",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
 };
 
 const controlRow: React.CSSProperties = {
@@ -932,89 +1098,130 @@ const controlRow: React.CSSProperties = {
 
 const toggleButton: React.CSSProperties = {
   flex: 1,
-  padding: "10px 12px",
-  borderRadius: "4px",
-  border: "1px solid #444",
-  background: "rgba(0, 0, 0, 0.4)",
+  padding: "14px 16px",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(15, 20, 25, 0.4)",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   cursor: "pointer",
+  transition: "all 0.15s",
 };
 
 const toggleButtonActive: React.CSSProperties = {
-  borderColor: "#ff9900",
-  boxShadow: "0 0 10px rgba(255, 153, 0, 0.3)",
+  borderColor: "#10b981",
+  background: "rgba(16, 185, 129, 0.1)",
 };
 
 const scramButton: React.CSSProperties = {
   ...toggleButton,
-  borderColor: "#aa0000",
+  borderColor: "rgba(239, 68, 68, 0.3)",
+  background: "rgba(15, 20, 25, 0.4)",
 };
 
 const scramActive: React.CSSProperties = {
-  borderColor: "#ff0000",
-  boxShadow: "0 0 12px rgba(255, 0, 0, 0.5)",
+  borderColor: "#ef4444",
+  background: "rgba(239, 68, 68, 0.2)",
 };
 
 const toggleLabel: React.CSSProperties = {
-  fontSize: "11px",
-  letterSpacing: "1px",
-  color: "#ccc",
+  fontSize: "10px",
+  letterSpacing: "0px",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
-const statusOn: React.CSSProperties = { fontSize: "12px", color: "#00ff00", fontWeight: "bold" };
-const statusOff: React.CSSProperties = { fontSize: "12px", color: "#ff5555", fontWeight: "bold" };
-const statusArmed: React.CSSProperties = { fontSize: "12px", color: "#ffaa00", fontWeight: "bold" };
+const statusOn: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#10b981",
+  fontWeight: "bold",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
+};
+
+const statusOff: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#ff5555",
+  fontWeight: "bold",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
+};
+
+const statusArmed: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#ffaa00",
+  fontWeight: "bold",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
+};
 
 const powerDisplay: React.CSSProperties = {
-  padding: "16px",
-  borderRadius: "4px",
-  border: "1px solid #333",
-  background: "rgba(0, 0, 0, 0.5)",
-  marginBottom: "16px",
+  padding: "20px",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
+  marginBottom: "20px",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
+  position: "relative",
 };
 
 const powerHeader: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  marginBottom: "8px",
+  marginBottom: "12px",
+  padding: "6px 10px",
+  background: "rgba(0, 255, 170, 0.05)",
+  borderRadius: "6px",
 };
 
 const powerLabel: React.CSSProperties = {
-  fontSize: "11px",
-  letterSpacing: "1px",
-  color: "#888",
+  fontSize: "12px",
+  letterSpacing: "0px",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const powerStatus = (power: number): React.CSSProperties => ({
   fontSize: "11px",
   fontWeight: "bold",
-  color: power > 105 ? "#ff5555" : power < 50 ? "#ffaa00" : "#00ff00",
+  letterSpacing: "1px",
+  fontFamily: "'Inter', sans-serif",
+  color: power > 105 ? "#ff0000" : power < 50 ? "#ffaa00" : "#10b981",
+  animation: "none",
 });
 
 const powerValueContainer: React.CSSProperties = {
   display: "flex",
   alignItems: "baseline",
-  gap: "4px",
+  gap: "8px",
+  padding: "10px",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "1px solid rgba(16, 185, 129, 0.25)",
+  borderRadius: "6px",
+  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.3)",
 };
 
 const powerValue = (power: number): React.CSSProperties => ({
-  fontSize: "48px",
+  fontSize: "64px",
   fontWeight: "bold",
-  color: power > 110 ? "#ff5555" : power > 105 ? "#ffaa00" : "#ff9900",
-  fontFamily: "monospace",
+  color: power > 110 ? "#ff0000" : power > 105 ? "#ffaa00" : "#10b981",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "0px",
 });
 
 const powerUnit: React.CSSProperties = {
-  fontSize: "24px",
-  color: "#666",
+  fontSize: "28px",
+  color: "#86efac",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const powerBar: React.CSSProperties = {
   height: "8px",
-  background: "#222",
-  borderRadius: "4px",
+  background: "rgba(15, 20, 25, 0.5)",
+  borderRadius: "6px",
   overflow: "hidden",
   marginTop: "8px",
 };
@@ -1027,42 +1234,52 @@ const powerBarFill = (power: number): React.CSSProperties => ({
 });
 
 const graphContainer: React.CSSProperties = {
-  padding: "12px",
-  borderRadius: "4px",
-  border: "1px solid #333",
-  background: "rgba(0, 0, 0, 0.5)",
-  marginBottom: "16px",
+  padding: "16px",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
+  marginBottom: "20px",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
 };
 
 const graphHeader: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  marginBottom: "8px",
+  marginBottom: "12px",
+  padding: "6px 10px",
+  background: "rgba(0, 255, 170, 0.05)",
+  borderRadius: "6px",
 };
 
 const graphTitle: React.CSSProperties = {
-  fontSize: "11px",
-  letterSpacing: "1px",
-  color: "#888",
+  fontSize: "12px",
+  letterSpacing: "0px",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const graphTime: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#ff9900",
-  fontFamily: "monospace",
+  fontSize: "13px",
+  color: "#10b981",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const graphSvg: React.CSSProperties = {
-  background: "rgba(0, 0, 0, 0.3)",
-  borderRadius: "2px",
+  background: "rgba(20, 25, 30, 0.6)",
+  border: "2px solid #1a1a1a",
+  borderRadius: "6px",
+  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.3)",
 };
 
 const graphLabels: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  fontSize: "9px",
-  color: "#555",
-  marginTop: "4px",
+  fontSize: "10px",
+  color: "#6ee7b7",
+  marginTop: "8px",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
 };
 
 const metricsGrid: React.CSSProperties = {
@@ -1073,69 +1290,96 @@ const metricsGrid: React.CSSProperties = {
 };
 
 const metricCard: React.CSSProperties = {
-  padding: "12px",
-  borderRadius: "4px",
-  border: "1px solid #333",
-  background: "rgba(0, 0, 0, 0.5)",
+  padding: "14px",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
 };
 
 const metricLabel: React.CSSProperties = {
   fontSize: "10px",
-  letterSpacing: "1px",
-  color: "#888",
-  marginBottom: "4px",
+  letterSpacing: "0px",
+  color: "#6ee7b7",
+  marginBottom: "8px",
+  fontFamily: "'Inter', sans-serif",
+  textTransform: "none",
 };
 
 const metricValue = (warning: boolean): React.CSSProperties => ({
-  fontSize: "24px",
+  fontSize: "28px",
   fontWeight: "bold",
-  color: warning ? "#ff5555" : "#ff9900",
-  fontFamily: "monospace",
+  color: warning ? "#ff0000" : "#10b981",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
 });
 
 const metricUnit: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#666",
+  fontSize: "14px",
+  color: "#6ee7b7",
   marginLeft: "4px",
+  fontFamily: "'Inter', sans-serif",
 };
 
 const reactivityPanel: React.CSSProperties = {
-  padding: "12px",
-  borderRadius: "4px",
-  border: "1px solid #333",
-  background: "rgba(0, 0, 0, 0.5)",
+  padding: "16px",
+  borderRadius: "6px",
+  border: "1px solid rgba(16, 185, 129, 0.2)",
+  background: "rgba(20, 25, 30, 0.6)",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
 };
 
 const reactivityGrid: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  gap: "6px",
+  gap: "10px",
 };
 
 const reactivityRow: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   fontSize: "12px",
+  padding: "6px 8px",
+  background: "rgba(0, 255, 170, 0.03)",
+  borderRadius: "6px",
+};
+
+const xenonAccelNote: React.CSSProperties = {
+  fontSize: "9px",
+  color: "#6ee7b7",
+  textAlign: "center",
+  padding: "4px 8px",
+  marginTop: "-4px",
+  marginBottom: "4px",
+  fontFamily: "'Inter', sans-serif",
+  fontStyle: "italic",
 };
 
 const reactivityRowTotal: React.CSSProperties = {
   ...reactivityRow,
-  borderTop: "1px solid #333",
-  paddingTop: "6px",
-  marginTop: "4px",
+  borderTop: "2px solid #6ee7b7",
+  paddingTop: "10px",
+  marginTop: "8px",
+  background: "rgba(0, 255, 170, 0.08)",
+  fontSize: "13px",
 };
 
 const reactivityLabel: React.CSSProperties = {
-  color: "#888",
+  color: "#6ee7b7",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
 };
 
 const reactivityValue: React.CSSProperties = {
-  color: "#ccc",
-  fontFamily: "monospace",
+  color: "#10b981",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "1px",
 };
 
 const reactivityValueTotal = (rho: number): React.CSSProperties => ({
   ...reactivityValue,
-  color: rho > 0.0001 ? "#ffaa00" : rho < -0.0001 ? "#66aaff" : "#00ff00",
+  color: rho > 0.0001 ? "#ffaa00" : rho < -0.0001 ? "#66aaff" : "#10b981",
   fontWeight: "bold",
+  fontSize: "14px",
 });
+

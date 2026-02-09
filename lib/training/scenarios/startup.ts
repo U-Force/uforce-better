@@ -27,6 +27,8 @@ export const normalStartupScenario: TrainingScenario = {
       Tf: 500, // Cool fuel temperature
       Tc: 500, // Cool coolant temperature
       C: [0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.05, // Rods mostly inserted

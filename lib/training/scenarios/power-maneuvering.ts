@@ -26,6 +26,8 @@ export const powerManeuveringScenario: TrainingScenario = {
       Tf: 360,
       Tc: 335,
       C: [0.001, 0.001, 0.001, 0.001, 0.001, 0.001],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.4,
@@ -62,12 +64,12 @@ export const powerManeuveringScenario: TrainingScenario = {
     },
     {
       id: 'OBJ3_TEMP_CONTROL',
-      description: 'Maintain temperatures within limits',
+      description: 'Maintain fuel temperature below 723 K (450°C)',
       assessmentCriteria: [
         {
           metric: 'maxFuelTemp',
-          target: '<450',
-          unit: '°C',
+          target: '<723',
+          unit: 'K',
           weight: 0.3,
         },
       ],

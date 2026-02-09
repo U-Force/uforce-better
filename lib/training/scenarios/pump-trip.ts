@@ -27,6 +27,8 @@ export const pumpTripScenario: TrainingScenario = {
       Tf: 1100, // Hot fuel at power
       Tc: 580, // Hot coolant at power
       C: [0.0008, 0.0007, 0.0006, 0.0005, 0.0004, 0.0003],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.65, // Rods withdrawn for power operation

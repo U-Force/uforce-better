@@ -26,6 +26,8 @@ export const introControlsScenario: TrainingScenario = {
       Tf: 320,
       Tc: 310,
       C: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.15, // 15% - some rods withdrawn

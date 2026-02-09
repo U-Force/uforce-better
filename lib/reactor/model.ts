@@ -130,8 +130,50 @@ export function computeModeratorReactivity(Tc: number, params: ReactorParams): n
 }
 
 /**
+ * Computes xenon-135 reactivity feedback.
+ * Xenon is a strong neutron poison with very high absorption cross-section.
+ *
+ * @param Xe135 Current Xe-135 concentration [atoms/cm³]
+ * @param params Reactor parameters
+ * @returns Xenon reactivity (always negative) [Δk/k]
+ */
+export function computeXenonReactivity(Xe135: number, params: ReactorParams): number {
+  // Simplified approach: reactivity is directly proportional to Xe concentration
+  // We define a reference concentration that produces the equilibrium worth
+
+  // At equilibrium (full power, P=1), from steady-state analysis:
+  // Xe_eq = (γ_I + γ_Xe) * φ * Σ_f / (λ_Xe + σ_Xe * φ)
+  // Where φ is flux at full power, Σ_f is macroscopic fission cross-section
+
+  // Using typical PWR values:
+  // Flux at full power: 3.5e13 n/cm²/s
+  // Macroscopic fission cross-section: ~0.1 cm⁻¹
+  const phi_nominal = params.fluxNominal; // 3.5e13 n/cm²/s
+  const Sigma_f = 0.1; // cm⁻¹ (typical PWR)
+  const fission_rate = phi_nominal * Sigma_f; // fissions/cm³/s
+
+  const lambda_I = params.lambdaI135;
+  const lambda_Xe = params.lambdaXe135;
+  const sigma_Xe_cm2 = params.sigmaXe * 1e-24; // Convert barns to cm²
+
+  // I-135 equilibrium at full power
+  const I_eq = (params.gammaI * fission_rate) / lambda_I;
+
+  // Xe-135 equilibrium at full power
+  const Xe_eq = (params.gammaXe * fission_rate + lambda_I * I_eq) /
+                (lambda_Xe + sigma_Xe_cm2 * phi_nominal);
+
+  // Reactivity coefficient: pcm per atom/cm³
+  // At equilibrium, Xe_eq should give xenonWorthEquilibrium
+  const rho_per_atom = Xe_eq > 0 ? params.xenonWorthEquilibrium / Xe_eq : 0;
+
+  // Current reactivity is proportional to current Xe concentration
+  return Xe135 * rho_per_atom;
+}
+
+/**
  * Computes total reactivity and all components.
- * 
+ *
  * @param state Current reactor state
  * @param controls Control inputs
  * @param scramStartTime Time when scram was initiated
@@ -154,12 +196,14 @@ export function computeReactivity(
   
   const rhoDoppler = computeDopplerReactivity(state.Tf, params);
   const rhoMod = computeModeratorReactivity(state.Tc, params);
-  
+  const rhoXenon = computeXenonReactivity(state.Xe135, params);
+
   return {
     rhoExt,
     rhoDoppler,
     rhoMod,
-    rhoTotal: rhoExt + rhoDoppler + rhoMod,
+    rhoXenon,
+    rhoTotal: rhoExt + rhoDoppler + rhoMod + rhoXenon,
   };
 }
 
@@ -175,6 +219,8 @@ interface StateDerivatives {
   dC: number[];
   dTf: number;
   dTc: number;
+  dI135: number;
+  dXe135: number;
 }
 
 /**
@@ -258,8 +304,41 @@ export function computeDerivatives(
   const coolantCapacity = params.massCoolant * params.cpCoolant;
   
   const dTc = (Q_fc - Q_sink) / coolantCapacity;
-  
-  return { dP, dC, dTf, dTc };
+
+  // =========================================================================
+  // Xenon dynamics: I-135 and Xe-135 concentration rates
+  // =========================================================================
+
+  // Neutron flux proportional to power (normalized to full power)
+  const flux = params.fluxNominal * P;
+
+  // Fission rate: φ × Σ_f [fissions/cm³/s]
+  // Using typical PWR macroscopic fission cross-section
+  const Sigma_f = 0.1; // cm⁻¹ (typical PWR value)
+  const fissionRate = flux * Sigma_f; // fissions/cm³/s
+
+  // I-135 production and decay
+  // dI/dt = γ_I * fission_rate - λ_I * I
+  const I_production = params.gammaI * fissionRate;
+  const I_decay = params.lambdaI135 * state.I135;
+  const dI135_real = I_production - I_decay;
+
+  // Xe-135 production, decay, and burnout
+  // dXe/dt = γ_Xe * fission_rate + λ_I * I - λ_Xe * Xe - σ_Xe * flux * Xe
+  const Xe_fission = params.gammaXe * fissionRate; // Direct from fission
+  const Xe_from_I = params.lambdaI135 * state.I135; // From I-135 decay
+  const Xe_decay = params.lambdaXe135 * state.Xe135; // Radioactive decay
+  const sigma_Xe_cm2 = params.sigmaXe * 1e-24; // Convert barns to cm²
+  const Xe_burnout = sigma_Xe_cm2 * flux * state.Xe135; // Neutron absorption
+
+  const dXe135_real = Xe_fission + Xe_from_I - Xe_decay - Xe_burnout;
+
+  // Apply time acceleration for educational purposes
+  // This speeds up xenon dynamics while maintaining correct equilibrium values
+  const dI135 = dI135_real * params.xenonTimeAcceleration;
+  const dXe135 = dXe135_real * params.xenonTimeAcceleration;
+
+  return { dP, dC, dTf, dTc, dI135, dXe135 };
 }
 
 // ============================================================================
@@ -280,6 +359,8 @@ function applyDerivatives(
     C: state.C.map((c, i) => c + derivatives.dC[i] * dt),
     Tf: state.Tf + derivatives.dTf * dt,
     Tc: state.Tc + derivatives.dTc * dt,
+    I135: state.I135 + derivatives.dI135 * dt,
+    Xe135: state.Xe135 + derivatives.dXe135 * dt,
   };
 }
 
@@ -296,6 +377,8 @@ function addDerivatives(
     dC: a.dC.map((ac, i) => ac + b.dC[i] * scale),
     dTf: a.dTf + b.dTf * scale,
     dTc: a.dTc + b.dTc * scale,
+    dI135: a.dI135 + b.dI135 * scale,
+    dXe135: a.dXe135 + b.dXe135 * scale,
   };
 }
 
@@ -308,6 +391,8 @@ function scaleDerivatives(d: StateDerivatives, scale: number): StateDerivatives 
     dC: d.dC.map(c => c * scale),
     dTf: d.dTf * scale,
     dTc: d.dTc * scale,
+    dI135: d.dI135 * scale,
+    dXe135: d.dXe135 * scale,
   };
 }
 
@@ -637,13 +722,29 @@ export function createSteadyState(
   // From Q_fc = h_fc * (Tf - Tc):
   // Tf = Tc + Q_gen / h_fc
   const Tf = Tc + Q_gen / params.hFuelCoolant;
-  
+
+  // Compute equilibrium xenon concentrations
+  // At steady state for I-135: dI/dt = 0 → I_eq = (γ_I * fission_rate) / λ_I
+  // At steady state for Xe-135: dXe/dt = 0
+  // Xe_eq = (γ_Xe * fission_rate + λ_I * I_eq) / (λ_Xe + σ_Xe * flux)
+  const flux = params.fluxNominal * P;
+  const Sigma_f = 0.1; // cm⁻¹ (typical PWR)
+  const fissionRate = flux * Sigma_f; // fissions/cm³/s
+
+  const I_eq = (params.gammaI * fissionRate) / params.lambdaI135;
+
+  const sigmaXe_cm2 = params.sigmaXe * 1e-24; // Convert barns to cm²
+  const Xe_eq = (params.gammaXe * fissionRate + params.lambdaI135 * I_eq) /
+                (params.lambdaXe135 + sigmaXe_cm2 * flux);
+
   return {
     t: 0,
     P,
     C,
     Tf,
     Tc,
+    I135: I_eq,
+    Xe135: Xe_eq,
   };
 }
 

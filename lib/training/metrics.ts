@@ -18,6 +18,14 @@ export class MetricsCollector {
   private lastRodPosition: number = 0;
   private lastPumpState: boolean = true;
   private sessionStartTime: number = 0;
+  private powerChangeCount: number = 0;
+  private lastPower: number = 0;
+  private maxFuelTemp: number = 0;
+  private maxCoolantTemp: number = 0;
+  private timeAt50Percent: number = 0; // Accumulated time spent at 45-55% power
+  private maxPowerRate: number = 0; // Maximum power change rate in %/min
+  private lastPowerRateCheckTime: number = 0;
+  private lastPowerForRate: number = 0;
 
   constructor(scenarioId: string, sessionId: string = crypto.randomUUID()) {
     this.metrics = {
@@ -59,6 +67,42 @@ export class MetricsCollector {
    */
   recordState(state: ReactorState, rod: number, pumpOn: boolean, scram: boolean): void {
     const currentTime = (Date.now() - this.sessionStartTime) / 1000;
+
+    // Track power changes (significant changes > 5%)
+    const currentPowerPercent = state.P * 100;
+    if (Math.abs(currentPowerPercent - this.lastPower) > 5) {
+      this.powerChangeCount++;
+      this.lastPower = currentPowerPercent;
+    }
+
+    // Track max temperatures
+    this.maxFuelTemp = Math.max(this.maxFuelTemp, state.Tf);
+    this.maxCoolantTemp = Math.max(this.maxCoolantTemp, state.Tc);
+
+    // Track time at 50% power (45-55% range)
+    if (this.lastState) {
+      const dt = state.t - this.lastState.t;
+      if (currentPowerPercent >= 45 && currentPowerPercent <= 55) {
+        this.timeAt50Percent += dt;
+      }
+    }
+
+    // Track power rate (check every second to avoid excessive calculations)
+    if (currentTime - this.lastPowerRateCheckTime >= 1.0) {
+      const timeDeltaMin = (currentTime - this.lastPowerRateCheckTime) / 60;
+      if (timeDeltaMin > 0) {
+        const powerRate = Math.abs(currentPowerPercent - this.lastPowerForRate) / timeDeltaMin;
+        this.maxPowerRate = Math.max(this.maxPowerRate, powerRate);
+        this.lastPowerForRate = currentPowerPercent;
+        this.lastPowerRateCheckTime = currentTime;
+      }
+    }
+
+    // Initialize on first call
+    if (this.lastPowerRateCheckTime === 0) {
+      this.lastPowerRateCheckTime = currentTime;
+      this.lastPowerForRate = currentPowerPercent;
+    }
 
     // Record rod movements
     if (this.lastRodPosition !== rod) {
@@ -222,6 +266,12 @@ export class MetricsCollector {
     if (this.metrics.tripCount > 0) return false;
     if (this.metrics.safetyLimitViolations.length > 0) return false;
 
+    // Check if all objectives are completed
+    const allObjectivesCompleted = scenario.objectives.every(obj =>
+      this.metrics.objectivesCompleted.includes(obj.id)
+    );
+    if (!allObjectivesCompleted) return false;
+
     // Check completion conditions
     const conditions = scenario.completionConditions;
 
@@ -304,7 +354,7 @@ export class MetricsCollector {
       case 'finalPower':
         return this.metrics.finalPower * 100; // Convert to percentage
       case 'maxCoolantTemp':
-        return Math.max(...this.metrics.parameterDeviations.map((d) => d.value));
+        return this.maxCoolantTemp;
       case 'tripsOccurred':
         return this.metrics.tripCount;
       case 'timeToFirstAction':
@@ -312,7 +362,24 @@ export class MetricsCollector {
       case 'timeToScram':
         return this.metrics.scramActions.length > 0 ? this.metrics.scramActions[0].timestamp : 999;
       case 'maxFuelTemp':
-        return this.metrics.finalFuelTemp;
+        return this.maxFuelTemp;
+      case 'powerChangeCount':
+        return this.powerChangeCount;
+      case 'observationTime':
+        return this.metrics.duration;
+      case 'timeToFirstCriticality':
+        return this.metrics.timeToFirstAction; // Approximate
+      case 'timeAt50Percent':
+        return this.timeAt50Percent;
+      case 'maxPowerRate':
+        return this.maxPowerRate;
+      case 'rodWithdrawalRate':
+        // Calculate average withdrawal rate
+        const withdrawals = this.metrics.rodMovements.filter(m => m.action === 'withdraw');
+        if (withdrawals.length === 0) return 0;
+        const totalWithdrawal = withdrawals.reduce((sum, m) => sum + Math.abs(m.toValue - m.fromValue), 0);
+        const totalTime = this.metrics.duration / 60; // Convert to minutes
+        return totalTime > 0 ? (totalWithdrawal * 100) / totalTime : 0; // %/minute
       default:
         return 0;
     }
@@ -360,5 +427,12 @@ export class MetricsCollector {
    */
   getMetrics(): PerformanceMetrics {
     return { ...this.metrics };
+  }
+
+  /**
+   * Get live metric values for real-time objective evaluation
+   */
+  getLiveMetricValue(metricName: string): number {
+    return this.getMetricValue(metricName);
   }
 }

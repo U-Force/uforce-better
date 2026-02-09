@@ -26,6 +26,8 @@ export const coolantSystemScenario: TrainingScenario = {
       Tf: 350,
       Tc: 330,
       C: [0.0005, 0.0005, 0.0005, 0.0005, 0.0005, 0.0005],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.35,
@@ -38,7 +40,7 @@ export const coolantSystemScenario: TrainingScenario = {
   objectives: [
     {
       id: 'OBJ1_OBSERVE_FLOW',
-      description: 'Observe coolant temperatures at different power levels',
+      description: 'Change power levels at least 3 times to observe temperature response',
       assessmentCriteria: [
         {
           metric: 'powerChangeCount',
@@ -50,7 +52,7 @@ export const coolantSystemScenario: TrainingScenario = {
     },
     {
       id: 'OBJ2_TEMP_FEEDBACK',
-      description: 'Understand temperature feedback on reactivity',
+      description: 'Run the simulation for 2 minutes to observe feedback effects',
       assessmentCriteria: [
         {
           metric: 'observationTime',
@@ -62,12 +64,12 @@ export const coolantSystemScenario: TrainingScenario = {
     },
     {
       id: 'OBJ3_MAINTAIN_TEMPS',
-      description: 'Keep fuel temperature below 400°C',
+      description: 'Keep fuel temperature below 673 K (400°C)',
       assessmentCriteria: [
         {
           metric: 'maxFuelTemp',
-          target: '<400',
-          unit: '°C',
+          target: '<673',
+          unit: 'K',
           weight: 0.4,
         },
       ],

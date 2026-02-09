@@ -7,7 +7,15 @@
       "Bash(curl:*)",
       "Bash(npm run dev:*)",
       "Bash(npm run build:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npx tsx:*)",
+      "Bash(lsof:*)",
+      "Bash(ls:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "Bash(NEXT_PRIVATE_SKIP_TURBOPACK=1 npm run dev:*)",
+      "Bash(grep:*)",
+      "Bash(test-xenon.js << 'EOF'\n// Quick test to see if xenon calculations work\nimport { createSteadyState, DEFAULT_PARAMS } from './lib/reactor/index.ts';\n\nconst state = createSteadyState\\(1.0, DEFAULT_PARAMS, true\\);\nconsole.log\\('Steady state at 100% power:'\\);\nconsole.log\\('I135:', state.I135\\);\nconsole.log\\('Xe135:', state.Xe135\\);\nconsole.log\\('Power:', state.P\\);\nEOF)"
     ]
   }
 }

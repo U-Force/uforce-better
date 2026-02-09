@@ -466,6 +466,13 @@ export default function SimulatorPage() {
                   <span style={reactivityLabel}>Moderator</span>
                   <span style={reactivityValue}>{reactivity ? (reactivity.rhoMod * 1e5).toFixed(0) : 0} pcm</span>
                 </div>
+                <div style={reactivityRow}>
+                  <span style={reactivityLabel}>Xenon-135</span>
+                  <span style={reactivityValue}>{reactivity ? (reactivity.rhoXenon * 1e5).toFixed(0) : 0} pcm</span>
+                </div>
+                <div style={xenonAccelNote}>
+                  <span style={{opacity: 0.6}}>⚡ Xenon dynamics accelerated 500× for simulation</span>
+                </div>
                 <div style={reactivityRowTotal}>
                   <span style={reactivityLabel}>TOTAL</span>
                   <span style={reactivityValueTotal(reactivity?.rhoTotal || 0)}>
@@ -921,6 +928,17 @@ const reactivityRow: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   fontSize: "12px",
+};
+
+const xenonAccelNote: React.CSSProperties = {
+  fontSize: "9px",
+  color: "#888",
+  textAlign: "center",
+  padding: "4px 8px",
+  marginTop: "2px",
+  marginBottom: "4px",
+  fontFamily: "monospace",
+  fontStyle: "italic",
 };
 
 const reactivityRowTotal: React.CSSProperties = {

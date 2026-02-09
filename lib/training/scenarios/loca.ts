@@ -26,6 +26,8 @@ export const locaScenario: TrainingScenario = {
       Tf: 450,
       Tc: 385,
       C: [0.003, 0.003, 0.003, 0.003, 0.003, 0.003],
+      I135: 0,
+      Xe135: 0,
     },
     controls: {
       rod: 0.75,
