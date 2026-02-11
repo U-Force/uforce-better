@@ -14,14 +14,14 @@ import {
   ModeBanner,
   PlantStatusPanel,
   ProcedurePanel,
+  ReactivityPanel,
   SystemHealthTile,
 } from "./panels";
 import { InspectorCard } from "./overlays";
 import { BoronCard, ControlRodCard, PumpCard } from "./controls";
 import { GlassPanel, LearningTooltip } from "./shared";
 import { COLORS, FONTS, FONT_SIZES, RADIUS, BLUR } from "../../lib/workbench/theme";
-import { sectionHeader } from "../../lib/workbench/styles";
-import { VIEWPORT_HELP, TREE_HELP, MODE_BANNER_HELP, SYSTEM_HEALTH_HELP } from "../../lib/workbench/learning-content";
+import { VIEWPORT_HELP, TREE_HELP, MODE_BANNER_HELP } from "../../lib/workbench/learning-content";
 import type { TrainingScenario } from "../../lib/training/types";
 
 export default function WorkbenchLayout() {
@@ -150,6 +150,17 @@ export default function WorkbenchLayout() {
                     />
                   </div>
                 )}
+
+              {/* System Health */}
+              <div style={healthSection}>
+                <div style={healthHeader}>SYSTEM HEALTH</div>
+                <div style={healthGrid}>
+                  <SystemHealthTile name="RCS" status={rcsHealth as "ok" | "degraded"} />
+                  <SystemHealthTile name="SAFETY" status={safetyHealth as "ok" | "failed"} />
+                  <SystemHealthTile name="CVCS" status="ok" />
+                  <SystemHealthTile name="ECCS" status="ok" />
+                </div>
+              </div>
             </GlassPanel>
           </div>
         )}
@@ -266,41 +277,12 @@ export default function WorkbenchLayout() {
                 <AlarmList alarms={alarms} onAcknowledge={acknowledgeAlarm} learningMode={ui.learningMode} />
               </GlassPanel>
 
-              {/* System Health */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "4px",
-                  marginTop: "8px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    marginBottom: "2px",
-                  }}
-                >
-                  <div
-                    style={{
-                      ...sectionHeader(COLORS.teal),
-                      marginBottom: 0,
-                      borderBottom: "none",
-                      paddingBottom: 0,
-                      flex: 1,
-                    }}
-                  >
-                    SYSTEM HEALTH
-                  </div>
-                  <LearningTooltip visible={ui.learningMode} title={SYSTEM_HEALTH_HELP.title} description={SYSTEM_HEALTH_HELP.description} position="left" />
+              {/* Reactivity Breakdown */}
+              {sim.reactivity && (
+                <div style={{ marginTop: "8px" }}>
+                  <ReactivityPanel reactivity={sim.reactivity} />
                 </div>
-                <SystemHealthTile name="RCS" status={rcsHealth as "ok" | "degraded"} />
-                <SystemHealthTile name="SAFETY" status={safetyHealth as "ok" | "failed"} />
-                <SystemHealthTile name="CVCS" status="ok" />
-                <SystemHealthTile name="ECCS" status="ok" />
-              </div>
+              )}
             </div>
           </div>
         )}
@@ -393,4 +375,24 @@ const debriefOverlay: React.CSSProperties = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   zIndex: 70,
+};
+
+const healthSection: React.CSSProperties = {
+  marginTop: "auto",
+  padding: "8px",
+  borderTop: `1px solid ${COLORS.borderSubtle}`,
+};
+
+const healthHeader: React.CSSProperties = {
+  fontSize: FONT_SIZES.xs,
+  fontWeight: 700,
+  color: COLORS.teal,
+  letterSpacing: "1.5px",
+  marginBottom: "6px",
+};
+
+const healthGrid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "4px",
 };

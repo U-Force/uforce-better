@@ -177,3 +177,4 @@ const statusDot = (running: boolean, paused: boolean): React.CSSProperties => ({
   alignItems: "center",
   gap: "6px",
 });
+
