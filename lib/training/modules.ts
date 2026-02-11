@@ -1,70 +1,156 @@
 /**
- * Training Modules - Organized curriculum structure
- * Groups scenarios into logical learning modules with completion tracking
+ * Training Modules - HRTD-Based 3-Tier Curriculum
+ *
+ * Organized from the USNRC HRTD (Human Resources Training Division) PWR
+ * training documents into three progressive tiers:
+ *   Tier 1 — Foundations (Novice)
+ *   Tier 2 — Systems & Operations (Intermediate)
+ *   Tier 3 — Protection & Emergency (Operator-Ready)
+ *
+ * Each module groups related scenarios with completion tracking.
  */
 
-import type { TrainingScenario } from './types';
-
 export enum ModuleId {
-  BASICS = 'basics',
-  SYSTEMS = 'systems',
+  // Tier 1 — Foundations
+  FUNDAMENTALS = 'fundamentals',
+  FEEDBACK = 'feedback',
+  REACTIVITY_CONTROL = 'reactivity_control',
+  // Tier 2 — Systems & Operations
+  THERMAL_HYDRAULICS = 'thermal_hydraulics',
   NORMAL_OPS = 'normal_ops',
+  XENON_KINETICS = 'xenon_kinetics',
+  // Tier 3 — Protection & Emergency
+  PROTECTION = 'protection',
   TRANSIENTS = 'transients',
   EMERGENCY = 'emergency',
 }
+
+export type Tier = 1 | 2 | 3;
 
 export interface TrainingModule {
   id: ModuleId;
   name: string;
   description: string;
+  tier: Tier;
   order: number;
   color: string;
   scenarioIds: string[];
+  hrtdSources: string[];
 }
 
 /**
- * Training Module Definitions
+ * Tier display metadata
+ */
+export const TIER_INFO: Record<Tier, { name: string; label: string; color: string }> = {
+  1: { name: 'Foundations', label: 'Novice', color: '#00ffaa' },
+  2: { name: 'Systems & Operations', label: 'Intermediate', color: '#00aaff' },
+  3: { name: 'Protection & Emergency', label: 'Operator-Ready', color: '#ff6644' },
+};
+
+/**
+ * Training Module Definitions — 3-Tier HRTD Curriculum
  */
 export const TRAINING_MODULES: TrainingModule[] = [
+  // ═══════════════════════════════════════════════════════════════
+  // TIER 1 — FOUNDATIONS (Novice)
+  // ═══════════════════════════════════════════════════════════════
   {
-    id: ModuleId.BASICS,
-    name: 'Basics',
-    description: 'Fundamental reactor physics and control principles',
+    id: ModuleId.FUNDAMENTALS,
+    name: 'PWR Fundamentals',
+    description: 'What is a nuclear power plant? Learn basic controls, see how reactivity drives power.',
+    tier: 1,
     order: 1,
     color: '#00ffaa',
     scenarioIds: ['PWR_INTRO_01', 'PWR_BASICS_02'],
+    hrtdSources: ['PWR Overview (Ch. 1)', 'I&C Overview (Ch. 2)'],
   },
   {
-    id: ModuleId.SYSTEMS,
-    name: 'Systems',
-    description: 'Reactor systems and component operation',
+    id: ModuleId.FEEDBACK,
+    name: 'Self-Regulation & Feedback',
+    description: 'Discover how Doppler and moderator temperature feedback make the reactor inherently stable.',
+    tier: 1,
     order: 2,
+    color: '#33ffbb',
+    scenarioIds: ['PWR_FEEDBACK_01'],
+    hrtdSources: ['Reactor Physics (Ch. 3)', 'PWR Overview (Ch. 1)'],
+  },
+  {
+    id: ModuleId.REACTIVITY_CONTROL,
+    name: 'Reactivity Control: Rods & Boron',
+    description: 'Master the two primary reactivity control mechanisms: mechanical (rods) and chemical (boron).',
+    tier: 1,
+    order: 3,
+    color: '#66ffcc',
+    scenarioIds: ['PWR_BORON_01'],
+    hrtdSources: ['Rod Control (Ch. 8)', 'Plant Operations (Ch. 15)'],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // TIER 2 — SYSTEMS & OPERATIONS (Intermediate)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: ModuleId.THERMAL_HYDRAULICS,
+    name: 'Thermal-Hydraulics',
+    description: 'Understand coolant flow, heat removal, and the relationship between power and temperature.',
+    tier: 2,
+    order: 4,
     color: '#00aaff',
     scenarioIds: ['PWR_SYSTEMS_01'],
+    hrtdSources: ['RCS (Ch. 4)', 'Condensate & Feedwater (Ch. 7)'],
   },
   {
     id: ModuleId.NORMAL_OPS,
     name: 'Normal Operations',
-    description: 'Standard operational procedures and startup/shutdown',
-    order: 3,
-    color: '#00ff00',
-    scenarioIds: ['PWR_STARTUP_01', 'PWR_NORMAL_02'],
+    description: 'Startup from cold shutdown, power maneuvering, and full power ascension.',
+    tier: 2,
+    order: 5,
+    color: '#33bbff',
+    scenarioIds: ['PWR_STARTUP_01', 'PWR_NORMAL_02', 'PWR_ASCENSION_01'],
+    hrtdSources: ['Plant Operations (Ch. 15)', 'Rod Control (Ch. 8)', 'SG Level Control (Ch. 12)'],
+  },
+  {
+    id: ModuleId.XENON_KINETICS,
+    name: 'Xenon & Core Physics',
+    description: 'Confront the most challenging operational physics: xenon poisoning and the iodine pit.',
+    tier: 2,
+    order: 6,
+    color: '#66ccff',
+    scenarioIds: ['PWR_XENON_01'],
+    hrtdSources: ['Reactor Physics (Ch. 3)', 'Plant Operations (Ch. 15)'],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // TIER 3 — PROTECTION & EMERGENCY (Operator-Ready)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: ModuleId.PROTECTION,
+    name: 'Reactor Protection System',
+    description: 'Explore the automatic safety net: trip setpoints, SCRAM response, and defense-in-depth.',
+    tier: 3,
+    order: 7,
+    color: '#ff9944',
+    scenarioIds: ['PWR_RPS_01'],
+    hrtdSources: ['RPS (Ch. 13)', 'Trip Signals (Ch. 14)'],
   },
   {
     id: ModuleId.TRANSIENTS,
-    name: 'Transient Conditions',
-    description: 'Handling abnormal conditions and upsets',
-    order: 4,
-    color: '#ffaa00',
+    name: 'Transient Response',
+    description: 'Handle abnormal conditions: pump trips, feedwater loss, and equipment failures.',
+    tier: 3,
+    order: 8,
+    color: '#ff6644',
     scenarioIds: ['PWR_PUMP_TRIP_01', 'PWR_TRANSIENT_02'],
+    hrtdSources: ['ESF (Ch. 5)', 'ECCS (Ch. 6)', 'Condensate & Feedwater (Ch. 7)'],
   },
   {
     id: ModuleId.EMERGENCY,
-    name: 'Emergency',
-    description: 'Emergency procedures and accident mitigation',
-    order: 5,
-    color: '#ff5555',
+    name: 'Emergency Operations',
+    description: 'The ultimate test: LOCA response, core damage prevention, and emergency procedures.',
+    tier: 3,
+    order: 9,
+    color: '#ff4433',
     scenarioIds: ['PWR_EMERGENCY_01'],
+    hrtdSources: ['ESF (Ch. 5)', 'ECCS (Ch. 6)', 'RPS (Ch. 13)'],
   },
 ];
 
@@ -91,6 +177,13 @@ export function getModuleById(id: ModuleId): TrainingModule | undefined {
  */
 export function getModuleForScenario(scenarioId: string): TrainingModule | undefined {
   return TRAINING_MODULES.find((m) => m.scenarioIds.includes(scenarioId));
+}
+
+/**
+ * Get modules by tier
+ */
+export function getModulesByTier(tier: Tier): TrainingModule[] {
+  return TRAINING_MODULES.filter((m) => m.tier === tier).sort((a, b) => a.order - b.order);
 }
 
 /**
@@ -136,6 +229,26 @@ export function getAllModuleProgress(
   return TRAINING_MODULES.map((module) =>
     calculateModuleProgress(module.id, completedScenarioIds)
   );
+}
+
+/**
+ * Calculate tier progress (all modules in a tier)
+ */
+export function getTierProgress(
+  tier: Tier,
+  completedScenarioIds: string[]
+): { completed: number; total: number; percent: number } {
+  const modules = getModulesByTier(tier);
+  const total = modules.reduce((sum, m) => sum + m.scenarioIds.length, 0);
+  const completed = modules.reduce(
+    (sum, m) => sum + m.scenarioIds.filter((id) => completedScenarioIds.includes(id)).length,
+    0
+  );
+  return {
+    completed,
+    total,
+    percent: total > 0 ? Math.round((completed / total) * 100) : 0,
+  };
 }
 
 /**

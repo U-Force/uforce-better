@@ -1,0 +1,1951 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 2.1 
+ 
+Reactor Physics Review
+---PAGE---
+ 
+NRC HRTD 2.1-ii Rev 1208 
+ 
+ 
+TABLE OF CONTENTS 
+ 
+2.1 REACTOR PHYSICS REVIEW  ..................................................................... 2.1-1 
+ 
+2.1.1 Introduction  ......................................................................................... 2.1-1 
+ 
+2.1.2 Fission Process  .................................................................................. 2.1-2 
+ 
+2.1.3 Moderation   ........................................................................................ 2.1-3 
+ 
+2.1.4 Nuclear Cross Section  ........................................................................ 2.1-4 
+ 
+2.1.5 Neutron Multiplication  ......................................................................... 2.1-5 
+ 
+2.1.5.1 Fast Fission Factor  ............................................................... 2.1-6 
+2.1.5.2 Fast Nonleakage Factor  ........................................................ 2.1-6 
+2.1.5.3 Resonance Escape Probability  ............................................. 2.1-7 
+2.1.5.4 Thermal Nonleakage Factor  ................................................. 2.1-7 
+2.1.5.5 Thermal Utilization Factor  ..................................................... 2.1-8 
+2.1.5.6 Neutron Producti on Factor  .................................................... 2.1-8 
+ 
+2.1.6 Reactivity and Reactivity Coefficients   ................................................ 2.1-8 
+ 
+2.1.6.1 Fuel Temperature Coefficient  ............................................. 2.1-10 
+2.1.6.2 Moderator Temperat ure Coefficient  .................................... 2.1-12 
+2.1.6.3 Void Coefficient  ................................................................... 2.1-14 
+2.1.6.4 Pressure Coefficient  ............................................................ 2.1-14 
+2.1.6.5 Power Coefficient and Power Defect  .................................. 2.1-15 
+ 
+ 2.1.7 Poisons  ............................................................................................. 2.1-15 
+ 
+2.1.7.1 Uncontrollable Poisons  ....................................................... 2.1-15 
+  2.1.7.2 Controllable Poisons  ........................................................... 2.1-18 
+ 
+2.1.8 Reactor Response to Reactivity Changes  ........................................ 2.1-18 
+ 
+2.1.9 Reactor Kinetics  ............................................................................... 2.1-21 
+ 
+2.1.10 Subcritical Multiplication  ................................................................... 2.1-23 
+ 
+ 
+ 
+ 
+LIST OF TABLES 
+ 
+2.1-1 Particles and Energy Produced per Fission Event  ................................. 2.1-25 
+2.1-2 Neutrons per Fission  .............................................................................. 2.1-25 
+---PAGE---
+ 
+NRC HRTD 2.1-iii Rev 1208 
+2.1-3 Typical Neutron Ba lance for U-235 ......................................................... 2.1-26 
+ 
+LIST OF FIGURES 
+ 
+2.1-1  ..................................................................................... Fission Neutron Energy 
+2.1-2  ................................................................................................ Flux Distribution 
+2.1-3  ........................................................................... Total Cross Section for U-235 
+2.1-4  ......................................................................................... Cross Section Curve 
+2.1-5  ............................................. Doppler Temperature Coefficient, BOL and EOL 
+2.1-6  ................................................ Doppler Only Power Coefficient, BOL and EOL 
+2.1-7  ...................................................... Doppler Only Power Defect, BOL and EOL 
+2.1-8  .................................................................. Moderator Te mperature Coefficient 
+2.1-9  ............................................................ Total Power Coefficient, BOL and EOL 
+2.1-10  ................................................................... Total Power Defect, BOL and EOL 
+2.1-11  ................................................................... Fission Yield versus Mass Number 
+2.1-12  ......................................... Equilibrium Xenon Worth vs. Percent of Full Power 
+2.1-13  .............................................................................................. Xenon Transients 
+2.1-14  ...................................................... Xenon Transients Following a Reactor Trip 
+2.1-15  .................... Xenon Transients Following a Reactor Trip and Return to Power 
+2.1-16  ........................................................................................ Samarium Transients 
+2.1-17  ............................................. Samarium Transients Starting with a Clean Core 
+2.1-18  ............................................. Samarium Transients Starting with a Clean Core 
+2.1-19  ....................................................................... Samarium Shutdown Transients 
+2.1-20  ................................................................... Integral and Differential Rod Worth 
+2.1-21  .......................................................................... Reactivity versus Startup Rate 
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-1 Rev 1208 
+2.1 REACTOR PHYSICS REVIEW  
+ 
+Learning Objectives: 
+ 
+1. Define the following terms: 
+ 
+a. K
+eff 
+b. Reactivity 
+c. Reactivity coefficient 
+d. Power defect 
+e. Poison 
+f. Critical 
+g. Supercritical 
+h. Subcritical 
+i. Startup rate 
+ 
+2. Describe the following reactivity coefficients and explain how their values change 
+with core life and reactor power level: 
+ 
+a. Moderator temperature 
+b. Doppler-only power 
+c. Void 
+d. Power 
+ 
+3. Explain the relative effects of the following poisons in plant operations: 
+ 
+a. Xenon 
+b. Samarium 
+ 
+4. Explain how the following controllable poisons affect core reactivity: 
+ 
+a. Control rods 
+b. Chemical shim 
+ 
+5. Explain the inherent response of the reactor to the following transients: 
+ 
+a. Secondary load changes 
+b. Reactivity additions from control r od motion or boron concentration changes 
+ 
+6. Explain how the neutron population of a subcritical reactor changes in response 
+to reactivity changes. 
+ 
+ 
+2.1.1 Introduction  
+ 
+This section represents a summary of basic nuclear physics and nuclear reactor 
+design principles and terminology.  The material presented is broader in scope than 
+can be conveniently covered in the classroom time allotted; therefore, all the written 
+material is not covered in detail.  Basic explanations and definitions of concepts are 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-2 Rev 1208 
+given in the classroom.  It is emphasized that the written material is only a summary 
+of the subject.   
+ 
+ 
+2.1.2 Fission Process  
+ 
+Nuclear fission is the splitting of the nucleus of an atom into two or more separate 
+nuclei accompanied by the release of a large amount of energy.  The reaction can 
+be induced by a nucleus absorbing a neutron, or it can occur spontaneously, 
+because of the unstable nature of some of  the heavy isotopes.  Very few isotopes 
+have been excited to the state where the fission reaction occurs.  These have been 
+in the heavy elements, generally uranium and above on the chemical scale.   
+ 
+Nearly all of the fissions in a reactor are generated in the fuel by neutron absorption, 
+which can result in the splitting of the fissionable atoms that make up the fuel.  Only 
+a few of the heavy isotopes are available in quantities large enough or present a 
+sufficient probability of fission to be used as reactor fuel.  These are uranium-233 
+(U-233), uranium-235, (U-235), uranium-238 (U-238) for fast or high-energy fission 
+only, plutonium-239 (Pu-239), and plutonium-241 (Pu-241).  Several other isotopes 
+undergo some fission but their contribution is always extremely small.  U-235 and U-
+238 are naturally occurring isotopes with very long half-lives; they are generally the 
+fuels used for reactors.  Artificially produced fuels include U-233, which is produced 
+by the irradiation of thorium-232 (Th-232) in a reactor, and Pu-239 (produced by 
+irradiation of U-238 in a reactor).  Th-232 and U-238 are called fertile materials and 
+are generally placed in the core or in a blanket surrounding the reactor for the 
+express purpose of producing fuel (fissionable material) as the original fuel is used 
+up in fission.  The ratio of the amount of fuel that is produced in a reactor to the 
+amount that is used during any period of time is called the conversion ratio of the 
+reactor.  If the amount of fuel produced is greater than the amount consumed, then 
+the excess fuel produced is called a breeding gain.  The fissile nucleus absorbs a 
+neutron, and almost immediately, fission occurs.  In the case of U-235, the reaction 
+is represented by the following:    
+ 
+U-235 + n --> (U-236)* 
+ 
+(U-236)*--> FP
+1 + FP2 + 2.43 n + Energy 
+ 
+ where FP = fission product, 
+ n = neutron, and 
+ A*@ indicates the isotope is unstable. 
+ 
+In atomic studies it has become the practice to express energies in "electron volt" 
+units, abbreviated AeV.@  It has been determined that gamma energies are frequently 
+on the order of a million electron volts (MeV); the MeV has thus become a 
+convenient unit for stating these (and related) energies. 
+ 
+The fission of any of the fissionable isotopes produces gammas, neutrons, betas, 
+and other particles.  The total energy released per fission is about 207 MeV for U-
+235; this energy is distributed as shown in Table 2.1-1. 
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-3 Rev 1208 
+The energy of the neutrinos, which accompany the radioactivity, is not available for 
+producing power because these particles do not interact appreciably with matter; 
+thus, the net energy available is 197 MeV, or roughly 200 MeV per fission.  Table 
+2.1-1 lists the particles and the energy each particle produces per fission event.   
+ 
+Neutron production (neutrons per fission) varies with the different fissionable 
+isotopes and with the energy at which the fission reaction is caused to take place. 
+Table 2.1-2 shows some relative values for neutrons per fission for some of the 
+common fuels that are now being used in reactors. 
+ 
+More than 99.3% of the neutrons produced are produced within 10
+-14 seconds; 
+these are called prompt neutrons.  It should be noted that each fission event does 
+not produce the same number of neutrons.  The number of neutrons per fission 
+given in the referenced table represents an average number produced per fission. 
+ 
+The neutrons released from fission are not monoenergetic neutrons (neutrons 
+having a single energy); they vary in energy from essentially thermal energy up to 
+about 15 MeV.  The energy distribution of these prompt neutrons is shown in Figure 
+2.1-1.  The horizontal axis shows the range of prompt neutron energy distribution in 
+MeV and the vertical axis shows the fractional neutron distribution in an incremental 
+band (delta) around a selected energy level.  The units for the vertical axis are 
+fractional distribution per MeV.  It can be seen that the area under the curve in an 
+incremental band around 0.65 MeV yields the highest fraction of neutrons.  Using 
+the area under the curve it can also be seen that approximately 98% of all prompt 
+neutrons are born at an energy level less than 8 MeV, and the average prompt 
+neutron energy is approximately 2 MeV. 
+ 
+ 
+2.1.3 Moderation  
+ 
+In an actual operating reactor the probability of fission for typical reactor fuels is 
+dependent on the energy of the incident neutrons.  Fission neutrons are born fast (at 
+high energies), and the probability that they will cause a fission in U-235 at that 
+energy is very small.  It is necessary to reduce this kinetic energy in order to 
+increase the chance that they will cause fission.  This is accomplished by 
+interposing relatively non-absorbing nuclei as collision media to absorb the kinetic 
+energy of fission neutrons through the process of elastic scattering.  This medium is 
+called the Amoderator.@  It acts to slow down or Athermalize@ the fission neutrons. 
+   
+Typical moderators are hydrogen, beryllium, and carbon.  It should be clear that 
+fewer collisions are necessary in a hydrogen medium to cause complete moderation 
+than in carbon, since the nuclear mass of hydrogen is smaller and therefore more 
+likely to absorb the kinetic energy of the neutron by the elastic scattering process.  
+The amount of moderator in a multiplying system (a reactor, for instance) greatly 
+influences the degree of slowing down that occurs.  If there is too little moderator, 
+the neutrons are not adequately slowed down.  Therefore, the probability of fission 
+is small when compared with optimum.  If there is too much moderator, then the 
+probability that a thermal neutron will be captured by the moderator (or some other 
+nonfissionable material) is greatly increased.  Figure 2.1-2 shows a snapshot of the 
+neutron energy spectrum for a light water moderated reactor.  The horizontal axis is 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-4 Rev 1208 
+neutron energies in electron volts (eV) on a logarithmic scale, while the vertical axis 
+is the neutron flux per unit energy.  Neutron flux, φ, is the product of the neutron 
+density (typical unit of measurement: neutrons/cm3) and the neutron velocity (typical 
+unit: cm/sec), and is usually expressed in terms of neutrons/cm2•sec.  As shown in 
+this figure two peaks occur.  The first peak is at fast neutron energies due to the 
+prompt neutron production (within 10
+-14 sec) of the fission events.  The second peak 
+occurs at thermal neutron energy levels.  This is caused by the diffusion of the 
+thermal neutrons until they are absorbed by either a poison or the U-235 fuel.  The 
+time it takes a neutron to slow down from fast to thermal energy is relatively short, 5 
+microseconds, as compared to the thermal diffusion time of 210 microseconds.  
+This results in a relatively low number of intermediate energy neutrons and the peak 
+at the thermal energy level. 
+ 
+   
+2.1.4 Nuclear Cross Section  
+ 
+The previous discussions of neutron reactions alluded to the fact that they have 
+different probabilities of occurrence.  A measure of the relative probability that a 
+given reaction will occur is defined as the cross section of the nucleus for that 
+specified reaction.  More precisely, this measure is referred to as the microscopic 
+cross section.  In an approximate sense, the microscopic cross section may be 
+considered as the effective area for interaction that the nucleus presents to the 
+neutron.   
+ 
+The microscopic cross section has units of area (cm
+2), and it is often expressed in 
+units of barns (1 barn = 10-24 cm2) for ease of manipulation.  The microscopic cross 
+section is represented by the symbol σ.  It is made up of several component parts.  
+The total cross section, σT is a combination of σc (capture), σs (scattering), and 
+sometimes σf (fission), given by: 
+ 
+σ = σT = σc + σs + σf 
+ 
+where: 
+ 
+σc is the area presented for neutron capture; a neutron approaching an atom is 
+exposed to an area of this apparent size.  
+ 
+σs is the area of the nucleus that will scatter or deflect the neutron.   
+ 
+σf, present in only a few of the many hundred nuclei, is the area that is presented 
+for a neutron to strike the nucleus and cause a fission to occur. 
+ 
+These component cross sections are a function of the target nucleus (U-235, boron-
+10, etc.) and the incident neutron=s energy (thermal, epithermal, or fast).  In general, 
+the probability of a given reaction is determined by the neutron’s energy.  The 
+probability of absorption of neutrons for fission tends to follow an inverse velocity 
+trend.  Figure 2.1-3 shows this general trend in U-235.  The horizontal axis is 
+neutron energy in electron volts (eV) on a logarithmic scale, while the vertical axis is 
+total neutron cross section (fission, capture, and scattering) in barns.  For energy 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-5 Rev 1208 
+levels above 100 eV, the predominant cross section is scattering.  The neutrons 
+collide with and bounce off the nucleus, but no further interaction takes place. 
+ 
+The peaks in the middle of the curve are due to resonance capture.  A qualitative 
+explanation of resonance capture relates to the fact that nuclei have discrete excited 
+states.  If the energy of the incident neutron is such that the energy of the resultant 
+compound nucleus is equal to one of these states, then the neutron has a high 
+probability of being captured with no resultant fission.  These discrete energies 
+determine where these isotopes will have abrupt increases in their capture cross 
+sections.  These spikes in the cross section curve are referred to as resonance 
+peaks. 
+ 
+Light element resonances are not as observable, since their peaks are very broad 
+and give the effect of a smooth curve.  Below 1 eV the predominant cross section is 
+the fission cross section.  The probability of fission increases as the energy level of 
+the neutron decreases.  This is referred to as the 1/v region and is approximately a 
+linear function. 
+   
+The total effective cross section presented by all of the nuclei of a given isotope in a 
+cubic centimeter is referred to as the macroscopic cross section (
+Σ):  
+ 
+  Σ = Nσ  
+ 
+where N = the number of individual atoms (or nuclei) per cubic centimeter.   
+ 
+The macroscopic cross section has dimensions of reciprocal length (cm
+-1).  It is 
+sometimes convenient to consider the macroscopic cross section as the probability 
+of neutron interaction per unit track length.  The reciprocal of Σ is called the neutron 
+mean free path (denoted by λ); it is a measure of the average distance a neutron will 
+travel in the substance before it experiences the nuclear reaction under 
+consideration.  If a material contains several isotopes (i.e., a compound or a 
+naturally occurring material with several isotopes), then the effective macroscopic 
+cross section is: 
+  
+  Σ
+T  = Σ1 + Σ2 + $ $ $ + Σi 
+ 
+  =  N 1σ1 + N2σ2 + $ $ $ + Niσi 
+ 
+ 
+2.1.5 Neutron Multiplication 
+ 
+This chapter has thus far discussed the fission process, moderation, and cross 
+sections.  In this section, these three topics are combined into the quantity called the 
+Amultiplication factor,@ which describes all the possible events in the life of a neutron 
+and effectively describes the state of a nuclear reactor.  
+ 
+The multiplication factor in a nuclear system is a measure of the change in the 
+fission neutron population from one neutron generation to the subsequent 
+generation.  If the multiplication factor for a reactor core (or any nuclear assembly) is 
+less than 1.0, a condition known as subcritical, then the system is decaying or dying 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-6 Rev 1208 
+out and will never be self-sustaining.  With a multiplication factor greater than 1.0,  a 
+condition referred to as supercritical, a nuclear system is producing more neutrons 
+than are needed to be self-sustaining and is subjected to an increasing chain 
+reaction that must be controlled by some exterior factor.  The stable or critical 
+condition of a nuclear system occurs when the multiplication factor is equal to 1.0 
+and there is no change in neutron population from one generation to the next.  The 
+effective multiplication factor is defined as: 
+ 
+K
+eff  = εLfpLtfη  
+ 
+These symbols are defined and considered in detail in the following paragraphs. 
+   
+In reactor operation, K
+eff is the most significant property with regard to reactor 
+control.  At any specific power level or condition of the reactor,  Keff is kept as near 
+to the value of 1.0 as possible.  At this point in operation, the neutron balance is 
+kept to exactly one neutron completing the life cycle for each original neutron 
+absorbed in the fuel.  An example of this balance is shown in Table 2.1-3. 
+ 
+The operational factors that affect reactor control are all-important because of the 
+ways that they change the factors that make up K
+eff.  If any one of the contributing 
+factors to Keff (Table 2.1-3) changes, the ratio of 1.0 is not maintained.  This 
+resultant change in Keff makes the reactor either subcritical or supercritical.  
+ 
+2.1.5.1 Fast Fission Factor 
+ 
+The fast fission factor, 
+ε, is the contribution to neutron multiplication from the fissions 
+that occur at higher-than-thermal energies.  This contribution is from the fast fission 
+in U-235 and U-238.  The probability for a fission reaction in U-238 is relatively low, 
+but there is so much of this isotope in the reactor core that there is a contribution to 
+the multiplication factor.  The fast fission factor is defined as the ratio of the 
+neutrons produced by fissions at all energies to the number of neutrons produced in 
+thermal fission.  As core temperature is increased, the value of 
+ε is increased 
+because more fast neutrons are present to cause fission the the U-238 due to 
+poorer moderating properties of the water.  There is only a slight, almost 
+insignificant, change over the core lifetime due to loss of U-238 by conversion to Pu-
+239. 
+   
+2.1.5.2 Fast Nonleakage Factor  
+ 
+The fast nonleakage factor, L
+f, is the fraction of neutrons that is not lost due to 
+leakage from the core system during the slowing down process from fission 
+energies to thermal energies.  It is also the probability that a neutron will remain in 
+the core and become a thermal neutron without being lost by fast leakage.  It is 
+represented by:  
+ 
+e = L
+B
+f
+2τ  
+ 
+for the continuous slowing down model, or by:  
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-7 Rev 1208 
+B+1
+1 = L 2f
+τ   
+ 
+for the two-group model.  ATwo-group@ indicates that the core can be described as 
+consisting of only one group of thermal and one representative group of fast, or 
+epithermal, neutrons.  Fermi age, τ, is a measure of how far fast neutrons travel 
+before being thermalized.  B2 is called buckling and depends on the shape and size 
+of the core.  Small cores have larger buckling than large cores. 
+ 
+As the temperature of the core increases, L
+f decreases because of the increase in 
+the numerical value of τ from the decreasing density of the water.  The change in Lf 
+over core life is almost insignificant; a change in Lf would be primarily due to a 
+change in the core=s metal-to-water ratio, which is relatively constant as the core 
+ages. 
+   
+2.1.5.3 Resonance Escape Probability  
+ 
+The resonance escape probability, symbolized by p, is the probability that a neutron 
+will be slowed to thermal energy and will escape resonance capture.  It is also the 
+fraction of neutrons that escape capture during the slowing-down process.  It is 
+always less than 1.0 when there is any amount of U-238 or Pu-240 present in the 
+core, which means that high-energy capture by these isotopes always removes 
+some of the neutrons from the neutron life cycle.   
+ 
+As the reactor temperature increases, the resonance escape probability decreases 
+in value because of the decrease in the ratio of the water-moderating atoms to fuel 
+atoms and the broadening of the resonance capture cross sections.  The resonance 
+escape probability increases with core lifetime due to the decrease in fuel 
+temperature.  These changes in the resonance escape probability will be discussed 
+further in section 2.1.6.1, AFuel Temperature Coefficient.@ 
+ 
+2.1.5.4 Thermal Nonleakage Factor 
+ 
+The thermal nonleakage factor, L
+t, is the fraction of the thermal neutrons that do not 
+leak out of the core during thermal diffusion but remain to contribute to the chain 
+reaction.  L
+t is also the probability that a thermal neutron will remain and be utilized 
+in the core.  It is a calculated value for each condition of the core and is represented 
+by the equation:  
+ 
+BL+1
+1 = L 22t  
+ 
+where L2 is the thermal diffusion length squared and B2 is the geometric buckling of 
+the system.  The value of Lt decreases as the temperature of the core increases; the 
+effect can be seen from the value of L2, which is a measure of how far thermal 
+neutrons travel before absorption.  When temperature is increased, the values of all 
+absorption cross sections decrease.  This increases L
+2, which in turn decreases Lt.  
+Buckling (B2) does not change over the range of interest.  As the core is operated 
+and fuel is consumed, the value of Lt decreases as a result of fuel burnup.  
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-8 Rev 1208 
+2.1.5.5 Thermal Utilization Factor 
+ 
+The thermal utilization factor, f, is the ratio of the probability that a neutron will be 
+absorbed in the fuel (fissile nuclides) to the probability that the neutron will be 
+absorbed in all the material that makes up the core.  This factor is the one that the 
+plant operator has the greatest control over.  It is described by the following 
+equation:  
+ 
+(other)+(fuel)
+(fuel) = f
+aa
+a
+ΣΣ
+Σ  
+ 
+where Σa= macroscopic absorption cross section, which is the sum of the capture 
+cross section, Σc, and the fission cross section, Σf. 
+ 
+Σa = Σc + Σf   
+ 
+An examination of the thermal utilization factor shows that the 
+Σa (fuel) comprises 
+only the absorption by the U-235 at the beginning of core life.  As the amount of Pu-
+239 increases because of the irradiation of U-238 in the core, it is necessary to 
+consider the change of fuel concentration in determining the value of f at different 
+times in the core lifetime.  The reactor operator can change 
+Σa(other) by positioning 
+of the control rods and by addition or removal of boric acid from the moderator. 
+  
+2.1.5.6 Neutron Production Factor  
+ 
+The neutron production factor, 
+η, is the average number of neutrons produced per 
+thermal neutron absorbed in the fuel (fissile nuclides).  It is based on physical 
+measurement for each type of fuel used in a reactor.   
+ 
+The numerical value of 
+η does not change with core temperature over the range 
+considered for most reactors.  There is essentially no change in η over the lifetime of 
+the reactor core because the values for U-235 and Pu-239 are very close. As the 
+reactor operates, and Pu-239 begins to contribute to the neutron economy of the 
+core, the average effect on 
+η is expressed by:  
+ 
+ΣΣ
+ΣνΣνη 239
+a
+235
+a
+239
+f
+235
+f
++
+)(+)( =  
+ 
+where ν is the number of neutrons per fission. 
+ 
+ 
+2.1.6 Reactivity and Reactivity Coefficients  
+ 
+In reactor physics, it is more convenient to use a term called reactivity rather than 
+K
+eff to describe the state of the reactor core.  Reactivity (ρ or ΔK/K) is defined in 
+terms of Keff by the following equation: 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-9 Rev 1208 
+K
+1K = 
+eff
+eff −ρ  
+ 
+Based on this equation, when Keff is equal to 1.0, the reactivity of the core is zero, 
+and the reactor is said to be critical.  If Keff is less than 1.0, reactivity of the core is 
+negative, and the reactor is subcritical.  Values of Keff greater than 1.0 make the 
+reactivity positive, and the reactor would be supercritical. 
+ 
+Mathematically, reactivity is a dimensionless quantity, but units are commonly 
+applied.  The most common units are %
+ΔK/K and pcm.  A reactivity of 0.01 could be 
+expressed as 1 %ΔK/K or 1000 pcm. 
+ 
+As any operating condition of the moderator or fuel (temperature, pressure, or void 
+fraction) changes, the reactivity of the core changes accordingly.  It is difficult to 
+change any operating parameter and not affect every other property of the core.  
+Once a change has been made to the core, it is necessary to make some 
+compensating change to maintain criticality at the same power.  For instance, 
+assume that the reactor is critical at 50% power and that the reactor operator wants 
+to increase power to 75%.  The operator must first bring the reactor supercritical by 
+making a positive reactivity change (control rod withdrawal or boron dilution) to 
+initiate the power increase.  As the power increases, the values of core parameters 
+such as moderator temperature and fuel temperature change, causing a negative 
+reactivity effect.  If the added negative reactivity offsets the original positive reactivity 
+change, then the reactor returns to the critical condition, and power stabilizes at the 
+new value.  The inherent properties of a reactor system that result in positive or 
+negative reactivity additions upon changes in certain parameter values are generally 
+described by reactivity coefficients.   
+ 
+A reactivity coefficient is defined as the change of reactivity per unit change in some 
+operating parameter of the reactor.  The coefficients that are significant in the 
+reactor are the fuel temperature (Doppler) coefficient, moderator temperature 
+coefficient, void coefficient, and pressure coefficient.  In addition to these 
+coefficients, one other coefficient is considered.  It is called the power coefficient.  
+The power coefficient is the combination of the first three coefficients. Most of the 
+reactivity coefficients for the core are important to the safety of reactor operation 
+because they act in a negative manner to oppose any power change in the nuclear 
+system. 
+ 
+The response of the reactor core to plant conditions or operator adjustments during 
+normal operation, as well as the response to abnormal or accidental transients, is 
+evaluated by means of a detailed plant simulation.  In these calculations, reactivity 
+coefficients are required to couple the response of the core neutron multiplication to 
+the variables which are set by conditions external to the core.  Since the reactivity 
+coefficients change during the life of the core, a range of coefficient values are 
+established to ensure the correct response of the plant throughout its life. 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-10 Rev 1208 
+2.1.6.1 Fuel Temperature Coefficient  
+ 
+The fuel temperature coefficient, also called the Doppler coefficient of reactivity, is 
+the reactivity change per degree change in fuel temperature; it exists because the 
+resonance cross sections of the fuel change with a change in fuel temperature.  It is 
+related to the resonance cross section broadening of some fuel materials, principally 
+U-238 and Pu-240.  Figure 2.1-4 is a plot of the total cross section vs. energy levels 
+for the resonance region of U-238.  The solid line represents the cross section of the 
+fuel at cold temperatures (547°F).  The dashed line represents the cross section of 
+the fuel at hot temperatures (1500°F).  As the temperature of the fuel increases, the 
+heights of the resonance peaks decrease and the bases of the peaks broaden.  The 
+broadened peaks result in a larger percentage of neutrons having energies that are 
+susceptible to capture in the fuel pellets.  With colder fuel, only neutrons very close 
+to the resonance-peak energy are absorbed.  With hotter fuel, neutrons that are only 
+somewhat close to the resonance-peak energy are also absorbed.  Although the 
+probability of resonance absorption by any particular fuel nucleus is unchanged at 
+the hotter temperature, a neutron near a resonance energy must “run the gauntlet” 
+of concentrated resonance absorbers (nuclei with fairly large absorption cross 
+sections) in a fuel pin and thus will not avoid capture.  This phenomenon leaves 
+fewer neutrons per generation to cause fissions and is thus a negative reactivity 
+effect. 
+ 
+Figure 2.1-5 is a plot of Doppler coefficient vs. effective fuel temperature.  The 
+effective fuel temperature is a weighted average temperature.  The temperature 
+profile across the fuel pellet makes this temperature lower than the average 
+temperature and closer to the temperature the neutrons will be exposed to when 
+they interact with the fuel.  The terms BOL and EOL represent beginning of life and 
+end of life.  For this discussion and all others that follow, this is equivalent to new 
+unirradiated fuel (BOL), and the fuel at the end of the first core cycle (EOL).  Note 
+that the EOL case is more negative than the BOL case for cooler fuel temperatures. 
+This is caused by the buildup of plutonium-240, which has a higher cross section at 
+lower temperatures.  The difference at higher temperatures is minimal due to the 
+broadening of the resonance peaks.  Note that the Doppler coefficient is always 
+negative.  
+ 
+In the event of an addition of a positive reactivity to the reactor core, the Doppler 
+coefficient of reactivity would be the first and most important effect in controlling that 
+addition.  It is effective almost instantaneously, because an addition of positive 
+reactivity causes the fission rate to increase and produce more heat in the fuel, 
+which in turn causes an addition of negative reactivity.  As quickly as the heating 
+rate is increased, the Doppler coefficient becomes effective.   
+ 
+Since the effective fuel temperature can not be measured, the Doppler-only power 
+coefficient used for reactor transients is a function of power.  The Doppler coefficient 
+used in the remainder of this text is defined as the change in core reactivity as the 
+result of a change in the reactor power level.  It is in units of 
+Δρ/Δ%power, or change 
+in reactivity per percent change in power.  Figure 2.1-6 shows the Doppler-only 
+power coefficient as a function of power.  The results presented do not include any 
+moderator coefficient even though the moderator temperature changes with power 
+level.   
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-11 Rev 1208 
+The numerical value of the Doppler-only power coefficient changes with both reactor 
+temperature and time in core life.  As fuel temperature is increased, the U-238 
+resonance peaks broaden.  However, the rate of broadening diminishes at higher 
+temperatures, yielding a Doppler-only power coefficient with a smaller negative 
+value at higher reactor power levels.  Three important factors influence the Doppler-
+only power coefficient during core lifetime; these are:  thermal conductivity of the 
+gases in the gap between the fuel and the cladding, plutonium production, and fuel-
+clad gap reduction.  Dealing with these factors one at a time will lead to the 
+conclusion that the Doppler-only power coefficient is more negative at BOL than it is 
+at EOL. 
+ 
+1. Initially the fuel rods are pressurized with helium gas, which yields a given fuel-
+clad gap thermal conductivity coefficient, but as fission gases such as xenon and 
+krypton are produced, they tend to pollute the helium gas causing a reduction in 
+the fuel-clad gap thermal conductivity coefficient.  The result of this is an 
+increased fuel temperature for any given power level, and the Doppler-only 
+power coefficient becomes more negative as the core ages. 
+2. Plutonium buildup is the result of the conversion of U-238 to the plutonium 
+isotopes.  Pu-240 has a large thermal resonance for parasitic capture of 
+neutrons.  As Pu-240 builds in, the Doppler-only power coefficient becomes 
+more negative as the core ages. 
+3. The fuel-clad gap reduction is the most dominant effect, outweighing the other 
+two factors combined.  The reduction of the gap between the fuel pellets and the 
+cladding is a result of swelling of the fuel pellets and clad creep.  Fuel pellet 
+swelling occurs because fission gases cause the pellet to swell and crack.  The 
+pellet occupies a larger volume.  At the same time, the cladding is distorted by 
+outside pressure.  These two effects result in direct fuel-clad contact.  With direct 
+contact, the overall thermal conductivity increases due to conductive heat 
+transfer, which results in a lower effective fuel temperature for the same power 
+level over core life.  This causes the Doppler-only power coefficient to become 
+less negative over core life.  In the beginning of life case, the fuel temperature 
+rises approximately 1000°F for a 0-100% power change, or 10°F/% power.  For 
+the end of life case with direct fuel-clad contact, the temperature rise is 
+approximately 800°F, or 8°F/%power. 
+   
+As a result of the three combined effects, the Doppler-only power coefficient will be 
+more negative early in core life, and become less negative throughout the rest of 
+core life, resulting in the EOL value being slightly less negative than the BOL value.  
+Consequently, it is less effective for controlling power increases at EOL. 
+ 
+Figure 2.1-7 is a plot of the Doppler-only power defect vs. power.  For this 
+discussion and all others that follow, "defect" is defined as the total amount reactivity 
+added to the core due to a change in power.  The differences in the BOL and EOL 
+values have been explained in the preceding paragraph.  An operator would use this 
+graph to determine the total amount of reactivity added to the core solely by the 
+change in fuel temperature associated with a desired load change.  For example, 
+changing load from 80% to 100% at EOL would result in a Doppler-only reactivity 
+defect of -225 pcm.  This value is calculated as follows: 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-12 Rev 1208 
+Final reactivity - Initial reactivity = Defect 
+-1025pcm - (-800pcm) = -225pcm 
+ 
+2.1.6.2 Moderator Temperature Coefficient  
+   
+The next important reactivity coefficient is the moderator temperature coefficient 
+(MTC).  MTC is defined as the change in reactivity per degree change in moderator 
+temperature; it is expressed in pcm/°F. 
+ 
+When the moderator temperature increases, its density decreases, so fewer 
+moderator molecules are available to slow fast and epithermal neutrons and bring 
+them to thermal energy.  Decreasing the density of the moderator has two effects.  
+First, if the density of the moderator is less, it increases the leakage probability of 
+the neutrons.  Second, if the neutrons are not slowing, they stay at a higher energy 
+for a longer period, which increases the probability of non-fission capture of these 
+neutrons.  Both effects together cause a net decrease in the neutron population that 
+adds negative reactivity to the core. 
+ 
+Moderator density changes are not linear.  At high temperatures an increase in the 
+moderator temperature causes a larger reduction in density than an identical 
+increase at low moderator temperatures. This is illustrated by the zero (0) ppm curve 
+(bottom curve) in Figure 2.1-8.  Notice how the slope of this curve becomes more 
+negative as the temperature of the moderator increases.  This is a graphical 
+representation of the non-linear density change of the moderator.  This curve also 
+displays the reactivity effect due to a 1°F change in the temperature of the 
+moderator.  As shown, if the moderator temperature changes from its present value 
+(horizontal axis), a certain amount of reactivity, in pcm (vertical axis), is added to the 
+core.  As an example, using the 0 ppm curve, if the moderator temperature is initially 
+at 500°F and its temperature is increased by 1°F, -17 pcm of reactivity would be 
+added to the core. 
+  
+Historically, commercial reactors sold by Westinghouse have been designed with a 
+water volume to fuel volume ratio such that the value of the MTC is negative.  The 
+negative MTC and the negative fuel temperature coefficient ensure stable power 
+operation of the reactor core.  As explained in the previous paragraph, if the 
+temperature of the moderator is increased, negative reactivity is added to the core.  
+This negative reactivity causes reactor power to decrease, which acts against any 
+further increase in temperature or power. Therefore, a condition that could cause an 
+increase in reactor power is limited by the negative reactivity added by the increase 
+in the moderator temperature.   
+ 
+Operating with a negative MTC is desired due to the negative feedback mechanism 
+discussed above and to its favorable operational characteristics during power 
+changes.  When the operator increases the load on the turbine, governor valves 
+supplying steam to the high pressure turbine open.  This action increases the steam 
+demand, causing steam pressure, the saturation temperature in the steam 
+generators, and the moderator temperature to decrease.  Reducing the temperature 
+of the moderator adds positive reactivity to the core, causing reactor power to 
+increase.   
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-13 Rev 1208 
+If the secondary load is reduced by the operator, the governor valves on the turbine 
+close, reducing the steam demand of the turbine.  The reduced steam demand 
+causes the following to increase: steam pressure, saturation temperature, and the 
+moderator temperature.  Increasing the temperature of the moderator adds negative 
+reactivity, which reduces reactor power.  Therefore, the two above examples display 
+how reactor power follows secondary steam demand due to the negative reactivity 
+feedback caused by the MTC.  
+ 
+When the reactor is designed, excess reactivity in the form of fuel is added to the 
+core so that it can operate at 100% power for an extended period.  With excess fuel 
+added to the reactor, the reactor could be taken critical and power could be 
+escalated with the rods greatly inserted into the core.  However, various operating 
+limits require the rods to be fully withdrawn from the core (the all rods out [ARO] 
+condition), so an additional poison must be added to the core.  This poison addition 
+is accomplished by adding soluble boron to the reactor coolant.  By adding boron to 
+the reactor coolant, negative reactivity is inserted uniformly throughout the core.  
+Since boric acid is dissolved in the coolant, the excess reactivity in the core can be 
+controlled by boron changes without creating flux distribution problems associated 
+with the control rods.  
+ 
+Consider what happens to the MTC when the moderator contains both light water 
+and boron.  Boron is a poison.  When it is added to the reactor coolant (moderator), 
+it adds negative reactivity to the core in a similar fashion as the control rods.  By 
+adding a certain amount of boron to the reactor coolant, the power of the reactor 
+can be maintained at its desired values of power and temperature with the control 
+rods fully withdrawn from the core. 
+  
+Although it is true that adding boron to the moderator has a negative reactivity effect 
+on the core=s reactivity, it has the opposite effect on MTC.  As previously discussed, 
+increasing the temperature of the moderator (0 ppm curve) has a negative reactivity 
+effect.  Now consider what happens when the temperature of the boron solution is 
+increased. 
+ 
+During a temperature increase boric acid is expanded out of the core along with the 
+moderator. Since boric acid is a poison, and it is expanding out of the core, positive 
+reactivity is added.  (The positive reactivity addition due to the expansion of boron 
+out of the core offsets the negative reactivity addition due to the expansion of the 
+moderator out of the core).  As an example, using the 500 ppm curve on Figure 2.1-
+8, it is shown that for an initial temperature of 500°F, a 1°F increase adds -8 pcm of 
+reactivity. 
+ 
+As explained earlier, -17 pcm was added to the core due to the density decrease of 
+the moderator.  For the conditions in the above example the same -17 pcm of 
+reactivity was added to the core via the moderator expansion out of the core, but 
+due to the concurrent expansion of boron out of the core, the net effect was -8 pcm. 
+ 
+The amount of positive reactivity added to the core depends upon the initial 
+concentration of boron in the moderator.  With  high concentrations of boric acid, the 
+positive effect could be large enough to overcome the negative effect of the 
+moderator loss.  In other words, a net positive reactivity addition could result from a 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-14 Rev 1208 
+moderator temperature increase.  At boric acid concentrations greater than 
+approximately 1400 ppm, the MTC is positive. 
+ 
+Once, all Westinghouse-designed cores were required by technical specifications to 
+operate with a negative MTC.  This effectively limited the boric acid concentration of 
+the reactor coolant.  To reduce the dissolved poison requirement for control of 
+excess reactivity, burnable poisons were incorporated in the core design, as 
+discussed in Chapter 3.1.  However, today, utilities are demanding the vendors to 
+design cores that can operate from 18 to 24 months at full power.  To operate this 
+long, more fuel and burnable poisons must be added to the core.  In addition, the 
+boron concentration also has to increase.  The increase in boron concentration is 
+large enough in magnitude that the MTC has become positive.  This has resulted in 
+technical specification changes that allow operation of the plant with a positive MTC 
+for certain conditions. 
+ 
+Operating with a positive MTC makes the operating characteristics of the core less 
+stable.  Ignoring the effect of fuel temperature changes, consider what would 
+happen if MTC is positive.  With a positive MTC, a 1 °F increase in moderator 
+temperature adds positive reactivity to the core, causing reactor power to increase.  
+As reactor power increases, more energy is added to the moderator.  As the 
+moderator temperature increases, more positive reactivity is added to the core, 
+further increasing power and raising the moderator temperature, etc.  Reactor power 
+is thus self escalating.  Fortunately, the fuel temperature coefficient, which is always 
+negative and stronger than the MTC, cannot be ignored.  Therefore, the scenario 
+described above (self-escalating reactor power) does not occur. 
+ 
+2.1.6.3 Void Coefficient  
+ 
+The next coefficient of reactivity that acts in response to a reactivity insertion is the 
+void coefficient.  It is defined as the change in reactivity as the result of boiling of the 
+moderator in the core region and has the units of 
+Δρ/Δ%void.  
+  
+The formation of voids in the core has the same effect as the temperature increase 
+of the moderator (decreasing the density of the moderator.)  Therefore, the 
+moderating ability of the core is reduced.  If the moderator is borated, the decrease 
+in moderator density also reduces the boron concentration.  In general, void 
+formation could have a positive or negative effect on reactivity depending on both 
+boron concentration and the departure from the optimum fuel-to-moderator ratio.  
+The void content of the core is about one-half of one percent. The void coefficient 
+varies from -30 pcm/%void at BOL and low temperatures to -250 pcm/%void at EOL 
+and operating temperatures.   
+ 
+2.1.6.4 Pressure Coefficient  
+ 
+The pressure coefficient is the change in reactivity caused by a change in pressure 
+of the primary system.  It is affected by the same mechanism that changes the 
+moderator temperature and void coefficients.  As pressure increases, the only 
+change that takes place is in the density of the cooling and moderating water.  The 
+pressure coefficient is given in units of 
+Δρ/ΔP.  The pressure coefficient of reactivity 
+has a slight positive effect on reactivity as the pressure of the system is increased if 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-15 Rev 1208 
+boron concentration is very low or absent.  At high boron concentrations, an 
+increase in pressure produces a slightly negative effect on reactivity.   
+ 
+2.1.6.5 Power Coefficient and Power Defect 
+ 
+The power coefficient combines the Doppler, moderator temperature, and void 
+coefficients.  It is expressed as a change in reactivity per change in percent power, 
+Δρ/Δ% power.  It is negative at all times in core life but is more negative at the end of 
+life primarily due to the change in the moderator temperature coefficient.  Figure 2.1-
+9 shows the values of the power coefficient vs. percent power at BOL and EOL.  
+This graph can be used to calculate the reactivity change associated with 1% 
+incremental changes in power.  Figure 2.1-10 is the integrated power coefficient, or 
+power defect, vs percent power at BOL and EOL.  This graph is more useful to the 
+operator for calculating the total reactivity change for any power change. 
+   
+Operators need to be concerned about the effect of the power defect.  As power is 
+increased the power defect has a negative reactivity effect to the core.  Therefore an 
+equal amount of positive reactivity must be added to keep the reactor critical or near 
+critical.  This positive reactivity will be in the form of rod withdrawal or boron dilution. 
+When power is decreased quickly, as it will after a trip, power defect is a positive 
+reactivity effect to the core, and the resulting rod insertion must be sufficient to make 
+the reactor subcritical.  An alternate method, boron addition, is not rapid enough to 
+overcome this positive reactivity addition.  
+ 
+To ensure that the rods can shut down the reactor, they must be maintained above 
+a minimum rod height.  Since the magnitude of the power defect is dependent on 
+total power, the minimum rod height is also increased with increasing power. 
+ 
+   
+2.1.7 Poisons  
+ 
+In a reactor system, poisons absorb neutrons without causing fission.  These 
+neutrons are no longer in the neutron life cycle.  Control rods and soluble boron are 
+examples of poisons which are controllable.  Xenon and samarium are examples of 
+poisons which are uncontrollable. 
+   
+2.1.7.1 Uncontrollable Poisons  
+ 
+In the fission process the nucleus absorbs a neutron and the resulting nucleus 
+breaks into two or more parts called fission fragments.  A detailed investigation of 
+the thermal neutron fission of U-235 has shown that the resultant nucleus splits in 
+many different ways, yielding more than 350 primary fission products (or fission 
+fragments).  In Figure 2.1-11, the percent fission yields of U-235 are plotted against 
+the mass numbers.  Note that each mass number represents several isotopes.   
+ 
+During power operation, the isotope xenon-135 (Xe-135) is formed as one of fission 
+products.  This isotope has an extremely large capture cross section (2.6 million 
+barns).  Xe-135 is formed in two ways; directly as a fission product (0.3% of the total 
+fission products) and indirectly from the radioactive decay of tellurium-135 (5.9% of 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-16 Rev 1208 
+the total fission products).  The radioactive decay chain of tellurium-135 is as 
+follows: 
+ 
+    β-       β-      β- 
+Te-135  -->  I-135  -->  Xe-135  -->  Cs135 (stable) 
+   19.2 sec   6.6 hr      9.1 hr 
+ 
+Xe-135 is lost in two ways; it can capture a thermal neutron, forming Xe-136, which 
+is stable and has a very small capture cross section, or it can decay to Cs-135.  
+When the reactor is first brought to power, the concentration of Xe-135 (atoms/cm
+3) 
+is slowly built up to an equilibrium value. This is due primarily to the relatively long 
+half-lives of iodine-135 (6.6 hours) and Xe-135 (9.1 hours).  Because of the high 
+thermal neutron cross section of Xe-135, as the concentration of the isotope 
+increases, the macroscopic absorption cross section of the core increases.   
+ 
+Operationally, as Xe-135 builds up, other poisons in the core (control material such 
+as control rods or boric acid) must be removed to maintain criticality.  Provided there 
+is enough control material to remove during this xenon buildup, equilibrium will be 
+reached after approximately 48 hours of power operation.  After this 48-hour time 
+period a condition is reached where the production of Xe-135 is equal to the removal 
+of Xe-135 by neutron capture plus the loss of Xe-135 through radioactive decay. 
+    
+The equilibrium value for the amount of xenon in the core at any time is a function of 
+the reactor=s neutron flux (power) (see Figure 2.1-12).  Since a neutron absorber 
+(poison) is added to the reactor when xenon is built into the system, its effect on the 
+chain reaction can be described in terms of reactivity.  The multiplication factor is 
+lowered primarily through the decrease in thermal utilization with a secondary effect 
+on the thermal nonleakage probability caused by decreasing the thermal diffusion 
+length.  The reactivity effect can be shown to be approximately equal to the ratio of 
+the macroscopic absorption cross section of the xenon to that of the fuel. 
+ 
+A change in power will cause a transient in xenon concentration.  At the end of the 
+transient, which will take about 2 days, the xenon concentration will reach its new 
+equilibrium, assuming that power is left constant after the change.  Three cases will 
+be discussed: a power increase, a power decrease, and a shutdown.   
+ 
+Referring to Figure 2.1-13, following a xenon-free startup, a reactor has reached an 
+equilibrium xenon concentration (time = 48 hr), and then power is increased.  There 
+is only a small increase in production of xenon because the production as a direct 
+fission product is small (about 0.3%), and the iodine concentration cannot change 
+very quickly, so the production by decay of iodine remains practically constant.  
+Removal of xenon is increased significantly due to increased burnout (xenon 
+absorbs neutrons).  The decay of xenon to cesium remains almost constant initially. 
+ 
+These are only the initial effects, but it can be seen that the removal of xenon has 
+increased more than the production, so xenon concentration decreases.  This will 
+continue for a few hours until the iodine concentration has increased enough that 
+xenon production by iodine decay is greater than xenon removal.  Eventually, the 
+xenon concentration will reach a higher equilibrium value than that existing before 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-17 Rev 1208 
+the transient.  This will happen when production and removal rates are again equal 
+(time=96 hr). 
+ 
+Later when power is decreased (time=150 hr), the production is again changed very 
+little initially, but removal by burnout is reduced and xenon concentration increases 
+initially.  As iodine concentration decreases, production of xenon will decrease until 
+removal is greater than production.  Then xenon concentration will decrease until a 
+new lower equilibrium is reached (time= 200 hr). 
+ 
+A shutdown is similar to a power decrease, but more severe (refer to Figure 2.1-14). 
+Production of xenon directly from fission and removal by burnout almost cease.  
+What is left is radioactive decay of iodine to produce xenon, and radioactive decay 
+of xenon to remove it.  The xenon concentration increases initially, just as in the 
+power decrease case.  However, the increase continues longer and reaches much 
+higher levels before decreasing.  The peak occurs about 8 or 9 hours after 
+shutdown.  Since iodine is no longer being produced, its concentration continues to 
+decrease as it decays to xenon.  The xenon, also decaying away, is almost gone in 
+about 3 days.   
+ 
+In some cases Xenon-135 presents moderately sensitive reactor operating 
+conditions.  Consider a reactor that has operated at power long enough to establish 
+a high xenon concentration.  Assume that the reactor trips and that a rapid recovery 
+to full power is achieved simultaneously with the point in time at which Apeak@ xenon 
+occurs.  In returning the reactor to power, the negative reactivity associated with the 
+xenon is overcome, as indicated above, by withdrawing the control rods to a higher 
+position than usual.  With the high flux of full power operation acting to Aburnout@ the 
+accumulated Xe-135 and the decay of Xe-135 due to the shutdown, the 
+concentration quickly falls off, and the result is a positive reactivity insertion.  It 
+should be pointed out that properly designed power reactors will overcome the 
+xenon burnout quite adequately with proper control system operation. 
+ 
+Figure 2.1-15 shows reactor trips and returns to power at various power levels.  
+Note the drop-off in xenon concentration during the restart.  At EOL there is a 
+possibility that there is not enough positive reactivity remaining in the fuel to 
+overcome the negative reactivity added by xenon.  In such a case the reactor restart 
+is delayed until the xenon has decayed to lower values. 
+ 
+Another important fission product poison encountered in reactor operation is 
+samarium-149 (Sm-149).  This stable isotope has a capture cross section of about 4 
+x 10
+4 barns.  It enters the system as the end product of the following decay chain:   
+ 
+    β-      β-                     
+Nd-149  -->  Pm-149  -->  Sm-149  (stable) 
+  1.7 hr    53 hr                      
+(Nd: neodymium, Pm: promethium) 
+ 
+These products occur in about 2.1% of U-235 fissions.  Because Sm-149 is stable, 
+its equilibrium concentration in any reactor produces about -0.65% 
+ΔK/K or -650 
+pcm of reactivity, independent of the neutron flux (power level) as shown in Figures 
+2.1-16 and 2.1-17.  The rate at which the Sm-149 concentration approaches this 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-18 Rev 1208 
+equilibrium is related to the Pm-149 (53-hour) half-life.  Upon reactor shutdown 
+(Figures 2.1-18 and 2.1-19), the Sm-149 concentration builds up to an asymptotic 
+value dependent on the equilibrium concentration of promethium, which is power-
+level dependent. 
+ 
+2.1.7.2 Controllable Poisons  
+ 
+Two controllable conditions existing in a nuclear reactor greatly affect the reactivity 
+balance within the system.  These are control rod position and soluble poison 
+concentration. 
+ 
+Control rods are made of a material or materials with an extremely high capture 
+cross section for neutrons.  Consider a just-critical reactor in which a control rod is 
+partially inserted.  If the rod is withdrawn slightly, K
+eff will increase to a value slightly 
+greater than 1.0.  By withdrawing the control rod, neutron absorbing material is 
+removed from the core.  The effect is an increase in the thermal utilization factor, 
+and (as seen in the six-factor formula discussed earlier) K
+eff is increased.  Control 
+rod reactivity effects vary with their location in the core.  If a control rod is located at 
+the midplane of the core, its worth per step of movement is greater than if it were 
+almost totally withdrawn or inserted.  
+ 
+A typical differential control rod worth (
+Δρ/Δ rod position) curve is shown in Figure 
+2.1-20(a).  Note that the maximum differential worth is found when the rod is 
+positioned at about 40% withdrawn.  This curve can be integrated to provide a 
+determination of total control rod worth, which is defined as that amount of reactivity 
+change associated with a given total movement of the control rod.  Figure 2.1-20(b) 
+shows the integrated control rod worth curve for the given differential rod worth. 
+ 
+Reactivity control is also maintained by using soluble boron poison in the moderator 
+or coolant that passes through the reactor core.  Addition of boron reduces the 
+thermal utilization factor and requires that the control rods be further removed from 
+the core to sustain the just-critical system.  In most large pressurized water reactors 
+today, large amounts of positive reactivity are held down by a soluble poison such 
+as boric acid.  Boron-10 is the principal absorber in this solution.   When used as 
+gross control, the plant can operate with almost all control rods fully removed.  This 
+works to optimize the power distribution and heat transfer through the core and at 
+the same time enhances the available shutdown safety margin.   
+ 
+Soluble poisons are injected through the makeup portion of the chemical and 
+volume control system.  As reactor fuel is consumed and the installed excess 
+reactivity drops, the soluble poison is removed through the chemical and volume 
+control system, compensating for the reactivity loss due to fuel depletion. 
+ 
+ 
+2.1.8 Reactor Response to Reactivity Changes 
+ 
+The preceding sections have described the reactivity effects associated with reactor 
+parameters and fission product poisons.  This section discusses how reactivity 
+effects interact to control the reactor=s response to transient conditions, with a 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-19 Rev 1208 
+particular emphasis on the reactor=s inherent response when actions to control plant 
+parameters at their desired values are not taken. 
+ 
+If the moderator temperature coefficient is negative and reactor power is greater 
+than the point of adding heat, reactor power follows secondary power.  If the turbine 
+load changes from one steady-state value to another, reactor power will undergo the 
+same change, even if no actions (manual or automatic) are taken to control reactor 
+power.  Also, if plant operators add reactivity (positive or negative) by changing 
+control rod positions or the coolant boron concentration without changing the turbine 
+load, the final reactor power will be unchanged; the net result of the reactivity 
+addition will be a new steady-state coolant temperature. 
+ 
+Consequently, during normal operations at power, PWR plant operators control 
+reactor power by adjusting the output of the secondary plant (usually the turbine 
+load).  Operators adjust control rod positions and coolant boron concentration to 
+maintain the coolant temperature at the desired value for a given power level (i.e., to 
+conform to the sliding T
+avg program described in Section 1.2). 
+ 
+The terms Asecondary power@ and Aturbine load@ are often used interchangeably, 
+because during normal operation, secondary power is the turbine load.  However, 
+steam exiting the steam generators can also leak from steam piping, or it can travel 
+directly to the condenser via the steam dump valves.  Under these circumstances, 
+the total secondary power equals the turbine load PLUS the equivalent power 
+associated with the other steam flows.  Therefore, secondary power is a more 
+inclusive term. 
+ 
+At equilibrium, two conditions are always satisfied: reactor power equals secondary 
+power, AND net reactivity equals zero (K
+eff = 1; the reactor is critical).  Following an 
+upset that affects power or coolant temperature, the plant will inherently (without 
+control action) find a new equilibrium state in which those conditions are again 
+satisfied, unless a reactor trip setpoint is reached while the plant Atries@ to get there. 
+ 
+Consider an increase in secondary power.  The inherent plant response is that 
+reactor power increases to the new higher power level, and the coolant T
+avg drops to 
+a new lower steady-state value.  Increasing the secondary power increases the rate 
+of energy removal from the reactor coolant in the steam generators, thereby 
+reducing the coolant temperature.  With a negative MTC, the drop in temperature 
+adds positive reactivity: 
+ 
+Reactivity (moderator) = (MTC)(
+Δ T); 
+Δ T = Tavg(FINAL) - Tavg(INITIAL) 
+ 
+(In the above expression, MTC and 
+Δ T are both negative.)  The positive reactivity 
+addition causes reactor power, and thus fuel temperature, to increase.  The fuel 
+temperature increase adds negative reactivity: 
+ 
+Reactivity (fuel) = (DOPC) (
+Δ %power); 
+DOPC = Doppler-only power coefficient, and 
+Δ %power = powerFINAL - powerINITIAL 
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-20 Rev 1208 
+(In the above expression, the DOPC is negative and Δ %power is positive.)  Reactor 
+power increases until it again equals secondary power.  At that point, the rate of 
+energy transfer to the coolant from the reactor equals the rate of energy removal 
+from the coolant in the steam generators, and the coolant temperature stops 
+decreasing.  The coolant T
+avg decreases to a value for which the positive reactivity 
+from the coolant temperature decrease completely offsets the negative reactivity 
+from the reactor power (fuel temperature) increase.  At the new equilibrium, reactor 
+power again equals secondary power (at a higher power level) and net reactivity 
+again equals zero (with different constituent reactivities). 
+ 
+Contrast the inherent response to the Acontrolled@ response.  For an increase in 
+secondary power, the sliding T
+avg program calls for Tavg to increase.  If the MTC is 
+negative, increasing the coolant temperature over the power change will add 
+negative reactivity.  Fuel temperature will also increase and, because of the 
+negative DOPC, also add negative reactivity.  To offset both of these negative 
+reactivity additions (combined, they constitute the power defect described in Section 
+2.1.6.5), the operators must add positive reactivity by withdrawing control rods (or 
+allowing them to automatically withdraw) or by diluting the reactor coolant.  These 
+operator-controlled actions are NOT required to make the reactor power follow the 
+secondary power; they are required to maintain T
+avg at its programmed value. 
+ 
+As a second example, consider a reduction in turbine load from 60% to 50%.  This 
+10% reduction causes an imbalance between reactor power and secondary power; 
+the reactor is adding energy to the coolant at a faster rate than the steam 
+generators (ultimately, the turbine) are removing energy from the coolant.  As a 
+result, T
+avg rises.  The increase in Tavg adds negative reactivity (!ρ) to the reactor 
+(recall that MTC is negative).  This !ρ makes the reactor subcritical, and reactor 
+power begins to drop.  The decrease in reactor power adds positive reactivity (+ρ) 
+via the DOPC (the fuel temperature is decreasing).  This +ρ from the power 
+decrease offsets the !ρ from the Tavg increase. 
+ 
+For illustrative purposes, consider that the above changes in power and temperature 
+take place in small sequential increments.  Assume that the value of the MTC is -20 
+pcm/EF, and that the value of the DOPC is -10 pcm/%.  Each time T
+avg rises 1EF, the 
+reactor becomes subcritical by 20 pcm, causing reactor power to decrease.  When 
+power has decreased by 2%, +20 pcm will have been added by the reactor power 
+change, returning the reactor to an exactly critical condition (ρ = 0).  Thus, it can be 
+said that each increase in Tavg results in a corresponding drop in reactor power that 
+returns the reactor to an exactly critical condition.  In this example, five such 
+incremental steps will lower reactor power by 10%.  T
+avg will eventually rise 5EF 
+(adding -100 pcm of reactivity), and reactor power will lower 10% (adding +100 
+pcm). 
+ 
+As described above, when the operator initially decreases turbine load, the power 
+mismatch between the primary and the secondary causes T
+avg to rise.  Each 
+incremental rise in Tavg adds !ρ, which causes reactor power to decrease.  Each 
+time power decreases, the decrease in fuel temperature adds +ρ to offset the !ρ 
+from the change in moderator temperature.  These changes (T avg increasing, reactor 
+power decreasing) continue until reactor power reaches the new value of turbine 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-21 Rev 1208 
+load.  At the new equilibrium state, reactor power equals secondary power, and Tavg 
+stops changing.  Net reactivity is zero; the !ρ from the increase in Tavg has been 
+offset by the +ρ from the drop in reactor power. 
+ 
+To summarize, the inherent effect of lowering turbine load with no primary control 
+actions is that reactor power drops to equal secondary power, and T
+avg rises. 
+ 
+In a final example, the operators withdraw control rods without changing turbine 
+load.  The rod withdrawal adds +ρ, causing reactor power to rise.  As the power 
+increases, the fuel temperature increase adds !ρ via the DOPC, which offsets the 
++ρ from the rod withdrawal.  Now the reactor is again exactly critical (net ρ = 0), but 
+reactor power exceeds secondary power, so Tavg rises.  The rise in Tavg adds !ρ, 
+which causes reactor power to drop.  When power drops, the decrease in fuel 
+temperature adds +ρ, which offsets the !ρ from the Tavg increase and returns the 
+reactor to an exactly critical condition.  As in the previous example, Tavg continues to 
+rise until reactor power equals secondary power.  At the end of the transient, Tavg is 
+higher than its starting value, and reactor power has returned to its original value 
+(which equals the unchanged turbine load).  In the new equilibrium reactivity 
+balance, +ρ from the rod withdrawal has effectively been exchanged with !ρ from 
+the moderator temperature increase. 
+ 
+The above discussion is slightly oversimplified.  Actually, a change in reactor coolant 
+temperature changes the conditions for heat transfer in the steam generators; the 
+resultant change in steam pressure can affect the power level.  (Recall the 
+expression introduced in Section 1.2 for primary-to-secondary heat transfer: Q = 
+UA[T
+avg - Tref].)  Some turbine control schemes can respond to steam pressure 
+changes in order to maintain the desired turbine load.  However, the predominant 
+effect is that reactor power follows turbine load, and that the reactor coolant 
+temperature assumes whatever value is necessary to return net reactivity to zero.  In 
+addition, a change in reactor coolant temperature also changes the conditions for 
+heat transfer from the fuel to the coolant, and thus affects the fuel temperature.  
+(The temperature differential between the fuel and the coolant must remain about 
+the same for heat transfer from the fuel to the coolant to remain constant.)  
+However, any resultant change in fuel temperature is insignificant when compared 
+to the fuel temperature change associated with a power change.  It is therefore 
+useful to consider fuel temperature to be a function of reactor power only. 
+ 
+ 
+2.1.9 Reactor Kinetics  
+ 
+Consider a reactor in which K
+eff is exactly 1.0.  With equilibrium established, the 
+neutrons entering into the self-sustaining reaction are a mixture of prompt and 
+delayed neutrons.  The fraction of this mixture that are delayed neutrons at steady 
+state is known as β.  Each fuel has a characteristic β due to its yield of delayed 
+neutron producers.  A mixture of fuels, such as what would be present in a 
+commercial reactor after it has operated, has a β which is a weighted average of the 
+βs for the fuels present.  For a reactor with only U-235, β is about .007 or 0.7%.  
+Even though this is a small fraction of the neutrons, delayed neutrons are essential 
+to reactor control.  Delayed neutrons do not appear until about 13 seconds after the 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-22 Rev 1208 
+fission that results in a delayed neutron producer.  The long time delay is because 
+the delayed neutron producer must decay before a neutron is released.   
+ 
+After the release of the delayed neutron, it will go through the same life cycle with 
+the prompt neutrons, which were released immediately after the fission.  The lifetime 
+for a prompt neutron is about 10
+-4 seconds, but the lifetime for a delayed neutron is 
+about 13 seconds (13 + 10-4 ~13).  The life cycle time or generation time is a 
+weighted average of the lifetimes for prompt and delayed neutrons.  Since the 
+delayed neutron fraction is β, then the prompt neutron fraction is (1-β).  These are 
+used as the weighting factors.  The generation time is about 0.1 seconds.  The 
+reactor would be uncontrollable with a generation time of 10
+-4 seconds but is 
+controllable with 0.1 seconds, as can be seen in the following discussion.   
+ 
+As previously stated, if the fuel is U-235 and the reactor is critical, 0.7% of the 
+fission neutrons are delayed.  That means that 99.3% are prompt.  Assume now that 
+an adjustment has been made so that K
+eff is increased to 1.001, or 0.1% 
+supercritical.  The system is now multiplying at a given rate proportional to the 
+number of neutrons present within the system.  After the transient effects decay out, 
+the rise in the neutron level can be described by a single exponential equation:  
+ 
+ 
+en = n(t) t/T
+0  
+ 
+ where n 0  = the neutron level at time zero  
+  t = the time in seconds 
+   T = the stable reactor period (the time it takes the neutron level to 
+increase by a factor of e)  
+ 
+At the instant the reactor is made supercritical, the neutrons in the core are a 
+mixture of 0.7% delayed and, in this instance, about 99.4% prompt neutrons (99.3 + 
+0.1%). 
+  
+If K
+eff were increased to 1.007, then the reactor would be critical on prompt neutrons 
+alone, no waiting for delayed neutrons would be necessary, and it would be 
+uncontrollable by normal means.  The effect of the delayed neutrons on generation 
+time is lost.  To put it another way, the power would be increasing at such a rapid 
+rate that it would be impossible to control the reactor short of spontaneous 
+shutdown on its own inherent mechanisms.   
+ 
+The relationship between reactivity and the reactor period can be expressed 
+mathematically.  The period of the reactor is useful in equations for reactor analysis. 
+The more useful term for reactor operation is the related startup rate (SUR).  The 
+startup rate is expressed in terms of the reactor period in accordance with the 
+following equation: 
+  
+SUR = 26/T 
+ 
+ where SUR = startup rate in decades per minute    
+   T = period in seconds.  
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-23 Rev 1208 
+Therefore, if the reactor power level increases by a factor of 10 every minute, then 
+the reactor SUR is 1 decade per minute, which is equal to a period of 26 seconds.  
+Figure 2.1-21 is a plot of reactivity addition versus reactor startup rate.  If a reactor 
+operator wished to establish a 1 dpm startup rate from a critical condition it would 
+require an addition of 175 pcm of positive reactivity.  The startup rate can also be 
+used to predict power changes if the time the SUR will be in effect and the starting 
+power level are known.   
+ 
+The power of the reactor can be expressed by: 
+ 
+10p = p tSUR
+0
+•
+ 
+ 
+ where: p 0 = power at time zero 
+    SUR = startup rate in decades/min 
+    t  = time in minutes 
+ 
+ 
+2.1.10 Subcritical Multiplication 
+ 
+There is a third category of neutrons, in addition to prompt and delayed neutrons, 
+that are not fission neutrons, but are very important during startup and shutdown 
+operations when the reactor is subcritical.  These are known as “source neutrons,” 
+and they come from sources other than neutron-induced fission.  These sources 
+include spontaneous fission of certain nuclides and source assemblies specifically 
+loaded into the core to emit neutrons.  (Source assemblies are described in Section 
+3.1.)  Without source neutrons, the neutron population in the core would gradually 
+dwindle toward 0; each neutron generation would have fewer neutrons than the 
+previous one because K
+eff is less than 1.0.  With source neutrons, the population 
+remains at levels that can be measured by the source range nuclear instruments, so 
+that operators can always ascertain how fast the neutron population is changing. 
+ 
+When the reactor is made subcritical after operating at a critical state, the neutron 
+population at first undergoes nearly a step decrease with the rapid reduction in 
+prompt neutrons, and after a short time begins to decrease exponentially with a 
+startup rate of -1/3 decade per minute.  This rate of decrease is the result of the 
+delay of the longest-lived delayed neutron producers.  Without source neutrons, the 
+decrease would continue until the core neutron population is negligible.  However, 
+the neutron population eventually levels off, because at equilibrium the addition of 
+source neutrons just makes up for the losses from the neutron life cycle.  The 
+source neutrons enter the life cycle and experience the same environment that 
+fission neutrons experience.  For a defined source strength of S neutrons per 
+neutron generation, the core neutron population contains: 
+ 
+ S   neutrons from the current generation, 
+ S•K
+eff   neutrons from the immediately previous generation, 
+ S•(K eff)2  neutrons from two generations ago, and… 
+ S•(K eff)n  neutrons from n generations ago. 
+ 
+The total core neutron population, N, is thus: 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-24 Rev 1208 
+ N = S(1 + K eff + [Keff]2 + … + [Keff]n) 
+ 
+The above expression converges to: 
+ 
+1<K for 
+K1
+S = N eff
+eff−  
+ 
+Hence, the neutron population of a subcritical reactor does not decrease to 0; it 
+reaches an equilibrium value which depends on the source neutron strength and the 
+value of Keff.  The indication of the source range neutron detectors (a measured 
+count rate; see Section 9.1) would be a value proportional to N in the above 
+expression (CR ∝  N). 
+ 
+The above expression explains what happens to the core neutron population when 
+the value of K
+eff is changed.  During a startup, for example, an initially subcritical 
+reactor is driven to criticality via a series of discrete rod withdrawals.  After each 
+withdrawal, the operators pause to allow the reactor to attain equilibrium.  On the 
+way to criticality, the value of K
+eff is made closer and closer to 1.0, and the 
+equilibrium neutron population becomes larger and larger.  Put another way, after 
+each rod withdrawal, the core neutron population increases and then levels off at a 
+higher value determined by the new larger (but still subcritical) K
+eff value.  
+Eventually, of course, enough positive reactivity is added to make the reactor 
+critical, at which time K
+eff = 1.0, and the source neutrons become inconsequential. 
+ 
+Also, the amount of time it takes to reach equilibrium after a reactivity change 
+increases as K
+eff approaches 1.0.  In other words, as criticality is approached, it 
+takes longer for the count rate measured by the source range instruments to level 
+off.  The reason is evident in the series expression above; as K
+eff increases, more 
+terms in the series are significant, meaning that more previous generations of 
+source neutrons contribute to the present population. 
+ 
+A decrease in K
+eff for a subcritical reactor would cause similar changes in the 
+opposite direction.  If Keff is changed from one subcritical value to a smaller one, the 
+neutron population decreases until it levels off at a new lower equilibrium value 
+determined by the neutron population equations defined above. 
+ 
+One use of the count rate is to predict the point of criticality as fuel assemblies are 
+added or reactivity is increased.  However, because the source range CR gets 
+infinitely large as K
+eff approaches 1.0 (recall that the CR is proportional to N), the 
+inverse of CR is plotted.  As criticality is approached, 1/CR approaches zero; the 
+value of 1/CR thus provides operators with an effective tool for monitoring the 
+approach to criticality. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-25 Rev 1208 
+Table 2.1-1 
+Particles and Energy Produced per Fission Event 
+ 
+  
+Instantaneous Energy Release 
+ 
+MeV/fission 
+ 
+ Kinetic energy of fission 
+fragments 
+165  
+ Prompt γ energy 5  
+ Capture γ energy 5  
+ Kinetic energy of prompt 
+neutrons 
+ 
+7  
+ Total 182  
+    
+ Delayed Energy Release    
+ β Energy from fission products 7  
+ γ Energy from fission products 8  
+ Neutrons 
+ 
+10  
+ Total 25  
+    
+ 
+ 
+Table 2.1-2 
+Neutrons per Fission 
+ 
+ 
+ 
+ 
+Isotope 
+ 
+Neutrons 
+ 
+ 
+ 
+ 
+U-233 
+ 
+2.51 
+ 
+ 
+ 
+ 
+ 
+U-235 
+ 
+2.43 
+ 
+ 
+ 
+ 
+ 
+U-238 
+(fast fission) 
+ 
+2.47 
+ 
+ 
+ 
+ 
+ 
+Pu-239 
+ 
+2.90 
+ 
+ 
+ 
+ 
+ 
+Pu-241 
+ 
+3.06 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+ 
+USNRC HRTD 2.1-26 Rev 1208 
+Table 2.1-3 
+Typical Neutron Balance for U-235 
+ 
+ 
+Neutron Generation Stage 
+ 
+Number
+ 
+Factor 
+ 
+Gain/Loss 
+ 
+Beginning of generation: fast neutrons from 
+thermal fission 
+ 
+1000 
+ 
+ 
+ 
+ 
+ 
+Fast neutrons from thermal fission and fast 
+fission 
+ 
+1175 
+ 
+ε  = 1.175 
+ 
++175 
+ 
+Fast neutrons remaining after fast leakage 
+ 
+1151 
+ 
+L
+f = 0.98 
+ 
+-20 
+ 
+Neutrons that escaped resonance capture 
+while slowing down to thermal energies 
+ 
+1001 
+ 
+p = 0.87 
+ 
+-150 
+ 
+Thermal neutrons remaining after thermal 
+leakage, to be absorbed by core materials 
+ 
+981 
+ 
+L
+t = 0.98 
+ 
+-20 
+ 
+Thermal neutrons absorbed by fuel (fissile 
+nuclides), not absorbed by non-fuel core 
+materials 
+ 
+488 
+ 
+f = 0.497 
+ 
+-493 
+ 
+Fast neutrons resulting from thermal fission 
+in fuel (end of generation and beginning of 
+next generation) 
+ 
+1000 
+ 
+η  = 2.05 
+ 
++512 
+---PAGE---
+ 
+  
+ 
+0199-3
+0.4
+0.3
+0.2
+0.1
+0
+02468 1 0 1 2 1 4
+FISSION NEUTRON ENERGY, MEV
+Figure 2.1-1 Fission Neutron Energy
+---PAGE---
+ 
+  
+ 
+2M E V .025 EV
+FAST
+1.0
+0.5
+2
+5
+10
+0.2
+ln E
+(E)
+THERMAL
+GROUP
+0199-3
+Figure 2.1-2 Flux Distribution
+---PAGE---
+ 
+  
+ 
+0199-3
+Figure 2.1-3 Total Cross Section for U-235
+---PAGE---
+ 
+  
+ 
+(BARNS)
+T
+Neutron Energy (eV)
+COLDT
+HOTT
+7000
+5500 4500
+850
+800
+5
+6.7
+10
+37
+5
+66
+100 1000
+2
+5
+10
+5
+21
+5
+1000
+5
+10,000
+1
+238
+92 U
+0199-3
+Figure 2.1-4 Cross Section Curve
+---PAGE---
+ 
+  
+ 
+BOL
+EOL
+EOL
+BOL
+-.0012
+(-1.2pcm/F)
+-.0013
+-.0014
+-.0015
+-.0016
+-.0017
+-.0018
+-.0019
+400 600 800 1000 1200 1400 1600 1800
+EFFECTIVE FUEL TEMPERATURE ( F)
+Figure 2.1-5 Doppler Temperature Coefficient, BOL and EOL
+0199-
+3
+---PAGE---
+ 
+  
+ 
+-.008
+-.009
+-.010
+-.011
+-.012
+-.013
+-.014
+-.015
+-.016
+(-8 pcm / % power)
+0 2 04 06 08 0 1 0 0
+POWER LEVEL (PERCENT OF FULL POWER)
+EOL
+BOL
+Figure 2.1-6 Doppler Only Power Coefficient, BOL and EOL
+0199-3
+---PAGE---
+ 
+  
+ 
+0
+-.5
+-1.0
+-1.5
+(-1500pcm)
+0 2 04 06 08 0 1 0 0
+POWER (PERCENT)
+EOL
+BOL
+0199-3
+Figure 2.1-7 Doppler Only Power Defect, BOL and EOL
+---PAGE---
+ 
+  
+ 
+20
+10
+0
+-10
+-20
+-30
+-40
+0 100 200 300 400 500 600
+MODERATOR TEMPERATURE ( F)
+2000 PPM
+1500
+PPM
+500
+PPM
+1000 PPM
+0
+PPM
+Figure 2.1-8 Moderator Temperature Coefficient
+0199-3
+---PAGE---
+ 
+  
+ 
+POWER LEVEL (PERCENT FULL POWER)
+0 2 04 06 08 0 1 0 0
+-.012
+-.014
+-.016
+-.018
+-.020
+-.022
+(-12 pcm / % power) BOL
+EOL
+Figure 2.1-9 Total Power Coefficient, BOL and EOL
+0199-3
+---PAGE---
+ 
+  
+ 
+0
+-0.5
+-1.0
+-1.5
+-2.0
+-2.5
+(-2500 pcm)
+POWER LEVEL (PERCENT FULL POWER)
+02 0 4 0 6 0 8 0 1 0 0
+BOL
+EOL
+Figure 2.1-10 Total Power Defect, BOL and EOL
+0199-3
+---PAGE---
+ 
+  
+ 
+10
+1
+10-3
+-110
+-210
+-410
+-510
+Mass Number
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+170
+Figure 2.1-11 Fission Yield versus Mass Number
+0199-3
+---PAGE---
+ 
+  
+ 
+Figure 2.1-12 Equilibrium Xenon Worth vs Percent of Full Power
+0199-3
+---PAGE---
+ 
+  
+ 
+Figure 2.1-13 Xenon Transients
+0199-3
+---PAGE---
+ 
+  
+ 
+Figure 2.1-14 Xenon Transients Following a Reactor Trip
+0199-3
+---PAGE---
+ 
+  
+ 
+100%
+75%
+50%
+25%
+0%
+-1.0
+-1.5
+-2.0
+-2.5
+-3.0
+-3.5
+-4.0
+-4.5
+-5.0
+-5.5
+(-5500 pcm)
+HOURS
+0 1 02 03 04 05 06 0
+Figure 2.1-15 Xenon Transients Following a Reactor Trip and Return to Power
+0199-3
+---PAGE---
+ 
+  
+ 
+0199-3
+Figure 2.1-16 Samarium Transients
+---PAGE---
+ 
+  
+ 
+---PAGE---
+ 
+  
+0199-3
+Figure 2.1-17 Samarium Transients Starting with a Clean Core
+---PAGE---
+ 
+  
+ 
+0199-3
+Figure 2.1-18 Samarium Transients Starting with a Clean Core
+---PAGE---
+ 
+  
+ 
+Figure 2.1-19 Samarium Shutdown Transients
+0199-3
+---PAGE---
+ 
+  
+ 
+.04
+(40 pcm)
+.03
+.02
+.01
+0
+Control Rod Position, % withdrawn
+(a) DIFFERENTIAL CONTROL ROD WORTH
+0 2 04 06 08 0 1 0 0
+0 2 04 06 08 0 1 0 0
+Control Rod Position, % withdrawn
+(b) INTEGRATED CONTROL ROD WORTH
+2.0
+(2000 pcm)
+1.5
+1.0
+0.5
+0
+0199-3
+Figure 2.1-20 Integral and Differential Rod Worth
+---PAGE---
+ 
+  
+ 
+Figure 2.1-21 Reactivity versus Startup Rate
+0199-3
+ 
+---PAGE---

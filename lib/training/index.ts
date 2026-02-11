@@ -23,25 +23,36 @@ import { coolantSystemScenario } from './scenarios/coolant-system';
 import { powerManeuveringScenario } from './scenarios/power-maneuvering';
 import { feedwaterLossScenario } from './scenarios/feedwater-loss';
 import { locaScenario } from './scenarios/loca';
+import { selfRegulationScenario } from './scenarios/self-regulation';
+import { boronControlScenario } from './scenarios/boron-control';
+import { xenonDynamicsScenario } from './scenarios/xenon-dynamics';
+import { powerAscensionScenario } from './scenarios/power-ascension';
+import { rpsScenario } from './scenarios/rps-demonstration';
 import type { TrainingScenario } from './types';
 
 /**
- * Scenario Registry
- * All available training scenarios
+ * Scenario Registry — 13 scenarios across 3-tier HRTD curriculum
+ *
+ * Tier 1 — Foundations (4 scenarios)
+ * Tier 2 — Systems & Operations (5 scenarios)
+ * Tier 3 — Protection & Emergency (4 scenarios)
  */
 export const SCENARIOS: TrainingScenario[] = [
-  // Basics
+  // Tier 1 — Foundations
   introControlsScenario,
   reactivityBasicsScenario,
-  // Systems
+  selfRegulationScenario,
+  boronControlScenario,
+  // Tier 2 — Systems & Operations
   coolantSystemScenario,
-  // Normal Operations
   normalStartupScenario,
   powerManeuveringScenario,
-  // Transients
+  powerAscensionScenario,
+  xenonDynamicsScenario,
+  // Tier 3 — Protection & Emergency
+  rpsScenario,
   pumpTripScenario,
   feedwaterLossScenario,
-  // Emergency
   locaScenario,
 ];
 

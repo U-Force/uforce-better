@@ -1,0 +1,1052 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 7.2 
+ 
+Condensate and Feedwater System
+---PAGE---
+ 
+USNRC HRTD 7.2-1 Rev 0403 
+ 
+ 
+ 
+ 
+TABLE OF CONTENTS 
+ 
+7.2 CONDENSATE AND FEEDWATER SYSTEM .............................................. 7.2-1 
+ 
+7.2.1 Introduction .......................................................................................... 7.2-1 
+ 
+7.2.2 System Description .............................................................................. 7.2-2 
+ 
+7.2.2.1 Condensate System ............................................................... 7.2-2 
+7.2.2.2 Feedwater System .................................................................. 7.2-4 
+7.2.2.3 Heater Drain System .............................................................. 7.2-5 
+7.2.2.4 Steam Generator C hemistry Control ...................................... 7.2-5 
+ 
+7.2.3 Component Descriptions ...................................................................... 7.2-6 
+ 
+7.2.3.1 Condensate Syst em Components .......................................... 7.2-6 
+7.2.3.2 Feedwater Syst em Components ............................................ 7.2-9 
+7.2.3.3 Startup Auxiliary Feedwater Pump ....................................... 7.2-11 
+7.2.3.4 Heater Drain Sy stem Components ....................................... 7.2-11 
+7.2.3.5 Condensate Storag e Tank (CST) ......................................... 7.2-14 
+ 
+7.2.4 System O peration .............................................................................. 7.2-14 
+ 
+7.2.5 PRA Insights ...................................................................................... 7.2-15 
+ 
+7.2.6 Summary  ............................................................................................ 7.2-16 
+ 
+ 
+ 
+ 
+LIST OF FIGURES 
+ 
+7.2-1 ............................................................ Simplified Condensate and Feed System 
+7.2-2 ............................................................................................. Condensate System 
+7.2-3 ...................................................................... Condensate Demineralizer System 
+7.2-4 ................................................................................................ Feedwater Heater 
+7.2-5 ............................................................................................... Feedwater System 
+7.2-6 ..........................................................Moisture Separator / High Pressure Drains 
+7.2-7 ................................................................................ Low Pressure Heater Drains 
+7.2-8 ................................................................... Steam Generator Blowdown System 
+7.2-9 .................................................. Condensers A, B, & C Front View (Facing East) 
+7.2-10 ............................................................................. Circulating Water (Top View) 
+7.2-11 ..................................................................................... Main Air Ejector System 
+7.2-12 ........................................................................................... Condenser Hotwells 
+7.2-13 ..................................................................... Startup Auxiliary Feedwater Pump 
+---PAGE---
+ 
+USNRC HRTD 7.2-2 Rev 0403 
+ 
+---PAGE---
+ 
+USNRC HRTD 7.2-1 Rev 0403 
+7.2 CONDENSATE AND FEEDWATER SYSTEM  
+ 
+Learning Objectives: 
+ 
+1. List in proper flowpath order and state the purpose of the following condensate 
+and feedwater system components: 
+ 
+a. Condenser 
+b. Condensate (hotwell) pumps 
+c. Demineralizers 
+d. Low pressure feedwater heaters 
+e. Main feed pumps (MFPs) 
+f. High pressure feedwater heaters 
+g. Feedwater regulating and bypass valves 
+h. Feedwater isolation valves (FWIVs) 
+i. Steam generators 
+j. Startup auxiliary feedwater (AFW) pump 
+k. Heater drain system 
+l. Condensate storage tank (CST) 
+ 
+2. List the components and connections located in the Seismic Category I portion 
+of the feedwater system piping, and explain the purpose of each. 
+ 
+3. Explain how cascading heater drains increase plant efficiency. 
+ 
+ 
+7.2.1 Introduction  
+ 
+The purposes of the condensate and feedwater system are as follows: 
+ 
+1. To transfer water from the main condenser to the steam generators and to 
+preheat it, 
+2. To collect and distribute heater drains, and 
+3. To purify secondary water and to maintain secondary chemistry control. 
+ 
+The condensate and feedwater system returns the condensed low pressure turbine 
+exhaust steam from the main condenser to the steam generators.  The simplified 
+flow path for this system is shown in Figure 7.2-1.  The condensed turbine exhaust 
+steam is collected in the hotwell sections of the main condenser.  Each motor-driven 
+condensate (hotwell) pump takes suction on the hotwell and pumps the condensate 
+through the low pressure feedwater heaters.  The condensate flow can be directed 
+through the condensate demineralizers.  The condensate demineralizers (ion 
+exchangers) remove soluble impurities from the condensate.  The low pressure 
+heaters increase the temperature of the condensate before it reaches the suction of 
+the main feedwater pumps.   
+ 
+The turbine-driven feedwater pumps increase the pressure of the condensate, now 
+called feedwater, to a pressure greater than steam generator pressure and direct 
+the feedwater to the steam generators.  Before it reaches the steam generators, the 
+feedwater passes through the high pressure feedwater heaters, the feedwater 
+---PAGE---
+ 
+USNRC HRTD 7.2-2 Rev 0403 
+regulating valves, and the feedwater isolation valves.  The high pressure heaters 
+provide the final heating of the feedwater, the feedwater regulating valves control 
+the water levels in the steam generators, and the feedwater isolation valves provide 
+the means by which the safety-grade portions of the feedwater system can be 
+isolated from the nonsafety-grade portions during accidents and certain transients.  
+In the steam generators, the feedwater is converted to steam, and the secondary 
+cycle is repeated.  
+ 
+In this section, detailed descriptions of the following topics are provided:  
+ 
+$ Condensate system, 
+$ Feedwater system, 
+$ Heater drain system, and 
+$ Secondary chemistry control. 
+ 
+ 
+7.2.2 System Description 
+ 
+7.2.2.1 Condensate System  
+ 
+The condensate system preheats, pressurizes, and purifies the condensate 
+collected in the main condenser and transports it to the suctions of the main 
+feedwater pumps.  Refer to Figure 7.2-2.  The condensate system contains two 70% 
+capacity, motor-driven pumps, the condensate demineralizers, and five stages of 
+low pressure feedwater heating. 
+ 
+The main condenser condenses and collects steam from the low pressure turbine 
+exhaust and/or the steam dump system (Chapter 11.2).  The heat sink required to 
+condense the steam is provided by the circulating water system (Chapter 14.3).  The 
+circulating water flows through the inside of the condenser tubes, and the exhaust 
+steam is condensed on the outside of the tubes.  The condensed steam 
+(condensate) is collected in the three hotwell sections (hotwells A, B, and C) of the 
+main condenser.  
+ 
+The hotwells provide a storage reservoir for the condensate system.  This system is 
+shown in detail in Figure 7.2-2.  Each of the three condenser hotwells is divided into 
+A train and B train sections.  The A and B train sections are interconnected, and the 
+trains are cross-connected at the B condenser hotwell.  Each condensate pump 
+takes suction on its associated train of hotwell sections and raises the pressure of 
+the condensate.  Downstream of the condensate pumps are connections to the 
+condensate demineralizers.   
+ 
+The condensate demineralizer system consists of eight demineralizers containing 
+filters coated with resin (precoat) as well as systems for removing spent precoat and 
+applying fresh precoat.  Refer to Figure 7.2-3.  Each demineralizer vessel is a 
+cylindrical tank with a bottom head, 6 ft in diameter and 10.8 ft in overall height.  The 
+vessels are made of carbon steel with epoxy phenolic coatings.  Each vessel holds 
+420 nylon filter elements coated with ion exchange resin.  The condensate passes 
+through the precoat material first and then through the filters; the condensate is thus 
+---PAGE---
+ 
+USNRC HRTD 7.2-3 Rev 0403 
+purified via ion exchange and filtration.  Each vessel can treat 4317 gpm of 
+condensate at 134.5°F and 565 psig. 
+ 
+During normal operation, six vessels contain precoat material consisting of ammonia 
+cation and hydroxide anion resins, while a seventh vessel contains precoat material 
+consisting of hydrogen cation and hydroxide anion resins.  The first six vessels are 
+capable of full condensate flow, while the flow through the seventh demineralizer is 
+throttled manually to maintain condensate pH between 9.3 and 9.6.  (The eighth 
+demineralizer would be in standby or undergoing replacement of spent precoat.)   
+ 
+The condensate demineralizer system has a flow balancing controller which ensures 
+equal flow through all demineralizers that are maintained in automatic operation.  
+Without flow balancing, the ?cleaner@ demineralizers would pass more flow than the 
+?dirtier@ ones, due to the differential pressures (ΔPs) across the filter elements; 
+eventually all demineralizers would be equally dirty.  This condition would 
+necessitate replacement of the precoat in all demineralizers at the same time.  As a 
+demineralizer=s precoat is exhausted, the conductivity of the vessel contents and the 
+ΔP across the vessel increase.  The condensate demineralizer bypass valves will 
+open automatically if the ΔP across any demineralizer exceeds 60 psid. 
+ 
+When demineralizer conditions necessitate precoat replacement, the demineralizer 
+is removed from service.  The spent precoat is back washed from the filter elements 
+with water from the CST.  The resultant resin-water mixture is drained to the 
+backwash receiver tank for processing.  Fresh anion and cation resins are then 
+combined as a slurry and pumped into the demineralizer vessel by the precoat 
+pump. 
+ 
+The demineralizers are not normally in service continuously because morpholine, 
+used to control secondary pH (see Section 7.2.2.4), exhausts demineralizer resin at 
+a high rate.  During at-power operation, the demineralizers are placed in service 
+when there are condenser tube leaks or when some contaminant has been 
+introduced into the secondary.  Condensate flow through the demineralizers is 
+established on either a single-train or two-train basis by closing either or both of the 
+condensate demineralizer bypass valves.  During a startup, condensate (feed) flow 
+is recirculated to the condenser via the demineralizers to establish the appropriate 
+secondary chemistry parameters. 
+ 
+Downstream of the connections to the condensate demineralizer system are five 
+stages of low pressure heaters.  Refer to Figure 7.2-2.  In each condensate train, 
+the first two stages of heating consist of three parallel paths of two heaters each; the 
+condensate flow then converges and passes through three single-heater stages.  
+The 12 heaters which comprise the first 2 stages of heating are located in the 
+condenser shells.  Each train of low pressure heaters can only be isolated at the 
+outlet of the fifth-stage heater.  Therefore, in order to repair one heater, all first- 
+through fifth-stage heaters in the associated string must be taken out of service.  If a 
+string of heaters is taken out of service, power must be reduced to 70% or less.  
+ 
+All feedwater heaters are U-tube heat exchangers.  Refer to Figure 7.2-4.  The 
+shells are carbon steel, and the tubes are stainless steel.  Steam enters the shell 
+side of each heater, and condensate flows through the U tubes.  The steam passes 
+---PAGE---
+ 
+USNRC HRTD 7.2-4 Rev 0403 
+over the tubes and heats the condensate.  The condensed steam collects in the 
+drain cooler section of the heat exchanger.  The drain cooler is a water-to-water 
+heat exchanger formed within the heater shell by a baffle which envelopes some of 
+the tubes at the condensate (or feedwater) inlet.  The condensed heating steam is 
+subcooled there before it drains from the heater.  The heater drain system is 
+discussed in Section 7.2.2.3. 
+ 
+The first five stages of feedwater heating increase the condensate temperature from 
+120EF to 360EF.  Heating steam for the first four stages of feedwater heating is 
+supplied by extraction steam from the low pressure turbine.  Steam for the first-, 
+second-, third-, and fourth-stage heaters is taken from the eleventh, tenth, eighth, 
+and seventh stages of the low pressure turbines, respectively.  Steam for the fifth-
+stage heaters is taken from the high pressure turbine exhaust.  Preheating the 
+condensate (feedwater) results in an efficiency gain of approximately 15% over non-
+preheating systems. 
+ 
+The discharges of the low pressure heater trains are cross-connected by a 16-in. 
+header.  The heater drain pumps also discharge to this header.  The combined 
+condensate and heater drain flow provides the suction for the main feed pumps. 
+ 
+7.2.2.2 Feedwater System  
+ 
+The feedwater system preheats and pressurizes the discharge from the condensate 
+system and the heater drain pumps and transports it to the steam generators.  The 
+feedwater system extends from the feed pump suction valves to the inlets of the 
+steam generators.  Refer to Figure 7.2-5.  The feedwater system includes two 70% 
+capacity, variable speed, turbine-driven pumps and two trains of high pressure 
+feedwater heaters. 
+ 
+The MFPs discharge to the high pressure feedwater heaters via cross-connected 
+headers.  The high pressure heaters consist of two trains of two heaters each.  The 
+high pressure heaters are U-tube heat exchangers constructed of carbon steel 
+shells and stainless steel tubes.  The heaters have integral drain coolers and a tube-
+side (feedwater) design pressure of 1700 psig.  The feedwater temperature is raised 
+from 360EF to 397EF in the sixth-stage heaters and to 440EF in the seventh-stage 
+heaters.  The extraction steam supplying these heaters is taken from the fourth 
+stage of the high pressure turbine for the sixth-stage heaters and from the second 
+stage of the high pressure turbine for the seventh-stage heaters.  One high pressure 
+feedwater heater string can be isolated, provided that plant power is first reduced to 
+95% or less. 
+ 
+Feedwater from the high pressure heater trains flows into a common 30-in. feed 
+header.  This common header contains a pressure transmitter (PT-508) which 
+provides indication on the main control board and an input to the MFP speed control 
+system.  The header also contains a recirculation line to the main condenser.  This 
+line directs recirculation of feedwater for demineralization, deaeration, and filtration 
+of the feedwater during plant startups.  The recirculation line isolation valve is shut 
+during normal at-power operation. 
+ 
+---PAGE---
+ 
+USNRC HRTD 7.2-5 Rev 0403 
+The common feed header splits into four 14-in. feed lines which supply the 
+individual steam generators.  Each feed line contains a 14-in. feedwater regulating 
+valve and a 6-in. bypass valve in parallel.  Each feedwater regulating valve has an 
+automatic control system which is discussed in detail in Chapter 11.1.  The bypass 
+valves are operated manually.  Immediately downstream of each feedwater 
+regulating and bypass valve is a feedwater isolation valve (FWIV). 
+ 
+From the first piping restraints upstream of each set of FWIVs to the steam 
+generator feedwater inlet, the feedwater piping is Seismic Category I.  Downstream 
+of the feedwater isolation valves, each feed line contains a flow venturi with two flow 
+transmitters.  The function of the flow transmitters is discussed in Chapter 11.1.  
+Downstream of each venturi is a check valve.  The check valve prevents the loss of 
+steam generator inventory through an upstream feedwater system break.   
+Downstream of the check valve are connections for shutdown chemistry addition 
+and for auxiliary feedwater entry. 
+ 
+7.2.2.3 Heater Drain System 
+ 
+The heater drain system collects condensed steam from the moisture separator 
+reheaters (MSRs) and from the high and low pressure feedwater heaters and 
+returns it to the condensate and feedwater system.  Refer to Figures 7.2-6 and 7.2-
+7.   
+ 
+The drains from the seventh-stage heaters are cascaded or drained to the sixth-
+stage heaters, which in turn drain to the fifth-stage heaters.  The cascading effect 
+ends with the fifth-stage heaters; they drain to the heater drain tanks.  Two heater 
+drain pumps transport the collected drains from the heater drain tanks to the 
+condensate system cross-connect header downstream of the low pressure heaters. 
+During full-power operation, the heater drain pumps supply about one third of the 
+total flow at the suctions of the MFPs.  Plant power is limited to 90% with only one 
+operating heater drain pump. 
+ 
+The drains from the low pressure heaters are also cascaded.  The fourth-stage 
+heaters drain to the third-stage heaters, the third-stage heaters drain to the second-
+stage heaters, the second-stage heaters drain to the first-stage heaters, and the 
+first-stage heaters drain to the main condenser.  The cascading of heater drains 
+improves secondary plant efficiency by allowing the repeated use of relatively hot 
+water for feedwater heating; if each heater were to drain directly to the condenser, a 
+great deal of energy would be lost from the system.  Preheating of the feedwater by 
+extraction steam and heater drains means that nearly all of the energy transferred to 
+the feedwater in the steam generators by the reactor coolant system is added as the 
+latent heat of vaporization; comparatively little sensible heating is required to bring 
+the feedwater to saturation.   
+ 
+7.2.2.4 Steam Generator Chemistry Control  
+ 
+During plant operation the control of steam generator chemistry is accomplished by 
+the purification of condensate, by the injection of chemicals into the condensate 
+system to scavenge oxygen and to control pH, and by steam generator blowdown.  
+ 
+---PAGE---
+ 
+USNRC HRTD 7.2-6 Rev 0403 
+Purification of the condensate is performed by the condensate demineralizer system 
+through the ionic exchange process.  Ionic impurities (from condenser tube leaks, 
+poor-quality makeup water, etc.) in the condensate system are removed on an as-
+needed basis by placing the demineralizers in service.  
+ 
+Chemical injection of hydrazine (N
+2H4) for oxygen control and morpholine (C4H9NO) 
+for pH control contributes to steam generator chemistry control by minimizing 
+corrosion.  Morpholine injection is secured when the condensate demineralizer 
+system is placed in service, and secondary pH is affected by hydrazine addition only 
+(some of the hydrazine decomposes into ammonia [NH
+3], a weak base).  These 
+chemicals are pumped into a low temperature portion of the condensate system just 
+downstream of the demineralizer system connections (see Figure 7.2-2) to prevent 
+the breakdown of hydrazine.  Separate connections for shutdown chemical addition 
+are immediately upstream of the feedwater containment penetrations (see Figure 
+7.2-5).  The volatility of the chemical treatment prevents undesirable chemical 
+concentrations in the steam generators.  
+ 
+Each steam generator acts as a chemical concentrator.  The boiling of the 
+feedwater leaves concentrated impurities in the steam generator, which are 
+removed by the steam generator blowdown system.  The blowdown system, as 
+shown in Figure 7.2-8, consists of blowdown taps from each steam generator, 
+isolation valves, blowdown flow control valves, a blowdown tank, a heat exchanger, 
+a pump, blowdown ion exchangers and filter, a radiation monitor, and piping for 
+blowdown discharge to the condenser and to the environment.  
+ 
+The function of the steam generator blowdown system is to maintain the steam 
+generator secondary-side water within the chemical specifications prescribed, while 
+treating the blowdown for return to the condenser.  Primarily, the steam generator 
+blowdown system will remove impurities that come from sources such as primary-to-
+secondary leakage, main condenser leakage, and corrosion products. 
+ 
+The blowdown flow rate from each of the four steam generators is individually, 
+manually controlled (100 gpm maximum per steam generator).  The blowdown water 
+entering the blowdown tank undergoes a pressure drop across the blowdown flow 
+control valves; some of the water flashes to steam.  Most of the steam is condensed 
+by the water in the tank, the rest is directed to the condenser (< 50% power), to 
+feedwater heater 3B (> 50% power), or to the atmosphere (condenser not 
+available).  The liquid effluent from the blowdown tank is cooled in the blowdown 
+heat exchanger (service water is the heat sink), purified, and filtered before being 
+discharged to the condenser or to the environment. 
+ 
+ 
+7.2.3 Component Descriptions 
+ 
+7.2.3.1 Condensate System Components 
+ 
+Main Condenser 
+ 
+The main condenser is a single-pass, three-shell, multipressure, deaerating, surface 
+condenser.  Each shell is located below one of the three low pressure turbines.  The 
+---PAGE---
+ 
+USNRC HRTD 7.2-7 Rev 0403 
+condenser tubes are arranged in bundles which cross the condenser shells 
+perpendicular to the longitudinal axis of the main turbine.  Refer to Figure 7.2-9. 
+ 
+Each condenser shell is connected to its associated low pressure turbine =s outer 
+casing by an expansion bellows, which isolates turbine expansion and vibration from 
+the condenser.  The first- and second-stage feedwater heaters are located in the 
+upper portion of each condenser shell just below the entry of turbine exhaust.  This 
+area of the condenser shell is called the neck.  Each of the low pressure heater 
+trains has first- and second-stage heaters located inside each condenser shell.  
+Each pair of first- and second-stage heaters is installed within a single shell, so that 
+each condenser shell actually contains two heater shells.  This arrangement saves 
+floor space, reduces the insulation required for the heaters, and allows shorter 
+piping runs.  Below the low pressure heaters are the tube bundles.  
+ 
+The main condenser tubes are constructed of titanium, which is virtually impervious 
+to corrosion.  (The condensers at several plants have been retrofitted with titanium 
+tubes for improved corrosion performance.)  Each of the approximately 60,000 
+tubes is 1.25 in. in diameter; tube lengths vary between condenser shells.  A 
+different pressure is maintained in each of the three shells.  The shells are designed 
+to operate at the following pressures at full power: 3.30 in. Hg for the low pressure 
+(A) shell, 4.00 in. Hg for the intermediate pressure (B) shell, and 5.11 in. Hg for the 
+high pressure (C) shell.  The interconnected hotwells below the three shells are 
+maintained at a pressure of 6.73 in. Hg.  
+ 
+Circulating water flows through the three condenser shells in series, entering first 
+the low pressure shell, then the intermediate pressure shell, and finally the high 
+pressure shell.  Refer to Figure 7.2-10.  The circulating water is heated as it flows 
+through the shells.  In order to maintain the heat transfer capability of each 
+condenser shell approximately equal, the heat transfer surface area increases in the 
+direction of circulating water flow.  Each shell has the same number of tubes; 
+different heat transfer areas are accomplished with different tube lengths.  The tube 
+lengths are 35 ft in the low pressure shell, 45 ft in the intermediate pressure shell, 
+and 55 ft in the high pressure shell.  The total heat transfer surface area of the 
+condenser is approximately 900,000 ft
+2.  The tubes are supported by divider plates 
+spaced along their length.  The tubes are welded to tube sheets attached to the inlet 
+and outlet water boxes. 
+ 
+At the center of each tube bundle is a gas collecting space.  Noncondensible gases 
+are directed across the relatively cold central tubes and then routed through air off-
+take piping that penetrates the inlet water boxes.  The air off-take pipes of the three 
+shells are connected in parallel.  Noncondensible gases are then directed to the 
+suctions of the air ejector assemblies.  If gases were not removed, a reduction in 
+vacuum and a loss of turbine efficiency would result. 
+ 
+Gases leaking into the condenser or being stripped from the condensate can 
+blanket the condenser tubes.  This would reduce the heat transfer capability of the 
+condenser.  The condenser air removal system removes air and noncondensible 
+gases from the condenser shells.  During plant startups the three hogging air 
+ejectors draw air from the condenser shells to establish the initial condenser 
+---PAGE---
+ 
+USNRC HRTD 7.2-8 Rev 0403 
+vacuum.  During plant operations one or both of the main air ejector assemblies 
+maintain a minimum condenser vacuum of 25 in. Hg.  Refer to Figure 7.2-11. 
+ 
+The air ejectors are jet pumps supplied with main steam through a reducing valve.  
+The two 100% capacity, two-stage main air ejector assemblies exhaust to the 
+turbine roof via inter and after condensers and the off-gas system.  Conductivity 
+monitors are placed on the inter and after condenser drains to detect condenser 
+tube leaks.  A radiation monitor samples gases in the off-gas system prior to their 
+release above the turbine building roof, and gases can be directed through a 
+charcoal adsorber if necessary.  The 1200-scfm, single-stage hogging air ejectors 
+exhaust directly to the atmosphere outside the turbine building. 
+ 
+Condensed water in the condenser shells collects below the tube bundles on 
+intermediate bottom plates in the hotwells.  Refer to Figure 7.2-12.  Condensers A 
+and B have two such plates, which form intermediate and lower hotwell sections, 
+while condenser C has only one.  At each intermediate bottom plate, the 
+condensate flows into sumps which contain heatup devices, each of which is a 
+series of perforated plates.  The plates break up the condensate into droplets which 
+are heated as they fall through steam.  In the lower hotwell section of each 
+condenser, the steam is provided by feed pump turbine exhaust.  The feed pump 
+turbine exhaust is piped to the lower hotwell of condenser C first and then to the 
+lower hotwells of the other two condensers via steam crossover piping.  Some of the 
+feed pump turbine exhaust steam is directed from the condenser C lower hotwell 
+into the condenser C shell.  Similarly, heating steam from the condenser C shell is 
+supplied to the intermediate hotwells of the other two condensers via crossover 
+piping.  The steam passages are sized and orificed so that, at design load and 
+circulating water temperature, the appropriate pressures are maintained in the 
+various sections of the condensers. 
+ 
+The lower hotwell of each condenser is divided into train A and train B sections by a 
+longitudinal plate.  The train A sections are interconnected, as are the train B 
+sections.  The longitudinal plate in the B condenser hotwell has a hole to equalize 
+the levels in the two hotwell sections.  Condenser B has separate train A and train B 
+hotwell level control systems, only one of which is in service at any time due to the 
+level balancing in the B condenser hotwell described above.  As the other 
+condenser hotwells are connected to the condenser B hotwell, controlling the B 
+hotwell level provides control of the entire condenser hotwell inventory.  Inventory 
+control is discussed in more detail in Section 7.2.3.5.  The train A and train B 
+condensate pumps take suction on the condenser B train A and train B hotwell 
+sections, respectively.  
+ 
+Condensate (Hotwell) Pumps 
+ 
+Two condensate pumps take suction on condenser B through suction strainers and 
+manual isolation valves.  The pumps are eight-stage, vertical, centrifugal pumps 
+driven by 3950-hp motors.  The pumps are powered from 12.47-kVac service buses. 
+The thrust and upper guide bearings of the pump motors are oil lubricated; the 
+motor oil coolers are cooled by the bearing cooling water system.  Each pump =s 
+lower radial bearing is grease lubricated and air cooled.  Cooling water for the 
+condensate pump shaft seals is supplied by the condensate transfer pumps.  Each 
+---PAGE---
+ 
+USNRC HRTD 7.2-9 Rev 0403 
+condensate pump supplies 11,000 gpm with 1100 ft of head (approximately 477 
+psi). 
+ 
+The discharge of each pump is provided with a recirculation line to the hotwell of 
+condenser B to protect the pump from overheating.  The recirculation valve in each 
+line is controlled as a function of the associated pump =s discharge flow.  Each valve 
+opens with a discharge flow rate of 3500 gpm and closes with a flow rate of 7000 
+gpm.  The recirculation valves are automatically opened by a feedwater isolation 
+signal. 
+ 
+Operation with the condensate demineralizers bypassed causes an increase in the 
+discharge pressure of the condensate pumps due to the reduced flow resistance.  
+The increased pressure at the discharge of the heater drain pumps decreases the 
+flow from the heater drain tank, resulting in the loss of heater drain tank level 
+control.  To avoid this effect, with the demineralizers bypassed the recirculation 
+valve for one condensate pump is manually opened about 50%, thereby reducing 
+condensate pump discharge pressure and increasing heater drain pump flow. 
+ 
+The discharge of each pump is equipped with a motor-operated isolation valve, 
+which is manually operated from the main control board.  The isolation valve is 
+closed when the pump is off and opened after the pump is started.  Downstream of 
+the discharge isolation valves and the discharge flow elements, the condensate 
+trains are cross-connected by a 24-in. line.  The discharge of each pump can be 
+aligned to the condensate demineralizer system.  The discharge of condensate 
+pump B also supplies the MFP seal water system and the heater drain pump seals. 
+ 
+7.2.3.2 Feedwater System Components  
+ 
+Main Feedwater Pumps  
+ 
+The MFPs are horizontal, single-stage, centrifugal pumps, each coupled to a nine-
+stage impulse turbine.  Each pump has a dedicated lubricating oil system for its 
+bearings.  Each pump has a variable capacity up to 19,800 gpm with a discharge 
+head of 2020 ft.  Each pump can support operation up to 70% of main turbine load.  
+An independent speed controller, operated automatically or manually, is provided for 
+each pump.  The turbine speed is varied to maintain a programmed ΔP across the 
+feedwater regulating valves.  The MFP speed control program is discussed in 
+Chapter 11.1. 
+ 
+Each MFP turbine is supplied with steam from the main steam bypass header during 
+startups and low-load operations and with reheated steam from one MSR during 
+normal operation at higher loads.  Steam is supplied via a dual control valve system, 
+with one control valve from each steam supply.   
+ 
+The control valve from the main steam (high pressure) supply does not begin to 
+open until the control valve from the MSR (low pressure) supply is fully open.  
+During low-load and startup conditions, both turbine control valves are open, with 
+the main steam supply controlling MFP speed.  At higher load conditions, the MSR 
+supply pressure will be high enough to handle any demands on the MFPs, and the 
+main steam supply control valve for each pump will be fully shut.The MFPs are 
+---PAGE---
+ 
+USNRC HRTD 7.2-10 Rev 0403 
+equipped with protective trips, some of which trip an individual pump and some of 
+which trip both pumps.  The following is a list of individual MFP trips: 
+ 
+$ Low lubricating oil pressure (5 psig), 
+$ Turbine overspeed (5850 rpm), 
+$ Low turbine exhaust vacuum (20 in. Hg), 
+$ High turbine exhaust temperature (230 EF), 
+$ Excessive thrust bearing wear, 
+$ High discharge pressure (1850 psig), 
+$ Suction isolation valve not fully open, and 
+$ Associated condensate pump trip. 
+ 
+Any of the following conditions will cause a trip of both MFPs: 
+ 
+$ Engineered safety features actuation signal, 
+$ High steam generator level (69.0%), as sensed by two out of three level 
+detectors on any steam generator, and 
+$ Low suction pressure (195 psig). 
+ 
+Each MFP has a recirculation line to condenser C.  The lines ensure minimum flow 
+through the pumps.  The minimum flow valves are automatically controlled by 
+suction flow transmitters.  Each recirculation valve opens when the flow through its 
+associated pump drops to less than 4000 gpm, and it closes when the flow 
+increases above 9000 gpm.  The recirculation valves automatically open with a 
+feedwater isolation signal.  
+ 
+Feedwater Isolation Valves (FWIVs) 
+ 
+Immediately downstream of each feedwater regulating valve and each bypass valve 
+is an FWIV.  (An FWIV for each regulating and bypass valve is specific to the Trojan 
+plant design; Westinghouse design plants more typically have one FWIV for each 
+steam generator, i.e., one FWIV for each regulating valve/bypass valve pair.)  The 
+valves have hydraulic operators; a nitrogen-charged accumulator supplies the 
+hydraulic fluid for each valve.  Each accumulator is capable of one closure and one 
+opening of its associated FWIV before hydraulic pressure is restored.  The valves 
+have a maximum closing time of 16 seconds. 
+ 
+The FWIVs are automatically closed by a feedwater isolation signal, which is 
+generated by any of the following:  
+ 
+$ High steam generator level (69.0%), as sensed by two out of three level 
+detectors on any steam generator, 
+$ Engineered safety features actuation signal, and 
+$ Reactor trip (P-4) and low T
+avg (564EF), as sensed in two out of four reactor 
+coolant loops. 
+ 
+Each FWIV can also be manually opened or closed at a control panel in the turbine 
+building.  (Controls for the FWIVs are more typically located in the main control 
+room at a Westinghouse design plant.) 
+ 
+---PAGE---
+ 
+USNRC HRTD 7.2-11 Rev 0403 
+7.2.3.3 Startup Auxiliary Feedwater Pump  
+ 
+To avoid wear and tear on the safety-grade auxiliary feedwater (AFW) pumps, a 
+nonsafety-grade startup AFW pump provides feed flow to the steam generators 
+during normal startups and shutdown periods, when main steam and MSR steam 
+are not available.  The 1250-hp, motor-driven, eight-stage centrifugal pump supplies 
+1020 gpm (including 140 gpm of recirculation flow) at a discharge head of 3400 ft 
+(1472 psi).  The pump has no automatic start features.  It is normally powered from 
+a plant service bus but can be aligned to diesel generator A. 
+ 
+The startup AFW pump takes suction on the condensate storage tank and 
+discharges to the discharge line of either the diesel-driven or turbine-driven AFW 
+pump.  Refer to Figure 7.2-13.  An isolation valve for each discharge path is 
+provided; one must be shut during operation of the startup AFW pump to ensure 
+separation of the two safety-grade AFW trains.  Upstream of the discharge isolation 
+valves is a manually or automatically controlled flow control valve.  In automatic, the 
+control system throttles flow to maintain a selected ΔP between the pump discharge 
+and steam generator C.  The normal setpoint is 100 psid.  
+ 
+7.2.3.4 Heater Drai n System Components 
+ 
+The heater drain system collects the condensate from the feedwater heaters and 
+MSRs and returns it to the condensate and feedwater system.  Refer to Figures 7.2-
+6 and 7.2-7.  The system consists of six drain tanks for the two MSRs and 
+associated piping, the feedwater heater shells and associated piping, two heater 
+drain tank pumps, and two heater drain tanks. 
+ 
+Moisture Separator Reheater Drains 
+ 
+Each MSR has three drain tanks:  one for the condensate from the first-stage heater 
+tubes (first-stage reheater drain tank), one for the condensate from the second-
+stage heater tubes (second-stage reheater drain tank), and one for the condensate 
+from the MSR shell (moisture separator drain tank).  These drain tanks are located 
+below the MSR shells and function to provide a seal between the high pressure 
+steam in the MSRs and the lower pressure feedwater heater shells or heater drain 
+tanks to which they drain.  Each drain tank has a level control system to maintain 
+the water seal.  
+ 
+The second-stage reheater drain tanks receive the condensate from the MSR 
+second-stage reheater tubes.  These tanks normally drain to the seventh-stage 
+feedwater heater shells.  The drain flow from each tank is automatically controlled to 
+maintain tank level.  The level control valve closes automatically on a high level in 
+the associated seventh-stage heater shell, regardless of tank level.  A high drain 
+tank level causes its alternate drain valve to open, allowing the tank to drain to one 
+of the heater drain tanks. 
+ 
+The first-stage reheater drain tanks receive the condensate from the MSR first-stage 
+reheater tubes.  These tanks normally drain to the sixth-stage feedwater heater 
+shells.  The drain flow from each tank is automatically controlled to maintain tank 
+level.  The level control valve closes automatically on a high level in the associated 
+---PAGE---
+ 
+USNRC HRTD 7.2-12 Rev 0403 
+sixth-stage heater shell, regardless of tank level.  A high drain tank level causes its 
+alternate drain valve to open, allowing the tank to drain to one of the heater drain 
+tanks. 
+ 
+The moisture separator drain tanks receive drains from the MSR shells.  This 
+condensate is the moisture removed from the cold reheat steam by the chevron 
+separators in the MSRs.  The drain flow into each tank is about 1.5 x 10
+6 lbm/hr at 
+100% load.  These tanks normally drain to the heater drain tanks.  The drain flow 
+from each moisture separator drain tank is automatically controlled to maintain tank 
+level.  A high moisture separator drain tank level causes its alternate drain valve to 
+open, allowing the tank to drain to condenser A.  
+ 
+Each of the six MSR drain tanks is vented to the source of the drains to remove 
+noncondensible gases. 
+ 
+High Pressure Heater Drains 
+ 
+The seventh-stage heater shells receive heating steam from the second stage of the 
+high pressure turbine and drains from the second-stage reheater drain tanks.  
+These heaters normally drain to the sixth-stage heater shells.  The drain flow from 
+each seventh-stage heater is automatically controlled to maintain shell level.  The 
+level control valve closes automatically on a high level in the associated sixth-stage 
+heater shell, regardless of the seventh-stage shell level.  A high shell level causes 
+the heater=s alternate drain valve to open, allowing the heater to drain to a heater 
+drain tank.  A very high shell level causes the drain and extraction steam inlets to 
+the heater to isolate. 
+ 
+The sixth-stage heater shells receive heating steam from the fourth stage of the high 
+pressure turbine and drains from the first-stage reheater drain tanks and seventh-
+stage heaters.  These heaters normally drain to the fifth-stage heater shells.  The 
+drain flow from each sixth-stage heater is automatically controlled to maintain shell 
+level.  The level control valve closes automatically on a high level in the associated 
+fifth-stage heater shell, regardless of the sixth-stage shell level.  A high shell level 
+causes the heater=s alternate drain valve to open, allowing the heater to drain to a 
+heater drain tank.  A very high shell level causes the drain and extraction steam 
+inlets to the heater to isolate.  
+ 
+The fifth-stage heater shells receive heating steam from high pressure turbine 
+exhaust and drains from the sixth-stage heaters.  These heaters have no drain 
+coolers and drain directly to the heater drain tanks without level control.  A very high 
+fifth-stage shell level causes the drain and extraction steam inlets to the heater to 
+isolate. 
+ 
+Heater Drain Tanks and Pumps 
+ 
+The heater drain tanks are horizontal 13,120-gal tanks.  Each tank normally receives 
+drains from its associated fifth-stage heater and moisture separator drain tank.  
+Each tank also receives alternate drains from the associated sixth- and seventh-
+stage heaters and first- and second-stage reheater drain tanks.  Each tank is 
+designed for 220 psig and 400°F.  The tanks are cross-connected by a 20-in. line.  A 
+---PAGE---
+ 
+USNRC HRTD 7.2-13 Rev 0403 
+dump valve which taps off the cross-connection drains the tanks to condenser A on 
+a high level in either tank. 
+ 
+Each heater drain pump takes suction on one of the heater drain tanks.  The pumps 
+are canned-suction, vertical, centrifugal pumps rated at 5950 gpm and 575 psig.  
+The pumps are powered from station service buses.  The heater drain pump seals 
+are supplied with cooling water from the condensate pumps.   
+ 
+A heater drain tank level control system maintains levels in the tanks by controlling 
+the heater drain pump discharge valves.  If the combined pump discharge flow is 
+less than 2400 gpm, the recirculation lines to the heater drain tanks open to prevent 
+pump overheating.  The pumps discharge into a combined header which taps into 
+the condensate cross-connect header just upstream of the MFP suctions.   
+ 
+Low Pressure Heater Drains 
+ 
+The control of inputs to and outputs from the low pressure heaters is similar to that 
+of the high pressure heaters.  The fourth-stage heater shells receive heating steam 
+from the seventh stage of the low pressure turbines.  These heaters normally drain 
+to the third-stage heater shells.  The drain flow from each heater is automatically 
+controlled to maintain shell level.  The level control valve closes automatically on a 
+high level in the associated third-stage heater shell, regardless of the fourth-stage 
+shell level.  A high shell level causes the heater=s alternate drain valve to open, 
+allowing the heater to drain to condenser C.  A very high shell level causes the 
+extraction steam inlet to the heater to isolate. 
+ 
+The third-stage heater shells receive heating steam from the eighth stage of the low 
+pressure turbines and drains from the fourth-stage heaters.  Each heater normally 
+drains to the three second-stage heater shells of the same condensate train.  The 
+drain flow from each heater is automatically controlled to maintain shell level.  The 
+level control valve closes automatically on a high level in any of the associated 
+second-stage heater shells, regardless of the third-stage shell level.  A high shell 
+level causes the heater=s alternate drain valve to open, allowing the heater to drain 
+to condenser C.  A very high shell level causes the extraction steam and drain inlets 
+to the heater to isolate. 
+ 
+As discussed in the main condenser description, each pair of first-and second-stage 
+heaters is contained within a single shell, with the heaters separated by a 
+longitudinal partition plate.  These heaters are located in the necks of the three 
+condenser shells.  There are a total of 6 pairs of first- and second-stage heaters (12 
+heaters total), one from each condensate train in each condenser shell. 
+ 
+Each second-stage heater shell receives heating steam from the tenth stage of one 
+low pressure turbine and about one third of the drains from its associated third-stage 
+heater.  Each heater normally drains to the first-stage heater with which it is paired.  
+The drain flow from each heater is automatically controlled to maintain shell level.  
+The level control valve closes automatically on a high level in its associated first-
+stage heater shell, regardless of the second-stage shell level.  A high shell level 
+causes the heater=s alternate drain valve to open, allowing the heater to drain to the 
+---PAGE---
+ 
+USNRC HRTD 7.2-14 Rev 0403 
+condenser shell in which it is situated.  A very high shell level causes the drain inlet 
+to the heater to isolate. 
+ 
+Each first-stage heater shell receives heating steam from the eleventh stage of one 
+low pressure turbine and drains from its associated second-stage heater.  Each 
+heater normally drains to the condenser shell in which it is situated.  The drain flow 
+from each heater is automatically controlled to maintain shell level.  A high shell 
+level causes the heater=s alternate drain valve to open, which bypasses the normal 
+level control valve.  A very high shell level causes the drain inlet to the heater to 
+isolate. 
+ 
+The first- and second-stage heaters do not have isolation valves for the incoming 
+extraction steam.  The extraction steam supplies to these heaters are equipped with 
+check valves designed to prevent reverse steam flow from the heaters to the low 
+pressure turbines.  A large condensate tube leak could cause inflow to a heater 
+shell in excess of the capacities of the normal level control and alternate drain 
+valves.  In such an instance, water could back up into the extraction steam supply 
+piping and leak past the check valve, causing damage to the affected low pressure 
+turbine.  When the rate of tube leakage to  a heater shell exceeds the drain capacity, 
+the condensate flow to that heater (and thus to the entire condensate train) must be 
+isolated to prevent turbine damage.  
+ 
+7.2.3.5 Condensate St orage Tank (CST) 
+ 
+The CST is the source of makeup water for the condensate and feedwater system 
+and also the primary source of water for the AFW system.  The CST is a covered, 
+outdoor storage tank with a capacity of 450,000 gal.  Technical Specifications 
+require a minimum stored volume of 239,000 gal, which accounts for 27,700 
+unusable gal in the bottom of the tank and a 14,400-gal allowance for level 
+instrument error.  This volume ensures that there is a sufficient supply for the AFW 
+system to maintain the plant in hot standby for two hours and then to cool down the 
+plant to 350EF in four hours.  The CST level transmitters provide indication, high- 
+and low-level alarms, and low-level AFW pump trips.  
+ 
+The in-service condenser hotwell level control system controls the condensate and 
+feedwater system inventory by either rejecting condensate to or gravity draining 
+water from the CST.  Figure 7.2-2 shows the components involved in level control.  
+The normal setpoint for the hotwell level of condenser B is 24 in.  When the level 
+reaches 28 in., the condensate reject valve downstream of one of the condensate 
+pumps begins to open; the valve is fully open with a hotwell level of 40 in.  The 
+makeup valve begins to open when the hotwell level falls to 21 in.; the valve is fully 
+open with a hotwell level of 8 in.    
+ 
+ 
+7.2.4 System Operation 
+ 
+During the early stages of a plant startup, the startup AFW pump typically provides 
+feed flow to the steam generators.  Decay heat and reactor coolant pump heat are 
+transferred to the feedwater in the steam generators. 
+ 
+---PAGE---
+ 
+USNRC HRTD 7.2-15 Rev 0403 
+As the temperature of the reactor coolant system increases toward the normal 
+operating band, the condensate and feedwater system is readied for service.  If 
+necessary, the system is filled and vented.  The fill water comes from the CST.  The 
+lubricating oil systems for the two MFPs are verified operable and placed in service, 
+in preparation for pump operation.  Next, one of the condensate pumps is started, 
+and its associated discharge valve is opened.  The MFP recirculation valves are 
+opened, allowing recirculation of condensate through the idle MFPs to the 
+condenser hotwell.  Gland steam and seal water to the MFPs will be started at this 
+time. 
+ 
+Once a condensate pump has been placed in service, the condensate and 
+feedwater system is aligned for secondary plant cleanup.  The startup recirculation 
+valve is opened, and condensate flow is directed through the condensate 
+demineralizers and throughout the system, up to the common feed header 
+downstream of the high pressure heaters.  If the conditions warrant it, the 
+recirculation flow can be limited to smaller portions of the system through the use of 
+the condensate pump or MFP recirculation valves and the closing of appropriate 
+isolation valves.  Secondary cleanup is continued until all secondary chemistry 
+parameters are satisfied and within their respective limits.  The FWIVs remain 
+closed during the cleanup process. 
+ 
+Once reactor power has reached the point of adding heat, one of the MFPs is 
+started.  The operator resets the feedwater isolation signal, closes the startup 
+recirculation valve, and manually rolls the MFP with an individual pump governor 
+control switch.  When the maximum output of the governor control switch has been 
+reached and normal operating conditions for the pump have been attained, the 
+individual pump=s speed controller is placed in automatic (slaved to the MFP master 
+speed controller).  The operator then manually controls the pump =s speed with the 
+master speed controller by maintaining a suitable ΔP between the feedwater and 
+steam pressures.  The bypass valve FWIVs are opened, and the bypass valves are 
+throttled open while the AFW flow control valves are throttled closed.  The steam 
+generator water levels are maintained at the appropriate values at low powers 
+through manual control of the bypass valves and the MFP master speed controller. 
+ 
+When the plant reaches approximately 20% power, the MFP master speed 
+controller is placed in automatic, and steam generator water level control is shifted 
+from the bypass valves to the feedwater regulating valves.  The individual water 
+level controllers are placed in automatic.  During the remainder of the power 
+ascension, the second condensate pump and MFP are placed in service before 
+power exceeds 70%, the first heater drain pump is placed in service at approxi-
+mately 30% power, and the second heater drain pump is placed in service before 
+power exceeds 90%.   
+ 
+ 
+7.2.5 PRA Insights  
+ 
+The purpose of the plant=s power conversion system is to convert the heat removed 
+from the reactor core into electrical energy, which is provided to consumers by that 
+plant=s utility.  Even though the plant=s Technical Specifications contain few 
+provisions which apply to the main feedwater portion of the power conversion 
+---PAGE---
+ 
+USNRC HRTD 7.2-16 Rev 0403 
+system, there are some transients initiated by the loss of feedwater which can lead 
+to core damage.  However, the associated sequences typically account for a very 
+small fraction of the total core damage frequency (0.6% for Sequoyah and an 
+insignificant percentage for Zion, Surry, and Trojan).  Modifications to the power 
+conversion system would not contribute significantly to risk reduction or risk 
+achievement values. 
+ 
+ 
+7.2.6 Summary  
+ 
+The main condenser is a multipressure, three-shell, surface condenser.  The 
+condenser receives exhaust steam from the low pressure turbines, steam dumps, 
+and the MFP turbines.  Condensate enters the condenser from the condensate 
+pump recirculation lines, the MFP recirculation lines, the low pressure feedwater 
+heater drains, and the CST (hotwell makeup).  The condensate pumps transfer the 
+condensate from the main condenser through the demineralizers and low pressure 
+heaters to the suction of the MFPs.  The MFPs take suction on the discharge from 
+the condensate pumps and heater drain pumps and transfer feedwater through the 
+high pressure heaters, feedwater regulating valves or bypass valves, and FWIVs to 
+the steam generators.  The condensate and feedwater system supplies an 
+automatically controlled flow of high pressure, preheated feedwater to maintain the 
+desired steam generator water levels. 
+ 
+The heater drain system improves plant efficiency by collecting the high temperature 
+drainage from the MSRs and feedwater heaters and by transferring the drains back 
+to the condensate and feedwater system. 
+ 
+During plant operation the control of steam generator chemistry is accomplished by 
+the purification of condensate, by the injection of chemicals into the condensate 
+system to scavenge oxygen and to control pH, and by steam generator blowdown.  
+ 
+ 
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---

@@ -1,0 +1,58 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Chapter 9 
+ 
+NEUTRON MONITORING SYSTEMS
+ 
+ 
+ 
+Section
+ 
+ 
+9.1 Excore Nuclear Instrumentation 
+9.2 Incore Instrumentation System
+---PAGE---
+ 
+USNRC HRTD 9.0-1 Rev 0600 
+ 
+9.0 NEUTRON MONITORING SYSTEMS 
+ 
+The neutron monitoring systems monitor the neutron flux level of the reactor core by 
+detecting leakage neutrons from the core and by detecting neutron flux levels from 
+within the core.  These neutron monitoring functions are satisfied by two completely 
+independent neutron monitoring systems.  The excore nuclear instrumentation 
+system (Section 9.1) monitors leakage neutrons, while the incore nuclear 
+instrumentation system (Section 9.2) monitors the neutron flux level within the core. 
+ 
+The excore system monitors leakage neutrons as a measure of core power and 
+provides control and protection inputs to the rod control system and the reactor 
+protection system.  The incore system is used periodically to monitor relative core 
+power distribution via its movable detector system.  Additionally, the incore 
+instrumentation system utilizes thermocouples, located at the outlet of the fuel 
+region, to provide a diverse indication of the relative power distribution for the 
+operator. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---

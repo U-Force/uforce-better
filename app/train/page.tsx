@@ -15,6 +15,8 @@ import {
   resetCompletionData,
   type ModuleProgress,
   ModuleId,
+  TIER_INFO,
+  type Tier,
 } from "../../lib/training";
 import ScenarioBriefing from "../../components/ScenarioBriefing";
 import ScenarioDebrief from "../../components/ScenarioDebrief";
@@ -411,31 +413,44 @@ export default function TrainingPage() {
                 </div>
               </button>
 
-              {/* Module Buttons */}
-              {TRAINING_MODULES.map((mod) => {
-                const prog = moduleProgress.find((p) => p.moduleId === mod.id);
-                const pct = prog?.completionPercent ?? 0;
-                const active = selectedModule === mod.id;
-
+              {/* Module Buttons — grouped by tier */}
+              {([1, 2, 3] as Tier[]).map((tier) => {
+                const tierMods = TRAINING_MODULES.filter((m) => m.tier === tier);
+                const info = TIER_INFO[tier];
                 return (
-                  <button
-                    key={mod.id}
-                    style={moduleBtn(active, mod.color)}
-                    onClick={() => setSelectedModule(mod.id)}
-                  >
-                    <div style={moduleBtnTop}>
-                      <span style={moduleBtnName(active)}>{mod.name}</span>
-                      <span style={moduleBtnPct(pct, mod.color)}>{pct}%</span>
+                  <div key={tier} style={{ marginBottom: '4px' }}>
+                    <div style={tierHeader(info.color)}>
+                      <span style={tierHeaderLabel}>TIER {tier}</span>
+                      <span style={tierHeaderName(info.color)}>{info.name}</span>
+                      <span style={tierHeaderBadge(info.color)}>{info.label}</span>
                     </div>
-                    <div style={moduleBtnDesc}>{mod.description}</div>
-                    <div style={moduleBtnBarOuter}>
-                      <div style={moduleBtnBarFill(mod.color, pct)} />
-                    </div>
-                    <div style={moduleBtnMeta}>
-                      {prog?.completedScenarios.length ?? 0}/{prog?.totalScenarios ?? mod.scenarioIds.length} scenarios
-                      {pct === 100 && <span style={moduleCompleteBadge}>COMPLETE</span>}
-                    </div>
-                  </button>
+                    {tierMods.map((mod) => {
+                      const prog = moduleProgress.find((p) => p.moduleId === mod.id);
+                      const pct = prog?.completionPercent ?? 0;
+                      const active = selectedModule === mod.id;
+
+                      return (
+                        <button
+                          key={mod.id}
+                          style={moduleBtn(active, mod.color)}
+                          onClick={() => setSelectedModule(mod.id)}
+                        >
+                          <div style={moduleBtnTop}>
+                            <span style={moduleBtnName(active)}>{mod.name}</span>
+                            <span style={moduleBtnPct(pct, mod.color)}>{pct}%</span>
+                          </div>
+                          <div style={moduleBtnDesc}>{mod.description}</div>
+                          <div style={moduleBtnBarOuter}>
+                            <div style={moduleBtnBarFill(mod.color, pct)} />
+                          </div>
+                          <div style={moduleBtnMeta}>
+                            {prog?.completedScenarios.length ?? 0}/{prog?.totalScenarios ?? mod.scenarioIds.length} scenarios
+                            {pct === 100 && <span style={moduleCompleteBadge}>COMPLETE</span>}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 );
               })}
 
@@ -688,6 +703,40 @@ const overallPercent: React.CSSProperties = {
   textAlign: 'center',
   fontFamily: FONTS.mono,
 };
+
+const tierHeader = (color: string): React.CSSProperties => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '6px',
+  padding: '6px 12px 4px',
+  marginTop: '4px',
+});
+
+const tierHeaderLabel: React.CSSProperties = {
+  fontSize: '9px',
+  fontWeight: 700,
+  color: COLORS.slateDark,
+  letterSpacing: '1.5px',
+};
+
+const tierHeaderName = (color: string): React.CSSProperties => ({
+  fontSize: FONT_SIZES.xs,
+  fontWeight: 700,
+  color: color,
+  letterSpacing: '0.5px',
+  flex: 1,
+});
+
+const tierHeaderBadge = (color: string): React.CSSProperties => ({
+  fontSize: '8px',
+  fontWeight: 700,
+  letterSpacing: '0.5px',
+  color: color,
+  background: `${color}15`,
+  padding: '1px 5px',
+  borderRadius: RADIUS.sm,
+  border: `1px solid ${color}30`,
+});
 
 const moduleBtn = (active: boolean, color: string): React.CSSProperties => ({
   display: 'flex',

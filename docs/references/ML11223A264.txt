@@ -1,0 +1,1024 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 9.2 
+ 
+Incore Instrumentation System
+---PAGE---
+ 
+USNRC HRTD 9.2 -i Rev 0404 
+ 
+TABLE OF CONTENTS 
+ 
+9.2 INCORE INSTRUMENTATION SYSTEM ..................................................... 9.2-1 
+ 
+9.2.1 Introduction .......................................................................................... 9.2-1 
+ 
+9.2.2 System Description .............................................................................. 9.2-2 
+ 
+9.2.2.1 Incore Neutron Monitoring System ......................................... 9.2-2 
+9.2.2.2 Incore Temperature Monitoring System ................................. 9.2-3 
+ 
+9.2.3 Component Descriptions ...................................................................... 9.2-4 
+ 
+9.2.3.1 Conduits, Guide Thimbles, Isolation Valves, and Seal Table . 9.2-4 
+9.2.3.2 Drive Unit Assemblies ............................................................. 9.2-5 
+9.2.3.3 Transfer Device Assemblies and Isolation Valves .................. 9.2-6 
+9.2.3.4 Interconnecting Tubing Runs .................................................. 9.2-6 
+9.2.3.5 Detector and Drive Cable Assemblies .................................... 9.2-7 
+9.2.3.6 Readout and Contro l Equipment ............................................ 9.2-7 
+9.2.3.7 Gas Purge System................................................................ 9.2-10 
+9.2.3.8 Leak Detection System ......................................................... 9.2-10 
+9.2.3.9 Thermoc ouples ..................................................................... 9.2-10 
+9.2.3.10 Thermocouple Reference Junction Box................................ 9.2-10 
+9.2.3.11 Thermocouple Indicator ........................................................ 9.2-11 
+ 
+9.2.4 Operation and System Interrelationships ........................................... 9.2-11 
+ 
+9.2.4.1 Detector Calibrations ............................................................ 9.2-11 
+9.2.4.2 Flux-Mapping  Procedure ...................................................... 9.2-11 
+9.2.4.3 Incore-Excore Calibration ..................................................... 9.2-12 
+9.2.4.4 Comput er .............................................................................. 9.2-14 
+9.2.4.5 Incore Data Collection .......................................................... 9.2-14 
+ 
+9.2.5 Summary ............................................................................................ 9.2-16 
+ 
+ 
+ 
+ 
+LIST OF TABLES 
+ 
+9.2-1 Movable Detector Design Parameters ..................................................... 9.2-17 
+9.2-2 Thermocouple Design  Parameters .......................................................... 9.2-17 
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -ii Rev 0404 
+LIST OF FIGURES 
+ 
+9.2-1 ................................. Thermocouple and Flux Thimble Locations (4 Loop Plant) 
+9.2-2 ....................................................................................... Incore Fission Chamber 
+9.2-3 .................................................................................... Movable Detector System 
+9.2-4 ..................................................... Incore Nuclear Instrumentation Drive System 
+9.2-5 .................................................................. Incore Detector Control and Readout 
+9.2-6 ................................................................. Incore Common Controls and Display 
+9.2-7 ......................................................................................... Incore Instrumentation 
+9.2-8 ..................................................................... Incore Thermocouple Arrangement 
+9.2-9 ............................................................. Drive System for Incore Instrumentation 
+9.2-10 ............................................................. Gas Purge and Leak Detection System 
+9.2-11 ............................................................................................ Flux Profile Curves 
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -1 Rev 0404 
+9.2 INCORE INSTRUMENTATION SYSTEM  
+ 
+Learning Objectives: 
+ 
+1. State the purposes of the incore instrumentation system. 
+ 
+2. Briefly describe the two types of incore instrumentation and the information 
+available from each. 
+ 
+3. Describe the method used to detect flux thimble leakage. 
+ 
+4. Deleted. 
+ 
+5. List the uses of the data obtained from the incore instrumentation. 
+ 
+ 
+9.2.1 Introduction  
+ 
+The purposes of the incore instrumentation system are to provide information on 
+neutron flux distribution and fuel assembly outlet temperatures at selected core 
+locations.  The incore instrumentation system provides data acquisition only and 
+performs no protective or plant operational control functions.  The incore 
+instrumentation system includes the movable incore neutron flux monitoring system 
+and the incore temperature monitoring system.  The number of incore temperature 
+monitoring thermocouples and the number of flux thimble paths available within the 
+core for the movable detectors varies according to whether the plant is a two-,  
+three-, or four-loop Westinghouse design.  The locations of the incore flux thimbles 
+and thermocouples within the reactor core of a four-loop Westinghouse plant are 
+shown in Figure 9.2-1. 
+ 
+The incore neutron monitoring system consists of miniature fission chambers with 
+sufficient sensitivity to permit measurement of localized neutron flux distribution 
+variations within the reactor core.  The data obtained from the incore neutron flux 
+monitoring system is used to: 
+ 
+1. Routinely verify that the following power distribution hot channel factors are in  
+compliance with technical specification limits: 
+ 
+a. Heat flux hot channel factor (F
+Q(Z)), and 
+b. Nuclear enthalpy rise hot channel factor (F N
+ΔH); 
+ 
+2. Calibrate the excore power range nuclear instruments for axial flux difference 
+(AFD); 
+ 
+3. Verify control rod positions when the rod position indication system is inoperable; 
+and 
+ 
+4. Verify that the quadrant power tilt ratio (QPTR) meets the technical specification 
+limit with core power > 75% and with one or more power range neutron flux 
+channels inoperable. 
+---PAGE---
+ 
+USNRC HRTD 9.2 -2 Rev 0404 
+The incore temperature monitoring system consists of fixed thermocouples, referred 
+to as core-exit thermocouples (CETs), positioned at the top of the upper core plate.  
+They measure the core outlet coolant temperatures of instrumented fuel assemblies. 
+This data is used to: 
+ 
+1. Provide inputs to the subcooling margin monitors, 
+ 
+2. Provide the operators with indications of inadequate core cooling conditions     
+during emergency situations, and 
+ 
+3. Provide inputs to plant computer computational applications which use core-exit 
+temperatures to determine fuel assembly enthalpy rises and limited power 
+distribution information.  This information is not used to verify compliance with 
+technical specification requirements.  Anomalous core-exit thermocouple 
+readings may indicate a serious core condition and should be investigated. 
+ 
+ 
+9.2.2 System Description 
+ 
+9.2.2.1 Incore Neutron Monitoring System  
+ 
+Movable miniature fission chamber detectors (Figure 9.2-2), containing U
+308 
+(uranium oxide) enriched to greater than 90 percent in U-235, enable detailed 
+neutron flux (power level) mapping of the reactor core.   Each detector is attached to 
+a flexible drive cable that can be driven into selected core locations by the plant 
+operating staff.  When not in use, the detectors are stored in a shielded concrete 
+vault to minimize radiation exposure to plant personnel.   
+ 
+Figure 9.2-3 shows the basic system for the insertion of the movable miniature 
+fission chamber into the core.  Retractable detector thimbles, into which the 
+miniature detectors are driven, are positioned as shown.  Since these retractable 
+detector thimbles are sealed at the leading (reactor) end, they are dry inside.  The 
+thimbles thus serve as a pressure barrier between the reactor water pressure 
+(design pressure of 2500 psig) and the atmosphere.  Mechanical high pressure 
+seals between the retractable thimbles and the conduits are provided at the seal 
+table.  During normal plant operation, these retractable thimbles are stationary and 
+fully inserted into selected fuel assemblies.  The detector thimbles are retracted 
+from the core before refueling or during core maintenance periods at which time the 
+reactor coolant system is depressurized.   
+ 
+The drive system for the insertion and withdrawal of miniature fission chamber 
+detectors consists of drive units, limit switch assemblies, five-path rotary transfer 
+devices, ten-path rotary transfer devices, and isolation valves.  The drive units are 
+mounted permanently on a platform directly above the seal table. The remaining 
+components, between the drive units and the seal table, are mounted on a movable 
+support assembly which is moved aside when the retractable detector thimbles are 
+withdrawn from the core.  The drive units push the hollow helical-wrap drive cables, 
+with the miniature fission chamber detectors attached, into the core.  The helical-
+wrap drive cables have small diameter coaxial cables threaded through their hollow 
+---PAGE---
+ 
+USNRC HRTD 9.2 -3 Rev 0404 
+centers for transmitting the current signal produced by the miniature fission chamber 
+detector. 
+ 
+The six movable incore detectors, a typical number for a Westinghouse designed 
+four-loop unit, are designated Detector A through Detector F, as shown on Figure 
+9.2-4.  Additional movable incore detector information may be found in Table 9.2-1.  
+During normal operation, each detector is used to measure the relative neutron flux 
+in the detector thimbles connected to the correspondingly-lettered ten-path rotary 
+transfer device; i.e., detector A is normally selected to a core path provided by the 
+AA@ ten-path transfer device.  However, by means of the operation selector switch 
+(five-path transfer device), each detector can also be routed through several other 
+paths.  Each detector can be sent into each path of the next sequentially-lettered 
+ten-path transfer device to serve as an operational spare detector for those thimbles 
+(i.e., A for B, B for C, C for D, etc.).  For detector normalization purposes, each 
+detector can be routed separately into a common calibrate path, thus providing 
+direct correlation of the detectors.  Each detector can also be routed into any path of 
+common group AC@, or to a shielded area for storage. 
+ 
+The readout and control equipment is mounted in a control console (equipment 
+racks) located in the control room.  This equipment provides indication and control to 
+make flux maps of the reactor core either by semiautomatic control or by manual 
+manipulation of the controls.  The control console contains separate controls, digital 
+position display and power supplies for each detector.   
+ 
+Common equipment, including core path display panel, one common control panel, 
+special low level readout, and two-pen recorders, are also included in the console 
+assembly (Figures 9.2-5 and 9.2-6). 
+ 
+9.2.2.2 Incore Temperature Monitoring System  
+ 
+Fixed incore thermocouples, made of chromel-alumel, are provided to monitor the 
+outlet temperature of selected fuel assemblies.  Fuel assembly inlet and outlet 
+temperatures are used to determine the heat input, or enthalpy rise ( Δh), of the fuel 
+assembly. When the enthalpy of the monitored assemblies at various locations is 
+compared, a radial power distribution map can be generated.  The core locations for 
+the CET’s for a typical four-loop plant are shown in Figure 9.2-1.  Additional 
+thermocouple information is provided in Table 9.2-2. 
+ 
+The thermocouple sensing elements are mounted on and above the upper core 
+plate at the point where the reactor coolant exits the fuel assemblies (Figure 9.2-7).  
+The thermocouple leads are sheathed in stainless steel conduits and are routed 
+from the upper core plate to the upper support plate inside of support columns.  The 
+conduits are then routed from above the upper support plate to the reactor head 
+penetrations via thermocouple port columns which exit the reactor vessel head with 
+thirteen thermocouple leads exiting from each of the five thermocouple port 
+columns.  A sealing arrangement is provided for each of the thermocouple port 
+column penetrations and is part of the reactor coolant system pressure boundary 
+(Figure 9.2-8).   
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -4 Rev 0404 
+The thermocouple leads are routed to either of two reference junction boxes.  The 
+reference junction box temperature is controlled where the transition is made 
+between the chromel-alumel thermocouple leads and the copper instrument wires.  
+If the temperature at this transition is allowed to vary unacceptable errors would be 
+introduced in the temperature signal.  
+ 
+The core exit thermocouples have the advantage of continuously providing data 
+which is easily converted to power by determining the enthalpy rise in the 
+instrumented fuel assemblies.  As opposed to the incore flux detectors, which are 
+operated on an intermittent basis, the CETs provide continuous on-line radial power 
+sharing measurements.  However, this instrumentation system has the 
+disadvantage of measurement uncertainties and possible errors due to reactor 
+coolant flow mixing patterns at the detector location.  To reduce the uncertainty in 
+the thermocouple measurements and provide an accurate radial power 
+measurement for on-line monitoring, the incore thermocouples are normalized to 
+incore flux detector data during periodic surveillance tests.  The CET readings are 
+continuously monitored by the plant computer and may be read individually in the 
+control room.   
+ 
+ 
+9.2.3 Component Descriptions 
+ 
+9.2.3.1 Conduits, Guide Thimbles, Isolation Valves, and Seal Table 
+ 
+Referring to Figure 9.2-3, stainless steel conduits extend from the bottom of the seal 
+table down through the instrument tunnel and then up to the bottom of the reactor 
+vessel.  The conduits are welded, to the bottom of a seal table and to the 
+penetration nozzles on the lower reactor vessel head, to form a leak-tight boundary. 
+Therefore, the conduits, once filled with reactor coolant, become an extension to the 
+reactor coolant system pressure boundary.  The conduits guide and protect the 
+guide thimbles between the seal table and the lower reactor vessel head.   
+ 
+The guide thimbles are closed at their leading (reactor) end and open at their trailing 
+(seal table) end.  The guide thimbles are dry on the inside and serve as a pressure 
+boundary between the reactor coolant system (2500 psia design pressure) and the 
+atmosphere.  The somewhat flexible stainless steel guide thimbles are inserted 
+through the seal table into the conduits.  They are pushed from the seal table to the 
+bottom of the reactor vessel head and pass through the penetration nozzles.  From 
+here they are inserted through the instrument guide tubes or the instrument guide 
+extensions.  Finally the guide thimbles are routed through the lower internals to the 
+fuel assemblies.  The guide thimbles remain stationary in the fuel assemblies during 
+reactor operation and are retracted for refueling, maintenance, periodic inservice 
+inspections, and work on the reactor vessel internals.  Since the guide thimbles are 
+withdrawn by pulling them upward on the trailing ends, ample room for the 14 feet of 
+withdrawal must be provided.  To accomplish this, the five and ten path rotary 
+transfer devices are configured so they are capable of being moved away from the 
+seal table. 
+ 
+The seal table is a 3/8-in. thick, rectangular (8'6" by 2'6"), stainless steel plate 
+mounted over the instrument tunnel.  The seal table has 58 penetrations for guide 
+---PAGE---
+ 
+USNRC HRTD 9.2 -5 Rev 0404 
+thimbles and has two drain holes.  The seal table guide thimble penetrations are 
+sealed with high pressure swagelok fittings during normal operations and low 
+pressure swagelok fittings during refueling.  
+ 
+A manually operated stainless steel isolation valve is provided at the seal table for 
+each guide thimble.  When closed, the isolation valve forms a 2500 psia barrier to 
+prevent steam leakage from the reactor coolant system in the event of rupture of the 
+guide thimble.  The isolation valves are not designed to isolate a guide thimble with 
+a detector or a drive cable inserted into the guide thimble.  Therefore, prior to 
+closing this isolation valve, the incore detector and its drive cable must be withdrawn 
+to a position above the isolation valve. 
+ 
+9.2.3.2 Drive Unit Assemblies  
+ 
+As shown in Figure 9.2-9, each movable detector has a drive unit assembly.  Each 
+drive unit assembly is comprised of the following components: 
+ 
+1. Gear motor and slip clutch - One two-speed reversible synchronous gear-motor 
+is provided.  The drive motor is 3-phase, 460 volts, 60 Hz, 3600/600 rpm with a 
+gear reducer and is capable of starting under maximum load.  The motor 
+incorporates an integral brake when not in operation.  The continuous duty rating 
+of this motor provides sufficient power to push a drive cable and detector through 
+any guide path.   
+ 
+2. Drive box - The drive box is designed to operate with the helical-wrap drive 
+cable.  The 5-inch hobbed drive wheel is driven by the gear-motor through a slip 
+clutch.  Low speed for the drive cable is 12 ft/min, and high speed is 72 ft/min.   
+ 
+3. Storage reel - The storage equipment consists of a spring-loaded take-up reel 
+with an integral locking device.  The reel has sufficient take-up torque to prevent 
+the drive unit from overrunning the reel at maximum speed during a change from 
+low to high speed, or during braking.  The storage reel accommodates 175 feet 
+of drive cable and includes slip-ring assemblies which permit lead-out of 
+electrical signals while the reel is rotating. 
+ 
+4. Position transmitter - A position encoder is supplied which is capable of 
+operating control panel indicators reading from 0000.0 to 9999.9 inches.  The 
+encoder is driven at a speed proportional to the drive cable speed by means of a 
+gear train from the drive wheel shaft.  Signals from the encoder are in binary-
+coded-decimal form for position readout and controlled through the control 
+console.   
+ 
+5. Withdrawal limit switch (Figure 9.2-6) - A withdrawal limit switch, actuated by the 
+detector, is provided at the inlet of each of the five-path rotary transfer devices.  
+This withdrawal limit switch provides the following functions:  
+ 
+a. Prevents the operation of both the five- and ten-path transfer devices 
+associated with it when the detector is forward of the limit, 
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -6 Rev 0404 
+b. Stops automatic withdrawal when the detector reaches the withdrawal limit, 
+and 
+ 
+c. Actuates cable position lamps on the drive unit control panel in the control 
+room. 
+ 
+6. Safety Switch - A safety switch located near the outlet of the drive unit prevents 
+any attempt to withdraw the detector back over the wheel. 
+   
+9.2.3.3 Transfer Device Assemblies and Isolation Valves 
+ 
+1. Five Path Rotary Transfer Device and Limit Switch (Figure 9.2-9): 
+ 
+a. One five-path rotary transfer device is provided with each drive unit for routing 
+the detector into one of the five possible paths.  The 5-path transfer device 
+consists of an S-shaped tube mounted inside a rotating assembly.  This 
+assembly is bearing-mounted at each end and can be positioned to any one 
+of the five outlets.  When an electrical signal is applied to change the detector 
+path, the S-shaped tube is moved to the selected outlet path position.  Cam-
+actuated microswitches send signals to the control panel for feedback of path 
+selection. 
+ 
+b. A withdrawal limit switch, actuated by the detector, is provided near the inlet 
+of each five-path transfer device.  This switch prevents operation of the five-
+path rotary transfer device unless the detector and cable is in the withdrawn 
+position.  The switch also stops automatic withdrawal when the detector 
+reaches the withdrawal limit switch.   
+ 
+2. Wye Units - Wye unit assemblies are mounted as required to reduce the amount 
+of interconnecting tubing between the five-path and ten-path rotary transfer 
+assemblies.  Wye units are also installed between the five-path transfer devices 
+and the calibration path.   
+ 
+3. Ten-path Rotary Transfer Device - Each ten-path rotary transfer device is 
+capable of routing a movable incore detector into each of ten different selectable 
+flux thimbles.  Cam-actuated microswitches send signals to the control console 
+for feedback of path selection.  Detector-actuated path indicator switches near 
+the outlets of the ten-path transfer devices send signals to the path display panel 
+in the control console for verification of proper core paths.   
+ 
+9.2.3.4 Interconnecting Tubing Runs  
+ 
+Interconnecting tubing runs are supplied for connecting the drive unit assemblies to 
+the safety and withdrawal limit switches, and for connecting the 5-path transfer 
+devices to its associated wye units and 10-path transfer devices.  Additional tubing 
+runs are supplied for connecting the 5-path transfer devices to the calibration path 
+and to the concrete shielded storage area.  Tubing runs also connect the 10-path 
+transfer devices to the isolation valves, and connect the isolation valves to the seal 
+table.  The isolation valve to seal table tubing runs are designed for 2500 psia and 
+650°F. 
+---PAGE---
+ 
+USNRC HRTD 9.2 -7 Rev 0404 
+9.2.3.5 Detector and Drive Cable Assemblies  
+  
+The incore flux detector, a fission chamber, is 0.188 inches in diameter and 2.1 
+inches long.  A bullet-shaped stainless steel shell (0.199 in. O.D.) encapsulates the 
+fission chamber.  The stainless steel shell is welded to the leading end of a helical-
+wrap drive cable.  Each incore flux detector is designed to have a minimum thermal 
+neutron sensitivity of 1.0 x 10
+-17 amps/nv (where nv = neutron flux in neutrons / cm2-
+sec) and a maximum gamma sensitivity of 3.0 x 10-14 amps/R/hr. 
+ 
+The carbon steel drive cable is a hollow-core helical wrapped cable which meshes 
+with the hobbed drive wheel within the drive box.  Each drive cable has an outside 
+diameter of 0.199-inches, and an inside diameter of 0.065 inches.  The flux detector 
+is attached to a coaxial cable, 0.040 inches in diameter, which is threaded back 
+through the hollow drive cable and terminates at the trailing end, with several feet of 
+slack ending in an amphenol connector.  The drive cables (when new) are 
+approximately 175 feet long.  This length allows one or two subsequent cuts of a 12 
+- 14 foot section before the cable becomes too short for use.  Such cuts may be 
+required for factory replacement of the flux detectors.   
+ 
+9.2.3.6 Readout and Control Equipment  
+ 
+Readout and control equipment is provided as described below and as shown on 
+Figures 9.2-5 and 9.2-6. 
+ 
+1. Position Indication and Control - One position indication and control panel is 
+provided for each detector.  As an example the position indication and controls 
+for the “A” detector are derived from signals sent from the “A” drive unit, and 
+similarly for the other detectors.  The binary-coded-decimal (BCD) position signal 
+from each encoder is presented as a nixie tube display of five decimal digits from 
+0000.0 to 9999.9 inches.   
+ 
+2. Operation Selector Switch - A six-position switch is provided for each detector 
+drive to align the five-path rotary transfer device to the position associated with 
+the selected mode of operation.  Indicator lights, adjacent to the switch position, 
+are energized by microswitches.  These microswitches actuate when the five-
+path rotary transfer device has reached the selected position.  The operation 
+selector switch positions are discussed below: 
+ 
+a. OFF - When the operation selector switch is placed in the OFF position, a red 
+light adjacent to the switch is actuated, the detector is prohibited from 
+moving, and the drive motor control relays are prevented from being 
+energized.  In addition the five-path rotary transfer device is aligned to its 
+NORMAL position. 
+ 
+b. NORMAL - When the operation selector switch is placed in the NORMAL 
+position, the five-path rotary transfer device is positioned to its normal ten-
+path rotary transfer device. 
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -8 Rev 0404 
+c. CALIBRATE - When the operation selector switch is placed in the 
+CALIBRATE position, the five-path rotary transfer device is positioned to the 
+wye units for the calibrate path. 
+ 
+d. EMERGENCY - When the operation selector switch is placed in the 
+EMERGENCY position, the five-path rotary transfer device is positioned to 
+the next sequentially lettered ten-path rotary transfer device (drive A to ten-
+path rotary device B, drive B to ten-path rotary device C, etc.). 
+ 
+e. COMMON GROUP - When the operation selector switch is placed in the 
+COMMON GROUP position, the five-path rotary transfer device is positioned 
+to ten-path rotary transfer device C. 
+ 
+f. STORAGE - When the operation selector switch is placed in the STORAGE 
+position, the five-path rotary transfer device is positioned to the lead shielded 
+concrete storage area located in the seal table room. 
+   
+3. Ten-Path Selector Switch - A ten-position individual path selector switch is 
+provided for each group to align the ten-path transfer device with the selected 
+detector thimble within that group.  Indicator lights adjacent to the switch 
+positions are energized by microswitches on the associated ten-path rotary 
+transfer device.  These microswitches close when the ten-path rotary transfer 
+device has reached the selected position.   
+ 
+ Path selection is always achieved on the path selector switch associated with the 
+ten-path transfer device through which the detector must pass (e.g., if the A 
+detector is to be operated in the EMERGENCY mode, path selection is made on 
+the B path selector switch).  Detector-actuated microswitches at the outlet of the 
+ten-path transfer devices energize path-display lights on the control console to 
+indicate that the detector has actually reached that position in the selected path. 
+ 
+4. Common Controls - Common control of  all detectors (simultaneous detector 
+operation) or individual detector insertion and plotting are provided.  The 
+operating circuits are electrically interlocked to prevent attempted simultaneous 
+insertion of two detectors into the same path under automatic control.  The 
+withdrawal limit switch is interlocked with the five-path and ten-path rotary 
+transfer devices to prevent their rotation or realignment unless the associated 
+detector is in the withdrawn position.   
+ 
+5. Position Control - The position readout devices are also used in the control 
+system to provide stop signals to the detector drive unit at a preset distance from 
+the bottom of the core and at the top of the core for each selected path during 
+automatic insertion.  The position readout devices also furnish an additional stop 
+signal at the preset distance from the bottom after plotting.  A set of ten 
+patchboard matrix selector switches (five top-of-core position pins and five 
+bottom-of-core position pins) for each path is provided to preset the bottom-of-
+core and top-of-core stop signals for normal operation.   
+ 
+The stop positions are selected by insertion of pins of the correct lengths into the 
+patchboard matrix to make contact as required.  Thumbwheel switches are 
+---PAGE---
+ 
+USNRC HRTD 9.2 -9 Rev 0404 
+provided for position control settings in Emergency, Common Group, Storage 
+and Calibrate modes of operation.  Top-of-core and bottom-of-core position 
+settings are always established on the position control panel of the detector 
+being run. 
+ 
+Detector position control is accomplished by comparing the encoder binary-
+coded-decimal (BCD) information with a decimal number created by the 
+patchboard or thumbwheel switches.  Each comparator accepts the associated 
+encoder BCD information and compares it with the decimal number presented by 
+the setpoint limits.  To make this comparison, the decimal limit setting is 
+converted into a BCD by the comparator. 
+ 
+6. Drive Motor Control - When any operation selector switch is in an ON position 
+and the automatic-manual switch is in the AUTOMATIC position, pushbuttons 
+(INSERT, SCAN, RECORD, WITHDRAW) will control the drive motors.  When 
+the automatic-manual switch is in the MANUAL position, the speed switch 
+controls motor speed and the insert-withdraw toggle switch controls motor 
+direction.  The drive selector switch (single/multiple) on the common control 
+panel selects either all drives or any single drive.   
+ 
+7. Detector Power Supplies - One power supply is mounted on each detector 
+readout panel.  The power supply provides a “floating” dc voltage output 
+continuously variable to 300 volts.   
+ 
+8. Detector Current Readout - A current readout meter, having a range of 0-50 
+microamperes, is provided in the return circuit from the detector to the power 
+supply.  A range switch is provided to shunt the meter so that full scale can also 
+correspond either to 150 or 500 microamperes, or to 1.5 or 5 milliamperes.  A 
+1000-ohm multi turn potentiometer and precision shunts in series with the meter 
+provide outputs to the recorder and plant computer.  The full current output can 
+also be supplied temporarily to an external picoammeter for special low current 
+measurements.   
+ 
+9. Recorders - Strip-chart recorders are provided for each detector.  The chart 
+speed is synchronized with the low speed of the drive motors so that one inch of 
+chart movement corresponds to 10-inch movements of the detectors.  Each 
+recorder is started automatically by the associated SCAN or RECORD 
+pushbuttons, or can also be started at any other time by using the manual start 
+switch. 
+ 
+10. Special Low Signal Level Equipment - A picoammeter is provided for making 
+special low level measurements when the detector currents are less than five 
+microamperes.  The external connectors at the rear of all detector readout 
+chassis are connected in parallel by coaxial cables to the input of the 
+picoammeter.  Input to the picoammeter is individually selected by switches on 
+the detector readout panels.  Also, in case the rectifier power supplies are too 
+noisy for very low level signals, a special low-noise battery supply is provided. 
+ 
+  
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -10 Rev 0404 
+9.2.3.7 Gas Purge System  
+ 
+The gas purge system, as shown in Figure 9.2-10, consists of a source of dry CO
+2 
+gas which is introduced into the thimble runs whenever the movable detectors are 
+being withdrawn from the reactor core.  In order to do this, the transfer devices are 
+contained in metallic enclosures and the gas is allowed to flow into these enclosures 
+whenever the detectors are being withdrawn. 
+ 
+A pressure regulator and a throttling valve (a Hoke flow gage) are mounted near the 
+10-path transfer devices.  A normally-closed ac solenoid operated off-on valve is 
+located at the outlet of the throttling valve, which is electrically opened whenever a 
+RECORD or WITHDRAW operation is called for on any of the detector drive motors. 
+Stainless steel tubing connects the gas source to the enclosures through the valves. 
+(The inlet gas tubing is disconnected when the transfer device’s assembly is moved 
+aside during refueling.) 
+ 
+These enclosures are designed to withstand an internal pressure of 1.0 psig without 
+damage.  The system is sufficiently leak-tight so that with an internal gas pressure of 
+0.02 inch of water applied, the total gas leakage rate will not exceed 15.0 cubic feet 
+per hour. 
+ 
+9.2.3.8 Leak Detection System  
+ 
+The leak detection system comprises of; a drain header, a liquid level actuated 
+pressure switch, and a 1/4-inch ac solenoid-operated valve, as shown in Figure 9.2-
+10.  The inlet connection to the drain header is made at the 10-path transfer device 
+enclosure, while the outlet connection is made to the plant drain system. 
+ 
+If water leaks from any of the transfer devices, it enters the leak detection system 
+causing the level to rise.  When the pressure switch actuates, it energizes the leak 
+alarm and the 1/4-inch solenoid valve.  The alarm is acknowledged by pressing the 
+reset pushbutton, which silences the audible alarm and seals in the alarm light.  
+When the water level in the drain header decreases below the level actuating 
+pressure switch setpoint, its contact opens, de-energizing the solenoid drain valve 
+and the alarm light.  The drain line is disconnected during refueling preparations. 
+ 
+9.2.3.9 Thermocouples  
+ 
+Sixty-five chromel-alumel thermocouples are provided for a four-loop plant.  Each 
+thermocouple is 1/8 inch (nominal) in diameter, stainless steel sheathed, and 
+aluminum oxide insulated, with the trailing end terminated in a male thermocouple 
+connector. Each thermocouple is supplied to the specific length required for its 
+assigned location. 
+ 
+9.2.3.10 Thermocouple Re ference Junction Box 
+ 
+Two thermocouple junction boxes are provided to permit transition from chromel-
+alumel thermocouple extension wiring to copper field wiring.  These units provide a 
+controlled 160°F temperature reference for the incore thermocouples.  Each 
+reference junction box contains three platinum resistance temperature detectors 
+---PAGE---
+ 
+USNRC HRTD 9.2 -11 Rev 0404 
+(RTD).  Two of the RTDs from each unit are connected directly to the plant 
+computer for monitoring of reference junction temperature.  The third RTD in each 
+unit is an installed spare. 
+ 
+9.2.3.11 Thermocouple Indicator  
+ 
+One indicator is mounted in the flux mapping control console to provide backup 
+readout capability (normal is via the plant computer).  This instrument is supplied 
+with a double range measuring circuit which permits measurement within the ranges 
+of 100°F to 400°F or 400°F to 700°F.  Selection of a single thermocouple to be 
+indicated is made by nonlocking toggle switches on the front of the indicating panel. 
+ The toggle switch must be manually held in position (left or right) to monitor the 
+desired thermocouple.  The switch returns to the center position (neutral position) 
+when released.  Since the thermocouple input signal to the indicator is in parallel 
+with the plant computer, a contact closure signal is provided to inform the computer 
+when any thermocouple is being monitored by the indicator. 
+ 
+ 
+9.2.4 Operation and System Interrelationships  
+ 
+9.2.4.1 Detector Calibration  
+ 
+When using the movable incore detectors, the power supply voltages are set near 
+the predicted centers of the plateau regions.  The range switches are set at the 
+expected ranges for on scale readings and the selector switch is in the RECORDER 
+position.  The following sequence of operations is typically performed: 
+ 
+1. Select one of the detectors and run it into the calibration path by placing its five-
+path operation selector switch in the CALIBRATE position and using the INSERT 
+and SCAN pushbuttons.  During the scan, set the range switch so that the peak 
+output is between one-third and full scale.   
+ 
+2. After reaching the top-of-core, use manual control to withdraw the detector 
+downward.  Stop at or near the point of highest detector output.  Take data of 
+voltage versus meter readings for a saturation curve in 10-volt steps from 20 to 
+160 volts.  Plot these readings on linear graph paper or run the strip chart for this 
+plot.  Select and set the voltage that will provide operation near the center of the 
+plateau region.   
+ 
+3. Repeat this procedure for the remaining detectors and normalize each detector’s 
+output voltage to provide consistent readings from detector to detector. 
+ 
+9.2.4.2 Flux-Mapping Procedure  
+ 
+After detector calibrations are performed, full or partial core flux maps are typically 
+made in the following semiautomatic steps:  
+ 
+1. Turn one or more operation selector switches to the NORMAL position and 
+observe the green light indication.  Select the desired individual paths with the 
+ten-path selector switches.  During the flux mapping operation, record the reactor 
+---PAGE---
+ 
+USNRC HRTD 9.2 -12 Rev 0404 
+core power level to insure that measurement conditions are stable during the 
+mapping procedure.  
+ 
+2. On the common control panel, turn the mode switch to the AUTO position.  In 
+this mode, the speed is determined automatically as described below.  (An 
+override can be made by turning the mode switch to MANUAL, which causes all 
+manually controlled movements to be at the speed selected by the speed 
+switch.) 
+ 
+3. Turn the computer switch to the ON position to log the flux-mapping data in the 
+computer.  Select the desired operation on the drive selector switch.  The ALL 
+position is normally selected to simultaneously insert all detectors.  Note that the 
+operation selector switch of the desired drive(s) unit must be in the NORMAL 
+position to obtain flux mapping data from its respective ten-path transfer device.   
+ 
+4. Press the INSERT pushbutton momentarily.  The detectors will be driven at high 
+speed to the preselected bottom-of-core position and stopped automatically, as 
+indicated by the position indicator digital displays.  When the detectors pass 
+through the path indicator switches, contact-closure signals are fed back to the 
+path display panel.   
+ 
+5. Press the SCAN pushbutton momentarily.  The detectors will be driven at slow 
+speed to the top-of-core and stopped automatically as indicated by the digital 
+displays.  During this scan, the recorder is automatically started and a 
+continuous readout of the flux profile is obtained as a function of core height.  
+This serves as a permanent record of the measurement.  At this time, observe 
+the current level and recorder response and make all necessary scale changes 
+and adjustments.  
+ 
+6. Press the RECORD pushbutton momentarily.  The detectors will be withdrawn at 
+slow speed downward through the core and a contact-closure signal will be 
+supplied to the plant computer to indicate that the readouts should be logged.  
+The associated strip-chart recorder automatically starts and again will provide a 
+flux profile as a function of core height.  The detectors stop automatically at the 
+bottom of the core.  During the record operation, the flux profile data is 
+transmitted to the plant computer further data reduction and evaluation.   
+ 
+7. Press the WITHDRAW pushbutton. The detectors will be withdrawn at high 
+speed back to the withdrawal limit switches as indicated by the digital displays.  
+Repeat the above steps for the other paths to give a full or partial core map, 
+including running all detectors in the calibration path for normalization. 
+ 
+9.2.4.3 Incore-Excore Calibration  
+ 
+The movable incore neutron flux detectors (incore detectors), in conjunction with the 
+plant computer (INCORE Code) present a true representation of the actual neutron 
+flux distribution within the reactor core.  Meanwhile, the excore nuclear instruments 
+(excore detectors) rely upon leakage neutrons to determine the flux distribution 
+within the core.  Due to the distance and shielding between the reactor core and the 
+excore detectors, these detectors cannot provide a true representation of the flux 
+---PAGE---
+ 
+USNRC HRTD 9.2 -13 Rev 0404 
+distribution within the core.  Since the excore detectors provide reactor protection 
+signals and also provide the reactor operator with continuously monitored indication 
+of power and flux distributions within the core, it is necessary to calibrate the excore 
+detectors.  
+ 
+Recall from Section 9.1(Excore Nuclear Instrumentation) that the excore power 
+range instruments consist of two six-foot detectors (one upper detector and one 
+lower detector) per power range instrument channel.  In theory the upper detector 
+should indicate the power in the upper six feet of the core while the lower detector 
+indicates the power in the lower half of the core.  In practice, however, this is not the 
+case, as neutrons leaking from the core do not necessarily leak out of the core at 90 
+degree angles.  Some of the leakage neutrons generated in the lower half of the 
+core will be detected by the upper detector and conversely the lower detector will 
+indicate neutrons that were produced in the upper half of the core.  Since the core 
+must be protected from departure from nucleate boiling (DNB) and excessive power 
+generation in both the upper and lower halves of the core, it is essential that the 
+inputs to the protective circuitry be reflective of the actual conditions in the core.  
+This protection is provided by trip signals generated from the overtemperature ΔT 
+trip circuitry (OTΔT) and the overpower ΔT trip circuitry (OPΔT) of which both circuits 
+receive axial flux difference (AFD) inputs from the excore power range detectors.    
+  
+The outputs of the upper and lower excore detectors are calibrated to the incore 
+detectors at the beginning of each fuel cycle and when the monthly surveillance 
+shows a significant difference between the adjusted excore AFD and the incore 
+AFD.  AFD is defined as the flux at the top of the core minus the flux at the bottom 
+of the core divided by the flux at the top of the core plus the flux at the bottom of the 
+core at 100% power.  This calibration must demonstrate the linear relationship that 
+should exist between the incore and the excore outputs.  Electronically the AFD is 
+expressed in terms of difference in current (ΔI) between the upper and lower excore 
+detectors.  The slope of that relationship is used to calibrate the following: the F
+1(ΔI) 
+penalty to the (OTΔT) trip setpoint in the reactor protection system, the F2(ΔI) 
+penalty to the (OPΔT) trip setpoint in the reactor protection system, the AFD meters 
+on the control board, the output to the detector current comparators, and the AFD 
+monitor program in the plant computer. 
+ 
+In order to establish the existence of a linear relationship between the incore and 
+excore detector outputs, an adequate number of data points (different flux 
+distributions) must be obtained.  This is accomplished by inducing an axial xenon 
+transient, which causes an axial flux oscillation.  During this induced transient, 
+incore and excore measurements are obtained.  These measurements are used to 
+calculate the equation for the line that best fits the data by using linear regression.  
+The incore measurements are taken by performing full core and quarter core flux 
+maps at various times during the xenon transient.  Each time an incore AFD is 
+obtained by a flux map, all power range excore detector currents are recorded. 
+ 
+The current output from the excore detectors is then plotted against the incore AFD. 
+After the linear relationship between the two detector systems is established, the 
+gains of the excore detector isolation amplifiers are adjusted.   Adjusting the gain on 
+an isolation amplifier only affects its output signal to the reactor protection system, 
+the detector current comparators, and the various AFD meters and recorders.  This 
+---PAGE---
+ 
+USNRC HRTD 9.2 -14 Rev 0404 
+adjustment has no effect on the raw current transmitted from the associated excore 
+detector, which in addition to supplying the isolation amplifier also provides an input 
+to the summing and level amplifier.  Once made, the adjustment to the isolation 
+amplifier gain is such that when there is an actual 0% incore delta flux, the excore 
+detectors will indicate 0% AFD.  
+ 
+9.2.4.4 Computer 
+ 
+In addition to the strip chart records, on-line computers are installed to provide gross 
+analyses of current core conditions for use on a complementary basis with other on-
+line monitoring systems. 
+ 
+9.2.4.5 Incore Data Collection  
+ 
+Signal Inputs - A number of active signals are supplied from the flux mapping 
+system to the on-line computer.  First, there are analog signals proportional to flux 
+levels as measured by the movable detectors.  Second, there are three sets of 
+contact closure signals from each detector position control - one to show selection 
+of detectors, another set to show the group 5-path transfer position, and a third set 
+to show the individual 10-path transfer position.  The latter two automatically indicate 
+the flux thimble being measured.  Finally, there are three interrupt signals, 
+COMPUTER OFF-ON, SCAN, and RECORD. 
+ 
+SCAN and RECORD Programs - The on-line measurements provide an accurate 
+method of determining a three-dimensional power distribution of the reactor core at 
+periodic intervals in order to evaluate current core performance.  The SCAN 
+interrupt is received when the movable detector drive mechanism is energized to 
+drive the selected detectors to the top of the core.  However, data collection 
+commences only after the RECORD interrupt is received when the movable detector 
+drive mechanism is energized to withdraw the previously inserted detectors from the 
+top of the core.   
+ 
+The objective of the on-line rapid data collection is to provide a high priority scheme 
+by which all pertinent flux mapping data are collected for later reduction either on an 
+offsite basis or for low priority reduction by the plant computer.  Also, on-line priority 
+data reduction provides a gross analysis of current core conditions immediately for 
+use on a comparative basis with other on-line monitoring systems such as incore 
+thermocouples, and excore detectors.   
+ 
+Signal Quality Checks - The program also includes provisions to evaluate the quality 
+of the data as the measurement is taken.  Briefly, there are two main quality checks 
+made.  For each data point on a pass, three consecutive readings are made 
+(maximum 1/15 second apart).  Also, each data point is compared with the 
+preceding and succeeding data points, although relatively large variations are 
+normal at the core grid locations. 
+ 
+Normalization - In order to provide a consistent set of measured relative reaction 
+rates, it is important that all flux mapping data be normalized to one reference 
+condition.  Discrepancies which affect measurement results and must be corrected 
+for are:  
+---PAGE---
+ 
+USNRC HRTD 9.2 -15 Rev 0404 
+1. Reactor power drift during the flux mapping period, 
+ 
+2. Dissimilarities between the individual movable detectors, 
+ 
+3. Different readout scale settings, and 
+ 
+4. Leakage current in the detector, normally at low power levels. 
+ 
+During each pass, the total reactor power must be known in order to provide a 
+means of converting each pass to one common reactor power level.  This is 
+accomplished by integrating the total output from the excore nuclear power channels 
+during each pass.  Changes in subsequent excore readings after the first pass 
+provide correction ratios for subsequent passes.  
+ 
+In order to establish the normalization factors associated with each detector, it is 
+necessary to insert each detector into a common thimble location.  Differences 
+between range settings are accounted for by multiplying each detector output by its 
+appropriate range setting.  Leakage current correction is made by subtracting from 
+the appropriate detector output. 
+ 
+After the data is collected by the computer, it can be processed to provide a full-core 
+flux map.  By using the symmetry of the core (attained by fuel and poison loading), 
+the data from the selected core locations can be extrapolated to include all fuel 
+assemblies in the core.  This may be accomplished by the plant computer, or a 
+more powerful offsite computer. 
+ 
+Thermocouple Input - Use of the on-line computer is the normal means for recording 
+thermocouple readings.  The thermocouple signals originating above the core pass 
+through reference junctions in the plant containment and then to terminal strips in 
+the flux-mapping console.  From there, they are paralleled with one set going to the 
+computer and the other to a precision indicator with manual selector switches.  The 
+latter are intended for use in case of a malfunction of the computer. 
+ 
+Computations Based on Thermocouples - The information received from the 
+thermocouples complements the movable detector system by providing periodic on-
+line checks on reactor core conditions.  Calibrations of the thermocouples and the 
+thermocouple reference junctions are made from tests at known thermal core and 
+system conditions.   
+ 
+Computations are made periodically of the enthalpy rise at each thermocouple 
+location, relative fuel assembly powers and core radial tilting factors.  Printouts are 
+made of alarm messages when any of the relative fuel assembly power values or 
+incore thermocouple-based radial tilting factors exceeds established limits.  A listing 
+of averaged incore thermocouple readings and fuel assembly power values is made 
+for reference usage.  Complete core maps and daily thermocouple history are made 
+when requested by the operator. 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -16 Rev 0404 
+9.2.5 Summary  
+ 
+Miniature fission chamber detectors can be remotely positioned in retractable guide 
+thimbles to provide flux mapping of the core.  The detector is welded to the leading 
+end of a helical wrap drive cable and to a sheathed coaxial instrumentation cable.  
+The retractable guide thimbles are closed at their leading ends, and serve as the 
+pressure boundary between reactor coolant pressure and atmosphere.   
+ 
+The drive assemblies are motor operated, with a hobbed wheel engaging the helical 
+drive cable, a take-up reel and position encoders.  The five-path rotary transfer 
+device is used to select the mode of operation (normal, calibrate, storage, etc.).  A 
+five-path rotary transfer device is provided for each detector-drive assembly.  A ten-
+path transfer device is supplied for each detector-drive assembly and is used to 
+route a detector into any one of up to ten preselectable fuel assemblies.   
+ 
+Flux mapping consists of a moving detector scan of each provided core location 
+(Figure 9.2-11).  The information obtained is collected by the plant computer, which 
+will either directly analyze the data obtained or record it for analysis by more 
+sophisticated offsite computers. 
+ 
+Thermocouples are provided to give rough approximations of core conditions.  They 
+have the advantage of being on-line and are immediately available to the operator.  
+The thermocouples are inserted into guide tubes that penetrate the reactor vessel 
+head and terminate at the flow exits just above the fuel assemblies.  Thermocouple 
+readings are monitored by the computer with backup readout at a manual point 
+selection. 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 9.2 -17 Rev 0404 
+Table 9.2-1 
+Movable Detector Design Parameters 
+ 
+Movable Detectors  
+  
+4-loop plants, number 6 
+3-loop plants, number 5 
+2-loop plants, number 4 
+Outside diameter, in. 0.199 
+Length, in. 2.1 
+  
+Performance Data  
+  
+Cable speed (low), ft/min 12 
+Cable speed (high), ft/min 72 
+Position indication, in. 0.5 
+  
+Flux Thimbles  
+4-loop plants, number 58 
+3-loop plants, number 50 
+2-loop plants, number 36 
+Nominal O.D., in. 0.300 
+Nominal I.D., in. 0.199 
+ 
+ 
+ 
+ 
+Table 9.2-2 
+Thermocouple Design Parameters 
+ 
+4-loop plants, number 65 
+3-loop plants, number 51 
+2-loop plants, number 39 
+Outside diameter, in. 0.111 
+Type Chromel-alumel 
+ 
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---

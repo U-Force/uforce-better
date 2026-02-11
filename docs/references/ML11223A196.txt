@@ -1,0 +1,1408 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 1.3 
+ 
+Instrumentation and Controls
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 1.3-i Rev 0101 
+TABLE OF CONTENTS 
+ 
+1.3 INSTRUMENTATION A ND CONTROLS  .................................................... 1.3-1 
+ 
+ 1.3.1 Introduction........................................................................................ 1.3-1 
+ 
+ 1.3.2 Pressure Sensing Instruments .......................................................... 1.3-1 
+ 
+  1.3.2.1  B ourdon Tube ...................................................................... 1.3-1 
+  1.3.2.2 Bellows Pressure Sensor 1.3-2 
+  1.3.2.3 Diaphragm Pre ssure Sensor ................................................ 1.3-2 
+  1.3.2.4 Mechanical to Electrical Signal Conversion ......................... 1.3-2 
+ 
+ 1.3.3 Flow Sensing Instruments ................................................................. 1.3-3 
+ 
+  1.3.3.1 Primary Devices ................................................................... 1.3-3 
+  1.3.3.2 Bellows Flow Sensor ............................................................ 1.3-4 
+  1.3.3.3 Diaphragm Flow Sensor....................................................... 1.3-4 
+  1.3.3.4 Magnetic Flow Sensor.......................................................... 1.3-4 
+ 
+ 1.3.4 Level Sensing Instruments ................................................................ 1.3-4 
+ 
+  1.3.4.1 Variable Capacitance Differential Pressure Transmitters .... 1.3-5 
+ 
+ 1.3.5 Temperature Sens ing Instruments .................................................... 1.3-5 
+ 
+  1.3.5.1 Fluid Filled Systems ............................................................. 1.3-6 
+  1.3.5.2 Thermo couples .................................................................... 1.3-6 
+  1.3.5.3 Resistance Temperature Detectors ..................................... 1.3-6 
+ 
+ 1.3.6 Controllers ......................................................................................... 1.3-6 
+ 
+  1.3.6.1 Proportional  Control ............................................................. 1.3-7 
+  1.3.6.2 Proportional Plus Integral Control ........................................ 1.3-9 
+  1.3.6.3 Proportional Plus Derivative Control .................................. 1.3-11 
+  1.3.6.4 Proportional Plus Integral Plus Derivative (PID) 
+   Controllers .......................................................................... 1.3-12 
+  
+ 1.3.7 Logic Diagrams ............................................................................... 1.3-12 
+ 
+  1.3.7.1 “OR” Logic .......................................................................... 1.3-12 
+  1.3.7.2 “AND” Logic ....................................................................... 1.3-12 
+  1.3.7.3 “NOT” Logic ....................................................................... 1.3-13 
+  1.3.7.4 Retentive Memory .............................................................. 1.3-13 
+  
+ 1.3.8 Electrical Relay ................................................................................ 1.3-13 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 1.3-ii Rev 0101 
+LIST OF TABLES 
+ 
+1.3-1 Gain and Propor tional Band ..................................................................... 1.3-9 
+ 
+ 
+ 
+ 
+ 
+LIST OF FIGURES 
+ 
+1.3-1  ........................................................................................ Simp le Bourdon Tube 
+1.3-2  ............................................................................... Wound Pressure Detectors 
+1.3-3  ................................................................................ Sealed Pressure Detectors 
+1.3-4  ................................................................................ Force Balance Transmitter 
+1.3-5  ................................................................................. Movable Core Transmitter 
+1.3-6  ..................................................................... Variable C apacitance Transmitter 
+1.3-7  ................................................................................................. Primary Devices 
+1.3-8  ......................................................................................... Bellows Flow Sensor 
+1.3-9  .................................................................................... Diaphrag m Flow Sensor 
+1.3-10  ....................................................................................... Magnetic Flow Sensor 
+1.3-11  ........................................... Variable Capacitance Differential Pressure Sensor 
+1.3-12  ....................................................................... Fluid Filled Temperature Sensor 
+1.3-13  .................................................................................................... Thermocouple 
+1.3-14  ..................................................................... Resistance Temperature Detector 
+1.3-15  ................................................................... Direct Level Measurement Devices 
+1.3-16  .................................................................. Differential Pressure Level Detector 
+1.3-17  ..................................................... Reference Leg Differential Pressure System 
+1.3-18  ....................................................................................... Basic Control Diagram 
+1.3-19  ....................................................................................... Proportional Controller 
+1.3-20  .................................................................. Proportional Plus Integral Controller 
+1.3-21  ................................................................................................... Time Constant 
+1.3-22  ......................................... Proportional Plus Integral Plus Derivative Controller 
+1.3-23  ................................................................................. PID Controller Responses 
+1.3-24  ............................................................................ Manual/Auto Control Stations 
+1.3-25  ................................. Signal Conditioning Output with Varying Time Constants 
+1.3-26  ..................................................................................................Logic Functions 
+1.3-27 ................................................................................................................. Relay 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 1.3-1 Rev 0101 
+1.3 INSTRUMENTATION AND CONTROLS  
+  
+Learning Objectives:  
+ 
+1. Describe the types of sensing instruments used to sense pressure, temperature, 
+and flow.  
+2. Explain how the properties of pressure, temperature, and flow are converted into 
+electrical outputs. 
+3. Explain how the following controllers respond to a step change and ramp change 
+in input: 
+ 
+a. Bistable, 
+b. Proportional, 
+c. Proportional plus integral, and 
+d. Proportional plus derivative. 
+  
+4. Explain the input and output relationships of the standard logic circuits. 
+ 
+ 
+1.3.1 Introduction  
+ 
+This section addresses the detection of process variables and the conversion of 
+these measured values into electrical or pneumatic signals.  These signals will then 
+be used for indication and control functions.  The basic controllers used in power 
+plant control systems will be discussed including their response to various input 
+signals.  In addition, a brief discussion of simple logic circuits will conclude this 
+section. 
+ 
+ 
+1.3.2 Pressure Sensing Instruments 
+ 
+Pressure, defined as force per unit area, is one of the measured and controlled 
+properties.  Pressure measurements range from the high pressure of the reactor 
+coolant system measured in pounds per square inch (psi) to the vacuum in the main 
+condenser measured in inches of mercury (in. Hg).  The devices listed in this section 
+are used for the measurement of system pressure. 
+ 
+1.3.2.1 Bourdon Tube  
+  
+The simple bourdon tube, shown in Figure 1.3-1, consists of an oval tube rolled into 
+an arc of a circle.  One end is open to the process variable to be measured and the 
+other end is closed.  The surface area on the outer portion of the arc is larger than 
+the surface area of the inner portion, and when pressure (force per unit area) is 
+applied, the tube tends to straighten out very slightly.  If the pressure is removed, 
+the elasticity of the tube causes it to return to its original shape.  The pressure of the 
+fluid is converted to a mechanical motion by the bourdon tube.  This motion can be 
+converted into an electrical or pneumatic signal, or can drive a pointer on a local 
+indicating gage for measurement of the applied pressure.  The helical element, 
+---PAGE---
+ 
+USNRC HRTD 1.3-2 Rev 0101 
+shown in Figure 1.3-2(b), is a variation of the simple bourdon tube.  It is similar to 
+the bourdon tube except that it is wound in the form of a spiral containing four or five 
+turns.  The helical element amplifies the movement of the closed end of the bourdon 
+tube.  The spiral type of measuring element is a second modification (Figure 1.3-
+2(a)) of the bourdon element.  It is a thin-walled tube that has been flattened on 
+opposite sides to produce an approximately elliptical cross section.  The tube is then 
+formed into a spiral.  When pressure is applied to the open end, the tube tends to 
+uncoil. 
+   
+1.3.2.2 Bellows Pressure Sensor  
+ 
+The bellows pressure sensor, shown in Figure 1.3-3(a), is made up of a metallic 
+bellows enclosed in a shell, with the shell connected to a pressure source.  Pressure 
+acting on the outside of the bellows compresses the bellows and moves its free end 
+against the opposing force of the spring.  A rod attached to the bellows transmits 
+this motion to the pressure transmitter.   
+ 
+1.3.2.3 Diaphragm Pressure Sensor  
+ 
+The diaphragm pressure sensor, shown in Figure 1.3-3(b) consists of a metallic 
+diaphragm (rigidly supported at each end), a spring, and a force bar that is 
+connected to the diaphragm.  When pressure is applied, the diaphragm moves in 
+opposition to the spring, which causes motion of the force bar.  When pressure is 
+removed, the elasticity of the diaphragm and action of the spring return the sensor 
+to its zero pressure condition.   
+  
+1.3.2.4 Mechanical to Electrical Signal Conversion  
+  
+In the sensors described above, the application of pressure results in a mechanical 
+signal.  Two devices are available for the conversion of this mechanical signal into 
+an electrical signal that can be used in the plant control or protection systems.  The 
+use of one device, the force balance transmitter, results in a current (milliampere, 
+ma) output; the use of the other device, the movable core transformer transmitter, 
+results in a voltage output.   
+ 
+Force Balance Transmitter  
+  
+Force balance refers to the system whereby the free motion of the sensor is limited 
+and actively opposed by some mechanical or electrical means.  In Figure 1.3-4 a 
+simplified force balance transmitter is shown.  As pressure increases, the diaphragm 
+is moved to the left.  This motion, in turn, causes movement of the force bar (the 
+force bar is pivoted at the sealed flexure).  The force bar motion causes movement 
+of the reference arm, which closes the gap between the error detector transformer 
+coils and the ferrite disk attached to the reference arm.  When the gap of the error 
+detector becomes smaller, the magnetic coupling between the transformer coils 
+increases, increasing the output of the error detector transformer.  The output of the 
+error detector is amplified and applied to the force feedback coil.  The increased 
+current in the force feedback coil exerts a greater pull on its armature moving the 
+reference arm in the opposite direction, thus restoring the system balance.  The 
+amount of current required to maintain the system in balance is proportional to 
+---PAGE---
+ 
+USNRC HRTD 1.3-3 Rev 0101 
+pressure and, therefore, can be used in the indicating and control loops.  Two 
+current ranges, 4 to 20 ma or 10 to 50 ma, are generally used for this transmitter =s 
+output circuitry.   
+ 
+Movable Core Transmitter  
+ 
+In the movable core transmitter, show in Figure 1.3-5 the pressure sensor =s 
+mechanical linkage is connected to the core of a linear variable differential 
+transformer (LVDT).  The LVDT consists of a primary coil and two secondary coils.  
+The movement of the core changes the magnetic flux coupling between the primary 
+coil and the secondary coils which, in turn, causes a change in the voltage output of 
+the secondary coils.  The secondary coils are connected in series opposition so that 
+the two voltages in the secondary circuit have opposite phases.  With the core in the 
+center position of the transformer, the voltage output is zero.  This will give a normal 
+voltage range of -10 to 0 to +10 v. 
+  
+Variable Capacitance Transmitter  
+  
+Another type of transmitter is being installed at nuclear power plants currently under 
+construction.  This type of transmitter is called a variable capacitance transmitter 
+(see Figure 1.3-6) and consists of a set of parallel capacitor plates with a sensing 
+diaphragm placed between the plates.  The capacitor is filled with silicon oil.  The 
+need for a pressure-sensing element, such as a bellows or bourdon tube, and its 
+mechanical linkage has been eliminated by connecting the process fluid to a 
+separate isolating diaphragm.  One side of the isolation diaphragm is in contact with 
+the process stream, while the other side is in contact with the silicon fill oil.  When 
+pressure is applied to the isolating diaphragm, the force is transmitted through the 
+silicon oil to the sensing diaphragm causing it to deflect.  The deflection of the 
+sensing diaphragm is detected by the capacitor plates.  The change in capacitance, 
+because of sensing diaphragm deflection, is converted to a 4-to-20-ma output that is 
+transmitted to the plant protection and/or control systems.   
+ 
+  
+1.3.3  Flow Sensing Instruments  
+ 
+Selected pressure detection devices may be used to provide a reliable 
+measurement of process flow.  To measure flow in this, manner, a differential 
+pressure (ΔP) is created by some type of primary device, such as an orifice plate, a 
+flow nozzle, or a flow venturi.  Flow rate measured in this manner is proportional to 
+the square root of the ΔP.  The ΔP is sensed and converted from a mechanical 
+movement to an electrical signal for flow measurement.   
+ 
+1.3.3.1 Primary Devices  
+ 
+Orifice Plate   
+  
+The orifice plate, Figure 1.3-7(a), in its most common form, is merely a circular hole 
+in a thin, flat plate that is clamped between the flanges at a joint in the system 
+piping.  The orifice plate is inexpensive and accurate, but as shown in Figure 1.3-
+7(a) it has poor pressure recovery.   
+---PAGE---
+ 
+USNRC HRTD 1.3-4 Rev 0101 
+Flow Nozzle   
+  
+The flow nozzle, Figure 1.3-7(b) provides better pressure recovery (i.e., less 
+pressure loss) than the orifice plate.  It consists of a rounded inlet cone and an 
+outlet nozzle.   
+ 
+Flow Venturi  
+  
+The flow venturi, Figure 1.3-7(c), has the best pressure recovery characteristics and 
+is used in those systems where a high-pressure drop across the primary element is 
+undesirable.  The venturi consists of rounded inlet and outlet cones connected by a 
+constricted middle section.  As the velocity increases in the constriction, the 
+pressure decreases.  A pressure tap is provided in this low-pressure area. 
+ 
+1.3.3.2   Bellows Flow Sensor  
+  
+The bellows flow sensor (Figure 1.3-8) consists of two bellows:  one that senses the 
+high side (inlet) pressure of the primary device and another that senses the low side 
+(outlet) pressure of the primary device.  The difference in force exerted by the two 
+bellows is proportional to the differential pressure developed by the primary element. 
+A mechanical connection is made to the force bar of the force balance transmitter or 
+the core of the movable core transformer (Paragraph 1.3.2.4) to convert the 
+differential pressure signal to an electrical signal.  Since the flow rate is proportional 
+to the square root of the ΔP, a square root extractor circuit is required to convert the 
+electrical output into flow indication.   
+  
+1.3.3.3 Diaphragm Flow Sensor  
+  
+Again, the principle of opposing forces created by the differential pressure across 
+the primary device is used to sense flow with the diaphragm flow sensor (Figure 1.3-
+9).  The displacement of the diaphragm causes motion of the force bar of the force 
+balance transmitter or the core of the movable core transformer (Paragraph 1.3.2.4) 
+and converts the ΔP signal to an electrical signal.  A square root extractor is again 
+required.  The majority of the flow transmitters in the plant use diaphragm flow 
+sensors.   
+  
+1.3.3.4 Magnetic Flow Sensors  
+  
+Unlike the previous flow sensors discussed in this section, the magnetic flow sensor 
+(Figure 1.3-10) does not require a primary element.  The magnetic flow transmitter 
+works on the principle that voltage can be generated if relative motion exists 
+between a conductor and a magnetic field.  The liquid is used as the conductor.  
+The flow transmitter generates the magnetic field, and the flow of the liquid provides 
+relative motion.  Electrodes located in the piping detect the generated voltage.  
+ 
+  
+1.3.4 Level Sensing Instruments  
+  
+Most measurements of level are based on a pressure measurement of the liquid =s 
+hydrostatic head.  This hydrostatic head is the weight of the liquid above a reference 
+---PAGE---
+ 
+USNRC HRTD 1.3-5 Rev 0101 
+or datum line.  At any point, its force is exerted equally in all directions and is 
+independent of the volume of liquid involved or the shape of the vessel.  The 
+measurement of pressure as a result of level head can be translated to level height 
+above the datum line as follows:       
+ 
+H = P/ρ  
+ 
+where:  
+H =height of liquid 
+P = pressure resulting from hydrostatic head 
+ρ = density of liquid. 
+  
+Different pressure sensors, both bellows and diaphragm (Paragraphs 1.3.3.2 and 
+1.3.3.3) are used to sense level.  On tanks that are vented, the low side of the 
+differential pressure sensor is open to atmospheric pressure.  Pressurized tanks 
+such as the core flood tanks have reference legs that tap into the gas space of the 
+tank; therefore, the level indication is not affected by changes in tank pressure.  The 
+pressurizer and steam generators use a filled (wet) reference leg, and level (ΔP) is 
+sensed in accordance with the following equation: 
+ 
+ªP = H
+rρr - Hvρv  
+ 
+where : 
+H
+r = height of the reference leg 
+ρr = density of the reference leg 
+Hv = height of the variable leg 
+ρv = density of the variable leg 
+  
+The reference legs are kept full by condensate pots that tap into the steam space of 
+both vessels.  It should be noted from the above formula that a density change in 
+either the reference or variable leg will affect the ΔP that is seen by the sensor; also 
+when the vessel is full, the ΔP is equal to zero.  Both flow and level sensors are 
+referred to as differential pressure cells or transmitters.   
+  
+1.3.4.1 Variable Capacitance Di fferential Pressure Transmitters  
+ 
+A detector similar in construction to the variable capacitance pressure detector 
+(Paragraph 1.3.2.5) is used to measure the differential pressure caused by level or 
+flow.  As seen in Figure 1.3-11, two isolating diaphragms (one diaphragm for the 
+high-pressure input and one diaphragm for the low-pressure input) are used.  The 
+differential pressure exerts a force through the silicon fill oil to change the position of 
+the sensing diaphragm.  The change in sensing diaphragm position is detected by 
+the capacitor plates.  The change in capacitance is electronically converted to an 
+output with a range of 4 to 20 ma. 
+ 
+  
+1.3.5    Temperature Sensing Instruments  
+  
+Temperature is one of the most measured and controlled variables in the nuclear 
+plant.  Uses of temperature measurements range from inputs into the reactor 
+---PAGE---
+ 
+USNRC HRTD 1.3-6 Rev 0101 
+protection system to measurement and control of the chilled water temperature from 
+the station air conditioning system.  Three basic types of temperature detectors are 
+used, the fluid-filled system, the thermocouple, and the resistance temperature 
+detector.  Each of these temperature detectors is discussed in the following 
+sections.   
+  
+1.3.5.1 Fluid-Filled Systems  
+  
+Fluid-filled temperature sensors are usually gas-filled Apressure@ detectors (Figure 
+1.3-12).  When the temperature of a gas changes, its pressure also changes.  The 
+pressure change of the gas is sensed by a bourdon-tube-type pressure sensor, in 
+which the bourdon tube is connected to a pointer that travels across a scale 
+calibrated in temperature units.  The primary use of these systems is local 
+temperature indication.   
+ 
+1.3.5.2 Thermocouples  
+  
+When two dissimilar metals are welded together and this junction is heated, a 
+voltage is developed at the free ends.  The magnitude of the voltage is proportional 
+to the temperature difference between the hot and cold junctions (see Figure 1.3-13) 
+and a function of the types of materials used in thermocouple construction.  
+Because connections must be made to the thermocouple at the cold junction and at 
+the measuring device, all thermoelectric systems consist of three separate 
+thermocouples:  the thermocouple proper, the external lead wire, and the reference 
+junction.  The voltage developed in the circuit is then a combination of the voltages 
+generated by all three junctions.  If the temperature at the reference junction 
+changes, the total voltage of the circuit changes, and the proportionality between the 
+process temperature and measured voltage is destroyed.  The temperature of the 
+reference junction must be kept constant, or changes in this temperature may be 
+compensated for by a temperature sensitive resistor.  The temperature sensitive 
+resistor will provide a voltage drop in the circuit to compensate for reference junction 
+temperature changes.  The incore system uses thermocouples as temperature 
+sensors.   
+ 
+1.3.5.3 Resistance Temperature Detectors  
+  
+In Figure 1.3-14, a typical bridge circuit is shown.  The bridge consists of three 
+known resistances and the resistance temperature detector (RTD).  The RTD =s 
+resistance varies with temperature:  as temperature increases, the resistance of the 
+RTD also increases.  As the resistance of the RTD changes, the voltage difference 
+between points A and B of the bridge circuit changes.  This voltage difference is 
+proportional to the temperature that is sensed by the RTD and is used as an input to 
+the indication and control circuits.  The RCS hot- and cold-leg temperature detectors 
+are RTDs.  
+  
+ 
+1.3.6 Controllers  
+  
+In order to control some physical process, (Figure 1.3-18) at least three items must 
+be considered.  First, the desired value of the parameter must be chosen.  This 
+---PAGE---
+ 
+USNRC HRTD 1.3-7 Rev 0101 
+desired value is called the setpoint for the control system and may be supplied 
+either manually or as a function of a related variable.  Second, the actual value of 
+the process must be known.  The input of this variable is provided by a detector 
+which senses the value of the process that is to be controlled.  Finally, some device 
+must be installed to cause the parameter to achieve its desired value.  This device 
+will be controlled by the difference between the setpoint and actual value of the 
+process.  The difference between the setpoint and actual value of the parameter is 
+derived in a summing circuit (Σ) and is called an error signal.  
+ 
+The simplest form of controller is a bistable.  A bistable turns on or off in response to 
+a control signal.  For example a bistable can be used in the control system of a 
+process instrument. In the pressurizer heater control system a bistable controls the 
+operation of the pressurizer heaters in response to pressurizer level.  At 17% or less 
+pressurizer level the pressurizer heaters are deenergized. This is in response to the 
+pressurizer level instrument .  At 17% level a bistable turns off, preventing operation 
+of the pressurizer heaters in a steam environment.  Once pressurizer level is greater 
+than 17% the operator can restore the operation of the pressurizer heaters.  
+ 
+1.3.6.1 Proportional Control  
+  
+In this paragraph, the basic concepts of a control system are applied to a 
+hypothetical process.  It is desired to control the level in a tank (Figure 1.3-19) at a 
+constant value.  This tank has an inlet supply of water and a valve installed on the 
+outlet line.  A level setpoint of 50% has been chosen and a level transmitter 
+(detector) with the capability of measuring the contents of the tank over the range of 
+0 to 100% has been installed.  The controlled device is the outlet control valve.  The 
+following assumptions are made:  
+ 
+1. The inlet flow to the tank can be varied to introduce a disturbance into the 
+system.   
+2. The outlet flow through the control valve can match inlet flow.   
+3. The output of the controller will be a value equal to 50% when the tank level 
+is at setpoint, i.e., the error signal is equal to zero.  
+4. There exists a one to one correspondence between controller output and 
+valve position.  
+ 
+Initial conditions are the tank level at 50% with a given inlet flow equal to outlet flow. 
+Since the tank is at 50% level, the controller output and outlet control valve position 
+are also at 50%, Figure 1.3-19(b).  The change in controller output for a change in 
+tank level is represented by the 45E line.  Now consider the response of the system 
+if inlet flow is suddenly stopped.  First of all, with no inlet flow and the outlet valve 
+positioned at 50%, tank level will drop.  As tank level starts to drop, the output of the 
+level transmitter starts to change.  In the summing unit (Σ) the change in transmitter 
+output will be sensed resulting in an error signal, Figure 1.3-19(c).  The error signal 
+causes a change in controller output which, in turn, causes the outlet valve to start 
+to close.  The decrease in tank level will not be terminated until the outlet valve is 
+fully closed and this will occur when the controller output is zero.  Unfortunately the 
+---PAGE---
+ 
+USNRC HRTD 1.3-8 Rev 0101 
+output of the controller will equal zero only when the tank is empty.  An empty tank 
+falls far short of the goal of controlling tank level at 50%.  Conversely, if the level in 
+the tank was at 50% and the inlet flow was increased to its maximum value, then 
+inlet flow would be greater than outlet flow causing tank level to increase.   
+ 
+The increase in tank level is sensed by the level transmitter.  The change in the 
+output of the level transmitter is compared with the setpoint in the summing unit ( Σ) 
+resulting in an error signal.  The error signal causes an increase in the output of the 
+controller resulting in the opening of the outlet control valve.  In order to stop the 
+increase in tank level, the outlet valve must be fully open.  The outlet valve will be 
+100% open when the tank is full.  Again, the control system will not control the tank 
+level at setpoint.  From these two examples, it is evident that the controller will not 
+operate correctly in its present configuration.  However, if the output of the controller 
+can be increased by a value that is proportional to the change in the error signal, 
+then the outlet valve will achieve its required position sooner.  This will prevent gross 
+oscillations in tank level.  Such a controller is called a proportional controller 
+because its output is proportional to the input error signal. 
+   
+output = (k) (error signal) 
+ 
+where: 
+k is the proportionality constant. 
+   
+To illustrate the effect of the proportionality constant, values of k equal to 2 and 5 
+will be arbitrarily chosen while maintaining a 50% controller output with a zero error 
+signal.  As shown in Figure 1.3-19(a) with k equal to 2, if the error signal increases 
+by 25% then the output of the controller will increase to 100%.  In the opposite 
+direction a change in the error signal of 25% will result in a controller output of 0%.   
+Formally k is called the Again@ of the controller and is defined as follows:   
+ 
+Gain = Δ output / Δ input 
+ 
+The output of the control system versus tank level for the two different values of gain 
+is shown in Figure 1.3-19(b).  The effects of these two values of gain will be 
+examined with perturbations in inlet flow.   
+ 
+Note on Figure 1.3-19(c) that tank level is at 50% (setpoint).  At time t=1, the inlet 
+flow is stopped.  With output flow greater than inlet flow, tank level begins to 
+decrease.  The decrease in tank level will continue until the outlet valve is fully 
+closed.  The value of tank level resulting in closure of the outlet valve can be 
+determined from Figure 1.3-19(b).  With a gain of 2 the valve will be closed when 
+tank level is 25%. At time t=4, inlet flow is increased from zero to its maximum value. 
+Since inlet flow is greater than outlet flow, tank level will rise.  The increase in tank 
+level will stop when outlet and inlet flows are equal.  This will occur when the outlet 
+valve is 100% open.  Again, the tank level corresponding to the full open valve 
+position can be determined from Figure 1.3-19(b).  Since the controller has a gain of 
+2, the level increase will be stopped at 75%.  
+ 
+Now, using a gain of 5 for the same conditions as described above with the previous 
+gain of 2. At time t=1, with the tank level at 50% (setpoint), the inlet flow is stopped. 
+---PAGE---
+ 
+USNRC HRTD 1.3-9 Rev 0101 
+With output flow greater than inlet flow, tank level begins to decrease.  The 
+decrease in tank level will continue until the outlet valve is fully closed.  The value of 
+tank level resulting in closure of the outlet valve can be determined from Figure 1.3-
+19(c).  With a gain of 5 the valve will be closed when tank level is 40%. When k is 
+equal to 5, changes in the error signal of -10% to +10% correspond to controller 
+output of 0% and 100% respectively. With a gain of 5, the increase in tank level will 
+be terminated at 60%. 
+ 
+It should be noted that tank level is not controlled at setpoint in either case.  This is 
+a characteristic of a proportional controller.  A proportional controller will not control 
+at setpoint because a change in the error signal is required to cause a change in the 
+output of the controller.  Although the proportional controller will not control at 
+setpoint, it will control within a band around the setpoint.  This leads to the definition 
+of the proportional band (PB).  The proportional band of a controller is the change in 
+input required to cause a 100% change in the output.  The proportional band is the 
+reciprocal of gain as illustrated on Figure 1.3-19(c) and the following: 
+ 
+ 
+Table 1.3-1 
+Gain and Proportional Band 
+ 
+Gain                    Proportional Band (in %) 
+ 
+0.5                                    200% 
+1.0                                    100% 
+2.0                                     50% 
+5.0                                     20% 
+ 
+At a glance it would appear that increasing the gain would cause the controller to 
+control closer to setpoint.  While this is true, limitations on gain do exist.  Equipment 
+or process time delays must be taken into consideration when choosing values of 
+gain.  
+ 
+1.3.6.2 Proportional Plus Integral Control  
+ 
+In order to eliminate the proportional controller’s offset between the actual value of 
+the parameter and the process setpoint, integral control action is added to the 
+control system (see Figure 1.3-20).  The integral action eliminates the offset by 
+integrating the proportional band and adding this signal to the controller output.  
+Prior to examining the operation of integral action, two terms need to be defined.  
+The first term is “reset rate” and is defined as the number of times the magnitude of 
+the change in controller output caused by the proportional band deviation will be 
+added to the controller output per unit time.  Reset rate is expressed in repeats per 
+minute (RPM).  The other term is “reset time” and is defined as the time required to 
+repeat the magnitude of the change caused by the proportional band action.  Reset 
+rate and reset time are reciprocal terms.  To illustrate this, assume a controller has a 
+proportional band of 200% (gain = 0.5) and a reset rate of 2 RPM.  If a step change 
+of 20% occurs in the process variable, the magnitude of the change in the controller 
+output due to proportional band action is 10%.  A reset rate of 2 RPM will cause a 
+---PAGE---
+ 
+USNRC HRTD 1.3-10 Rev 0101 
+change of an additional 20% every minute the error exists.  A reset rate of 2 RPM 
+corresponds to a reset time of 0.5 minutes; therefore, the output of the controller will 
+be changed an additional 10% every 30 seconds.   
+ 
+For review, the actions of the control system in response to a step change from 50% 
+to 70% with a gain of 0.5 and a reset rate of 1 RPM are as follows:  
+ 
+1. The controller output due to proportional  controller action will increase from 
+50% to 60% (20% Δ input x 0.5 gain = 10%).   
+2. The change of 10% due to proportional action will cause a change of 10% 
+every minute for a 1 RPM reset rate.  
+3. The output of the integral action will be combined with the output of the 
+proportional controller to cause a greater opening of the tank outlet control 
+valve for each percent level error.  
+4. A greater opening of the control valve will increase the outlet flow from the 
+tank.  If outlet flow is increased, then tank level will decrease.   
+5. As the level decreases, the output of the controller will decrease closing down 
+on the outlet control valve.  This action will continue until the setpoint of 50% 
+is reached.   
+ 
+Now use the same initial conditions as above, with the exception that the reset rate 
+is changed to 2 RPM. The actions of the control system in response to a step 
+change from 50% to 70%, with a gain of 0.5 and a reset rate of 2 RPM, are as 
+follows:  
+ 
+1. The controller output due to proportional  controller action will increase from 
+50% to 60% (20% Δ input x 0.5 gain = 10%).   
+2. The change of 10% due to proportional action will cause a change of 20% 
+every minute for a 2 RPM reset rate.  
+3. The output of the integral action will be combined with the output of the 
+proportional controller to cause a greater opening of the tank outlet control 
+valve for each percent level error.  
+4. A greater opening of the control valve will increase the outlet flow from the 
+tank.  If outlet flow is increased, then tank level will decrease.   
+5. As the level decreases, the output of the controller will decrease closing down 
+on the outlet control valve.  This action will continue until the setpoint of 50% 
+is reached.  
+ 
+The addition of integral action to the controller will achieve the desired result of 
+having the control system control at setpoint because controller output will continue 
+to change as long as an offset between the actual value of the parameter and its 
+---PAGE---
+ 
+USNRC HRTD 1.3-11 Rev 0101 
+setpoint exists.  As the value of the controller changes, the controlled device will be 
+modulated.  This action will restore the parameter to setpoint. 
+  
+1.3.6.3 Proportional Plus Derivative Control   
+  
+The installation of derivative action into the control scheme gives the system the 
+ability to start action based upon the rate of change of the control systems input.  
+This is sometimes referred to as an anticipatory circuit.  A derivative controller 
+“anticipates” the change in the process variable by the addition of a signal that is 
+proportional to the rate of change of the input signal.  The change in controller 
+output due to derivative action is called “rate gain” and is defined as the 
+multiplication of the change in proportional action due to a step change in the 
+process parameter.  A step change is used here as a reference condition.  
+ 
+As an example, if a step change of 10% causes a proportional controller’s output to 
+change by 5% (200% proportional band), then the addition of derivative action with a 
+rate gain of 5 would cause an additional increase in the controllers output of 25%.  
+Figure 1.3-21 illustrates the effects of adding derivative action to the control system. 
+Inlet flow to the tank is adjusted to give a rate of increase in level of 10% per minute 
+It will be assumed that the increase in controller output does not decrease the rate 
+of level increase (no feedback).  As tank level begins to increase at a rate of 10% 
+per minute, the output of the controller due to proportional action begins to increase 
+at 5% per minute (gain times the change in input).  The rate of change of level is 
+constant; therefore, the output of the derivative circuit will increase from 0% to 10% 
+(rate gain of 2 times the 5% change in output due to proportional band action) and 
+remain constant.   
+ 
+The increase in controller output positions the level control valve to a greater 
+opening per percent level error restoring tank level to setpoint sooner.  A 
+comparison of the proportional control output graph, and the proportional plus 
+derivative graph, shows that the time required to reach a particular controller output 
+is decreased by the addition of derivative action.   This reduction in time is called 
+“rate time” and is defined as the decrease in time it would take the controller output 
+to reach the same value that would be obtained by only proportional action when the 
+process parameter is changing from setpoint at a constant rate.   
+ 
+Figure 1.3-21 shows a transient involving a step change in tank level.  The step 
+change causes an increased controller output due to proportional plus derivative 
+action.  After the step change has occurred, the rate of change of level deviation is 
+zero.  This causes the derivative signal to be reduced to zero over a given period of 
+time.   
+ 
+The time required for the output to decay by 63.2% of the signal due to the action of 
+the derivative portion of the controller is called the “time constant.”  The output of the 
+controller is an exponential function and will change by 63.2% of the controller’s 
+maximum value in one time constant.  The output of the derivative portion of the 
+controller will equal zero after 5 time constants.  If the deviation between setpoint 
+and the process parameter, as shown in Figure 1.3-21 is increasing, the portion of 
+the controller output due to derivative action will reach its steady state value in five 
+time constants.  
+---PAGE---
+ 
+USNRC HRTD 1.3-12 Rev 0101 
+1.3.6.4 Proportional Plus Integral Plus  Derivative (PID) Controllers    
+ 
+The proportional plus integral plus derivative (PID) controller is the most sophisticated 
+controller used in the power plant and can be used to summarize the previous types of 
+controllers. The proportional component of the PID provides an output that is 
+proportional to its input.  The input signal to the controller is the error that results from 
+the comparison of the actual value of the parameter and its desired value (setpoint). 
+   
+The proportionality constant is called gain.  Since a change in the input is required to 
+cause a repositioning of the controlled device, an inherent offset would exist.  The 
+addition of the integral portion of the PID controller eliminates the offset of the 
+proportional action.  The integral portion of the controller accomplishes this function 
+by adding the integral of the proportional deviation to the output of the controller.  
+This increase in controller output changes the status of the controlled device and 
+causes the process parameter to achieve the desired value.  Finally, the derivative 
+action adds an anticipatory feature to the controller.  This anticipatory feature is 
+performed by adding a signal to the controller output that is proportional to the rate 
+of change (the derivative) of the proportional band deviation.  Response of the PID 
+controller to various input signals without feedback is shown on Figure 1.3-23.   
+ 
+ 
+1.3.7 Logic Diagrams   
+ 
+The concept of logic diagrams was introduced to provide complete system information 
+to personnel in an easily interpreted format.  These diagrams, through the use of 
+standard symbols, explain specific system or component control, protection and 
+operational capabilities without requiring deta iled research of comp lex electrical or 
+mechanical system diagrams.  With the use of a few standard symbols and a basic 
+knowledge of the system’s functions and capabilities, a large quantity of useful 
+information may be obtained.  To illustrate the concept of logic diagrams and their 
+component parts, the basic symbols will be introduced and briefly discussed and an 
+example given of their application.   
+ 
+The symbols to be discussed will not be all inclusive; however, those discussed are the 
+most common.  In every case of logic diagram usage by a vendor, architect engineer, 
+or utility, an explanation sheet of symbols is included.  
+ 
+1.3.7.1 “OR” Logic   
+ 
+The “OR” logic is represented in Figure 1.3-26(a).  This logic symbolizes an input 
+and an output function.  In the “OR” logic flow, any input signal is considered to be 
+passed through to produce an output.  The loss of all inputs will cause a loss of the 
+output.  
+ 
+1.3.7.2 “AND” Logic   
+ 
+The “AND” logic is represented in Figure 1.3-26(b).  Multiple input functions are 
+required to produce an output function.  In the “AND” logic, all input functions or a 
+specified number of the input functions must be present to produce an output.   
+ 
+---PAGE---
+ 
+USNRC HRTD 1.3-13 Rev 0101 
+1.3.7.3 “NOT” Logic   
+ 
+The “NOT” logic represented in Figure 1.3-26(c) illustrates a function that will produce 
+an output with no input signal.  Likewise, with an input signal present, no output is 
+produced.   
+ 
+1.3.7.4 Retentive Memory   
+ 
+This logic function in Figure 1.3-26(d) will either produce an output or not produce an 
+output depending on its last energized input.  If the last input signal received is the input 
+aligned with the output, an output signal is allowed to pass.  If the last input signal 
+received is not aligned with the output, the output signal will be terminated.   
+ 
+ 
+1.3.8 Electrical Relay  
+ 
+Figure 1.3-27 illustrates the physical layout of a relay and the electrical circuit 
+representations.   There are two types of auxiliary contacts used in relays.  The “A” 
+contacts are shut when the main relay contacts are shut, and open when the main 
+relay contacts are open. The “B” contacts are open when the main relay contacts 
+are shut and shut when the main relay contacts are open.  These “A” and “B” 
+contacts are used as part of the instrumentation and control circuits for the system 
+controlled by the relay.  
+---PAGE---
+ 
+ 
+0199-1
+Figure1 . 3-1S i m ple Bourdon Tube
+---PAGE---
+ 
+0199-1
+Figure1 . 3-2 Wound P ressure Detectors
+POINTER
+PRESSURE
+CONNECTION
+(a) Spiral pressure detector
+POINTER
+(b) Helical pressure detector
+PRESSURE
+CONNECTION
+ 
+---PAGE---
+ 
+ 
+0109-1
+Figure 1.3-3 Sealed Pressure Detectors
+DIAPHRAGM
+SPRING
+PRESSURE INLET
+FORCE
+BAR
+SEALED FLEXURE
+(b) Diaphragm Pressure Sensor
+BELLOWS
+ASSEMBLY
+SPRING
+PRESSURE INLET
+FORCE
+BAR
+SEALED FLEXURE
+(a) Bellows Pressure Sensor
+---PAGE---
+ 
+ 
+PRESSURE
+CONNECTION
+PRESSURE
+HOUSING
+DIAPHRAGM
+SEALED FLEXUREPIVOT
+POINT
+FORCE
+FEEDBACK
+COIL
+TRANSMITTER
+LOAD
+4-20
+mA DC
+AMPLIFIER
+primary
+secondary
+ERROR
+DETECTOR
+TRANSFORMER
+RANGE
+ADJUST
+REFERENCE
+ARM
+FORCE
+BAR
+0199-23
+1.3-4
+Figure 1.3-4 Force Balance Transmitters
+---PAGE---
+ 
+0199-1
+Figure 1.3-5M o v a b l eCore Transmitters
++
+_
+CORE POSITION
+VOLTAGE OUT
+TO
+MECHANICAL
+LINKAGE
+SECONDARY
+COIL 1
+PRIMARY
+COIL
+SECONDARY
+COIL 2
+TRANSFORMER
+CORE
+TRANSMITTER
+HOUSING
+---PAGE---
+ 
+ZERO AND SPAN
+ADJUSTMENTS
+AMPLIFIER
+CIRCUIT
+BOARDS
+BOLT HOLE
+PROCESS FLANGE
+PROCESS CONNECTION
+FLANGE
+ADAPTER
+O-RING
+ISOLATING
+DIAPHRAGM
+O-RING
+DOUBLE O-RING
+SEAL
+SENSING MODULE
+CAPACITANCE BRIDGE
+SIGNAL LEADS CAPACITOR PLATES
+SENSING DIAPHRAGM
+TEMPERATURE STABLE
+CAPACITOR BASE
+SILICONE FILL
+PROCESS FLUID ISOLATING DIAPHRAGM
+RETAINGIN
+RING
+0199-3
+Figure 1.3-6 Variable Capacitance Transmitters
+ 
+---PAGE---
+ 
+ 
+0199-1
+Figure1 . 3-7P rimary Devices
+P-1
+P-2
+FLOW
+HP TAP LP TAP
+VENTURI
+.15(P1-P2)
+UNRECOVERED
+HEAD
+P-1
+P-2
+FLOW
+UPSTREAM
+(HP TAP)
+.25(P1-P2)
+UNRECOVERED
+HEAD
+DOWNSTREAM
+(LP TAP)
+FLOW
+NOZZLE
+P-1
+P-2
+FLOW
+UPSTREAM
+(HP TAP)
+DOWNSTREAM
+(LP TAP)
+.3(P1-P2)
+UNRECOVERED
+HEAD
+ORIFICE
+PLATE
+---PAGE---
+ 
+0199-1
+PROCESS
+CONNECTION
+LOW PRESSURE
+BELLOWS FORCE BAR
+ASSEMBLY
+PROCESS
+CONNECTION HIGH PRESSURE
+BELLOWS
+Figure1 . 3-8B e l l owsF l ow Sensor  
+---PAGE---
+ 
+ 
+Figure1 . 3-9D i a phragmF l ow Sensor
+SEAL FORCE BAR
+LOW PRESSURE
+CONNECTION
+DIAPHRAGM
+HIGH PRESSURE
+CONNECTION
+0199-1
+---PAGE---
+ 
+ 
+HIGH INPUT
+IMPEDANCE
+PRE-AMPLIFIER
+AMPLIFIER
+RECTIFIER
+AND FILTER
+OUTPUT
+CONVERTER
+OUTPUT
+4t o2 0m aD C
+PROCESS
+LIQUID
+AC CURRENT
+ELECTROMAGNET
+PROCESS
+PIPING
+ELECTRODES
+Figure 1.3-10 Ma gnetic Flow Meter
+0199-1
+---PAGE---
+ 
+ 
+CAPACITANCE
+BRIDGE
+SIGNAL LEADS
+CAPACITOR PLATES
+SENSING DIAPHRAGM
+TEMPERATURE STABLE
+CAPACITOR BASE
+SILICONE FILL
+PROCESS FLUID ISOLATING DIAPHRAGM
+RETAINING
+RING
+ABSOLUTE PRESSURE SENSOR
+EVACUATED
+ABSOLUTE
+REFERENCE
+BOLT HOLE
+PROCESS FLANGE
+PROCESS CONNECTION
+FLANGE
+ADAPTER
+O-RING
+ISOLATING
+DIAPHRAGM
+O-RING
+SENSING MODULE
+mA METER TEST
+WIRING TERMINALS EXTERNAL COVER
+TRANSPARENT
+INTERNAL COVER
+SIGNAL WIRING
+TERMINALS
+ELECTRONIC
+CIRCUITRY
+Figure1 . 3 - 1 1 V ariable Capacitance Differential PressureS e n s or
+3-0101
+---PAGE---
+ 
+ 
+BOURDON
+TUBE
+POINTER
+TEMPERATURE
+SCALE
+CAPILLARY
+TUBE
+VOLATILE
+LIQUID
+Figure1 . 3-12 Fluid Filled Tem peratureS e n s or
+0199-1
+---PAGE---
+ 
+ 
+WELL
+THERMOCOUPLE
+EXTENSION
+WIRES
+METER
+HOT
+JUNCTION
+COLD
+JUNCTION
+HEAT
+TERMINAL
+BLOCK
+Figure1 . 3-13 The rmocouple
+0199-1
+---PAGE---
+ 
+ 
+DETECTOR
+WELL
+PLATINUM SENSING
+ELEMENT
+IMMERSION LENGTH
+COMPRESSION
+SPRING
+TERMINAL
+BLOCK
+R1 R2
+R3
+RTD
+A
+B
+POWER SUPPLY
+0199-1
+Figure 1.3-14 Resistance Temperature Detector
+---PAGE---
+ 
+ 
+LIQUID
+TANK PRESSURE GAGE
+GAS OR VAPOR
+PRESSURE
+Figure 1.3-15 Direct Level Measure Devices
+0199-1
+---PAGE---
+ 
+ 
+LIQUID
+TANK D/P CELL
+GAS OR VAPOR
+PRESSURE
+HP
+LP
+REFERENCE
+LEG
+Figure 1.3-16 Differential Pressure Level Detector
+0199-1
+---PAGE---
+ 
+ 
+LIQUID
+TANK D/P CELL
+GAS OR VAPOR
+PRESSURE
+HP
+LP
+REFERENCE
+LEG
+CONDENSING
+POT
+REFERENCE LEG
+FILL CONNECTION
+0199-1
+Figure1 . 3 - 1 7Reference Leg Differential PressureS ystem
+---PAGE---
+ 
+ 
+0199-1
+Figure1 . 3-18 Basic Control Diagram
+DETECTOR
+CONTROL
+ROOM
+INDICATION
+SUMMING UNITSETPOINT
+ERROR
+SIGNAL
+CONTROLLER
+OUTPUT
+or
+CONTROLLER
+DEVIATION INDICATION
+TO
+CONTROLLED
+DEVICE
+---PAGE---
+ 
+ 
+0199-1
+Figure1 . 3-19 P roportional Controller
+Σ
+LT
+LEVEL
+TRANSMITTER
+ACTUAL
+VALUE
+SETPOINT
+DESIRED VALUE
+OUTLET
+TANK
+K
+INLET
+(A) SIMPLIFIED LEVEL PROPORTIONAL CONTROL CIRCUIT
+OUTPUT
+ERROR
+SETPOINT K=2
+K=5
++-
+LEVEL ABOVE SETPOINT
+VALVE OPENING
+PROPORTIONAL OUTOUT VS. ERROR SIGNAL
+TIME
+TANK LEVEL VS. TIME
+GAS OR VAPOR
+PRESSURE
+20%
+BAND
+K=5
+50%
+BAND
+K=2
+LIQUID
+LEVEL BELOW SETPOINT
+VALVE CLOSING
+---PAGE---
+ 
+ 
+0199-1
+Figure1 . 3-20 P roportional Plus Integral Controller
+---PAGE---
+ 
+ 
+0199-1
+Figure1 . 3-21 Time Constant
+---PAGE---
+ 
+ 
+0199-1
+Figure 1.3-22 Proportional Plus Integral Plus Derivative Controller
+---PAGE---
+ 
+ 
+0199-1
+Σ Σ
+Σ Σ
+Σ Σ
+Σ Σ
+ΣΣ
+Σ Σ
+Σ Σ
+Σ Σ
+Σ Σ Σ
+Σ Σ Σ
+Σ
+Σ
+t
+t
+t
+t t
+t t
+t
+t
+t t
+t t
+ttt
+t tt t
+t t
+tt
+PID
+DERIVATIVE
+PI
+INTEGRAL
+PROPORTIONAL
+INPUT
+STEP
+NEGATIVE
+STEP RAMP
+NEGATIVE
+RAMP
+Figure1 . 3-23 PID Controller Responses
+---PAGE---
+ 
+ 
+02 04 06 0 8 0 1 0 0
+0
+10
+20
+30
+40
+5060
+70
+80
+90
+0
+AUTO MAN
+(C)
+AUTO
+OUTPUT
+MAN
+100
+80
+60
+40
+20
+0
+(A)
+AUTO
+OUTPUT
+MAN
+100
+80
+60
+40
+20
+0
+(B)
+10
+2
+3
+456
+7
+8
+9
+AUTO MAN
+(D)
+0 100 REG. POS.
+SET PT
+1500
+1200
+900
+600
+300
+0
+0199-1
+Figure 1.3-24 Manual/Auto Control Stations
+---PAGE---
+ 
+ 
+POSITIVE STEP
+INPUT
+POSITIVE RAMP
+INPUT
+LAG OUTPUT LAG OUTPUT
+RATE/LAG OUTPUTRATE/LAG OUTPUT
+LEAD/LAG OUTPUT LEAD/LAG OUTPUT
+LEAD=9
+LAG=3
+LEAD=6
+LAG=2
+LEAD=3
+LAG=1
+RATE=3
+LAG=3
+RATE=2
+LAG=3
+RATE=1
+LAG=3
+LAG=3
+LAG=6
+LAG=9 LAG=3 LAG=6 LAG=9
+RATE=3
+LAG=3
+RATE=2
+LAG=3
+RATE=1
+LAG=3
+LEAD=9
+LAG=3
+LEAD=6
+LAG=2
+LEAD=3
+LAG=1
+0199-1
+Figure 1.3-25 Signal Conditioning Output with Varying Time Constants
+---PAGE---
+ 
+ 
+INPUTS
+A B
+OUTPUT
+INPUTS
+A B
+OUTPUT
+INPUTS OUTPUT INPUTS OUTPUT
+A=1, B=0
+A=0, B=1
+A=1, B=1
+A=0, B=0
+A=0, B=0
+A=1, B=0
+A=0, B=1
+A=1, B=1
+0
+0
+0
+1
+1
+1
+1
+0
+(A) "OR" LOGIC (B) "AND" LOGIC
+INPUT
+OUTPUT
+INPUT OUTPUT
+INPUTS
+OUTPUT
+INPUT OUTPUT
+A=1
+B=1
+0
+1
+(D) RETENTIVE MEMORY(C) "NOT" LOGIC
+1
+0
+0
+1
+A B
+O
+F
+F
+O
+N
+0199-1
+Figure1 . 3-26 Lo gic Functions
+---PAGE---
+ 
+ 
+0199-1
+"B"
+CONTACT
+"A"
+CONTACT
+RELAY CONTROL
+POWER
+OUTPUT
+DEVICE #2
+OUTPUT
+DEVICE #1
+INSTRUMENT
+POWER
+RELAY SHOWN DE-ENERGIZED
+RELAY - ELECTRICAL OPERATION
+RELAY SHOWN DE-ENERGIZED
+RELAY - MECHANICAL OPERATION
+COIL
+CONTACT
+LEVER
+INSULATOR
+"B"
+CONTACT
+"A"
+CONTACT
+PIVIOT
+POINT
+PULL-DOWN
+SPRING
+INSTRUMENT
+POWER
+OUTPUT
+DEVICE #1
+OUTPUT
+DEVICE #2
+CONTROL
+POWER
+Figure 1.3-27 Relay  
+---PAGE---

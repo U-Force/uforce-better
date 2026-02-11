@@ -1,0 +1,968 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 19.0 
+ 
+Plant Operations
+---PAGE---
+ 
+USNRC HRTD 19-i Rev 0400 
+ 
+TABLE OF CONTENTS 
+ 
+19.0 PLANT OPERATIONS ................................................................................ 19-1 
+ 
+19.1 Introduction ........................................................................................ 19-1 
+ 
+19.2 Plant Heatup ...................................................................................... 19-1 
+ 
+19.2.1 Initial C onditions .................................................................... 19-1 
+19.2.2 Operations ............................................................................. 19-3 
+ 
+19.3 Reactor Startup to Minimum Load ..................................................... 19-7 
+ 
+19.4 Power Operations .............................................................................. 19-9 
+ 
+19.5 Plant Shutdown................................................................................ 19-11 
+ 
+ 
+ 
+ 
+LIST OF TABLES 
+ 
+APPENDIX 19-1 Plant Startup from Cold Shutdown .......................................... 19-12 
+ 
+ I. INITIAL CONDITIONS  ............................................................................ 19-12 
+ II. INSTRUCTIONS  ..................................................................................... 19-12 
+ 
+A. Heatup from COLD SHUTDOWN to HOT SHUTDOWN 
+ (MODE 5 to MODE 4)......................................................................... 19-12 
+B. Heatup from HOT SHUTDOWN to HOT STANDBY 
+ (MODE 4 to MODE 3)......................................................................... 19-14 
+C. Proceeding from HOT STANDBY to POWER OPERATIONS 
+ (MODE 3 to MODE 1). ....................................................................... 19-14 
+ 
+Checklist Number 1 ............................................................................................ 19-17 
+Checklist Number 2 ............................................................................................ 19-18 
+ 
+ 
+ 
+ 
+LIST OF FIGURES 
+ 
+19-1 ................................................................................. Solid Plant Pressure Control 
+19-2 ........................................................................ Nitrogen Bubble Pressure Control 
+19-3 .................................................................................. Axial Flux Difference Limits 
+19-4 ............................................................... Rod Insertion Limits vs. Thermal Power 
+---PAGE---
+ 
+USNRC HRTD 19-1 Rev 0109 
+19.0 PLANT OPERATIONS  
+ 
+Learning Objectives: 
+ 
+1. Given a list of plant evolutions similar to the following, arrange them in the order 
+that they are performed during plant startup, shutdown, or power operations. 
+ 
+a. Reactor coolant system (RCS) filling and venting; 
+b. Establishing a pressurizer steam bubble; 
+c. Starting reactor coolant pumps; 
+d. Placing all engineered safety features (ESF) systems in an operable 
+condition; 
+e. Establishing the no-load T
+avg; 
+f. Taking the reactor critical; 
+g. Placing main feedwater in service; 
+h. Synchronizing and loading the turbine-generator; 
+i. Placing the rod control system in automatic, placing the steam generator level 
+control system in automatic, and shifting the steam dump control system to 
+the T
+avg mode; and 
+j. Escalating the turbine-generator load to the desired value. 
+ 
+ 
+19.1 Introduction  
+ 
+The purposes of this chapter are as follows: 
+ 
+1. To review control, instrumentation, and plant systems, and 
+ 
+2. To describe plant operations and system alignments during plant shutdowns, 
+plant startups, and power operations.   
+ 
+Basic procedures for starting up, and operating at power, a pressurized water 
+reactor plant are described in this chapter.  This discussion is general in nature and 
+is designed to review the systems discussed in the previous chapters of this manual 
+and describe how they function during plant operations.  An abbreviated plant 
+startup procedure is provided in Appendix 19-1 and is used in conjunction with the 
+material contained in this chapter. 
+ 
+ 
+19.2 Plant Heatup  
+ 
+19.2.1 Initial Conditions 
+ 
+For the purposes of this discussion, it is assumed that the reactor coolant system 
+has been filled and vented, the reactor coolant pumps (RCPs) are secured, and the 
+plant is aligned in a solid-water condition as shown in Figure 19-1.  Solid plant 
+operation is one method of pressure control during a shutdown.   
+ 
+With this pressure control scheme, the pressurizer and the RCS are completely 
+filled with water.  The pressurizer power-operated relief valves (PORVs), their 
+---PAGE---
+ 
+USNRC HRTD 19-2 Rev 0109 
+associated block valves, and the pressurizer spray valves are shut.  The pressure in 
+the RCS is controlled between 320 and 400 psig by maintaining a flow balance 
+between the coolant removed from the RCS and the coolant being returned.  
+Coolant removal is accomplished by letdown, primarily from the residual heat 
+removal system (RHR), and to a lesser extent from the chemical and volume control 
+system (CVCS) letdown line.  Coolant is returned to the primary system via the 
+CVCS by one of the centrifugal charging pumps.   
+ 
+If the charging and the letdown flows are equal, RCS pressure remains constant.  
+Any imbalance between charging and letdown causes the pressure in the RCS to 
+increase or decrease.  As an example, increasing charging flow and maintaining the 
+letdown flow constant increase the mass of coolant in the RCS.  Since water is 
+virtually incompressible, a mass increase causes a pressure increase.   
+ 
+While the plant is in this configuration, HCV-128 (the letdown isolation valve from 
+the RHR system) is fully open.  The control room operator manipulates CVCS 
+backpressure regulating valve PCV-131 in either automatic or manual to vary the 
+rate of letdown from the RCS.  Additional letdown flow from the CVCS is available 
+through letdown orifices 8149A, B, and C.  Since the pressure in the RCS is low at 
+this time, letdown flow via this piping is extremely low. 
+ 
+RCS overpressure protection is provided by the CVCS letdown line relief valve 
+located between the letdown orifice isolation valves and the containment letdown 
+isolation valve (CV 8152), by the RHR pump suction and discharge relief valves, and 
+by the pressurizer PORVs.  
+ 
+The pressurizer PORV low temperature overpressure mitigation switches must be in 
+the UNBLOCK position for the PORVs to actuate at low pressures.  The PORVs, if 
+actuated, provide cold overpressure protection by discharging water from the 
+pressurizer to the pressurizer relief tank (PRT).  They open, if the pressure in the 
+RCS exceeds the cold overpressure protection setpoint. 
+ 
+The nuclear steam supply system (NSSS) is in MODE 5, cold shutdown: T
+avg < 
+200°F, Keff < 0.99, and N/A for the core power level.  In addition, the following 
+conditions exist: the RCS pressure is being maintained between 320 and 400 psig, 
+the boron concentration is sufficient to yield a shutdown margin of at least 1% ΔK/K, 
+the pressurizer is solid, and reactor coolant pumps are secured.   
+ 
+Decay heat is removed from the core by the residual heat removal system with 
+letdown established for RCS cleanup.  The steam generators are in Awet layup@ 
+(filled to the 100% level with water), and all secondary systems are secured with the 
+exception of one circulating water pump.  The main turbine and both feedwater 
+pump turbines are on their respective turning gears.  All pre-startup checklists have 
+been completed. 
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 19-3 Rev 0109 
+19.2.2 Operations  
+ 
+As required by the plant’s Technical Specifications, the reactor coolant must be at 
+its no-load operating temperature prior to criticality.  The reactor coolant is heated by 
+decay heat from the reactor core and reactor coolant pump heat. 
+With the plant in cold shutdown, the pressure in the RCS must be at least 320 psig 
+to support running the reactor coolant pumps.  A pressure of 320 psig provides two 
+functions: first, it ensures a net positive suction head for the RCPs and second, it 
+ensures that the minimum differential pressure required for lifting the number one 
+pump seals is met.  In addition, the pressure in the RCS must be maintained below 
+450 psig while the residual heat removal system is aligned to the reactor coolant 
+system.  This ensures that the low pressure piping of the RHR system is not over 
+pressurized and prevents the lifting of the RHR pump discharge relief valves.  
+Finally, seal injection flow from the chemical and volume control system is required 
+to cool and lubricate the lower radial bearings and the seal packages of the RCPs. 
+ 
+Prior to starting the reactor coolant pumps, a steam bubble is established in the 
+pressurizer.  This ensures that a surge volume is available in the pressurizer for 
+water expansion caused by the heatup of the coolant. 
+ 
+Steam bubble formation in the pressurizer is accomplished by heating the water 
+volume of the pressurizer with the pressurizer heaters.  Concurrently, charging and 
+letdown flows are adjusted to maintain the pressure within the RCS between 320 
+and 400 psig. 
+ 
+When the temperature in the pressurizer reaches 428°F to 448°F (saturation 
+temperature for an RCS pressure between 320 psig and 400 psig), charging flow is 
+reduced to form the steam bubble.  As the steam bubble forms, RCS letdown is 
+increased, and the charging flow is maintained constant.  The difference between 
+these flow rates causes the level in the pressurizer to decrease, and operators lower 
+the level to 25 percent.  With a steam bubble established in the pressurizer, RCS 
+pressure is controlled is by pressurizer heater and spray valve operation.   
+ 
+Nitrogen Bubble Pressure Control  
+ 
+RCS pressure control through use of a nitrogen cover gas can be used as an 
+alternate method of controlling pressure.  This control scheme may be used when 
+the shutdown requires access to the RCS.  In this mode of pressure control, as 
+shown in Figure 19-2, the pressurizer is filled to 90 percent, as indicated by the cold-
+calibrated level instrument, and vented to the PRT via open PORVs.   
+ 
+A Tygon hose is temporarily installed between the pressurizer vent line (upstream of 
+the PORVs) and the vent on the PRT to supply nitrogen to the pressurizer.  The 
+nitrogen pressure regulator for the PRT is adjusted so that six psig of nitrogen 
+overpressure is applied to the PRT.  This form of pressure control provides a stable 
+RCS pressure without constant operator action, while still allowing some expansion 
+and contraction of the coolant.   
+ 
+During nitrogen bubble pressure control, RHR flow is maintained for decay heat 
+removal, and letdown and charging are maintained for purification of the reactor 
+---PAGE---
+ 
+USNRC HRTD 19-4 Rev 0109 
+coolant.  Nitrogen is used as a cover gas to minimize corrosion and to prevent 
+explosive mixtures of hydrogen and oxygen within the RCS piping or components.   
+ 
+RCS overpressure protection is provided by the letdown line relief valve (if aligned), 
+the RHR pump suction and discharge relief valves, and the rupture discs installed 
+on the PRT.  Since the RCS and the pressurizer are not completely filled with 
+coolant, the chances of an overpressure event are unlikely. The transformation of 
+the pressurizer void from nitrogen to steam is accomplished at the start of the plant 
+heatup. 
+  
+Prior to drawing a steam bubble, charging and letdown must be in service.  Letdown 
+is via the RHR-to-CVCS cross-connect valve HCV-128.  A letdown flow of 75 gallons 
+per minute is established through coordinated operation of HCV-128 (fully open) 
+PCV-131 (throttled).  When pressurizer level is < 80 percent, a charging pump is 
+started to maintain pressurizer level constant during bubble formation. 
+ 
+All groups of pressurizer heaters are energized to raise the pressurizer water 
+temperature to saturation.  Steam formation begins when the pressurizer water 
+temperature is at saturation, approximately 230°F at 6 psig.  With the pressurizer at 
+saturated conditions, further heating causes the temperature and pressure in the 
+pressurizer to increase.  As pressure increases, steam and nitrogen are displaced to 
+the PRT. 
+ 
+Indications of steam formation are provided by the pressurizer vapor space and 
+pressurizer PORV tailpipe temperature instruments.  Initially, these instruments 
+indicate the containment ambient temperature.  With steam formation, their 
+indications approach the saturation temperature of 230°F.  Positive indication of a 
+steam bubble is determined by the use of the auxiliary spray valve from the CVCS.  
+If a steam bubble exists, closing the PORVs and initiating auxiliary spray flow into 
+the pressurizer cause a rapid pressure decrease in the pressurizer.  When this 
+phenomenon is observed, the PORVs are placed in automatic, and the connection 
+between the PRT and the pressurizer is isolated, and the Tygon tubing is removed.  
+As pressure increases toward 320 psig, letdown flow is increased to accommodate 
+the expansion of the reactor coolant and to lower the level in the pressurizer. 
+ 
+Once a bubble is drawn in the pressurizer and the pressure in the RCS has reached 
+320 psig, the reactor coolant pumps are started.  The RCPs are started one at a 
+time until all four pumps are running.  After all reactor coolant pumps are operating, 
+the residual heat removal pumps are stopped, since they are no longer needed to 
+remove decay heat or to provide forced flow through the core as required by the 
+plant’s Technical Specifications.   
+ 
+With all four RCPs operating and the RHR system secured, the reactor coolant 
+begins to heat up at a rate of approximately 50°F per hour.  The residual heat 
+removal system alignment is maintained in its initial configuration to provide an 
+adequate letdown capacity for the removal of the excess coolant volume produced 
+by expansion due to heatup.  As a result of the heatup and the draining of the 
+pressurizer, approximately one-third of the reactor coolant system volume (30,000 
+gallons) is diverted to the holdup tanks through the chemical and volume control 
+system. 
+---PAGE---
+ 
+USNRC HRTD 19-5 Rev 0109 
+Prior to exceeding 200°F (entering MODE 4), all surveillance requirements for 
+entering this MODE must be satisfactorily completed (see Checklist No.1).  The 
+plant=s Technical Specifications define MODE 4, hot shutdown, as: 350°F > T
+avg < 
+200°F, Keff < 0.99, and N/A for the core power level.  
+  
+As the reactor coolant temperature approaches 200°F, steam generator draining is 
+commenced through the normal blowdown system.  If the oxygen concentration in 
+the reactor coolant is high, hydrazine is added through the chemical and volume 
+control system for oxygen scavenging (the oxygen concentration must be within 
+specification before the coolant temperature exceeds 250°F). 
+ 
+When the oxygen concentration is within specification, a hydrogen overpressure is 
+applied to the volume control tank.  This is accomplished by first securing the 
+nitrogen regulator, opening the vent from the volume control tank to the waste gas 
+header, and raising the volume control tank level to force the nitrogen to the waste 
+gas system.  After the volume control tank level has risen to approximately 95%, the 
+hydrogen regulator is placed in service, and the last of the nitrogen is purged to the 
+waste gas system.  The volume control tank level is allowed to return to normal with 
+the hydrogen regulator maintaining an overpressure of approximately 15 to 20 psig. 
+ 
+An inspection of containment is conducted for debris that could cause blockage of 
+the containment sumps or produce fire hazards as the systems and their 
+components heat up.  Finally, before the plant enters MODE 4, the containment 
+spray system is aligned for operation.  At approximately 220°F RCS temperature, 
+steam formation begins in the steam generators.  The nitrogen supply to the steam 
+generators, having been applied to prevent or minimize corrosion inside the steam 
+generators, is now isolated.   
+ 
+Secondary Plant Heatup  
+ 
+Warming of the steam lines and the main turbine is performed simultaneously with 
+the RCS heatup; however, before steam can be supplied to the main turbine, the 
+turbine lubricating oil and cooling water systems must be placed in service.  Motor-
+driven lubricating oil pumps provide the necessary lubrication for rolling the main 
+turbine.  To ensure the even heating of the turbine rotor, the turbine must be on the 
+turning gear prior to warming. 
+ 
+The condensate and circulating water systems are started at this time.  The 
+condensate and feedwater systems are aligned to provide cleanup of the secondary 
+water by circulating condensate through one condensate polishing demineralizer.  
+The condensate flows through the in-service polisher and the low pressure heaters 
+to the main feedwater pump suctions.  The feedwater pumps are aligned for 
+operation, and the feed pump turbines are rotating on their respective turning gears. 
+Condensate flows through the idle feedwater pumps and the high pressure heaters 
+and then back to the condenser through the feedwater pump recirculation valve. 
+ 
+Warming of the steam lines is initiated by opening the main steam isolation valves 
+(MSIVs). thereby admitting steam to the individual steam lines up to the main turbine 
+stop valves.  The steam lines are thus heated as the coolant is heated.  Condensate 
+that forms in the steam lines is drained to the condenser via steam line drain traps 
+---PAGE---
+ 
+USNRC HRTD 19-6 Rev 0109 
+and drain trap bypasses.  Simultaneous warming of the steam lines and the main 
+turbine is accomplished by clearing all turbine generator trip signals and initiating 
+turbine shell warming.  The turbine electrohydraulic control (EHC), gland sealing 
+steam, and condenser air removal systems must be placed in service to provide 
+steam valve control and a condenser vacuum.  Steam blanketing of the moisture 
+separator reheaters (MSRs) is also initiated to warm and deaerate the MSR first- 
+and second-stage reheater tube bundles.  MSR blanketing steam is supplied by the 
+auxiliary steam system. 
+ 
+Before the reactor coolant temperature reaches 350°F, the operators must 
+satisfactorily complete the surveillance requirements for entering MODE 3, hot 
+standby (see Checklist No. 1).  MODE 3 is defined by the plant’s Technical 
+Specifications as: T
+avg > 350°F, Keff < 0.99, and N/A for the core power level. 
+ 
+The residual heat removal system is now isolated from the reactor coolant system 
+and aligned for at power operation (emergency core cooling system lineup).  At this 
+time, all reactor coolant letdown is through the normal letdown orifices of the 
+chemical and volume control system.  After the residual heat removal system is 
+isolated from the reactor coolant system, pressure is allowed to increase as the 
+temperature in the pressurizer increases. 
+ 
+RCS Heatup and Pressurization  
+ 
+As the plant heatup continues, the pressurizer level continues to increase due to 
+coolant expansion.  Once placed in automatic, the pressurizer level control system 
+automatically compensates by reducing the charging flow.  During this evolution, the 
+seal injection flow control valve, HCV-182, may require adjustment by the control 
+room operator to maintain the proper reactor coolant pump seal injection flows as 
+the charging flow varies. 
+ 
+As reactor coolant pressure increases, letdown flow also increases.  The letdown 
+backpressure regulating valve (PCV-131) is adjusted until the normal letdown 
+pressure (350 psig) is achieved, and the orifice isolation valves are closed as 
+necessary to maintain letdown flow below the allowed maximum of 120 gpm.  When 
+reactor coolant system pressure reaches 1925 psig, the cold leg accumulator 
+isolation valves are opened, and all emergency core cooling system equipment is 
+checked for proper alignment. 
+ 
+Pressure and temperature relationships must be constantly observed during a 
+combined plant heatup to prevent an inadvertent reactor trip or safety injection 
+actuation signal.  Although the reactor is shut down, a reactor trip signal would 
+cause the shutdown rods, possibly already withdrawn, to trip into the core.  A safety 
+injection actuation signal would cause the insertion of the shutdown rods and the 
+activation of the design bases accident (DBA) sequencers.  A safety injection 
+actuation can occur with sloppy RCS pressure control.  Once the pressurizer 
+pressure is raised above 1915 psig (P-11 setpoint), the block signal of the low 
+pressurizer pressure safety injection actuation is automatically removed.  After that, 
+any evolution that would cause RCS pressure to decrease below 1807 psig initiates 
+a low pressure safety injection actuation.  
+  
+---PAGE---
+ 
+USNRC HRTD 19-7 Rev 0109 
+A safety injection actuation and main steam isolation can occur if the high steam line 
+flow setpoint is exceeded with steam pressures below 600 psig or the RCS Tavg 
+below 553°F.  High steam flow could result from an increase in steam flow through 
+the steam dump valves or from an increase in the turbine warming rate.  Also, 
+overfeeding a single steam generator with cold feedwater can cause its pressure to 
+decrease, thereby initiating a high steam line ΔP safety injection actuation.   
+ 
+The primary plant heatup is terminated by automatic actuation of the steam dumps 
+(in steam pressure control) when the pressure inside the steam header pressure 
+reaches 1092 psig.  The RCS temperature remains constant at 557°F, the steam 
+dumps removing any excess energy that would tend to drive the RCS temperature 
+higher. 
+ 
+Turbine warming is secured after a specified warming time has been completed.  
+Upon completion of heatup and pressurization, the reactor coolant is at the normal 
+no-load temperature and pressure values, and the plant is ready for a reactor 
+startup.  The turbine and steam lines are warmed, with preparations completed for 
+secondary startup.  The pressurizer heaters and sprays are placed in automatic 
+control when the pressure reaches the normal operating value of 2235 psig. 
+ 
+A reactor coolant leak rate test is performed when the reactor coolant temperature is 
+greater than 400°F and the pressure is equal to 2235 psig.  This test is required at 
+this time only if the reactor coolant system has been opened for refueling or 
+maintenance. 
+ 
+Prior to reactor startup, the plant conditions are as follows:   
+ 
+$ The RCS is at normal operating temperature and pressure (557°F, and 2235 
+psig),  
+$ The reactor is shut down (subcritical), 
+$ A condenser vacuum has been drawn, 
+$ The steam dump control system is oper ating in the steam pressure mode, 
+$ The main turbine and feedwater pump turbines are rotating on their turning 
+gears, and 
+$ All electrical power is supplied from off-site.  
+ 
+ 
+19.3 Reactor Startup to Minimum Load  
+ 
+A reactor startup is performed at the no-load temperature of 557°F.  The Technical 
+Specifications require a minimum temperature, 551°F, for criticality.  If the coolant 
+average temperature drops below this value, the operator either restores the 
+temperature within a short period of time or makes the reactor subcritical. 
+ 
+Prior to the withdrawal of the control rods to cause core criticality, an estimated 
+critical condition (ECC) is calculated.  The ECC calculation is a reactivity balance 
+comparing the previous critical condition and reactivity changes following the last 
+shutdown to the desired conditions for the next startup.  Since the previous and 
+present reactivity conditions are known, it is relatively easy to calculate the required 
+conditions for the next criticality.  The reactivity variables for which the operator has 
+---PAGE---
+ 
+USNRC HRTD 19-8 Rev 0109 
+direct control are boron concentration and control rod position.  The ECC is normally 
+computed using a desired critical rod position.  The boron concentration is then 
+adjusted so that the reactor will be critical at the desired rod position. 
+ 
+Prior to entering MODE 2, startup, and MODE 1, power operation, all surveillance 
+requirements for entering these modes must be satisfactorily completed (see 
+Checklist No. 2).  MODE 2 is defined by the plant’s Technical Specifications as: K
+eff 
+≥ .99 and core power level ≤ 5%. MODE 1 is defined as: Keff ≥ 0.99 and core power 
+level > 5%. 
+ 
+Control rods are withdrawn to establish criticality.  It is difficult to identify exactly 
+when criticality is achieved during a startup; however, it is readily apparent when 
+supercritical conditions are reached.  Supercriticality is indicated by a constant 
+positive startup rate and steadily increasing source range count rate with no control 
+rod withdrawal.  Criticality is declared when these conditions are observed.  After 
+criticality is achieved, the control rods are positioned to increase nuclear power to 
+10
+-8 amps in the intermediate range.  When power exceeds the source range block 
+permissive (P-6) setpoint, the source range trip is manually blocked and the source 
+range high voltage supply is de-energized.  Power is stabilized at 10
+-8 amps to 
+record actual critical conditions.  The data recorded consists of the control rod 
+positions, boron concentration, and RCS loop average temperatures. 
+ 
+After recording the critical data, the control rods are positioned to increase power to 
+the point of adding heat, approximately one percent power as indicated on the 
+power range instruments, and then to stabilize power at about two percent.  As 
+nuclear power increases above the point of adding heat, the fuel and moderator 
+temperatures increase.  These temperature increases add negative reactivity 
+because of the negative fuel and moderator temperature coefficients.   
+ 
+As the moderator temperature increases, the coolant expands into the pressurizer, 
+causing the level and pressure to increase.  Also, the steam generator temperatures 
+and pressures begin to increase.  Since the steam dumps are in the steam pressure 
+mode of control, the steam dump valves modulate open, maintaining the steam 
+header pressure at 1092 psig.  1092 psig is the saturation pressure for 557°F, which 
+is the no-load T
+avg.  With the steam dumps in steam pressure mode, the RCS T avg 
+does not follow the programmed Tavg; it increases to produce the primary-to-
+secondary ΔT needed to support a steam flow of about two percent of the full-load 
+value. 
+ 
+As the steam dumps modulate open, increasing the steam flow to the main 
+condenser, feedwater flows to the steam generators must be increased.  Since the 
+motor-driven (nonsafety-grade) auxiliary feedwater pump can supply only about two 
+percent of rated feed flow, care is exercised to ensure that the power level does not 
+exceed two percent. 
+ 
+With the power level at some point between 1 x 10
+-8 amps and two percent, the 
+anticipated reactivity changes for power escalation, caused by the increase in power 
+defect and by the change in xenon concentration, are determined, and the required 
+boron concentration change is started.  The rate of power increase could be limited 
+---PAGE---
+ 
+USNRC HRTD 19-9 Rev 0109 
+by improper control rod position if the power defect and xenon concentration change 
+are not predicted correctly. 
+ 
+The power level is maintained at two percent while a main feedwater pump is 
+started and aligned to supply the steam generators through the main feed regulating 
+bypass valves.  The main feedwater bypass valves are then manually manipulated 
+to control steam generator levels.  The main feed pump speed is controlled in 
+manual to maintain 50 - 150 psid between the feed and steam pressures, enough to 
+ensure adequate feed flow to the steam generators through the bypass valves.  
+With a main feedwater pump feeding the steam generators and the auxiliary 
+feedwater system realigned to its normal at-power standby lineup, turbine startup 
+may proceed. 
+ 
+To minimize primary plant transients, the turbine is rolled with reactor power 
+between 10 and 15 percent.  Control rods are withdrawn to raise core power and the 
+RCS temperature.  The steam generator temperatures and pressures would tend to 
+increase with the RCS temperature; however, the steam dumps modulate open to 
+maintain a constant steam pressure constant and to create the steam demand 
+which changes the ΔT across the core.   
+ 
+With nuclear power at 15 percent, the main turbine is rolled off the turning gear and 
+accelerated to 1800 rpm.  As steam flow to the turbine increases, the steam dumps 
+modulate in the closed direction to maintain the 1092-psig steam header pressure.  
+With the turbine running at 1800 rpm, the turbine auxiliary systems are aligned for 
+normal operation, and the turbine protection system is tested to verify proper 
+operation.  Also at this time, the MSR steam control is placed in automatic, thereby 
+removing the auxiliary steam supply from MSR steam blanketing and initiating 
+operation of the normal first- and second-stage MSR steam supplies.  Generator 
+synchronization is performed after satisfactory turbine protection system testing.   
+ 
+When the main generator voltage, frequency, and phases are matched with those of 
+the grid, the generator output breakers are closed, and the generator picks up a 
+minimum load of approximately 60 MWe.  When the generator output breakers 
+close, the turbine EHC system automatically shifts from speed control to load 
+control, and operators can now increase the generator’s electrical output to the grid. 
+ 
+ 
+19.4 Power Operations  
+ 
+The turbine loading rate is determined by the most limiting of the following: the 
+turbine loading limit curve, fuel pre-conditioning requirements, or the load 
+dispatcher’s request.  Once the loading rate is determined, the turbine load is 
+increased to 180 MWe, about 15 percent turbine load.  Increasing the turbine load 
+to 180 MWe results in a shift of steam flow from the steam dumps to the turbine with 
+little or no change in nuclear power.  When the steam dump valves are fully closed, 
+they are placed in the T
+avg mode of operation.   
+ 
+Rod control is placed in automatic when the turbine load satisfies the C-5 interlock 
+(15 percent turbine load) and T
+avg is within 1°F of Tref.  Since the main feedwater 
+bypass regulating valves are rated for 20 - 25 percent of full-load feedwater flow, the 
+---PAGE---
+ 
+USNRC HRTD 19-10 Rev 0109 
+main feedwater regulating valves are placed in service prior to the load increasing 
+above 20 percent.  Main feed pump speed control can be placed in automatic when 
+the main feed regulating valves are controlling the steam generator levels. 
+ 
+To prevent axial xenon oscillations and to maintain peaking factors within license 
+limits, the operator must insure that the indicated axial flux difference (AFD) is 
+maintained within the limits illustrated in Figure 19-3.  Some nuclear units may 
+operate with AFD maintained within a required target band which is more restrictive 
+than the limits shown in this figure.  Even with the liberal limits of Figure 19-3, the 
+plant is likely to operate with AFD administratively maintained within a much more 
+restrictive AFD target band.  Such restrictions mandate the following operational 
+conventions: 
+ 
+1. The control rods are nearly fully withdrawn during all phases of power operations 
+(except for short-term transients).  The increase in power defect associated with 
+a power escalation, is thus overcome with boron dilution. 
+ 
+2. The dilution of the coolant boron concentration is a slow process.  Therefore, 
+power changes at sustained rates of greater than 1% - 2%/minute are not 
+possible if the AFD is to be maintained within the band. 
+ 
+During the power escalation from 20 percent to 100 percent power, additional 
+secondary pumps are placed into service.  These include condensate pumps, 
+circulating water pumps, service water pumps, the second feedwater pump, and 
+heater drain tank pumps.  Condensate demineralizers are also sequentially placed 
+in service as power increases. 
+ 
+The turbine load is increased by selecting the desired loading rate and pressing the 
+load increase pushbutton to increase the load setpoint to the desired value.  The 
+main turbine control valves modulate to positions which should produce the 
+generator electrical output selected with the load-set controller.  A turbine first-stage 
+pressure feedback signal may adjust the control valve positioning signal to ensure 
+that the desired load is actually attained. 
+ 
+The single-loop loss of flow permissive (P-8) enables the single-loop loss of flow 
+reactor trip when reactor power exceeds 39%. 
+ 
+At approximately 50% load, a calorimetric calculation (heat balance) is performed on 
+the secondary system, and an adjustment to the power range nuclear instruments is 
+performed if necessary.  Further calorimetric calculations are performed at 90% and 
+100% power.  These additional calculations are performed to ensure that the power 
+range nuclear instruments are properly calibrated. 
+ 
+At all times when the reactor is critical, the control banks must be maintained above 
+their respective insertion limits.  All shutdown banks and control banks A and B must 
+be fully withdrawn, while control banks C and D must be withdrawn to positions that 
+are greater than the limits specified in Figure 19-4.  Maintaining the rod banks above 
+their respective insertion limits ensures that sufficient negative reactivity is available 
+to achieve and maintain the required shutdown margin in the event of a reactor trip. 
+ 
+---PAGE---
+ 
+USNRC HRTD 19-11 Rev 0109 
+19.5 Plant Shutdown 
+ 
+A plant shutdown is accomplished by essentially reversing the steps described for 
+completing a plant startup. 
+---PAGE---
+ 
+USNRC HRTD 19-12 Rev 0109 
+APPENDIX 19-1 
+Plant Startup from Cold Shutdown 
+ 
+I. INITIAL CONDITIONS 
+ 
+1. Cold Shutdown - MODE 5: 
+ 
+$ K
+eff < 0.99 
+$ 0% power 
+$ T avg < 200°F 
+ 
+2. Reactor Coolant System: solid. 
+3. RCS Temperature: 150 - 160°F. 
+ 
+Note: 
+Temperature may be less than 150°F depending upon the decay heat load of the 
+core. 
+ 
+4. RCS Pressure: 320 - 400 psig. 
+5. Steam Generators: filled to wet la yup (100% wide-range level indication). 
+6. Secondary Systems: shutdown, main turbine and feedwater pump turbines 
+on their turning gears. 
+7. Pre-Startup Checklists: completed. 
+ 
+ 
+II. INSTRUCTIONS 
+ 
+A. Heatup from COLD SHUTDOWN to HOT SHUTDOWN 
+ (MODE 5 to MODE 4)  
+ 
+1. Permission received from Operations Supervisor for startup. 
+2. Begin establishing steam generator water levels to 33 " 5% narrow-range 
+indication. 
+3. Verify or establish RCP seal injection flow. 
+ 
+CAUTION: 
+Do not exceed a heatup rate of 100°F/hr in the pressurizer or 100°F/hr in the RCS. 
+Do not exceed 320°F ΔT between pressurizer and spray temperature.  Use auxiliary 
+spray for pressurizer volume and coolant mixing. 
+ 
+4. Energize pressurizer heaters and begin pressurizer heatup. 
+5. Establish a pressurizer steam bubble by; 
+ 
+a. Increasing pressurizer temperature using pressurizer heaters. 
+b. Adjust charging and letdown flow to maintain pressurizer pressure at 
+approximately 320-400 psig while reducing pressurizer level. 
+c. As pressurizer temperature approaches 428 EF (saturation temperature  
+ for 320 psig), reduce pressurizer level toward 25%. 
+---PAGE---
+ 
+USNRC HRTD 19-13 Rev 0109 
+APPENDIX 19-1 (cont’d) 
+Plant Startup from Cold Shutdown 
+ 
+6. Start the reactor coolant pumps.  Af ter running the pumps for five minutes, 
+sample the RCS for chemistry specifications.  Partially open pressurizer spray 
+valves for coolant mixing. 
+7. Maintain the RCS temperature < 160°F by adjusting flow through the RHR heat 
+exchangers. 
+ 
+NOTE: 
+The 160°F limit is based on cold water addition accident.  This limits the ΔT between 
+seal injection water accumulating in the intermediate leg and the remainder of the 
+RCS. 
+ 
+8. Stop RHR pumps. 
+9. Allow RCS temperature to increase to 200°F. 
+10. When RCS temperature reaches 200°F, ascertain that primary system water 
+chemistry is within specifications. 
+11. When pressurizer level is at the no-load operating level (25%), place the 
+pressurizer level control system in automatic. 
+12. Verify shutdown rods are withdrawn and that sufficient SHUTDOWN MARGIN is 
+available. 
+13. Ensure applicable pre-startup Technical Specification requirements are met.  
+(See Checklist No. 1.) 
+14. At 200°F RCS temperature, establish a hydrogen blanket in the volume control 
+tank. 
+15. Open main steam isolation valves and warm main steam lines. 
+16. Continue pressurizer heatup to maintain desired pressure.  Use low pressure 
+letdown control valve to maintain letdown flow.  Once a steam bubble is 
+established in the pressurizer, RCS pressure will be controlled by heater and 
+spray operation. 
+17. Condensate cleanup is in progress. 
+18. When condensate chemistry is within specifications, align the condensate and 
+feedwater systems to the normal at-power configuration. 
+19. Verify condenser vacuum. 
+20. Warm the main turbine. 
+ 
+CAUTION: 
+Prior to reaching 350°F in the RCS, perform or verify the following: 
+ 
+ $ Verify the control rod drive mechanism cooling fans are operating. 
+ $ Terminate residual heat removal letdown to the CVCS.  
+ 
+---PAGE---
+ 
+USNRC HRTD 19-14 Rev 0109 
+APPENDIX 19-1 (cont’d) 
+Plant Startup from Cold Shutdown 
+ 
+B. Heatup from HOT SHUTDOWN to HOT STANDBY 
+ (MODE 4 to MODE 3) 
+ 
+1. Ensure applicable pre-startup Technical Specification requirements are met.  
+(See Checklist No. 1.) 
+2. Complete the ECCS Master C hecklist (SI, RHR, etc. are aligned). 
+3. Maintain RCS pressure within the operating band of the Pressure-Temperature 
+Limitations Curve. 
+ 
+NOTE: 
+As the RCS pressure increases, maintain letdown flow at a maximum of 120 gpm by 
+increasing the setting of the backpressure regulator (PCV-131) until pressure 
+reaches 350 psig and then by closing the letdown orifice isolation valves as 
+necessary. 
+ 
+4. Prior to the RCS reaching 1000 psig, open each cold leg accumulator isolation 
+valve and then de-energize each valve’s motor operator. 
+5. When RCS pressure exceeds 1915 psig, verify the block of the pressurizer low 
+pressure safety injection actuation automatically resets. 
+6. When RCS temperature reaches 553°F, verify the block of the high steam line 
+flow safety injection actuation automatically resets. 
+7. Maintain RCS temperature with the steam dump control system in the steam 
+pressure mode. 
+8. Establish HOT STANDBY conditions of 557°F T avg. 
+ 
+ 
+C. Heatup from HOT STANDBY to POWER OPERATIONS 
+ (MODE 3 to MODE 1)  
+ 
+NOTE: 
+See Checklist No. 2. 
+ 
+1. Obtain administrative permission to take the reactor critical. 
+2. Notify system dispatcher of unit startup and approximate time when the 
+generator will be tied to the grid. 
+3. Notify onsite personnel of the reactor startup over the public address system. 
+4. Perform reactor trip breaker check (if not performed during the previous seven 
+days). 
+5. Calculate the estimated critical boron c oncentration for the desired critical control 
+rod withdrawal position. 
+6. If necessary, conduct a boron concentra tion change to achieve the estimated 
+critical boron concentration.  Equalize the boron concentrations in the reactor 
+coolant loops and the pressurizer by turning on the pressurizer backup heaters. 
+---PAGE---
+ 
+USNRC HRTD 19-15 Rev 0109 
+APPENDIX 19-1 (cont’d) 
+Plant Startup from Cold Shutdown 
+ 
+NOTE: 
+Nuclear instrumentation shall be monitored very closely in anticipation of an 
+unplanned rate of reactivity change. 
+ 
+NOTE: 
+Block the alarm for source range high flux level at shutdown at both source range 
+drawers. 
+ 
+7. Verify all shutdown banks are fully withdrawn within 15 minutes of withdrawing 
+control banks. 
+8. If the shutdown banks are inserted, complete a shutdown margin calculation 
+(involving the shutdown banks at the fully withdrawn position) to preclude an 
+inadvertent MODE change during rod withdrawal.  Withdraw the shutdown banks 
+to the fully withdrawn position. 
+9. Verify proper operation of all reactor coolant pumps. 
+10. Withdraw the control bank rods in manual to take the reactor critical. 
+11. If the control bank height at criticality is below the rod insertion limit for 0% 
+power: 
+ 
+a. Reinsert all control bank rods to the bottom of the core. 
+b. Recalculate the estimated critical boron concentration. 
+c. Borate to the newly calculated concentration. 
+d. Withdraw the control bank rods in manual to take the reactor critical 
+ 
+12. Withdraw rods to increase reactor power.  Block the source range high flux trip at 
+P-6 (10-10 amps on the intermediate range).  Take critical data at 1x10-8 amps 
+(typically). 
+13. Withdraw rods to bring reactor power to approximately 2% on the power range 
+indicators and select the highest indicating power range channel to be recorded 
+on the NR-45 recorder. 
+14. Check that the steam dump pressure controller is set for 1092 psig and 
+operating in automatic. 
+15. If one is not already running, start a main feedwater pump at 2% power.  
+Maintain steam generator levels at 33 " 5% narrow-range level indication during 
+secondary plant startup by throttling the feedwater bypass regulating valves. 
+ 
+CAUTION: 
+The secondary plant operator should coordinate changes in steam generator 
+steaming rates removal and in feedwater addition rates with the reactor operator 
+while rod control is in manual. 
+ 
+16. Verify the turbine has been on the turning gear for at least one hour. 
+17. Increase reactor power by manual withdrawal of the control banks until the 
+steam dumps are bypassing steam flow equivalent to 10 - 15% nuclear power. 
+---PAGE---
+ 
+USNRC HRTD 19-16 Rev 0109 
+APPENDIX 19-1 (cont’d) 
+Plant Startup from Cold Shutdown 
+ 
+18. When reactor power increases above 10%, verify the ?Nuclear At-Power@ 
+Permissive P-10 light illuminates and the ?At-Power@ Permissive P-7 light 
+extinguishes. 
+ 
+NOTE: 
+The ?at-power@ reactor trips are now enabled. 
+ 
+19. Manually block the intermediate range high flux reactor trip and the power range 
+high flux, low setpoint reactor trip after P-10 has been reached. 
+20. Verify that the main and unit auxiliary transformer cooling systems are aligned for 
+automatic operation. 
+21. Accelerate the main turbine to 1800 rpm, and then synchronize the generator 
+and connect it to the grid. 
+22. Increase generator load at the desired rate while maintaining Tavg with manual 
+rod control. 
+ 
+CAUTION: 
+Maintain programmed steam generator level during the following step. 
+ 
+23. At approximately 15% power, transfer feedwater flow control from the bypass 
+valves to the main feedwater regulating valves. 
+24. When turbine power has increased above ~180 MWe (15% - the C-5 interlock 
+setpoint), transfer the rod control system to automatic. 
+25. After rod control is placed in automatic, check that steam pressure is less than 
+the pressure control setpoint (1092 psig) and that all steam dump valves are 
+closed, then transfer the steam dump control system to the  T avg control mode. 
+26. Transfer steam generator feedwater regulating control valves and feed pump 
+speed control to automatic when power exceeds 15%. 
+27. Place additional secondary equipment in service as necessary to support further 
+load increases. 
+28. At 50% power, place the remainder of secondary pumps in service. 
+29. Perform secondary calorimetric (heat balance) calibrations for nuclear 
+instrumentation adjustment as required 
+ 
+---PAGE---
+ 
+USNRC HRTD 19-17 Rev 0109 
+Checklist Number 1 
+ 
+NOTE: 
+This listing is typical of the TECHNICAL SPECIFICATION limiting conditions for 
+operation and TECHNICAL REQUIREMENTS for changing MODES during a plant 
+heatup.  This is not a comprehensive list. 
+ 
+REACTIVITY CONTROL (Section 1): 
+ 
+Shutdown Margin        Boration Flow Paths 
+Charging Pumps         Borated Water Sources 
+ 
+INSTRUMENTATION (Section 3): 
+ 
+Reactor Trip System Instrumentation 
+Engineered Safety Features Actuation System Instrumentation 
+ 
+REACTOR COOLANT SYSTEM (Section 4): 
+ 
+RCS Loops          Pressurizer 
+Pressurizer Safety Valves      Pressurizer PORVs 
+RCS Leakage, Chemistry, Activity   RCS Pressure/Temperature Limits 
+Steam Generator Tube Integrity 
+ 
+EMERGENCY CORE COOLING SYSTEMS (Section 5): 
+ 
+ECCS Trains          Refueling Water Storage Tank 
+Accumulators  
+ 
+CONTAINMENT SYSTEMS (Section 6): 
+ 
+Containment Leakage, Structural Integrity Air Locks 
+Internal Pressure        Air Temperature 
+Containment Spray and Cooling Systems Spray Additive System  
+Containment Isolation Valves 
+ 
+PLANT SYSTEMS (Section 7): 
+ 
+Main Steam Safety Valves      Auxiliary Feedwater System 
+Component Cooling Water System   Service Water System 
+Condensate Storage Tank      Main Steam Isolation Valves 
+ 
+ELECTRICAL POWER SYSTEMS (Section 8): 
+ 
+A C  S o u r c e s           D C  S o u r c e s  
+Distribution Systems 
+---PAGE---
+ 
+USNRC HRTD 19-18 Rev 0109 
+Checklist Number 2 
+ 
+NOTE: 
+This listing is typical of the TECHNICAL SPECIFICATION limiting conditions for 
+operation and TECHNICAL REQUIREMENTS for changing MODES during reactor 
+startup and power operations.  This is not a comprehensive list. 
+ 
+REACTIVITY CONTROL (Section 1): 
+ 
+Moderator Temperature Coefficient 
+Rod Group Alignment Limits 
+Shutdown and Control Banks - Rod Insertion Limits 
+Rod Position Indication 
+ 
+POWER DISTRIBUTION LIMITS (Section 2): 
+ 
+Axial Flux Difference 
+Heat Flux Hot Channel Factor (FQ(Z)) 
+Nuclear Enthalpy Rise Hot Channel Factor 
+Quadrant Power Tilt Ratio 
+ 
+INSTRUMENTATION (Section 3): 
+ 
+Reactor Trip System Instrumentation 
+Engineered Safety Features Actuation System Instrumentation 
+Movable Incore Detectors 
+ 
+REACTOR COOLANT SYSTEM (Section 4): 
+ 
+DNB Parameters 
+Minimum Temperature for Criticality 
+RCS Loops 
+ 
+CONTAINMENT SYSTEMS (Section 6): 
+ 
+Hydrogen Mixing System 
+---PAGE---
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+---PAGE---

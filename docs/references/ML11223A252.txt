@@ -1,0 +1,1022 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 8.1 
+ 
+Rod Control System
+---PAGE---
+ 
+USNRC HRTD 8.1-i Rev 0209 
+ 
+TABLE OF CONTENTS 
+ 
+8.1 ROD CONTROL SYSTEM ........................................................................... 8.1-1 
+ 
+8.1.1 Introduction........................................................................................ 8.1-1 
+ 
+8.1.2 System Description ........................................................................... 8.1-2 
+ 
+8.1.3 Control Rod Drive Mechanism ........................................................... 8.1-3 
+ 
+8.1.3.1 Control Rod Withdrawal ....................................................... 8.1-4 
+8.1.3.2 Control Rod Insertion ........................................................... 8.1-4 
+ 
+8.1.4 Rod Control System Si gnal Processing ............................................. 8.1-5 
+ 
+8.1.4.1 Bank Selector Switch ........................................................... 8.1-5 
+8.1.4.2 Power Mismatch Circuit ....................................................... 8.1-6 
+8.1.4.3 Temperature Mismatch Circuit ............................................. 8.1-7 
+8.1.4.4 Summing Unit ...................................................................... 8.1-7 
+8.1.4.5 Reactor Control Unit ............................................................ 8.1-7 
+ 
+8.1.5 Logic Cabinet .................................................................................... 8.1-8 
+ 
+8.1.5.1 Pulser ................................................................................... 8.1-9 
+8.1.5.2 Master Cycler ....................................................................... 8.1-9 
+8.1.5.3 Slave Cycle ........................................................................ 8.1-10 
+8.1.5.4 Bank Overlap Unit .............................................................. 8.1-11 
+ 
+8.1.6 Power Cabinet ................................................................................. 8.1-11 
+ 
+8.1.6.1 Thyristors ........................................................................... 8.1-12 
+8.1.6.2 Half-Wave Bridge ............................................................... 8.1-12 
+8.1.6.3 Multiplexing Circuit ............................................................. 8.1-12 
+8.1.6.4 Firing Circuit ....................................................................... 8.1-13 
+8.1.6.5 DC Hold Cabinet ................................................................ 8.1-13 
+8.1.6.6 Lift Coil Disconnect Switches ............................................. 8.1-14 
+ 
+8.1.7 System Interrelations ....................................................................... 8.1-14 
+ 
+8.1.7.1 Control and I ndications ...................................................... 8.1-14 
+8.1.7.2 In-Out Lights ...................................................................... 8.1-14 
+8.1.7.3 Interlocks and Rod Stops ................................................... 8.1-14 
+8.1.7.4 Non-Urgent Failure Alarms ................................................ 8.1-15 
+8.1.7.5 Urgent Failure Alarms ........................................................ 8.1-15 
+ 
+8.1.8 Shutdown Bank C & D Control ........................................................ 8.1-16 
+ 
+8.1.9 Summary  ......................................................................................... 8.1-16 
+ 
+---PAGE---
+ 
+USNRC HRTD 8.1-ii Rev 0209 
+LIST OF FIGURES 
+ 
+8.1-1 .................................................................... Rod Control System Block Diagram  
+8.1-2 ..................................................................................... Magnetic Jack Assembly  
+8.1-3 ....................................................................................... Full Length Rod Control 
+8.1-4 ............................................................................................ Rod Speed Program 
+8.1-5 .............................................................................. Slave Cycler Timing Diagram 
+8.1-6 ................................................................................... Solid State Power Cabinet 
+ 
+---PAGE---
+ 
+USNRC HRTD 8.1-1 Rev 0209 
+8.1 ROD CONTROL SYSTEM  
+ 
+Learning Objectives: 
+ 
+1. State the purposes of the rod control system. 
+ 
+2. List the inputs to the automatic rod control system and explain why each is used. 
+ 
+3. Explain why the rate of change of difference between the turbine and nuclear 
+powers is used in the power mismatch circuit. 
+ 
+4. Deleted. 
+ 
+5. Given a list, arrange in proper order the stepping sequence of the Control Rod 
+Drive Mechanism (CRDM). 
+ 
+6. List the rod withdrawal stops that occur in both automatic and manual rod 
+control. 
+ 
+7. Describe the effects of an ?urgent failure@ in the logic cabinet and in a power 
+cabinet. 
+ 
+8. Explain how individual rod motion is achieved. 
+ 
+9. Briefly describe the functions of the Bank Overlap Unit (BOU). 
+ 
+10. Briefly describe the rod speed program and explain the purposes of Adeadband@ 
+and Alock-up@. 
+ 
+ 
+8.1.1 Introduction  
+ 
+The purpose of the rod control system is to control the motion of the neutron 
+absorbing full length rods (rods).  This control system moves the rods, in response 
+to demand signals from either the reactor operator (for start-up, shutdown, and 
+power operations), or from the automatic rod control system (power operations) to 
+maintain a programmed reactor coolant system average temperature (T
+avg).  It also 
+releases the rods in response to manual or automatic reactor trip signals, allowing 
+the rods to fall into the core, shutting down the reactor.  
+ 
+The rod control system is used to compensate for fast short term reactivity changes, 
+such as those resulting from power changes and xenon transients.  Compensation 
+for slower long term effects, such as fuel depletion, gradual xenon and samarium 
+changes, is accomplished by adjusting the boron concentration in the reactor 
+coolant.  Refer to Section 4.1 (chemical and volume control system). 
+ 
+Between 15% and 100% power, the automatic rod control system maintains the 
+average temperature of the primary coolant at a programmed value by adjusting the 
+reactivity in the core.  Automatic rod control below 15% turbine power is not 
+provided.  
+---PAGE---
+ 
+USNRC HRTD 8.1-2 Rev 0209 
+By design, this system is capable of handling the following transients: a 10% step 
+load increase or decrease, a 5% per minute ramp load increase or decrease, or a 
+50% step load decrease with the aid of the steam dump system (Section 11.2) and 
+without actuating the pressurizer relief valves or generating a reactor trip. 
+  
+The first two transients (a +
+10% step, or a +5% per minute ramp change in power), 
+can occur during power operation and design transients.  During these design 
+transients, the rod control system provides adequate reactivity addition rates so that 
+the average temperature of the reactor coolant remains within +
+5°F of the 
+temperature program.  As long as Tavg is within its program the steam dump system 
+will not actuate.  However, the rod control system reactivity addition rates are 
+insufficient to reduce power quickly enough to prevent a significant temperature 
+mismatch from developing during a 50% step loss of load.  In this case, the steam 
+dump system removes the excess heat generated by the reactor until the rod control 
+system reduces the temperature of the reactor coolant to the new program value. 
+ 
+As previously stated, one of the purposes of the rod control system is to maintain a 
+programmed average temperature in the reactor coolant system by regulating the 
+reactivity in the core.  Deviation of the average temperature from the program 
+temperature by more than a preselected amount results in automatic rod movement 
+to return T
+avg to program.  The rod speed varies with the size of the temperature 
+deviation.  The direction of rod movement is dependent upon whether the average 
+temperature of the reactor coolant is higher or lower than the program temperature.  
+ 
+The rods are separated into two functional categories: shutdown rods and control 
+rods.  Each category consists of a number of individual rods which are arranged in 
+banks.  Each bank contains between four and nine rods which are moved together.  
+The shutdown banks are always in the fully withdrawn position during power 
+operations and are moved into this position at a fixed speed in manual bank control 
+prior to criticality.  The shutdown banks provide a large negative reactivity insertion 
+upon a reactor trip to ensure the reactor achieves and maintains subcriticality.  
+ 
+The control banks are the only rods that can be manipulated under automatic rod 
+control.  The control banks are used: to change the reactivity in the core, to take the 
+reactor critical, and during automatic control of this system, to maintain the average 
+temperature of the reactor coolant at the programmed temperature.  In addition, the 
+control banks also fall into the core following a reactor trip signal, to aid the 
+shutdown banks in placing the reactor in a subcritical condition. 
+ 
+ 
+8.1.2 System Description  
+ 
+In the automatic mode of control as shown in Figure 8.1-1, the rod control system 
+uses three input signals to control the positioning of the control rods; auctioneered 
+high T
+avg, auctioneered high nuclear power, and turbine first stage pressure (Pimp).  
+These three inputs are used in two comparison circuits to develop a total error signal 
+which is processed by the reactor control unit. 
+ 
+The power mismatch circuit compares auctioneered high nuclear power with P
+imp.  If 
+a rate of change of the difference between the two signals (Pimp and auctioneered 
+---PAGE---
+ 
+USNRC HRTD 8.1-3 Rev 0209 
+high nuclear power) exists, the power mismatch circuit generates an error signal.  As 
+the rate of change of the difference increases, so does the magnitude of the error 
+signal. 
+ 
+The summing unit compares T
+ref (generated from Pimp) and auctioneered high Tavg.  
+Any difference between these two signals (Tref - Tavg) produces a temperature error 
+signal.  This error signal is algebraically summed with the error signal produced by 
+the power mismatch circuit.  The result is a total error signal which is sent to the 
+reactor control unit. 
+ 
+The reactor control unit generates an analog signal.  The polarity and magnitude of 
+this signal determines the speed and the direction of rod motion.  When the bank 
+selector switch is placed in automatic, the output from the reactor control unit is sent 
+to the logic cabinet. 
+ 
+Analog signals generated in the reactor control unit are converted into digital signals 
+by the pulser located within the logic cabinet.  After the signal is converted into a 
+digital output, the digitized pulses are transmitted to the power cabinets.  Within the 
+logic cabinet, signals are developed that determine rod speed, rod direction, the 
+control bank to be moved, and the group of rods within a control bank to be moved.  
+The rod stop interlocks, also located within the logic cabinet, prevent outward rod 
+motion during predefined conditions. 
+ 
+Each power cabinet receives electrical power from the rod drive motor-generator 
+(MG) sets through two series reactor trip breakers and/or their associated bypass 
+breakers.  Each power cabinet distributes electrical power to the proper coils within 
+the control rod drive mechanisms.  Signals from the logic cabinet activate and 
+deactivate components within the power cabinets that initiate the stepping sequence 
+of rod drive mechanisms.  Each power cabinet is capable of supplying up to three 
+groups of rods.   
+ 
+Manual control of the rods is accomplished by placing the bank selector switch in 
+the manual position.  This action switches the logic cabinet input from the reactor 
+control unit to the bank selector switch.  Rod motion is achieved by using the IN-
+HOLD-OUT switch. 
+ 
+ 
+8.1.3 Control Rod Drive Mechanism  
+ 
+The control rod drive mechanism is used to withdraw or insert the full length rods.  
+The complete drive mechanism, shown in Figure 8.1-2, consists of the internal 
+latching assemblies (grippers), the rod drive shaft assembly, the pressure housing, 
+and the magnetic coil stack.  Every single rod has its own drive mechanism.  The 
+control rod drive mechanism is an electromagnetic jack and is sometimes referred to 
+as a magnetic jack assembly or a "mag jack."   
+ 
+The movable and stationary gripper latches engage the rod drive shaft when their 
+respective coils are energized.  The movable grippers are used to raise or lower the 
+control rod drive shaft when the lift coil is energized or de-energized.  The stationary 
+grippers are used to hold the drive shaft in position whenever rod motion is not 
+---PAGE---
+ 
+USNRC HRTD 8.1-4 Rev 0209 
+required.  A reactor trip is achieved by simply removing the electrical power from the 
+coils, which allows springs to disengage the grippers from the rod drive shaft, and 
+the rod falls by gravity into the core. 
+ 
+Three magnetic coils induce a magnetic flux through the pressure housing to 
+operate the internal latching mechanisms.  Energizing and de-energizing the 
+magnetic coils in a fixed sequence causes the internal mechanisms to either engage 
+or disengage from the grooved drive shaft.  This, in turn, moves the rod one step 
+into or one step out of the core in discrete 5/8-in. steps. 
+ 
+During steady-state plant operation, the control rod drive mechanism's stationary 
+grippers hold the control rod withdrawn from the core in a static position.  When rod 
+movement is required, a signal is sent from the rod control system to withdraw 
+(section 8.1.3.1) or insert (section 8.1.3.2) the control rod in a prescribed sequence, 
+which is described in the following sections. 
+ 
+8.1.3.1 Control Rod Withdrawal  
+ 
+1. Movable Gripper Coil - ON - The movable gripper armature raises and swings 
+the movable gripper latches into one of the grooves on the rod drive shaft. 
+ 
+2. Stationary Gripper Coil - OFF - Gravity causes the stationary gripper latches and 
+armature to move downward until the load of the drive shaft is transferred to the 
+movable gripper latches.  Simultaneously, the stationary gripper latches swing 
+out of the drive shaft groove. 
+ 
+3. Lift Coil - ON - Once energized, the magnetic force from this coil pulls up the 
+movable gripper latch assembly.  Since the movable grippers are coupled to the 
+rod drive shaft, the rod is raised 5/8 in. 
+ 
+4. Stationary Gripper Coil - ON - The stationary gripper armature raises, swinging 
+the stationary gripper latches into a drive shaft groove.  The latches contact the 
+shaft and lift it 1/16 in.  The load is transferred from the movable to the stationary 
+gripper latches. 
+ 
+5. Movable Gripper Coil - OFF - The movable gripper armature separates from the 
+lift armature under the force of the spring and gravity.  Three links, pinned to the 
+movable gripper armature, swing the three movable gripper latches out of the 
+drive shaft groove. 
+ 
+6. Lift Coil - OFF - The lift armature and the movable gripper latches drop 5/8 in. to 
+a position adjacent to the next groove. 
+ 
+8.1.3.2 Control Rod Insertion  
+ 
+1. Lift Coil - ON - The movable gripper latches are raised 5/8 in. to a position 
+adjacent to a shaft groove. 
+ 
+2. Movable Gripper Coil - ON -The movable gripper armature raises and swings the 
+movable gripper latches into a groove. 
+---PAGE---
+ 
+USNRC HRTD 8.1-5 Rev 0209 
+3. Stationary Gripper Coil - OFF - The stationary gripper armature moves 
+downward and swings the stationary gripper latches out of the groove. 
+ 
+4. Lift Coil - OFF - Gravity and spring force separates the lift armature from the lift 
+magnet poles, and the control rod drops down 5/8 in. 
+ 
+5. Stationary Gripper Coil - ON - The stationary gripper armature raises, swinging 
+the stationary gripper latches into a drive shaft groove.  The latches contact the 
+shaft and lift it 1/16 in.  The load is transferred from the movable to the stationary 
+gripper latches. 
+ 
+6. Movable Gripper Coil - OFF - The movable gripper armature separates from the 
+lift armature under the force of the spring and gravity.  Three links, pinned to the 
+movable gripper armature, swing the three movable gripper latches out of the 
+drive shaft groove. 
+ 
+Each sequence (withdrawal or insertion) is called a step or a cycle, and the result is 
+that the rod moves 5/8 in. for each demanded step.  This sequence can be repeated 
+at a rate of up to 72 times per minute.  The control rods can, therefore, be withdrawn 
+or inserted at a rate up to 45 in./min. 
+ 
+ 
+8.1.4 Rod Control System Signal Processing  
+ 
+The mode of operation of the rod control system is selected by the reactor operator 
+via the bank selector switch located on the main control board.  This switch allows 
+for either manual, automatic, or individual bank select operation.  All positions of this 
+switch are explained in section 8.1.4.1. 
+ 
+8.1.4.1 Bank Selector Switch  
+ 
+The bank selector switch is a ten (eleven in some plants) position switch that 
+permits selection of individual banks, manual control, or automatic control.  A 
+description of each position is given below. 
+ 
+MANUAL 
+ 
+In this position, the control rods are withdrawn or inserted by the use of the IN-
+HOLD-OUT switch.  The bank sequence and overlap program (section 8.1.5) is 
+maintained with the rods in manual rod control.  The rod speed is adjustable 
+between 8 and 72 steps/min. with a potentiometer located within the rod control 
+cabinet.  The speed normally selected for manual operation is 48 steps/min. 
+ 
+AUTOMATIC 
+ 
+Placing the bank selector switch in automatic electrically disconnects the IN-HOLD-
+OUT switch.  Rod motion (direction and speed) is determined by the reactor control 
+unit (section 8.1.4.5).  The control bank sequence and the overlap program is 
+maintained by the bank overlap unit located inside the logic cabinet.  Inputs for the 
+---PAGE---
+ 
+USNRC HRTD 8.1-6 Rev 0209 
+reactor control unit come from the power mismatch and the temperature mismatch 
+circuits.  These circuits are explained in sections 8.1.4.2 and 8.1.4.3, respectively. 
+ 
+CONTROL BANK A 
+ 
+Control bank A rods can be moved manually using the IN-HOLD-OUT switch.  The 
+rod sequence and overlap is not maintained; that is, the bank overlap unit (section 
+8.1.5.4) program is overridden.  The rod speed signal in this position is the same as 
+that for manual operation (48 steps/min). 
+ 
+CONTROL BANK B, C, D 
+ 
+Same as Control Bank A. 
+ 
+SHUTDOWN BANK A 
+ 
+In this position, shutdown bank A rods are moved using the IN-HOLD-OUT switch.  
+Rod speed is preset by an adjustable stepping rate potentiometer located in the rod 
+control cabinet.  The normal preselected speed is 64 steps/min. 
+ 
+SHUTDOWN BANKS B, C, D 
+ 
+Same as shutdown bank A. 
+ 
+8.1.4.2 Power Mismatch Circuit  
+ 
+The power mismatch circuit provides a fast, stable response to a change in load.  Its 
+purpose is to anticipate a change in the average temperature of the reactor coolant 
+due to turbine load changes.  If nuclear and turbine power are changing at different 
+rates, the resulting power mismatch will change T
+avg.  This circuit provides an error 
+signal to the summing unit which increases rod speed at the beginning of a 
+transient.  Moving the rods faster, earlier in a transient, helps reduce the magnitude 
+of error between T
+avg and Tref. 
+ 
+The inputs into this circuit (Figure 8.1-3) are nuclear (primary) power and turbine 
+(secondary) power.   The nuclear power input signal for automatic rod control is 
+obtained from the highest of the four power range excore nuclear instruments.  All 
+four power range signals are sent to an auctioneering unit which allows the highest 
+signal to pass through, and is referred to as auctioneered high nuclear power.  The 
+turbine power signal is generated from the first stage impulse chamber pressure of 
+the high pressure turbine.  This signal is referred to as P
+impulse or Pimp. 
+ 
+The rate comparator of the power mismatch circuit monitors the two power inputs 
+and provides an output if, and only if, there is a rate of change of the difference 
+between the inputs.  This rate comparator prevents the power mismatch circuit from 
+responding to steady state calibration differences between nuclear and turbine 
+power.  The larger the rate of change of power mismatch, the larger the output from 
+the rate comparator. 
+ 
+---PAGE---
+ 
+USNRC HRTD 8.1-7 Rev 0209 
+A nonlinear gain unit is placed at the output of the rate comparator.  Its function is to 
+convert the power mismatch signal to an equivalent temperature signal.  In addition, 
+this signal is amplified as a function of the magnitude of the input.  That is, for power 
+mismatches of less than 1% the unit operates on low gain (0.3°F signal per percent 
+power deviation).  For larger mismatches (> 1%), the unit operates on high gain 
+(1.5°F signal per percent power deviation).  
+   
+A variable gain unit is located directly after the nonlinear gain unit.  This component 
+provides a higher gain to the power mismatch error signal at low power levels and a 
+lower gain at high power levels.  The lower gain at higher power levels limits the 
+likelihood that rapid rod motion (and the associated rate of reactivity change) could 
+cause a significant overshoot during a power change.  Moreover, minimizing rapid 
+overshoots with reactor power near 100% helps to avoid violating the plant=s 
+licensed power limit.  The variable gain unit ensures that the power mismatch circuit 
+provides adequate control at low power levels and stable operation at higher power 
+levels.  Since the output from this unit is inversely proportional to turbine load, a P
+imp 
+signal is provided for the reference power input.  Between 0% and 50% power this 
+unit provides a gain of two.  Between 50% and 100% turbine load, it provides a gain 
+inversely proportional to turbine power, i.e., 1/(% power).  At turbine loads equal to 
+or greater than 100% this unit provides a gain of one. 
+ 
+The output from the power mismatch circuit is combined at the summer with the 
+temperature mismatch error as described below. 
+ 
+8.1.4.3 Temperature Mismatch Circuit  
+ 
+This circuit provides fine control during steady-state operation and returns T
+avg to Tref 
+after a transient.  The inputs into this circuit (Figure 8.1-3) are auctioneered high T avg 
+and reference temperature (Tref).  The Tavg input is obtained from an auctioneering 
+unit which monitors the four Tavg channels and allows the highest Tavg to pass 
+through to the input of the temperature mismatch circuit.  The reference temperature 
+(the desired or programmed temperature) is generated from P
+imp (turbine power).  
+The temperature mismatch circuit compares Tavg (the actual temperature) to Tref (the 
+desired temperature) and generates an error signal if there is a mismatch between 
+these two inputs.  Any resultant error signal is sent to the summing unit. 
+ 
+8.1.4.4 Summing Unit  
+ 
+The summing unit algebraically sums the signals from the power mismatch circuit 
+and the temperature mismatch circuit.  Its output represents a total temperature 
+error, and this signal is sent to the reactor control unit. 
+ 
+8.1.4.5 Reactor Control Unit  
+ 
+The reactor control unit generates the rod speed program as shown in Figure 8.1-4. 
+The reactor control unit receives an input from the summing unit and converts this 
+signal into a rod speed and direction signal.  The speed and direction signal is sent 
+to the pulser (section 8.1.5.1) located within the logic cabinet. 
+ 
+---PAGE---
+ 
+USNRC HRTD 8.1-8 Rev 0209 
+A deadband of "1.5°F, which includes a 0.5°F lock-up, is employed to eliminate 
+continuous rod stepping and bistable chattering.  The lock-up can be explained by 
+referring to Figure 8.1-4 and examining a signal for rod withdrawal.  When the total 
+error signal reaches +1.5°F, the output from the reactor control unit demands the 
+minimum rod speed to return T
+avg to program.  As the rods step out, Tavg increases, 
+reducing the total error signal.  When the total error signal reaches +1°F, the unit 
+turns off, stopping rod motion.  This 0.5°F difference between starting and stopping 
+rod motion prevents the bistable from chattering (turning on and off continuously). 
+ 
+Rod speed is determined by the total error signal.  For small error signals, "1.5°F to 
+"3°F, the reactor control unit produces an output demanding a minimum speed of 
+eight steps per minute.  This minimum rod speed is based upon a minimum 
+response of the rod control system for small errors generated by this system.  A 
+slow speed prevents excessive movement of the rods which could cause a 
+temperature overshoot.  Temperature overshoots could cause hunting by the rods, 
+i.e., excessive rod movement.  As the temperature error signal increases from "3°F 
+to "5°F, the rod speed program enters a proportional speed region.  This region 
+calls for 32 steps/min/°F.  This gain is selected to be consistent with the need for 
+increased rod motion to limit transient temperature overshoot while, at the same 
+time, preventing overcompensation and temperature oscillations.  With an error of 
+5°F or greater, the rod speed programmer of the reactor control unit generates a 
+maximum rod speed of 72 steps/min.  The maximum rod speed is based upon a 
+maximum response to a large error signal and upon the physical limitations of the 
+rod drive mechanism, with the latter being the limiting factor. 
+ 
+ 
+8.1.5 Logic Cabinet  
+ 
+The logic cabinet contains the following components: the pulser, the master cycler, 
+the bank overlap unit, and the slave cyclers.  The function of the logic cabinet is to 
+generate the necessary signals to step the rods into or out of the core.  The logic 
+cabinet receives command signals from either the IN-HOLD-OUT switch (when in 
+manual), or from the reactor control unit (when in automatic).  In response to these 
+signals, the logic cabinet selects the appropriate bank of rods to maintain the proper 
+sequence and overlap.  It then supplies the proper stepping sequence to the power 
+cabinets (section 8.1.6) to move the selected bank(s) of rods.   
+ 
+The withdrawal sequence for the control banks is A, B, C, D.  The overlap between 
+banks (the time when two separate banks move together) is such that as control 
+bank A passes the center of the core, control bank B begins moving.  This 
+sequencing and overlap is chosen to produce relatively even reactivity additions per 
+step of rod movement and to minimize the effect of rod motion on core peaking 
+factors. 
+ 
+The rods in the four control banks (and the rods in shutdown banks A and B) are 
+subdivided into groups of rods.  Shutdown banks C, and D, (which contain only four 
+rods each) are not divided into groups. 
+ 
+Upon receipt of a command signal for "IN" or "OUT" rod motion, the rods move at a 
+predetermined speed with staggered stepping of groups within the banks.  Upon 
+---PAGE---
+ 
+USNRC HRTD 8.1-9 Rev 0209 
+removal of the command signal, all rod motion stops.  However, a group of rods still 
+in sequential motion completes its entire step before halting.  Reversal of direction is 
+programmed so that the last group that ceased motion is the first group to move in 
+the new direction.  Staggered stepping of the groups within banks is controlled by 
+the master cycler (section 8.1.5.2). 
+ 
+Proper rod sequencing and overlap are controlled by the bank overlap unit (section 
+8.1.5.4).  A summary of the bank overlap and sequencing is given below. 
+ 
+1. Two groups within the same bank are stepped so that the relative position of 
+each group within a bank will not differ by more than one step. 
+ 
+2. Control bank withdrawals are programmed; so that when the first bank reaches a 
+preset position, the second bank begins to move out simultaneously with the first 
+bank.  When the first bank reaches the top of  the core, it stops, while the second 
+bank continues to move toward its fully withdrawn position.  When the second 
+bank reaches a preset position, the third bank begins to move out, and so on.  
+The control bank insertion sequence is the opposite of the withdrawal sequence 
+(i.e., the last bank withdrawn is the first bank to be inserted). 
+ 
+3. The overlap between successive control banks is adjustable with an accuracy of 
+"1 step.  Normally the overlap is set at 100 steps.  As an example, once control 
+bank A has reached 131 steps, control bank B starts to withdraw.  Control bank 
+B steps out simultaneously with control bank A during control bank A =s last 100 
+steps, hence the 100-step overlap. 
+ 
+A programmed signal is also sent to the slave cyclers (section 8.1.5.3).  The slave 
+cyclers cause the rods to sequence through one step by signaling the power 
+cabinets to operate the coils of the magnetic jack as described in section 8.1.4. 
+ 
+8.1.5.1 Pulser  
+ 
+The function of the pulser is to convert the analog output from the reactor control 
+unit into a digital signal.  The pulser generates pulses at a rate proportional to the 
+speed signal, which corresponds to a control rod bank stepping rate of 8 to 72 
+steps/min.  The pulser multiplies the speed signal by a factor of six and, therefore, 
+pulses at 48 to 432 pulses/min.  When the reactor control unit output exceeds 1.5°F 
+the pulser begins to pulse at 48 pulses/min.  Each pulse advances or reverses the 
+master cycler by one step. 
+ 
+8.1.5.2 Master Cycler  
+ 
+The master cycler receives rod speed and direction signals from the pulser and 
+converts these signals into “Go” pulses.  This device also directs these Go pulses to 
+the proper slave cyclers (section 8.1.5.3).  The master cycler accomplishes this 
+function by using a reversible clock/counter which operates over a range of zero to 
+five counts.  It counts once for each pulse from the pulser circuit and, therefore, 
+goes through one complete cycle after receiving six pulses.   
+ 
+---PAGE---
+ 
+USNRC HRTD 8.1-10 Rev 0209 
+An out-motion pulse signal increases the master cycler’s count, while an inward-
+motion pulse decreases the count.  The master cycler sends an output to the slave 
+cyclers, in the form of GO pulses, every time it passes the zero or the three on the 
+clock.  At count zero, a GO pulse is sent to the slave cyclers controlling group one 
+rods (1AC and 1BD), and at count three a GO pulse is sent to the slave cyclers 
+controlling group two rods (2AC and 2BD).  The master cycler divides the pulser's 
+pulse rate by six and produces two evenly spaced pulses for the slave cyclers.   
+ 
+The bank overlap unit determines whether the group one or the group two slave 
+cyclers actually receive a pulse.  Since the pulser multiplies by six and the master 
+cycler divides by six, the rod speed is processed correctly.  The multiplication by six 
+is designed to allow the flexibility of having two groups of rods per bank.  This 
+arrangement allows sequencing of groups within banks.  A bank has taken a 
+complete step when both groups within that bank have taken a step in the same 
+direction.  Because of the reversible feature of the counter, the last rod group that 
+moved is the first group to move if a different direction is called for.  For example, if 
+the last demanded rod motion was outward and the master cycler happened to stop 
+at count four, group two would have been the last to step (passing through three 
+increasing: 0,1,2,3,4).  If the next demand signal is for inward motion, the master 
+cycler would count back toward zero and move group two into the core first (i.e., 
+counting from 4,3,2,1, etc.).  The clock reversal feature insures the proper 
+sequencing of the groups.  The bank overlap unit is notified each time the master 
+cycler counts a zero or a three, so that the BOU can track the total number of steps.  
+ 
+Before the master cycler can properly distribute the GO pulses, it must know which 
+bank to move and in what direction to move the rods.  This is accomplished by 
+information received from either the bank selector switch (section 8.1.4.1) or the 
+bank selector switch through the bank overlap unit (section 8.1.5.4). 
+ 
+8.1.5.3 Slave Cycler 
+ 
+The function of the slave cycler is to generate current orders to its associated power 
+cabinet.  These orders move the rod drive mechanisms through one cycle of 
+insertion or withdrawal.  Each slave cycler provides signals to only one power 
+cabinet. 
+ 
+A AGO@ pulse from the master cycler starts the operation of the slave cycler (Figure 
+8.1-5).  The slave cycler is a seven-bit binary counter that counts from 0 to 127, and 
+performs this operation in 780 milliseconds.  Once the counter reaches 127, it resets 
+to zero and awaits another GO pulse from the master cycler. 
+ 
+The stationary gripper, movable gripper, and lift coils of the control rod drive 
+mechanism receive current orders from different count points generated by the 
+slave cycler.  These orders correspond to: 
+ 
+$ Magnitude - the amount of current (full, reduced, or zero) that is applied to a 
+coil, 
+$ Duration - the length of time the signal is supplied to a coil, and 
+$ Time - when the current is applied to or removed from a particular coil. 
+ 
+---PAGE---
+ 
+USNRC HRTD 8.1-11 Rev 0209 
+The rod group has taken one step into or out of the core after the counting 
+sequence is complete. 
+ 
+Since the rod drive mechanism coils require different actuation sequences for either 
+an IN cycle or an OUT cycle (section 8.1.4), the slave cycler must know which 
+sequence to use.  The sequence is determined by the master cycler. 
+ 
+8.1.5.4 Bank Overlap Unit  
+ 
+The bank overlap unit (BOU) determines the sequence and overlap of the control 
+banks.  It also provides multiplexing signals (section 8.1.6.3) to the power cabinets. 
+ 
+The bank overlap unit receives counts from the master cycler and records one IN or 
+one OUT count for the insertion or withdrawal of the two groups of rods within a 
+bank of rods.  The BOU provides an input into the master cycler for each count it 
+registers.  This feedback directs the AGO@ pulses from the master cycler to the 
+proper slave cyclers. 
+ 
+The BOU maintains the control rod sequence and overlap by counting all steps 
+taken by the control rods.  It records these steps as counts on a reversible counter 
+that counts from 0 to 999.  Thumbwheel switches located on the bank overlap unit 
+preset the range of the overlap.  During withdrawal of the control banks, control 
+bank A withdraws first until it reaches a preselected setpoint, for example 131 steps 
+on the control bank A step counters or 131 counts on the BOU.  When control bank 
+A takes its 132
+nd step, control bank B takes its first step.  Control banks A and B 
+move in unison until control bank A reaches the top of the core (231 steps on control 
+bank A or 231 counts on the BOU), and control bank A then stops moving.  Control 
+bank B continues to withdraw, until it reaches the next preselected overlap point 
+(131 steps on bank B or 262 counts on the BOU).  As control bank B takes its 132 nd 
+step, control bank C takes its first step.  This sequence and overlap continues until 
+all control banks are withdrawn from the core. 
+ 
+When two banks are in an overlap region, groups are withdrawn simultaneously.  
+For instance if control bank A and B are moving in the overlap region, group 1 of 
+both banks move simultaneously.  Similarly, the group 2 rods of the overlapped 
+banks move simultaneously. 
+ 
+ 
+8.1.6 Power Cabinet  
+ 
+The circuitry layout for a typical power cabinet is shown on Figure 8.1-6.  The 
+function of this cabinet is to convert a three-phase ac power input into an amplitude-
+controlled dc voltage.  It then directs this dc voltage to the rod drive mechanism 
+coils.   
+ 
+Each power cabinet is designed to accommodate three groups of drive 
+mechanisms, and each group contains four individual drive mechanisms.  A fifth 
+mechanism may be connected to one of the three groups as required by the rod 
+grouping on some four-loop plants.  The design of the power cabinets allows the 
+motion of only one group of rods, with the remaining two groups of rods held in a 
+---PAGE---
+ 
+USNRC HRTD 8.1-12 Rev 0209 
+stationary position.  The method used to operate one group of rods and hold the 
+other rod groups stationary is explained in sections 8.1.6.1 - 8.1.6.4. 
+ 
+Electrical power to the power cabinets is supplied via two parallel motor-generator 
+sets operating from two separate, nonvital, 480-Vac, three-phase buses.  Each 
+generator is driven by a 150-hp induction motor and supplies 260 volts line to line 
+through two, redundant, series-connected reactor trip breakers.  Removing electrical 
+power to the power cabinets (opening either of the reactor trip breakers), de-
+energizes all mechanism coils, and the rods drop into the core.  Reactor trip bypass 
+breakers can be connected in parallel with the reactor trip breakers to facilitate on-
+line testing of the reactor protection system (Chapter 12).  The use of these bypass 
+breakers is under administrative control. 
+ 
+8.1.6.1 Thyristors  
+ 
+A thyristor is a generic title referring to a class of electronic devices, one of which is 
+the silicon-controlled rectifier (SCR).  This device functions as a current controlled 
+switch.  The outstanding features of the SCR are the speed of switching (turning on 
+and off) and the ability to control high currents.  Load currents of tens to hundreds of 
+amperes may be turned on in as little as three microseconds and turned off in about 
+30 microseconds.  The thyristor is an essential part of the power cabinet, which 
+supplies high, reduced, or zero current to the stationary, movable, and lift coils.  
+These devices are show on Figure 8.1-6. 
+ 
+8.1.6.2 Half-Wave Bridge  
+ 
+If rectifiers, instead of thyristors, were installed in the power cabinet in each phase 
+of the ac power supply, a fixed dc current would flow to the various coils.  The 
+purposes of the power cabinet, however, are: to supply three accurate current levels 
+(full, reduced, or zero), to provide these currents for a fixed period of time, and to 
+arrive at these fixed points in the fastest possible time.  This is accomplished by 
+gating (turning on) the half-wave bridge network at different phase angles (time 
+intervals).  This converts the ac supply to a variable dc supply.  The variable dc 
+output from this network allows the profiling (changing) of the current as needed for 
+the stepping sequence. 
+ 
+8.1.6.3 Multiplexing Circuit  
+ 
+Figure 8.1-6 is an illustration of power cabinet 1BD.  This cabinet contains the 
+electronics for moving the group one rods of control bank B, control bank D, and 
+shutdown bank B.  The circuitry is arranged, through multiplexing, to allow rod 
+motion of only one of the three groups at any time.  For example, assume that the 
+mechanisms for group one, control bank B have been selected for movement.  The 
+movable grippers multiplexing thyristor for control bank B is turned on, and the 
+movable grippers' thyristors for control bank D and shutdown bank B are turned off. 
+ 
+In the lift coil circuit, the four multiplexing thyristors for control bank B are turned on, 
+and the multiplexing thyristors (four each) for control bank D and shutdown bank B 
+are turned off.  The stationary gripper circuit for control bank D and shutdown bank 
+B receive a constant hold current signal, which is explained in section 8.1.6.4.  The 
+---PAGE---
+ 
+USNRC HRTD 8.1-13 Rev 0209 
+power cabinet is aligned to move group 1, control bank B mechanisms.  The 
+multiplexing signals come from the bank overlap unit. 
+ 
+8.1.6.4 Firing Circuit  
+ 
+The firing circuits located within the power cabinet receive signals sent from a slave 
+cycler.  Their purpose is to gate the bridge thyristors to the proper current 
+commands as dictated by the slave cycler.  The power cabinet contains a total of 
+five firing circuits.  Each firing circuit supplies signals to its associated bridge 
+thyristor.  The arrangement of these circuits is as follows: the stationary gripper 
+circuits (three firing circuits), movable gripper circuit (one firing circuit), and lift coil 
+circuit (one firing circuit). 
+ 
+A simplified block diagram of the firing circuit (representative of any of the five 
+provided) is shown in Figure 8.1-6.  When a firing circuit receives an input from the 
+slave cycler, it gates (turns on) its associated bridge thyristor.  The thyristors adjust 
+the current signal (either full, reduced, or zero) to the magnetic coils.  The current, 
+from the coils, is sampled to provide a feedback signal into the firing circuit.  If the 
+current being sampled is not the same as demanded by the slave cycler, the firing 
+angle of the bridge thyristor is varied to obtain the exact current demanded by the 
+slave cycler. 
+ 
+As explained in the multiplexing section (section 8.1.6.3), the stationary gripper 
+circuits for the banks that are not to be moved receive a hold current signal.  This is 
+accomplished by an inhibit signal input into the firing circuits.  The inhibit signal is 
+generated by the bank overlap unit and overrides any signals entering the firing 
+circuit from the slave cycler. 
+ 
+When an inhibit signal is present, the firing circuit gates the bridge thyristor for the 
+non-moving rods at a reduced current.  This signal remains in the circuit until the 
+moving rods have sequenced through one step.  The slave cycler inhibit signal is 
+only supplied to the three firing circuits associated with the stationary gripper 
+circuits.  This circuit is provided to keep the gripper coils energized for the banks not 
+being stepped, thereby holding these rods in a static position. 
+ 
+8.1.6.5 DC Hold Cabinet 
+ 
+A failure within a power cabinet may require the replacement of a printed circuit 
+card, a fuse, or another electronic component.  To prevent dropping rods during 
+maintenance, and to avoid the need for a separate external power source, each 
+power cabinet contains three switches, which may be used to energize any one of 
+the three groups of stationary gripper coils.  The maintenance power source (125 
+Vdc for latching and 70 Vdc for holding) is taken from the load side of the reactor trip 
+breakers and is distributed to the power cabinets via the dc hold cabinet.  Therefore, 
+if a group of rods were on the hold cabinet and a reactor trip signal opened the 
+reactor trip breakers, these rods would de-energize and trip into the core along with 
+all the other rods. 
+ 
+This power supply is designed so that it can latch or hold a maximum of six 
+mechanisms.  Therefore, placing more than one group of rods on the hold cabinet 
+---PAGE---
+ 
+USNRC HRTD 8.1-14 Rev 0209 
+could result in overloading the power supply.  To apply hold voltage, the switch is 
+rotated from the OFF position to the LATCH position and held in that position for at 
+least one second.  It, is then rotated to the HOLD position.  The 125 Vdc supply is 
+used to assure latching of the stationary grippers, while the 70 Vdc supply is used to 
+hold the grippers without overheating the coils. 
+ 
+8.1.6.6 Lift Coil Disconnect Switches  
+ 
+A lift coil disconnect switch is furnished for each rod drive mechanism.  These 
+switches are located in the rod disconnect switch panel located in the control room 
+or the auxiliary building in close proximity to the control room.  These switches are 
+used to move an individual rod (e.g., to retrieve a dropped rod).  By disconnecting 
+the lift coils of all the rods in the bank containing the dropped rod, except the lift coil 
+of the dropped rod, the dropped rod may be returned to its original position. 
+ 
+ 
+8.1.7 System Interrelations 
+ 
+8.1.7.1 Control and Indications  
+ 
+All controls used for normal system operation are located on the main control board. 
+The major components are: 
+ 
+$ Bank selector switch (section 8.1.4.1), 
+$ IN-HOLD-OUT switch, 
+$ Rod speed indication and the IN-OUT lights (section 8.1.7.2), 
+$ Group and bank position indication (Section 8.2), and 
+$ Individual rod position indication (Section 8.2). 
+ 
+In addition to these controls and indications, there are various annunciators and rod 
+stop interlocks, which are explained in this section. 
+ 
+8.1.7.2 In-Out Lights  
+ 
+In-and-out lamps on the control board indicate that rod motion has been requested 
+by either the IN-HOLD-OUT switch or the reactor control unit. 
+ 
+8.1.7.3 Interlocks and Rod Stops  
+ 
+Commands for manual and automatic rod motion must pass through various 
+permissive circuits in the rod control system prior to generating the actual call for rod 
+motion.  The following interlocks are provided by the full length rod control system: 
+ 
+Manual Rod Withdrawal Stops 
+ 
+1. Power range high flux rod stop, 1/4, power range power > 103%, 
+2. Intermediate range high flux rod stop, 1/2, intermediate range power > 20%, 
+3. Overtemperature ΔT (OTΔT) rod stop and runback, 2/4, loop ΔT > (OTΔT 
+reactor trip setpoint - 3%), and 
+---PAGE---
+ 
+USNRC HRTD 8.1-15 Rev 0209 
+4. Overpower ΔT (OPΔT) rod stop and runback, 2/4, loop ΔT > (OPΔT reactor trip 
+setpoint - 3%). 
+ 
+Automatic Rod Withdrawal Stops 
+ 
+1. Power range high flux rod stop, 1/4, power range power > 103%, 
+2. Intermediate range high flux rod stop, 1/2, intermediate range power > 20%, 
+3. Overtemperature ΔT (OTΔT) rod stop and runback, 2/4, loop ΔT > (OTΔT 
+reactor trip setpoint - 3%), 
+4. Overpower ΔT (OPΔT) rod stop and runback, 2/4, loop ΔT > (OPΔT reactor trip 
+setpoint - 3%), 
+5. Low power interlock, 1/1, turbine power (impulse pressure) < 15%, and 
+6. Control bank D withdrawal interlock, demanded bank D position > 223 steps. 
+ 
+These interlocks or rod stops only prevent outward rod motion.  The rods can 
+always be inserted into the core using either manual or automatic rod control. 
+ 
+8.1.7.4 Non-Urgent Failure Alarms  
+ 
+The rod control system has two non-urgent failure alarms, one for the logic cabinet 
+and one for the power cabinets.  In either case, the probability of dropping a rod is 
+very remote since this alarm is generated by a loss of one of the redundant power 
+supplies. Actuation of this alarm does not affect the ability to move rods. 
+ 
+One annunciator window (ROD CONTROL NON-URGENT FAILURE) is used for an 
+alarm in either a logic cabinet or a power cabinet.  The annunciator is actuated 
+whenever any one of the three redundant power supplies is lost inside the logic 
+cabinet, or if a power cabinet loses one of its two power supplies. 
+ 
+8.1.7.5 Urgent Failure Alarms  
+ 
+An urgent failure is a failure which could affect rod motion and includes the 
+possibility of dropping a rod.  The urgent failure alarm can be generated from either 
+the logic or power cabinets.  Depending upon the source of the urgent failure, rod 
+motion is inhibited as described below. 
+ 
+The ROD CONTROL URGENT FAILURE annunciator is actuated when any one of 
+the following conditions occurs inside the logic cabinet: 
+ 
+$ Slave cycler failure, 
+$ Pulser failure, or 
+$ Removal of any printed circuit board. 
+ 
+If any of these conditions exist, the rod control system inhibits all automatic and 
+manual rod motion.  Rods may be moved only by selecting an individual bank on the 
+bank selector switch.  Rods affected by a slave cycler failure will not move even if 
+the individual bank is selected. 
+ 
+The ROD CONTROL URGENT FAILURE annunciator is also actuated when any 
+one of the following conditions occurs inside a power cabinet: 
+---PAGE---
+ 
+USNRC HRTD 8.1-16 Rev 0209 
+$ Blown fuse in an ac supply line, 
+$ Bridge thyristor fault, 
+$ Current signal at the coils doesn't match the demand current, 
+$ Loss of current signal to both the stationary and movable gripper coils at the 
+same time, or 
+$ Loss of multiplexing signal. 
+ 
+If any of these conditions exist, the rod control system inhibits all automatic and 
+manual rod motion.  In addition to stopping all rod motion, the following occurs 
+inside the affected power cabinet: 
+ 
+a. All power is removed from the lift coils, and 
+b. Low current is applied to engage both the stationary and the movable gripper 
+coils. 
+ 
+This action is initiated to prevent dropping a rod.  During an urgent failure in a power 
+cabinet, rods can only be moved in individual bank select with the exception of those 
+rods in the affected cabinet. 
+ 
+After an urgent failure, rods cannot be moved in manual or automatic until the 
+problem is corrected.  In addition, the alarm must be reset at the both the affected 
+power cabinet and the main control board before rod motion can be restored. 
+ 
+ 
+8.1.8 Shutdown Bank C & D Control  
+ 
+Shutdown banks C and D are selected individually by the bank selector switch and 
+are manually controlled by the IN-HOLD-OUT switch.  Since there are no control 
+banks in this power cabinet, the control circuit consists of only a pulser and slave 
+cycler.  The pulser and slave cycler units are identical to the units previously 
+described.  Multiplexing for this cabinet comes from the bank selector switch.  A 
+potentiometer is located in the pulser unit and is used to adjust the rod speed 
+(normally set at 72 steps per minute), for these groups of rods. 
+ 
+ 
+8.1.9 Summary  
+ 
+The rod control system provides reactivity control to compensate for rapid short term 
+variations in the reactivity of the core.  The rods are divided into two functional 
+categories; shutdown rods and control rods.  The shutdown rods are fully withdrawn 
+prior to criticality and serve only to provide a large amount of negative reactivity 
+upon a reactor trip.  The control rods provide not only shutdown reactivity upon a 
+trip, but also provide the reactivity control needed for startup and power operation. 
+ 
+Overlapping the control rods helps maintain a relatively constant reactivity addition 
+rate to the core.  The overlap occurs near the middle of the core.  After the first 
+control bank reaches the mid-plane of the core the second control banks begins to 
+withdraw.  During the overlap period, two separate control banks step together.  The 
+rods are also moved in a preselected sequence; i.e., control bank A is the first bank 
+of control rods to be moved, followed by control bank B, etc.  The bank overlap unit 
+---PAGE---
+ 
+USNRC HRTD 8.1-17 Rev 0209 
+determines this sequence and overlap.  This sequence and overlap is maintained as 
+long as the bank selector switch is selected to manual or automatic. 
+ 
+System operation is determined by the bank selector switch.  It may be positioned to 
+select an individual shutdown bank or an individual control bank or positioned to 
+operate in either manual or automatic.  In the manual mode, the reactor operator 
+controls the reactivity addition to the core by manually adjusting the height of the 
+control banks.  The bank selector switch is placed in manual when conducting a 
+reactor start-up.  After the secondary load exceeds 15% power the bank selector 
+switch is usually placed into the automatic position.  Based on signals supplied to 
+the reactor control unit, rod speed and direction are determined.  Due to the output 
+of the reactor control unit the control rods step at a programmed speed and in the 
+proper direction to return T
+avg to the desired temperature. 
+ 
+The control inputs for this system (in automatic) are provided by two deviation or 
+mismatch signals as described below: 
+ 
+1. The temperature mismatch circuit, which compares T
+avg (actual temperature) to 
+Tref (desired temperature), and 
+2. The power mismatch circuit, which compares auctioneered high nuclear power to 
+Pimp (turbine power). 
+ 
+The temperature mismatch circuit provides fine control which maintains T
+avg within 
+1.5°F of Tref, while the power mismatch circuit starts or stops rod motion in an 
+anticipation of a change in Tavg.  These circuits acting together provide good system 
+response and control stability. 
+ 
+The power cabinets receive input signals from the logic cabinet.  In response to 
+these signals the drive mechanisms sequence the rods into or out of the core.  Two 
+motor-generator sets provide power to the rod drive mechanisms via two series 
+reactor trip breakers.  Opening either of the two reactor trip breakers de-energizes 
+the rod drive mechanisms, allowing the rods to fall, by gravity, into the core. 
+ 
+ 
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+ 
+ 
+ 
+---PAGE---
+ 
+
+---PAGE---
+ 
+ 
+ 
+ 
+ 
+---PAGE---

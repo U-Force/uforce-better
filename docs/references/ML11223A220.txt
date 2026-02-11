@@ -1,0 +1,1119 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Westinghouse Technology Systems Manual 
+ 
+Section 5.2 
+ 
+Emergency Core Cooling Systems
+---PAGE---
+ 
+USNRC HRTD 5.2-i Rev 0406 
+ 
+ 
+TABLE OF CONTENTS 
+ 
+5.2 EMERGENCY CORE COOLING SYSTEMS ................................................ 5.2-1 
+ 
+5.2.1 Introduction ......................................................................................... 5.2-1 
+ 
+5.2.2 Regulatory Requirements ................................................................... 5.2-2 
+ 
+5.2.2.1 General Design Criteria ......................................................... 5.2-2 
+5.2.2.2 ECCS Acceptance Criteria .................................................... 5.2-3 
+ 
+5.2.3 General Description ............................................................................ 5.2-4 
+ 
+5.2.4 System Descriptions ........................................................................... 5.2-4 
+ 
+5.2.4.1 Cold-Leg Injection Accumulators ........................................... 5.2-4 
+5.2.4.2 High Head Inject ion System .................................................. 5.2-6 
+5.2.4.3 Refueling Water Storage Tank .............................................. 5.2-8 
+5.2.4.4 Intermediate Head Injection (Safety Injection) System ......... 5.2-9 
+5.2.4.5 Low Head Inject ion System ................................................. 5.2-10 
+5.2.4.6 Containment Reci rculation Sump ........................................ 5.2-11 
+ 
+5.2.5 Emergency Core Cooling Systems Integrated Operations ............... 5.2-12 
+ 
+5.2.6 PRA Insights ..................................................................................... 5.2-16 
+ 
+5.2.7 Summary  .......................................................................................... 5.2-17 
+ 
+ 
+ 
+ 
+LIST OF TABLES 
+ 
+5.2-1 Normal Operating Status of Emergency Core Cooling System 
+  Components ............................................................................................ 5.2-18 
+5.2-2 Accumulator Design Parameters  ............................................................ 5.2-18 
+5.2-3 Centrifugal Charging Pump Design Parameters ..................................... 5.2-18 
+5.2-4 Boron Injection Tank Design Parameters  ............................................... 5.2-19 
+5.2-5 Refueling Water Storage Tank Design Parameters  ............................... 5.2-19 
+5.2-6 Safety Injection Pump Design Parameters  ............................................. 5.2-19 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-ii Rev 0406 
+LIST OF FIGURES 
+ 
+5.2-1 .................................................................................................ECCS Composite 
+5.2-2 ............................................................................ Cold Leg Accumulator System 
+5.2-3 ................................................................................ High Head Injection System 
+5.2-4 ....................................................................................... Safety Injection System 
+5.2-5 .......................................................................... Residual Heat Removal System 
+5.2-6 ........................................................................ Containment Recirculation Sump 
+5.2-7 .............................................................................. Recirculation Sump Features 
+5.2-8 .................................................... Recirculation Sump Cartridge Pocket Screens 
+5.2-9 ............................................................... Recirculation Sump Sure-Flow Strainer 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-1 Rev 0406 
+5.2  EMERGENCY CORE COOLING SYSTEMS  
+ 
+Learning Objectives: 
+ 
+1. Explain why emergency core cooling systems (ECCSs) are incorporated into 
+plant design. 
+ 
+2. State the purposes of the following systems: 
+ 
+a. Accumulator injection system, 
+b. High head injection system, 
+c. Intermediate head injection (safety injection) system, and 
+d. Low head injection system. 
+ 
+3. State the purposes of the following major components: 
+ 
+a. Refueling water storage tank (RWST), and 
+b. Containment recirculation sump. 
+ 
+4. List the order of ECCS injection during the following abnormal conditions: 
+ 
+a. Small (slow depressurization) loss-of-coolant accident (LOCA), and 
+b. Large loss-of-coolant accident. 
+ 
+5. Describe the ECCS flowpaths during the following modes of operation: 
+ 
+a.  Cold-leg injection, 
+b.  Cold-leg recirculation, and 
+c.  Hot-leg recirculation. 
+ 
+ 
+5.2.1 Introduction  
+ 
+The purposes of the emergency core cooling systems are as follows: 
+ 
+1. Emergency core cooling systems: 
+ 
+$ Provide core cooling to minimize fuel damage following a LOCA, and 
+$ Provide additional shutdown margin following a steam line break accident. 
+ 
+2. Cold-leg accumulators (passive system - section 5.2.4.1): 
+ 
+$ Rapidly refill the reactor vessel dow ncomer and bottom plenum and begin to 
+reflood the core following a large LOCA. 
+ 
+3. High head injection system (active system - section 5.2.4.2): 
+ 
+$ Provides high pressure, low volume safety injection for small to intermediate 
+sized LOCAs, and 
+---PAGE---
+ 
+USNRC HRTD 5.2-2 Rev 0406 
+$ Adds negative reactivity and makes up for reactor coolant contraction by 
+injecting borated water into the reactor coolant system (RCS) following a 
+steam line break. 
+ 
+4. Intermediate head injection (safety injection) system (active system - section 
+5.2.4.4): 
+ 
+$ Provides intermediate pressure, low volume safety injection for small to 
+intermediate sized LOCAs. 
+ 
+5. Low head injection system (active system - section 5.2.4.5): 
+ 
+$ Provides low pressure, high volume  safety injection to complete the 
+reflooding of the core following a LOCA, and 
+$ Provides a flowpath and heat sink for long-term core cooling following a 
+LOCA. 
+ 
+As listed above, the emergency core cooling systems consist of one passive system 
+and three active systems. 
+ 
+The passive system (accumulators) consists of large volume tanks of borated water 
+pressurized with nitrogen.  The pressure in the passive system is less than that of 
+the RCS.  Following an accident, when RCS pressure decreases below tank 
+pressure, the borated water is injected. 
+ 
+The active systems (high, intermediate, and low pressure injection systems) consist 
+of several pumping systems capable of varying discharge pressures and flow rates. 
+Each of these systems does not start until it receives an accident initiation signal (a 
+safety injection actuation).  Once started, these systems inject borated water into the 
+RCS as the RCS pressure decreases below the discharge pressures of the system 
+pumps. 
+ 
+The ECCSs are designed to cool the reactor core and provide additional shutdown 
+capability following initiation of the following accident conditions:  
+ 
+1. Loss of coolant from the RCS in excess of the normal makeup capability, 
+2. Steam generator tube rupture, and 
+3. Pipe break in the main steam system. 
+ 
+The emergency core cooling systems provide reactor shutdown capability for the 
+accidents listed above by means of chemical poison (boron) injection. 
+ 
+ 
+5.2.2 Regulatory Requirements 
+ 
+5.2.2.1 General Design Criteria  
+ 
+The emergency core cooling systems are designed in accordance with 10 CFR 50, 
+Appendix A, General Design Criteria 35, 36, and 37.  Criteria 36 and 37 address 
+system inspection and testing.  Criterion 35 states: 
+---PAGE---
+ 
+USNRC HRTD 5.2-3 Rev 0406 
+A system to provide abundant emergency core cooling shall be provided. The 
+system safety function shall be to transfer heat from the reactor core following 
+any loss of reactor coolant at a rate such that (1) fuel and clad damage that 
+could interfere with continued effective core cooling is prevented and (2) clad 
+metal-water reaction is limited to negligible amounts. 
+ 
+Suitable redundancy in components and features, and suitable interconnections, 
+leak detection, isolation, and containment capabilities shall be provided to assure 
+that for onsite electric power system operation (assuming offsite power is not 
+available) and for offsite electric power system operation (assuming onsite power 
+is not available) the system safety function can be accomplished, assuming a 
+single failure. 
+ 
+5.2.2.2 ECCS Acceptance Criteria  
+ 
+The emergency core cooling systems must also meet the requirements of 10 CFR 
+50.46, the acceptance criteria for ECCSs for light-water nuclear power reactors.  10 
+CFR 50.46, in part, states: 
+ 
+Each ... pressurized light-water nuclear power reactor fueled with uranium oxide 
+pellets within cylindrical zircaloy or ZIRLO cladding must be provided with an 
+emergency core cooling system that must be designed so that its calculated 
+cooling performance following postulated loss-of-coolant accidents conforms to 
+the [following] criteria: 
+ 
+1. Peak Cladding Temperature.  The calculated maximum fuel element cladding 
+temperature shall not exceed 2200EF. 
+ 
+2. Maximum Cladding Oxidation.  The calculated total oxidation of the cladding 
+shall nowhere exceed 0.17 times the total cladding thickness before 
+oxidation. 
+ 
+3. Maximum hydrogen generation.  The calculated total amount of hydrogen 
+generated from the chemical reaction of the cladding with water or steam 
+shall not exceed 0.01 times the hypothetical amount generated if all of the 
+metal in the cladding cylinders surrounding the fuel, excluding the cladding 
+surrounding the plenum volume, were to react. 
+ 
+4. Coolable Geometry.  Calculated changes in core geometry shall be such that 
+the core remains amenable to cooling. 
+ 
+5. Long-term cooling.  After any calculated successful initial operation of the 
+ECCS, the calculated core temperature shall be maintained at an acceptably 
+low value and decay heat shall be removed for the extended period of time 
+required by the long-lived radioactivity remaining in the core. 
+ 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-4 Rev 0406 
+5.2.3 General Description  
+ 
+The emergency core cooling systems are comprised of the accumulators, the 
+centrifugal charging pumps (CCPs), the safety injection pumps, the residual heat 
+removal (RHR) pumps, the RHR heat exchangers, the refueling water storage tank, 
+the containment recirculation sump, and the associated valves and piping.  Table 
+5.2-1 lists normal parameter values associated with these systems; Figure 5.2-1 
+provides a composite diagram of the systems.  The order of system injection into the 
+RCS is dependent on the nature and severity of the accident. 
+ 
+For large reactor coolant pipe ruptures, the RCS would be depressurized and voided 
+of coolant rapidly; a high flow rate of emergency coolant is required to quickly 
+recover the exposed fuel rods and to limit core damage.  This high flow is provided 
+almost immediately by the passive cold-leg accumulators and then subsequently by 
+the active CCPs, safety injection pumps, and RHR pumps discharging into the cold 
+legs of the RCS.  The suction source for all active systems is the RWST. 
+ 
+Emergency cooling is provided for smaller reactor coolant pipe ruptures primarily by 
+the high head and intermediate head injection pumps.  A small-break LOCA 
+(SBLOCA) has an equivalent diameter of 6 inches or less and does not immediately 
+depressurize the reactor coolant system below the accumulator discharge pressure. 
+As the RCS depressurizes during an SBLOCA, the centrifugal charging (high head 
+injection) pumps and possibly the safety injection (intermediate head injection) 
+pumps deliver borated water at the prevailing RCS pressure to the cold legs of the 
+RCS.  During the injection, the pumps take suction from the RWST. 
+ 
+In response to a steam pipe break, injection by the CCPs makes up for the reactor 
+coolant contraction (reduction in coolant volume) associated with the break-induced 
+cooldown of the reactor coolant.  The borated water from the RWST also adds 
+negative reactivity, which counters the positive reactivity addition from the cooldown. 
+ 
+ 
+5.2.4 System Descriptions 
+ 
+5.2.4.1 Cold-Leg Injection Accumulators 
+ 
+The accumulators (Figure 5.2-2) are pressure vessels containing borated water and 
+pressurized with nitrogen.  During normal operation each accumulator is isolated 
+from the RCS by two seated check valves in series.  Should the RCS pressure fall 
+below the accumulator pressure, the check valves unseat, and borated water is 
+immediately forced into the RCS by the expansion of the nitrogen volume.  One 
+accumulator is attached to each of the cold legs of the reactor coolant system.  The 
+accumulator discharge penetration into each cold leg and the downstream check 
+valve in each accumulator discharge pipe are shared with the intermediate and low 
+head injection systems (see Figure 5.2-1).  The accumulators are passive 
+components, since mechanical operation of the swing disc check valves is the only 
+action required to open the injection path from each accumulator to the core via the 
+cold leg. 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-5 Rev 0406 
+The accumulator tank volume is approximately two thirds full of borated water; the 
+remaining volume is filled with nitrogen at a pressure greater than 600 psig.  The 
+boron concentration (approximately 2000 ppm) is about the same as that of the 
+RWST contents.  The technical specification limits on accumulator water volume 
+and nitrogen cover pressure ensure that the discharge from three accumulators is 
+sufficient to rapidly refill the reactor vessel downcomer (the annular space between 
+the vessel and the core barrel) and vessel bottom plenum and to begin reflooding 
+the core so that core damage is limited following a design-basis LOCA.  The entire 
+contents of the fourth accumulator are assumed to be completely lost via the RCS 
+pipe break during the blowdown phase of the LOCA and are thus unavailable for 
+core cooling.  The boron concentration limits ensure that sufficient negative 
+reactivity is added to maintain post-LOCA subcriticality and ensure acceptable post-
+LOCA containment recirculation sump pH values. 
+ 
+The accumulator design basis summarized in the preceding paragraph indicates 
+that all
+ four accumulators must be operable (filled to the appropriate level, 
+pressurized to the appropriate value, and borated to the appropriate concentration) 
+when the plant is operating at power.  To ensure that no accumulator is 
+inadvertently isolated and to maintain the passive nature of the system, the isolation 
+valve in each accumulator=s discharge piping (valve 8808A [B,C,D] in Figure 5.2-2) 
+is maintained open with power removed from its motor operator.  During a deliberate 
+plant depressurization, power to the valve motor operators is temporarily restored so 
+that the valves can be closed before plant pressure is less than the accumulator 
+cover pressure.  The valves are then maintained shut with power removed during 
+low pressure maintenance and refueling activities. 
+ 
+Each accumulator=s nitrogen pressure can be adjusted as required during normal 
+plant operation by supplying nitrogen from the plant=s nitrogen supply header or by 
+venting nitrogen to the containment atmosphere.  The accumulators are isolated 
+from the nitrogen supply when pressure adjustment is not in progress.  A relief valve 
+on each accumulator protects it from pressures in excess of design pressure.  Each 
+accumulator has redundant pressure instruments. 
+ 
+The accumulators are located within the containment but outside of the secondary 
+shield wall, which protects them from internally generated missiles.  Since the 
+accumulators are located within the containment, a release of nitrogen would cause 
+a small increase in containment pressure.  Releases of accumulator gas are 
+detected by accumulator pressure indicators and alarms; the operator would take 
+action promptly as necessary to restore accumulator parameters to within the limits 
+of the technical specification covering accumulator operability.  
+ 
+An accumulator=s water level may be adjusted either by draining accumulator 
+contents to the reactor coolant drain tank or by pumping water from the RWST to 
+the accumulator.  The RWST water is transferred by a safety injection pump.  Each 
+accumulator has redundant level instruments. 
+ 
+Cold leg accumulator design parameters are listed in Table 5.2-2. 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-6 Rev 0406 
+Accumulator Check Valves 
+ 
+Each accumulator check valve is designed with a low pressure drop configuration 
+with all operating parts contained within the body.  The disc is permitted to rotate, 
+providing a new seating surface after each valve opening.  Each valve has a test 
+connection on its upstream side to permit leakage testing.  Design considerations 
+and analysis which assure that leakage through both check valves in an 
+accumulator injection line does not impair accumulator availability are as follows: 
+ 
+1. During normal operation each downstream check valve is seated with an 
+approximate differential pressure of 1650 psid across the disc.  Since the valve 
+remains in this position except for testing or when called upon to function, and is 
+not, therefore, subject to the abuses of flow operation or impact loads caused by 
+sudden flow reversal and seating, it does not experience significant wear of the 
+moving parts, and hence it is expected to function with minimal leakage. 
+ 
+2. When the reactor coolant system is being pressurized during the normal plant 
+heatup operation, each check valve is tested for leakage as soon as there is a 
+stable differential pressure of about 100 psi or more across the valve.  This test 
+confirms the seating of the disc and whether there has been an increase in 
+leakage since the last test.  When the leakage testing is completed, the 
+discharge line motor-operated isolation valves are opened, and the RCS 
+pressure increase is continued.  There should be no increase in leakage with 
+further RCS pressurization, since increasing the reactor coolant pressure 
+increases the seating forces on the valve discs and decreases the probability of 
+leakage. 
+ 
+3. The accumulators can accept some in-leakage from the RCS without an effect 
+on availability.  In-leakage would require, however, that the accumulator water 
+volume be adjusted according to technical specification requirements.  An 
+accumulator level alarm is provided as an added safeguard against excessive 
+accumulator in-leakages. 
+ 
+5.2.4.2 High Head Injection System 
+ 
+The high head injection system (Figure 5.2-3) includes the CCPs, the boron injection 
+tank (BIT), and the associated valves and piping in the flowpath from the RWST to 
+the RCS cold legs.  During normal plant operations the CCPs supply charging flow 
+as part of the chemical and volume control system (CVCS - Section 4.1).  Under 
+accident conditions these pumps deliver water to the RCS at the prevailing RCS 
+pressure.  To provide initial core cooling in response to smaller LOCAs, the high 
+head injection system provides high pressure, low volume injection from the RWST 
+(see section 5.2.4.3).  In addition, the system can be aligned for high pressure 
+coolant recirculation to provide long-term core cooling.  In response to a steam line 
+break, the injection of borated water from the RWST adds negative reactivity and 
+makes up for reactor coolant contraction. 
+ 
+Each CCP is of the multistage, diffuser design, with a barrel-type casing and vertical 
+suction and discharge nozzles.  Each pump has a self-contained lubrication system 
+with a shaft-driven lubricating oil pump and an oil cooler.  The lubricating oil is 
+---PAGE---
+ 
+USNRC HRTD 5.2-7 Rev 0406 
+cooled by service water.  The pump=s integral mechanical shaft seals are cooled by 
+ambient heat loss.  Pump design parameters are listed in Table 5.2-3.  
+ 
+A minimum flow bypass line is provided at each pump=s discharge to circulate flow 
+to the volume control tank (VCT) via the seal water heat exchanger to ensure 
+sufficient flow for pump cooling at or near the shutoff head.  The charging pumps 
+may be tested during normal operation through the use of the minimum flow bypass 
+lines. 
+ 
+A safety injection actuation signal initiates the following actions in the high head 
+injection system:  
+ 
+1. Both CCPs receive start signals.  An already running pump continues to run. 
+ 
+2. The motor-operated suction isolation valves from the RWST (112D, 112E) open, 
+and the suction isolation valves from the VCT (112B, 112C) subsequently shut.  
+The charging pump suctions are thus aligned to the RWST. 
+ 
+3. The motor-operated BIT outlet valves (8801A, 8801B) open to align the pump 
+discharge to the cold-leg injection paths.  The BIT inlet valves (8803A, 8803B) 
+are already open with power removed.  The high head injection penetrations into 
+the cold legs are separate from those of the other ECCSs.  
+ 
+(The normal charging, letdown, and seal return flowpaths in the CVCS isolate as 
+well.)  The high head injection system operates in this configuration until the lineup 
+is changed by the reactor operator.  The discharge pressure of the CCPs is 
+sufficient to provide flow to the RCS for any postulated size break.  The pumps can 
+deliver flow under all pressure conditions up to and including the pressurizer safety 
+valve lift pressure.  At very low RCS pressures, the two high head injection trains 
+deliver a combined flow rate of up to several hundred gpm. 
+ 
+As shown in Figure 5.2-1, the discharge of the RHR pumps is manually aligned to 
+the CCP suctions in order to circulate water from the containment recirculation sump 
+to the RCS cold legs at high pressures (see section 5.2.5).  The discharge from the 
+A train RHR pump is provided directly to the CCP suctions; the discharge from the B 
+train RHR pump is available to the CCP suctions via the cross-connection to the 
+safety injection pump suction piping. 
+ 
+In addition to providing core cooling flow during accident conditions, operation of the 
+high head injection system is part of a last-resort method of cooling the core known 
+as bleed and feed, which is used when heat transfer from the reactor coolant to the 
+steam generators is unavailable.  For this cooling method, flow through the core is 
+delivered by the CCPs and displaced out the intentionally opened power-operated 
+pressurizer relief valves. 
+ 
+Boron Injection Tank (BIT) 
+ 
+The BIT is a 900-gal tank in the CCP discharge piping that was originally intended to 
+contain highly borated (20,000- to 22,500-ppm) water that would be immediately 
+injected into the RCS upon actuation of the high head injection system.  The original 
+---PAGE---
+ 
+USNRC HRTD 5.2-8 Rev 0406 
+design basis of the BIT and its contents was to provide sufficient negative reactivity 
+to maintain core subcriticality during a worst-case RCS cooldown accident (main 
+steam line break).  A reanalysis of the cooldown accident without the highly borated 
+BIT contents revealed that, although the core could regain criticality, core damage 
+would be avoided.  As a result, most Westinghouse reactor plants have eliminated 
+the requirement for the high boron concentration in the BIT.  (The boron 
+concentration in the high head injection piping is the same as that in the RWST up 
+to the normally closed BIT outlet valves.)  At some plants the BIT has been removed 
+or bypassed; at others, including the course reference plant, the tank physically 
+remains in the high head injection flowpath. 
+ 
+The former high boron concentration of the BIT contents necessitated several 
+auxiliary components.  To prevent cold spots and stratification within the tank during 
+normal operation, the contents of the BIT were continuously recirculated by BIT 
+recirculation pumps.  The BIT inlet pipe incorporated a sparger to keep the boric 
+acid solution well mixed.  Redundant tank heaters and line heat tracing were 
+provided to ensure that the solution was stored at a temperature high enough 
+(normally greater than 135EF) to keep the boric acid in solution.  The BIT and the 
+recirculation piping were isolated from the rest of the high head injection system 
+during normal operation by normally closed BIT inlet and outlet valves; both sets of 
+valves were opened by a safety injection actuation.  In the course reference plant 
+the very high boron concentration in the BIT is no longer maintained, and all BIT 
+auxiliary equipment except the sparger has been removed.  Because isolation of BIT 
+recirculation piping is no longer necessary, the motor-operated BIT inlet valves are 
+maintained de-energized in the open position.  
+ 
+Boron injection tank design parameters are listed in Table 5.2-4.   
+ 
+5.2.4.3 Refueling Water Storage Tank  
+ 
+The RWST is a very large (438,000-gal capacity) seismically qualified tank 
+containing borated (greater than 2000-ppm) water.  The tank contents are used to 
+fill the refueling cavity for refueling operations and to provide water for ECCS and 
+containment spray system operation.  During normal operation, the RWST is always 
+aligned through open isolation valves to the suctions of the safety injection, RHR, 
+and containment spray pumps.  As indicated in the previous section, the CCP 
+suctions switch from the VCT to the RWST with a safety injection actuation signal. 
+ 
+The minimum water volume (428,000 gal) and boron concentration required by the 
+RWST technical specification ensure: 
+ 
+1. Sufficient coolant to support ECCS operation during the injection phase (see 
+section 5.2.5), 
+ 
+2. Sufficient water volume in the containment recirculation sump to support 
+continued ECCS and containment spray system operation during the 
+recirculation phase (see section 5.2.5), and 
+ 
+3. Maintaining core subcriticality following a LOCA. 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-9 Rev 0406 
+Electric heaters in the tank keep the water temperature above the boron solubility 
+limit.  RWST design parameters are listed in Table 5.2-5. 
+ 
+The RWST has four redundant level transmitters which provide indication in the 
+control room, alarms, and control actions.  At the low-level (48%) setpoint (119,000 
+remaining usable gallons), the RHR pumps automatically trip, and the operators 
+align the ECCSs for cold-leg recirculation of coolant from the recirculation sump.  
+Realigning for recirculation at the low-level setpoint ensures that vortexing does not 
+occur in the RWST, and that there is sufficient water in the recirculation sump to 
+provide adequate suction head for the RHR pumps.  At the low-low-level (17%) 
+setpoint (78,000 remaining usable gallons), the containment spray pumps 
+automatically trip, and the operators then manually complete the recirculation 
+alignment of the engineered safety features (ESF) equipment by shifting the 
+containment spray pump suctions to the recirculation sump.  The additional water 
+sprayed into containment by the containment spray system as the RWST empties 
+between the low-level and low-low-level setpoints ensures a sufficiently basic pH in 
+the sump water. 
+ 
+During normal operating conditions backflow from the RCS into the RWST is 
+prevented by seated check valves in the unisolated discharge paths.  When the 
+RHR system is placed into operation during an RCS cooldown, the RHR pump 
+suctions are isolated from the RWST by a motor-operated valve (8812) in addition to 
+a check valve (see Figure 5.2-5). 
+ 
+5.2.4.4 Intermediate Head Injection (Safety Injection) System  
+ 
+The intermediate head injection system (Figure 5.2-4), also referred to as the safety 
+injection system, includes two safety injection pumps and the associated valves and 
+piping in the flowpaths from the RWST to the RCS cold and hot legs.  The system is 
+designed to provide water from the RWST to the RCS in the case of a relatively 
+small break in which the RCS pressure remains high (above the accumulator 
+pressure and the RHR pump shutoff head) for a relatively long period.  In addition, 
+the system is aligned for coolant recirculation to both the hot and cold legs to 
+provide long-term core cooling at intermediate coolant pressures.    
+ 
+Each safety injection pump is a multistage centrifugal pump, driven directly by an 
+induction motor.  Each pump has a self-contained lubrication system and a 
+mechanical seal cooling system.  The lubricating oil cooler is cooled by service 
+water, and the seals are cooled by component cooling water.  Safety injection pump 
+design parameters are listed in Table 5.2-6. 
+ 
+The system is aligned during normal operation with unisolated suction and 
+discharge paths.  Upon receipt of a safety injection actuation signal, the pumps start 
+and recirculate water to the RWST until the RCS pressure decreases below the 
+pump shutoff head.  Once the RCS pressure is below the pump shutoff head, the 
+pumps inject at a flow rate of up to several hundred gpm per pump (increasing as 
+the RCS pressure decreases) through a common discharge header that branches to 
+all four cold legs of the RCS.  The intermediate head injection discharge penetration 
+into each cold leg and the downstream check valve in each cold leg injection path 
+---PAGE---
+ 
+USNRC HRTD 5.2-10 Rev 0406 
+are shared with the accumulator discharge piping and the low head injection system 
+(see Figure 5.2-1). 
+ 
+A minimum flow bypass line is provided at each pump=s discharge to circulate flow 
+to the RWST during low pump flow conditions.  These lines also permit pump testing 
+during normal operation.  Two normally open motor-operated valves (8813, 8814) 
+are provided in the recirculation path to the RWST.  These valves are closed by the 
+operator during the recirculation mode to prevent the diversion of radioactive fluid to 
+the vented RWST. 
+ 
+As shown in Figure 5.2-1, the discharge of the RHR pumps can be manually aligned 
+to the safety injection pump suctions in order to recirculate water from the 
+containment recirculation sump to the RCS cold legs at pressures above the RHR 
+pump shutoff head (see section 5.2.5).  The discharge from the B train RHR pump is 
+provided directly to the safety injection pump suctions; the discharge from the A train 
+RHR pump is available to the safety injection pump suctions via the cross-
+connection to the CCP suction piping.  After many hours of cold-leg recirculation, the 
+safety injection system is manually realigned for hot-leg recirculation by opening the 
+hot-leg injection isolation valves (8802A, 8802B) and closing the cold-leg injection 
+isolation valves (8821A, 8821B, 8835).  The suction source for hot-leg recirculation 
+remains the discharge of the RHR pumps. 
+ 
+While the system is in its standby alignment, backflow from the RCS into the safety 
+injection system is prevented by two check valves in series in each injection 
+flowpath.  A piping connection on the upstream side of each valve permits leakage 
+testing during outages. 
+ 
+A safety injection pump is aligned for accumulator fill operations when necessary via 
+a piping branch upstream of the A train hot-leg injection isolation valve.  
+Accumulator filling is the only non-accident function of the system. 
+ 
+5.2.4.5 Low Head Injection System  
+ 
+The low head injection system (Figure 5.2-5) is designed to provide low pressure, 
+high volume injection from the RWST to the four RCS cold legs for large RCS pipe 
+breaks up to and including the design-basis LOCA, in which the RCS pressure 
+decreases to containment pressure in a relatively short period of time.  In addition, 
+the system provides long-term core cooling following a LOCA via the recirculation 
+and cooling of water collected in the containment recirculation sump. 
+ 
+The low head injection system utilizes the RHR pumps to deliver water from the 
+RWST or the containment recirculation sump to the RCS.  Each RHR pump is a 
+single-stage, vertical centrifugal pump.  It has an integral shaft driven by an 
+induction motor.  The unit has a self-contained mechanical seal, which is cooled by 
+component cooling water.  The RHR pumps and the nonaccident functions of the 
+RHR system are discussed in Section 5.1.  
+ 
+The system is aligned during normal operation with unisolated suction and 
+discharge paths.  Upon receipt of a safety injection actuation signal, the RHR pumps 
+start and recirculate water through the uncooled RHR heat exchangers (via valves 
+---PAGE---
+ 
+USNRC HRTD 5.2-11 Rev 0406 
+610 and 611) until the RCS pressure decreases below the pump shutoff head.  
+Once the RCS pressure is below the pump shutoff head (approximately 200 psid), 
+the pumps inject at a flow rate of up to several thousand gpm (increasing as the 
+RCS pressure decreases) through discharge headers to all four cold legs of the 
+RCS.  Each of the two discharge headers provides flow to two cold legs; the 
+headers are cross-connected to ensure that each low head injection train can 
+provide flow to all cold legs.  The low head injection discharge penetration into each 
+cold leg and the downstream check valve in each cold leg injection path are shared 
+with the accumulator discharge piping and the intermediate head injection system 
+(see Figure 5.2-1). 
+ 
+When the RWST has emptied to the low-level setpoint (48%), the suctions of the 
+RHR pumps are manually realigned to the containment recirculation sump for 
+recirculation of the sump water to the RCS.  The cold-leg recirculation lineup is 
+completed by opening the component cooling water supplies to the RHR heat 
+exchangers and by opening the RHR pump discharge paths to the suctions of the 
+CCPs and safety injection pumps (via valves 8804A, 8804B).  After many hours of 
+cold-leg recirculation, the low head injection system is manually aligned for hot-leg 
+recirculation by realigning the injection flowpaths from the cold legs to two of the four 
+hot legs (see Figure 5.2-5).  The low head injection discharge penetrations into the 
+hot legs are shared with the intermediate head injection system (see Figure 5.2-1).  
+During hot-leg recirculation, the RHR pumps remain the suction source for the 
+higher headed ECCSs. 
+ 
+While the system is in its standby alignment, backflow from the RCS into the low 
+head injection system is prevented by two check valves in series in each injection 
+flowpath.  A piping connection on the upstream side of each valve permits leakage 
+testing during outages. 
+ 
+5.2.4.6 Containment Recirculation Sump  
+ 
+The containment recirculation sump (Figures 5.2-6 and 5.2-7) is a large collection 
+reservoir designed to provide an adequate water supply to the ECCSs and 
+containment spray system during recirculation modes of operation.  The water 
+collected in the sump is reactor coolant lost through an RCS pipe break as well as 
+water that has been injected from the RWST into the RCS and then through the 
+pipe break.  Sump design features limit the size of debris that can enter the 
+recirculation flowpaths and ensure an adequate net positive suction head (NPSH) 
+for the containment spray and RHR pumps.  It should be noted that the course 
+reference recirculation sump described in this section can differ significantly from 
+the sumps at other Westinghouse plants. 
+ 
+The sump is located at a low level in containment outside the biological shield. The 
+sump is covered by a sheet metal roof and is surrounded on the sides by bars and 
+screens; the fine screen mesh size of 3/16 in. limits the size of floating debris that 
+can become entrained in the suction piping from the sump.  The bar and screen 
+arrangement can withstand clogging of 50% of the incoming flow area without 
+significantly degrading the NPSH for the RHR and containment spray pumps.  The 
+sump has an 18-in.-high baffle along its floor which is located between the suction 
+pipes for the two trains of ESF equipment.  Two level switches supply indicating 
+---PAGE---
+ 
+USNRC HRTD 5.2-12 Rev 0406 
+lights in the control room.  When the RWST level has reached the low-low-level 
+setpoint following an accident, the fluid elevation in containment should be 13 ft 
+above the sump floor. 
+ 
+Two suction pipes penetrate the recirculation sump walls; each pipe supplies one 
+train of low head injection and one train of containment spray.  The suction piping is 
+oriented horizontally through the sump and is sufficiently submerged to limit 
+vortexing.  Each suction pipe contains a normally open motor-operated isolation 
+valve that is also within the sump confines; each valve=s motor operator is mounted 
+atop the sump=s roof and remains above the water level following collection of the 
+RWST contents.  The suction piping branches to the RHR and containment spray 
+pumps outside containment; four normally closed suction isolation valves (one for 
+each RHR and containment spray pump) isolate the recirculation sump from the 
+ECCSs and containment spray system when the systems are in their standby 
+alignments.  The suction isolation valves are manually opened as part of the 
+realignment of the systems to the cold-leg recirculation mode. 
+ 
+The sump dimensions, the materials used in the fabrication of the sump, the suction 
+piping, and the isolation valves are designed to provide assurance that the sump will 
+remain functional for long-term coolant recirculation during the existence of the post-
+accident environment. 
+ 
+The course reference plant ceased operations in the early 1990s; significantly 
+revised containment recirculation sump strainer designs have been implemented at 
+operating plants since then.  A major concern has been the potential blockage of 
+recirculation sump strainers by post-accident debris.  Generic Letter 2004-02, 
+“Potential Impact of Debris Blockage on Emergency Recirculation during Design 
+Basis Accidents at Pressurized-Water Reactors,” required licensees to perform, in 
+part, an evaluation of the potential for sump strainer blockage to impede or prevent 
+recirculation of sump contents by safety systems.  In accordance with their 
+responses to the generic letter, almost all PWR licensees have adopted sump 
+screen modifications which have greatly increased the effective surface areas for 
+post-accident recirculation flows.  A large strainer surface area ensures that, even 
+with extensive strainer blockage, the remaining unblocked suction flow area is 
+sufficient to support recirculation safety functions. 
+ 
+Two such modifications are illustrated in Figures 5-8 and 5-9.  Figure 5-8 shows the 
+pocket-screen technology of Control Components Incorporated, which involves 
+banks of cheese-grater-shaped cartridges at the inlets to pump suction piping.  The 
+large strainer surface area is provided by the dimensions and contours of the 
+cartridges.  Figure 5-9 illustrates the “Sure-Flow Strainer” of Performance 
+Contracting Incorporated.  That design also involves banks of strainer elements in 
+the suction piping inlets.  Each element provides a large surface area for flow via a 
+collection of thin perforated plates which feed a central core tube.   
+ 
+ 
+5.2.5 Emergency Core Cooling Systems Integrated Operations  
+ 
+The operation of the emergency core cooling systems following a LOCA can be 
+divided into three distinct modes of operation, summarized as follows:  
+---PAGE---
+ 
+USNRC HRTD 5.2-13 Rev 0406 
+1. The injection mode, in which borated water is injected into the RCS from the 
+accumulators and from the RWST by the high, intermediate, and low head 
+injection systems, provided that the RCS pressure is low enough for the lower 
+headed systems to inject.  The injected water provides initial core cooling by 
+refilling the reactor vessel and reflooding the core.  The injected boron adds to 
+the post-accident shutdown margin. 
+ 
+2. The cold-leg recirculation mode, in which the suction of the low head injection 
+system is aligned to the containment recirculation sump, from which the collected 
+water is recirculated to the core via the RCS cold legs.  The recirculated water is 
+cooled in the RHR heat exchangers.  The discharge of the low head injection 
+(RHR) pumps is also directed to the suctions of the higher headed ECCS pumps; 
+the discharge from those pumps completes the recirculation path for high 
+prevailing RCS pressures.  The recirculated, cooled water from the containment 
+recirculation sump maintains post-accident core cooling. 
+ 
+3. The hot-leg recirculation mode, in which the discharge of the intermediate and 
+low head injection pumps is realigned to the RCS hot legs to reverse the 
+direction of flow through the core and to continue long-term cooling.  The ECCS 
+suction source during hot-leg recirculation remains the containment recirculation 
+sump. 
+ 
+Injection Mode 
+ 
+The injection mode of emergency core cooling is initiated by a safety injection 
+actuation signal.  This signal is actuated in response to any of the following: 
+  
+$ Low pressurizer pressure, 
+$ High containment pressure, 
+$ High steam flow, coincident with either low-low T
+avg or low steam pressure, 
+$ High steam line differential pressure, or  
+$ Manual actuation.  
+ 
+These signals are discussed in detail in Section 12.3. 
+ 
+Operation of the emergency core cooling systems during the injection mode is 
+completely automatic.  The safety injection actuation signal starts the ECCS pumps 
+(usually via a sequencer which starts the pumps at different times), realigns the 
+CCP suction and discharge paths for high head injection, and realigns auxiliary 
+cooling systems as necessary to support post-accident operation of the ECCS 
+equipment.  Realignment of the intermediate and low head injection systems is 
+unnecessary.  Actuations and realignments of other ESF equipment by the safety 
+injection actuation are discussed in Section 12.3. 
+ 
+Following a large RCS pipe rupture, the RCS is depressurized and voided of coolant 
+rapidly.  A high flow rate of emergency coolant is required to quickly cover the 
+exposed fuel rods and to limit possible core damage.  This high flow is provided 
+initially by the discharge from the passive cold-leg accumulators, which rapidly refill 
+the reactor vessel downcomer and vessel bottom plenum and begin to reflood the 
+core.  Reflooding of the core is subsequently completed by injection from the 
+---PAGE---
+ 
+USNRC HRTD 5.2-14 Rev 0406 
+centrifugal charging (high head injection) pumps, safety injection (intermediate head 
+injection) pumps, and RHR (low head injection) pumps.  These pumps inject to the 
+RCS cold legs as soon as they start and begin to develop sufficient discharge 
+pressure.  The pumps are started in order from highest to lowest discharge head.  
+The suction source for all of the active systems is the RWST. 
+ 
+The order of ECCS injection is different for smaller RCS pipe ruptures.  An SBLOCA 
+results in a gradual depressurization of the reactor coolant.  In response, each 
+ECCS pump begins to deliver water from the RWST to the cold legs once the 
+reactor coolant pressure has decreased to below the pump =s shutoff head, and the 
+accumulators begin to discharge to the cold legs once the coolant pressure is less 
+than the nitrogen cover pressure.  Hence, the ECCSs begin to inject in order of 
+decreasing discharge capability: the high head injection system first, the 
+intermediate head injection system second, the accumulators third, and the low 
+head injection system last. 
+ 
+If the size of the rupture is small enough, the coolant depressurization stops when 
+the rate of inventory addition by the ECCSs equals the rate of inventory loss.  An 
+equilibrium coolant pressure can be reached with just the high head injection system 
+injecting, or with just the high and intermediate head injection systems injecting.  In 
+such a case further coolant depressurization requires operator action. 
+ 
+The injection mode continues until the RWST level reaches the low-level setpoint, at 
+which time the operator changes the ECCS alignment for operation in the cold-leg 
+recirculation mode.  
+ 
+Cold-Leg Recirculation Mode 
+ 
+The details of transfer from the injection mode to the recirculation mode of operation 
+are plant specific.  At plants where a portion of the transfer is automatic, the suction 
+supply to the low head injection pumps is automatically switched from the RWST to 
+the containment recirculation sump.  For the course reference plant, the change in 
+suction supplies is a manual operation directed by the emergency operating 
+procedures.  In any case, the transfer from the injection mode to the recirculation 
+mode takes place well before the RWST is empty, so that until the transfer is 
+complete, the remaining RWST contents provide adequate net positive suction head 
+to running ECCS pumps. 
+ 
+For the course reference plant, the RHR pumps automatically stop when the RWST 
+reaches the low-level setpoint (48%).  Operators are then directed by procedure to 
+establish component cooling water flow to the RHR heat exchangers, to isolate the 
+RHR suctions from the RWST, to open the RHR suctions from the containment 
+recirculation sump, and to then restart the RHR pumps.  At this point, the water 
+collected in the recirculation sump is available for cooling and recirculation to the 
+RCS for long-term core cooling.  If the reactor coolant pressure is below the shutoff 
+head of the low head injection pumps, they will provide cooled water directly to the 
+RCS cold legs via the low head injection discharge piping. 
+ 
+In the event of a smaller RCS rupture, in which the coolant depressurization 
+proceeds slowly, the reactor coolant pressure may still exceed the shutoff head of 
+---PAGE---
+ 
+USNRC HRTD 5.2-15 Rev 0406 
+the low head injection pumps at the onset of recirculation.  In this case, the low head 
+injection pump discharge (cooled water from the recirculation sump) must be aligned 
+to the suction piping of the centrifugal charging pumps and the safety injection 
+pumps so that those pumps can inject it into the RCS at higher pressure and thus 
+maintain core cooling (see Figure 5.2-1).  This alignment is referred to as high 
+pressure recirculation or as Apiggyback@ operation.  The completion of the piggyback 
+realignment includes manually shutting the high and intermediate head pump 
+recirculation valves and isolating the RWST suctions to those pumps.  A manually 
+unisolated cross connection between the centrifugal charging pump and safety 
+injection pump suctions ensures that either low head injection train can supply flow 
+to both of the higher headed systems.  The ECCS piggyback alignment is typically 
+directed by procedure at the initiation of cold-leg recirculation regardless of reactor 
+coolant pressure. 
+ 
+Hot-Leg Recirculation Mode 
+ 
+Approximately 24 hours (course reference plant value) after the switchover to cold-
+leg recirculation, hot-leg recirculation is initiated.  In this manually initiated mode of 
+operation, the low head injection paths to the RCS cold legs are isolated, and the 
+injection paths to two of the four hot legs are opened.  Also, the intermediate head 
+injection paths to the cold legs are isolated, and the injection paths to all four hot 
+legs are opened.  The suction sources for all ECCS pumps are unchanged from the 
+cold-leg recirculation alignment, and the high head injection system continues to 
+discharge to the cold legs.  Hot-leg recirculation thus reverses the direction of much 
+of the coolant flow delivered to the core. 
+ 
+Hot-leg recirculation is implemented to terminate boiling in the core and to prevent 
+boron precipitation in the core following a large cold-leg break.  For such a break, 
+core decay heat boils off much of the injected water while the nonvolatile injected 
+boron concentrates in the vicinity of the fuel assemblies.  Cold-leg injection is not 
+effective in countering core boil-off because the vessel downcomer level is low, 
+injection flow primarily fills the downcomer and not the core region, and Aflushing@ of 
+the core does not occur.  With the direction of coolant flow reversed, hot-leg 
+recirculation terminates boil-off and dilutes the concentrated boric acid solution in 
+the vessel with the less concentrated solution recirculated from the containment 
+sump.  The switchover to hot-leg recirculation is initiated before the boron solubility 
+limit of the reactor vessel water is exceeded, so that boron does not plate out on fuel 
+cladding and interfere with decay heat removal.  An additional benefit of hot-leg 
+recirculation is the quenching of any steam bubble that remains in the vessel. 
+ 
+Transferring to hot-leg recirculation is not necessary for all types of LOCAs.  For a 
+hot-leg break, cold-leg recirculation flow passes through the core and spills through 
+the break with little resistance.  The core is thus flushed without boron buildup.  
+However, hot-leg recirculation would be implemented whenever the initiation 
+conditions are reached so that the implementing procedure is not event specific. 
+ 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-16 Rev 0406 
+5.2.5 PRA Insights  
+ 
+For the purposes of a typical PRA, the high pressure portion of the ECCSs includes 
+both the centrifugal charging pumps and the safety injection pumps.  The low 
+pressure portion involves only the RHR pumps. 
+ 
+NUREG-1150 indicates that the LOCA initiator is a major contributor to core damage 
+frequency (59% for Sequoyah, 28% for Surry, and 18% for Zion).  The major failures 
+in the LOCA sequences that lead to core damage include either the failure of the 
+high pressure ECCSs in the recirculation mode or the failure of the low pressure 
+ECCS in the recirculation mode.  The loss of the recirculation capability allows the 
+core to continue to heat up and any remaining coolant to boil off, resulting in core 
+damage. 
+ 
+Probable causes of failure of an ECCS function include: 
+ 
+1. Failure to shift the high pressure systems from the injection to the recirculation 
+mode. 
+2. Failure of the high pressure injection discharge isolation valves to open. 
+3. Failure of room cooling for the high pressure injection pumps. 
+4. Failure to shift from cold-leg to hot-leg recirculation. 
+5. Failure to shift the low pressure system from the injection to the recirculation 
+mode. 
+6. Failure of the low pressure recirculation sump suction isolation valves to open. 
+7. Failure of the RWST suction isolation valves for the low pressure injection 
+system to close. 
+8. Failure of the operators to properly realign an ECCS after testing. 
+9. Failure of the low pressure injection pumps to start. 
+ 
+NUREG-1150 studies on importance measures have shown that the ECCSs can be 
+major contributors to both risk reduction and risk achievement.  Specifically, the core 
+damage frequency is most sensitive to increases in the probabilities of component 
+faults and of operator errors associated with establishing recirculation from the 
+containment sump.  The greatest reductions in core damage frequencies are 
+achieved by reducing the frequencies of initiating events and the probabilities of 
+operator errors and valve failures. 
+ 
+In current risk-informed notebooks for operating plants, safety functions provided by 
+the ECCSs appear in many core damage sequences.  Failures of the high pressure 
+injection, low pressure injection, accumulator injection, low pressure recirculation, 
+and high pressure recirculation safety functions are involved in core damage 
+sequences associated with the LOCA initiators.  Because of their roles in the bleed 
+and feed method of core cooling, the failures of the high pressure injection and high 
+pressure recirculation safety functions appear in core damage sequences in which 
+all decay heat removal options are lost (i.e., auxiliary feedwater, main feedwater, 
+and bleed and feed cooling have all failed). 
+ 
+ 
+ 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-17 Rev 0406 
+5.2.6 Summary  
+ 
+The emergency core cooling systems are designed to provide post-accident core 
+cooling. The ECCSs are designed in accordance with the General Design Criteria of 
+10 CFR 50, Appendix A, and they must meet the acceptance requirements of 10 
+CFR 50.46.  They are designed to withstand a single failure by providing 100% 
+redundancy in components and system flowpaths. 
+ 
+The ECCSs include both passive and active systems.  The passive system is 
+comprised of the cold-leg injection accumulators.  The active systems include the 
+high head injection (centrifugal charging pumps), intermediate head injection (safety 
+injection pumps), and the low head injection (RHR pumps) systems.  
+ 
+All active components are actuated by a safety injection actuation signal, which 
+originates from the reactor protection system (see Section 12.3).  
+ 
+The order of ECCS injection into the reactor coolant system following a LOCA is 
+dependent on the size of the rupture.  Following a large rupture, the passive 
+accumulators inject first, followed by the active pumping systems.  A small rupture is 
+characterized by a slow rate of coolant pressure reduction, during which the ECCSs 
+inject in order from highest to lowest discharge pressure capability: high head 
+injection, intermediate head injection, accumulators, and low head injection.  
+ 
+The RWST is the suction source for all active systems following actuation.  A low 
+level in the RWST signals the end of the injection mode of operation.  Cold-leg 
+recirculation is then initiated manually or with partial automation.  Cold-leg 
+recirculation initiates long-term core cooling.  Hot-leg recirculation is initiated many 
+hours after the onset of a LOCA to alleviate concerns with the potential buildup of 
+boron in the core. 
+ 
+---PAGE---
+ 
+USNRC HRTD 5.2-18 Rev 0406 
+ 
+ 
+Table 5.2-1 
+Normal Operating Status of Emergency Core Cooling System Components 
+ 
+Number of charging pumps operable        2 
+Number of safety injection pumps operable      2 
+Number of residual heat removal pumps operable    2 
+Number of residual heat removal heat exchangers operable  2 
+Minimum refueling water storage tank volume, gal.        428,000 
+Boron concentration in refueling water storage tank, ppm      2,000 - 2,500 
+Number of cold leg accumulators            4 
+Cold leg accumulator water volume, ft
+3           870 - 930 
+Cold leg accumulator pressure, psig            600 - 650 
+Minimum boron concentration in cold leg accumulators, ppm     1,900 
+ 
+ 
+ 
+ 
+Table 5.2-2 
+Accumulator Design Parameters 
+ 
+N u m b e r                4  
+Design pressure, psig       700 
+Design temperature, EF           300 
+Operating temperature, EF          100-150 
+Normal operating pressure, psig    650 
+Minimum operating pressure, psig   600 
+Total volume, gal        10,100 ea. 
+Minimum water volume, gal     6,500 ea. 
+Boric acid concentration, minimum ppm  1,900  
+ 
+ 
+ 
+ 
+Table 5.2-3 
+Centrifugal Charging Pump Design Parameters 
+ 
+Number                     2 
+Design pressure, psig             2,800 
+Design temperature, EF                 300 
+Design flow rate, gpm                 150 
+Developed head at maximum flow rate, psig 1,400 
+Shutoff head, psig                  2,670  
+ 
+---PAGE---
+  
+USNRC Technical Training Center  5.2-19   Rev 0406                     
+ 
+ 
+Table 5.2-4 
+Boron Injection Tank Design Parameters 
+ 
+N u m b e r             1  
+Total volume, gal     900 
+Boric acid concentration, ppm      1,900-2,000 
+Design pressure, psig    2,735 
+Design temperature, EF         300 
+Operating temperature, EF       150-180 
+ 
+ 
+ 
+ 
+Table 5.2-5 
+Refueling Water Storage Tank Design Parameters 
+ 
+N u m b e r              1  
+Total volume, gal     438,000 
+Minimum volume, gal         428,000 
+Boric acid concentration, ppm       2,000 - 2,500 
+Normal pressure           Atmospheric 
+Operating temperature, EF        37 - 90 
+Design temperature (Tank),EF       200 
+ 
+ 
+ 
+ 
+Table 5.2-6 
+Safety Injection Pump Design Parameters 
+ 
+N u m b e r               2  
+Design pressure, psig          1,700 
+Design temperature, EF              300 
+Design flow rate, gpm          425 
+Developed head at maximum flow rate, psig   650 
+Shutoff head, psig           1,520 
+ 
+---PAGE---
+  
+ 
+---PAGE---
+  
+ 
+ 
+
+---PAGE---
+  
+ 
+ 
+
+---PAGE---
+  
+ 
+ 
+
+---PAGE---
+  
+ 
+ 
+---PAGE---
+  
+
+---PAGE---
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+---PAGE---
+  
+ 
+ 
+---PAGE---
+  
+ 
+ 
+---PAGE---
+  
+ 
+ 
+ 
+---PAGE---
