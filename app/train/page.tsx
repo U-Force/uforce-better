@@ -18,7 +18,6 @@ import {
 } from "../../lib/training";
 import ScenarioBriefing from "../../components/ScenarioBriefing";
 import ScenarioDebrief from "../../components/ScenarioDebrief";
-import NavigationBar from "../../components/NavigationBar";
 import {
   useReactorSimulation,
 } from "../../hooks/useReactorSimulation";
@@ -323,6 +322,16 @@ export default function TrainingPage() {
     setAppState('selector');
   };
 
+  const handleExitToDebrief = () => {
+    const collector = metricsCollectorRef.current;
+    const scenario = selectedScenarioRef.current;
+    if (collector && scenario && sim.state) {
+      collector.finalize(sim.state, scenario);
+    }
+    handleStop();
+    setAppState('debrief');
+  };
+
   const handleRestartScenario = () => {
     if (selectedScenario) setAppState('briefing');
   };
@@ -522,15 +531,12 @@ export default function TrainingPage() {
   // ── BRIEFING STATE ──────────────────────────────────────────────────
   if (appState === 'briefing' && selectedScenario) {
     return (
-      <>
-        <NavigationBar />
-        <ScenarioBriefing
-          scenario={selectedScenario}
-          role={currentRole}
-          onStart={handleStartScenario}
-          onBack={handleBackToSelector}
-        />
-      </>
+      <ScenarioBriefing
+        scenario={selectedScenario}
+        role={currentRole}
+        onStart={handleStartScenario}
+        onBack={handleBackToSelector}
+      />
     );
   }
 
@@ -553,7 +559,7 @@ export default function TrainingPage() {
         scenario={selectedScenario}
         liveMetrics={liveMetrics}
         metricsCollector={metricsCollector}
-        onExit={handleBackToSelector}
+        onExit={handleExitToDebrief}
       />
     </WorkbenchProvider>
   );
