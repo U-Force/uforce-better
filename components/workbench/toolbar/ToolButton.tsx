@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { COLORS, FONTS, FONT_SIZES, RADIUS } from "../../../lib/workbench/theme";
 
 interface ToolButtonProps {
   icon: React.ReactNode;
@@ -17,23 +18,19 @@ export default function ToolButton({
   onClick,
   variant = "default",
 }: ToolButtonProps) {
+  const isDanger = variant === "danger";
+
   const bg = active
-    ? variant === "danger"
-      ? "rgba(239, 68, 68, 0.25)"
-      : "rgba(16, 185, 129, 0.2)"
-    : "transparent";
+    ? isDanger ? "rgba(239, 68, 68, 0.25)" : COLORS.emeraldBgStrong
+    : COLORS.bgTransparent;
 
   const border = active
-    ? variant === "danger"
-      ? "1px solid rgba(239, 68, 68, 0.5)"
-      : "1px solid rgba(16, 185, 129, 0.4)"
-    : "1px solid rgba(255, 255, 255, 0.08)";
+    ? `1px solid ${isDanger ? "rgba(239, 68, 68, 0.5)" : COLORS.borderEmerald}`
+    : `1px solid rgba(255, 255, 255, 0.08)`;
 
   const color = active
-    ? variant === "danger"
-      ? "#ef4444"
-      : "#10b981"
-    : "#94a3b8";
+    ? isDanger ? COLORS.red : COLORS.emerald
+    : COLORS.slate;
 
   return (
     <button
@@ -46,17 +43,17 @@ export default function ToolButton({
         padding: "5px 10px",
         background: bg,
         border,
-        borderRadius: "4px",
+        borderRadius: RADIUS.md,
         color,
-        fontSize: "11px",
+        fontSize: FONT_SIZES.md,
         fontWeight: 600,
         cursor: "pointer",
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: FONTS.sans,
         transition: "all 0.15s",
         letterSpacing: "0.3px",
       }}
     >
-      <span style={{ fontSize: "14px", lineHeight: 1 }}>{icon}</span>
+      <span style={{ fontSize: FONT_SIZES.xl, lineHeight: 1 }}>{icon}</span>
       <span>{label}</span>
     </button>
   );

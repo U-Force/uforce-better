@@ -3,6 +3,7 @@
 import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { COLORS } from "../../../../lib/workbench/theme";
 
 interface PrimaryLoopProps {
   /** Coolant temperature normalized 0-1 (0=cold ~290C, 1=hot ~330C) */
@@ -17,8 +18,8 @@ interface PrimaryLoopProps {
 
 const PIPE_RADIUS = 0.12;
 const PIPE_SEGMENTS = 8;
-const COLD_COLOR = new THREE.Color("#2196f3");
-const HOT_COLOR = new THREE.Color("#f44336");
+const COLD_COLOR = new THREE.Color(COLORS.pipeCold);
+const HOT_COLOR = new THREE.Color(COLORS.pipeHot);
 
 /** Build a CatmullRomCurve3 from an array of [x,y,z] tuples */
 function makeCurve(points: [number, number, number][]): THREE.CatmullRomCurve3 {
@@ -141,10 +142,10 @@ function PrimaryLoop({
       <mesh geometry={hotLegAGeo}>
         <meshStandardMaterial
           ref={hotLegARef}
-          color="#f44336"
+          color={COLORS.pipeHot}
           metalness={0.6}
           roughness={0.4}
-          emissive="#f44336"
+          emissive={COLORS.pipeHot}
           emissiveIntensity={0.15}
         />
       </mesh>
@@ -153,10 +154,10 @@ function PrimaryLoop({
       <mesh geometry={hotLegBGeo}>
         <meshStandardMaterial
           ref={hotLegBRef}
-          color="#f44336"
+          color={COLORS.pipeHot}
           metalness={0.6}
           roughness={0.4}
-          emissive="#f44336"
+          emissive={COLORS.pipeHot}
           emissiveIntensity={0.15}
         />
       </mesh>
@@ -165,10 +166,10 @@ function PrimaryLoop({
       <mesh geometry={coldLegAGeo}>
         <meshStandardMaterial
           ref={coldLegARef}
-          color="#2196f3"
+          color={COLORS.pipeCold}
           metalness={0.6}
           roughness={0.4}
-          emissive="#2196f3"
+          emissive={COLORS.pipeCold}
           emissiveIntensity={0.1}
         />
       </mesh>
@@ -177,10 +178,10 @@ function PrimaryLoop({
       <mesh geometry={coldLegBGeo}>
         <meshStandardMaterial
           ref={coldLegBRef}
-          color="#2196f3"
+          color={COLORS.pipeCold}
           metalness={0.6}
           roughness={0.4}
-          emissive="#2196f3"
+          emissive={COLORS.pipeCold}
           emissiveIntensity={0.1}
         />
       </mesh>

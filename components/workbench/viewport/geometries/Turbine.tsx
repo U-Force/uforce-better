@@ -3,6 +3,8 @@
 import React, { useRef } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
+import { COLORS } from "../../../../lib/workbench/theme";
+import { useSelectionHighlight } from "../hooks/useSelectionHighlight";
 
 interface TurbineProps {
   /** Normalized power 0-1, drives blade rotation speed */
@@ -26,7 +28,7 @@ function Turbine({
   onSelect,
 }: TurbineProps) {
   const rotorRef = useRef<THREE.Group>(null);
-  const bodyMatRef = useRef<THREE.MeshStandardMaterial>(null);
+  const bodyMatRef = useSelectionHighlight(selected, 0.25);
   const currentSpeed = useRef(0);
 
   useFrame((_, delta) => {
@@ -43,16 +45,6 @@ function Turbine({
     if (rotorRef.current) {
       // Rotor spins around the Z axis (shaft axis along Z for horizontal turbine)
       rotorRef.current.rotation.z += currentSpeed.current * delta;
-    }
-
-    // Selection highlight
-    if (bodyMatRef.current) {
-      const target = selected ? 0.25 : 0;
-      bodyMatRef.current.emissiveIntensity = THREE.MathUtils.lerp(
-        bodyMatRef.current.emissiveIntensity,
-        target,
-        0.08
-      );
     }
   });
 
@@ -81,10 +73,10 @@ function Turbine({
         <cylinderGeometry args={[BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, 24, 1]} />
         <meshStandardMaterial
           ref={bodyMatRef}
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.85}
           roughness={0.3}
-          emissive="#335599"
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={0}
         />
       </mesh>
@@ -95,7 +87,7 @@ function Turbine({
           args={[BODY_RADIUS, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2]}
         />
         <meshStandardMaterial
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.85}
           roughness={0.3}
         />
@@ -105,7 +97,7 @@ function Turbine({
           args={[BODY_RADIUS, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2]}
         />
         <meshStandardMaterial
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.85}
           roughness={0.3}
         />

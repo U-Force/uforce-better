@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { COLORS, FONTS, FONT_SIZES } from "../../../lib/workbench/theme";
 
 interface ParameterGaugeProps {
   label: string;
@@ -26,7 +27,7 @@ export default function ParameterGauge({
   const pct = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
   const isDanger = dangerHigh !== undefined && value >= dangerHigh;
   const isWarning = !isDanger && warningHigh !== undefined && value >= warningHigh;
-  const color = isDanger ? "#ef4444" : isWarning ? "#f59e0b" : "#10b981";
+  const color = isDanger ? COLORS.red : isWarning ? COLORS.amber : COLORS.emerald;
   const displayValue = format ? format(value) : value.toFixed(1);
 
   return (
@@ -40,8 +41,8 @@ export default function ParameterGauge({
       >
         <span
           style={{
-            fontSize: "9px",
-            color: "#6ee7b7",
+            fontSize: FONT_SIZES.xs,
+            color: COLORS.teal,
             letterSpacing: "1px",
             fontWeight: 700,
           }}
@@ -50,8 +51,8 @@ export default function ParameterGauge({
         </span>
         <span
           style={{
-            fontSize: "12px",
-            fontFamily: "'Share Tech Mono', monospace",
+            fontSize: FONT_SIZES.lg,
+            fontFamily: FONTS.mono,
             color,
             fontWeight: 700,
           }}

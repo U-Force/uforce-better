@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
-import { useFrame, ThreeEvent } from "@react-three/fiber";
-import * as THREE from "three";
+import React from "react";
+import { ThreeEvent } from "@react-three/fiber";
+import { COLORS } from "../../../../lib/workbench/theme";
+import { useSelectionHighlight } from "../hooks/useSelectionHighlight";
 
 interface ReactorVesselProps {
   selected?: boolean;
@@ -17,23 +18,8 @@ const CRDM_RADIUS = 0.08;
 const CRDM_HEIGHT = 0.6;
 const CRDM_RING_RADIUS = 0.9;
 
-const VESSEL_COLOR = "#3a3a3a";
-const HIGHLIGHT_EMISSIVE = "#335599";
-
 function ReactorVessel({ selected = false, onSelect }: ReactorVesselProps) {
-  const groupRef = useRef<THREE.Group>(null);
-  const bodyMatRef = useRef<THREE.MeshStandardMaterial>(null);
-  const emissiveTarget = selected ? 0.3 : 0;
-
-  useFrame(() => {
-    if (bodyMatRef.current) {
-      bodyMatRef.current.emissiveIntensity = THREE.MathUtils.lerp(
-        bodyMatRef.current.emissiveIntensity,
-        emissiveTarget,
-        0.08
-      );
-    }
-  });
+  const bodyMatRef = useSelectionHighlight(selected);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
@@ -52,16 +38,16 @@ function ReactorVessel({ selected = false, onSelect }: ReactorVesselProps) {
   }
 
   return (
-    <group ref={groupRef} onClick={handleClick}>
+    <group onClick={handleClick}>
       {/* Vessel body cylinder */}
       <mesh>
         <cylinderGeometry args={[VESSEL_RADIUS, VESSEL_RADIUS, VESSEL_HEIGHT, 32, 1]} />
         <meshStandardMaterial
           ref={bodyMatRef}
-          color={VESSEL_COLOR}
+          color={COLORS.metalDark}
           metalness={0.85}
           roughness={0.3}
-          emissive={HIGHLIGHT_EMISSIVE}
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={0}
         />
       </mesh>
@@ -72,10 +58,10 @@ function ReactorVessel({ selected = false, onSelect }: ReactorVesselProps) {
           args={[CAP_RADIUS, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]}
         />
         <meshStandardMaterial
-          color={VESSEL_COLOR}
+          color={COLORS.metalDark}
           metalness={0.85}
           roughness={0.3}
-          emissive={HIGHLIGHT_EMISSIVE}
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={selected ? 0.3 : 0}
         />
       </mesh>
@@ -86,10 +72,10 @@ function ReactorVessel({ selected = false, onSelect }: ReactorVesselProps) {
           args={[CAP_RADIUS, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]}
         />
         <meshStandardMaterial
-          color={VESSEL_COLOR}
+          color={COLORS.metalDark}
           metalness={0.85}
           roughness={0.3}
-          emissive={HIGHLIGHT_EMISSIVE}
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={selected ? 0.3 : 0}
         />
       </mesh>
@@ -99,7 +85,7 @@ function ReactorVessel({ selected = false, onSelect }: ReactorVesselProps) {
         <mesh key={`crdm-${i}`} position={pos}>
           <cylinderGeometry args={[CRDM_RADIUS, CRDM_RADIUS, CRDM_HEIGHT, 8, 1]} />
           <meshStandardMaterial
-            color="#4a4a4a"
+            color={COLORS.metalMedium}
             metalness={0.9}
             roughness={0.25}
           />
@@ -116,7 +102,7 @@ function ReactorVessel({ selected = false, onSelect }: ReactorVesselProps) {
       >
         <cylinderGeometry args={[CRDM_RADIUS, CRDM_RADIUS, CRDM_HEIGHT, 8, 1]} />
         <meshStandardMaterial
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.9}
           roughness={0.25}
         />

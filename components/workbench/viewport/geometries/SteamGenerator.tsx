@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
-import { useFrame, ThreeEvent } from "@react-three/fiber";
-import * as THREE from "three";
+import React from "react";
+import { ThreeEvent } from "@react-three/fiber";
+import { COLORS } from "../../../../lib/workbench/theme";
+import { useSelectionHighlight } from "../hooks/useSelectionHighlight";
 
 interface SteamGeneratorProps {
   sgId: "sg-a" | "sg-b";
@@ -15,7 +16,6 @@ const SG_RADIUS = 1.0;
 const SG_HEIGHT = 6;
 const UTUBE_RADIUS = 0.8;
 const UTUBE_TUBE_RADIUS = 0.08;
-const HIGHLIGHT_EMISSIVE = "#335599";
 
 function SteamGenerator({
   sgId,
@@ -23,18 +23,7 @@ function SteamGenerator({
   selected = false,
   onSelect,
 }: SteamGeneratorProps) {
-  const matRef = useRef<THREE.MeshStandardMaterial>(null);
-  const emissiveTarget = selected ? 0.3 : 0;
-
-  useFrame(() => {
-    if (matRef.current) {
-      matRef.current.emissiveIntensity = THREE.MathUtils.lerp(
-        matRef.current.emissiveIntensity,
-        emissiveTarget,
-        0.08
-      );
-    }
-  });
+  const matRef = useSelectionHighlight(selected);
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
@@ -51,10 +40,10 @@ function SteamGenerator({
         <cylinderGeometry args={[SG_RADIUS, SG_RADIUS, SG_HEIGHT, 24, 1]} />
         <meshStandardMaterial
           ref={matRef}
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.8}
           roughness={0.35}
-          emissive={HIGHLIGHT_EMISSIVE}
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={0}
         />
       </mesh>
@@ -65,10 +54,10 @@ function SteamGenerator({
           args={[SG_RADIUS, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2]}
         />
         <meshStandardMaterial
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.8}
           roughness={0.35}
-          emissive={HIGHLIGHT_EMISSIVE}
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={selected ? 0.3 : 0}
         />
       </mesh>
@@ -79,10 +68,10 @@ function SteamGenerator({
           args={[SG_RADIUS, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2]}
         />
         <meshStandardMaterial
-          color="#4a4a4a"
+          color={COLORS.metalMedium}
           metalness={0.8}
           roughness={0.35}
-          emissive={HIGHLIGHT_EMISSIVE}
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={selected ? 0.3 : 0}
         />
       </mesh>

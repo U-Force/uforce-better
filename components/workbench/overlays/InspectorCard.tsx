@@ -2,6 +2,8 @@
 
 import React from "react";
 import { INSPECTOR_DATA } from "../../../lib/workbench/inspector-data";
+import { COLORS, FONTS, FONT_SIZES, RADIUS, BLUR } from "../../../lib/workbench/theme";
+import { closeButton, monoValue, paramLabel as paramLabelStyle } from "../../../lib/workbench/styles";
 import type { ReactorState, ReactivityComponents } from "../../../lib/reactor/types";
 
 interface InspectorCardProps {
@@ -40,7 +42,7 @@ export default function InspectorCard({
           <div style={nameStyle}>{meta.name}</div>
           <div style={idStyle}>{meta.id.toUpperCase()}</div>
         </div>
-        <button style={closeBtn} onClick={onClose}>
+        <button style={closeButton} onClick={onClose}>
           x
         </button>
       </div>
@@ -96,12 +98,12 @@ const card: React.CSSProperties = {
   width: "300px",
   background: "rgba(10, 15, 20, 0.92)",
   border: "1px solid rgba(16, 185, 129, 0.35)",
-  borderRadius: "8px",
+  borderRadius: RADIUS.xl,
   padding: "16px",
-  backdropFilter: "blur(12px)",
+  backdropFilter: BLUR.lg,
   zIndex: 50,
-  color: "#e2e8f0",
-  fontFamily: "'Inter', sans-serif",
+  color: COLORS.white,
+  fontFamily: FONTS.sans,
   boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
 };
 
@@ -113,46 +115,33 @@ const header: React.CSSProperties = {
 };
 
 const nameStyle: React.CSSProperties = {
-  fontSize: "14px",
+  fontSize: FONT_SIZES.xl,
   fontWeight: 700,
-  color: "#10b981",
+  color: COLORS.emerald,
 };
 
 const idStyle: React.CSSProperties = {
-  fontSize: "9px",
-  color: "#6ee7b7",
-  letterSpacing: "1px",
+  ...paramLabelStyle,
   marginTop: "2px",
 };
 
-const closeBtn: React.CSSProperties = {
-  background: "transparent",
-  border: "1px solid rgba(255,255,255,0.15)",
-  borderRadius: "4px",
-  color: "#94a3b8",
-  cursor: "pointer",
-  padding: "2px 8px",
-  fontSize: "12px",
-  fontWeight: 700,
-};
-
 const descStyle: React.CSSProperties = {
-  fontSize: "11px",
+  fontSize: FONT_SIZES.md,
   lineHeight: 1.5,
-  color: "#94a3b8",
+  color: COLORS.slate,
   marginBottom: "12px",
 };
 
 const paramSection: React.CSSProperties = {
   marginBottom: "12px",
   padding: "8px",
-  background: "rgba(0,0,0,0.3)",
-  borderRadius: "4px",
+  background: COLORS.bgOverlay,
+  borderRadius: RADIUS.md,
 };
 
 const sectionLabel: React.CSSProperties = {
-  fontSize: "9px",
-  color: "#6ee7b7",
+  fontSize: FONT_SIZES.xs,
+  color: COLORS.teal,
   letterSpacing: "1.5px",
   fontWeight: 700,
   marginBottom: "6px",
@@ -165,38 +154,35 @@ const paramRow: React.CSSProperties = {
 };
 
 const paramLabel: React.CSSProperties = {
-  fontSize: "11px",
-  color: "#94a3b8",
+  fontSize: FONT_SIZES.md,
+  color: COLORS.slate,
 };
 
 const paramValue: React.CSSProperties = {
-  fontSize: "12px",
-  fontFamily: "'Share Tech Mono', monospace",
-  fontWeight: 700,
-  color: "#10b981",
+  ...monoValue(COLORS.emerald),
 };
 
 const eduNote: React.CSSProperties = {
-  fontSize: "10px",
+  fontSize: FONT_SIZES.sm,
   lineHeight: 1.5,
-  color: "#6ee7b7",
+  color: COLORS.teal,
   padding: "8px",
-  background: "rgba(16, 185, 129, 0.08)",
-  border: "1px solid rgba(16, 185, 129, 0.2)",
-  borderRadius: "4px",
+  background: COLORS.emeraldBgLight,
+  border: `1px solid ${COLORS.emeraldBgStrong}`,
+  borderRadius: RADIUS.md,
   marginBottom: "12px",
 };
 
 const controlBtn: React.CSSProperties = {
   width: "100%",
   padding: "8px",
-  background: "rgba(16, 185, 129, 0.15)",
-  border: "1px solid rgba(16, 185, 129, 0.4)",
-  borderRadius: "4px",
-  color: "#10b981",
-  fontSize: "11px",
+  background: COLORS.emeraldBg,
+  border: `1px solid ${COLORS.borderEmerald}`,
+  borderRadius: RADIUS.md,
+  color: COLORS.emerald,
+  fontSize: FONT_SIZES.md,
   fontWeight: 700,
   letterSpacing: "1px",
   cursor: "pointer",
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: FONTS.sans,
 };

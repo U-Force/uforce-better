@@ -1,6 +1,12 @@
 "use client";
 
 import React from "react";
+import {
+  COLORS,
+  FONT_SIZES,
+  RADIUS,
+  PRIORITY_COLORS,
+} from "../../../lib/workbench/theme";
 import type { Alarm } from "../WorkbenchContext";
 
 interface AlarmListProps {
@@ -8,18 +14,13 @@ interface AlarmListProps {
   onAcknowledge: (id: string) => void;
 }
 
-const PRIORITY_COLORS: Record<string, string> = {
-  critical: "#ef4444",
-  high: "#f59e0b",
-  medium: "#eab308",
-  low: "#3b82f6",
-};
-
 export default function AlarmList({ alarms, onAcknowledge }: AlarmListProps) {
   if (alarms.length === 0) {
     return (
       <div style={emptyStyle}>
-        <span style={{ color: "#10b981", fontSize: "11px" }}>NO ACTIVE ALARMS</span>
+        <span style={{ color: COLORS.emerald, fontSize: FONT_SIZES.md }}>
+          NO ACTIVE ALARMS
+        </span>
       </div>
     );
   }
@@ -43,7 +44,7 @@ export default function AlarmList({ alarms, onAcknowledge }: AlarmListProps) {
             <div style={{ flex: 1 }}>
               <div
                 style={{
-                  fontSize: "10px",
+                  fontSize: FONT_SIZES.sm,
                   fontWeight: 700,
                   color,
                   letterSpacing: "0.5px",
@@ -54,7 +55,7 @@ export default function AlarmList({ alarms, onAcknowledge }: AlarmListProps) {
               >
                 {alarm.message}
               </div>
-              <div style={{ fontSize: "9px", color: "#64748b", marginTop: "2px" }}>
+              <div style={{ fontSize: FONT_SIZES.xs, color: COLORS.slateDark, marginTop: "2px" }}>
                 {alarm.parameter} = {alarm.value.toFixed(1)} (limit: {alarm.limit})
               </div>
             </div>
@@ -77,12 +78,12 @@ const container: React.CSSProperties = {
 };
 
 const headerStyle: React.CSSProperties = {
-  fontSize: "10px",
+  fontSize: FONT_SIZES.sm,
   letterSpacing: "1.5px",
-  color: "#f59e0b",
+  color: COLORS.amber,
   fontWeight: 700,
   paddingBottom: "4px",
-  borderBottom: "1px solid rgba(245, 158, 11, 0.2)",
+  borderBottom: `1px solid ${COLORS.borderAmber}`,
 };
 
 const alarmRow: React.CSSProperties = {
@@ -90,17 +91,17 @@ const alarmRow: React.CSSProperties = {
   alignItems: "center",
   gap: "8px",
   padding: "6px 8px",
-  background: "rgba(0,0,0,0.3)",
-  borderRadius: "4px",
+  background: COLORS.bgOverlay,
+  borderRadius: RADIUS.md,
 };
 
 const ackBtn: React.CSSProperties = {
   padding: "2px 8px",
   background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.15)",
-  borderRadius: "3px",
-  color: "#94a3b8",
-  fontSize: "9px",
+  border: `1px solid ${COLORS.borderStrong}`,
+  borderRadius: RADIUS.sm,
+  color: COLORS.slate,
+  fontSize: FONT_SIZES.xs,
   fontWeight: 700,
   cursor: "pointer",
   letterSpacing: "1px",
@@ -109,7 +110,7 @@ const ackBtn: React.CSSProperties = {
 const emptyStyle: React.CSSProperties = {
   padding: "8px",
   textAlign: "center",
-  background: "rgba(16, 185, 129, 0.05)",
-  borderRadius: "4px",
-  border: "1px solid rgba(16, 185, 129, 0.15)",
+  background: COLORS.emeraldBgLight,
+  borderRadius: RADIUS.md,
+  border: `1px solid ${COLORS.borderEmeraldLight}`,
 };

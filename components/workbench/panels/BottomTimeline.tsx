@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Play, Pause, Square, RotateCcw } from "lucide-react";
+import { COLORS, FONTS, FONT_SIZES, RADIUS, BLUR } from "../../../lib/workbench/theme";
 
 interface BottomTimelineProps {
   isRunning: boolean;
@@ -97,8 +98,8 @@ const bar: React.CSSProperties = {
   padding: "0 12px",
   height: "48px",
   background: "rgba(10, 15, 20, 0.9)",
-  borderTop: "1px solid rgba(255, 255, 255, 0.06)",
-  backdropFilter: "blur(8px)",
+  borderTop: `1px solid ${COLORS.borderSubtle}`,
+  backdropFilter: BLUR.md,
 };
 
 const controlGroup: React.CSSProperties = {
@@ -113,18 +114,18 @@ const iconBtn: React.CSSProperties = {
   width: "32px",
   height: "32px",
   background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "4px",
-  color: "#94a3b8",
+  border: `1px solid ${COLORS.borderMedium}`,
+  borderRadius: RADIUS.md,
+  color: COLORS.slate,
   cursor: "pointer",
   transition: "all 0.15s",
 };
 
 const timeDisplay: React.CSSProperties = {
-  fontSize: "14px",
-  fontFamily: "'Share Tech Mono', monospace",
+  fontSize: FONT_SIZES.xl,
+  fontFamily: FONTS.mono,
   fontWeight: 700,
-  color: "#10b981",
+  color: COLORS.emerald,
   letterSpacing: "1px",
   minWidth: "80px",
 };
@@ -137,29 +138,29 @@ const speedGroup: React.CSSProperties = {
 };
 
 const speedLabel: React.CSSProperties = {
-  fontSize: "9px",
-  color: "#64748b",
+  fontSize: FONT_SIZES.xs,
+  color: COLORS.slateDark,
   letterSpacing: "1px",
   fontWeight: 700,
 };
 
 const speedPill = (active: boolean): React.CSSProperties => ({
   padding: "3px 8px",
-  borderRadius: "3px",
-  fontSize: "10px",
+  borderRadius: RADIUS.sm,
+  fontSize: FONT_SIZES.sm,
   fontWeight: 700,
   cursor: "pointer",
   border: "none",
-  background: active ? "#f59e0b" : "rgba(255,255,255,0.05)",
-  color: active ? "#000" : "#64748b",
+  background: active ? COLORS.amber : "rgba(255,255,255,0.05)",
+  color: active ? "#000" : COLORS.slateDark,
   transition: "all 0.15s",
 });
 
 const statusDot = (running: boolean, paused: boolean): React.CSSProperties => ({
-  fontSize: "9px",
+  fontSize: FONT_SIZES.xs,
   fontWeight: 700,
   letterSpacing: "1.5px",
-  color: running ? (paused ? "#f59e0b" : "#10b981") : "#64748b",
+  color: running ? (paused ? COLORS.amber : COLORS.emerald) : COLORS.slateDark,
   display: "flex",
   alignItems: "center",
   gap: "6px",

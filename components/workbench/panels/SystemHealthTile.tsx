@@ -1,29 +1,31 @@
 "use client";
 
 import React from "react";
+import { STATUS_COLORS, COLORS, FONT_SIZES, RADIUS } from "../../../lib/workbench/theme";
 
 interface SystemHealthTileProps {
   name: string;
   status: "ok" | "degraded" | "failed" | "na";
 }
 
-const STATUS_MAP = {
-  ok: { color: "#10b981", label: "OK", bg: "rgba(16, 185, 129, 0.1)" },
-  degraded: { color: "#f59e0b", label: "DEGR", bg: "rgba(245, 158, 11, 0.1)" },
-  failed: { color: "#ef4444", label: "FAIL", bg: "rgba(239, 68, 68, 0.1)" },
-  na: { color: "#64748b", label: "N/A", bg: "rgba(100, 116, 139, 0.1)" },
+const HEALTH_LABELS: Record<string, string> = {
+  ok: "OK",
+  degraded: "DEGR",
+  failed: "FAIL",
+  na: "N/A",
 };
 
 export default function SystemHealthTile({ name, status }: SystemHealthTileProps) {
-  const cfg = STATUS_MAP[status];
+  const c = STATUS_COLORS[status];
+  const label = HEALTH_LABELS[status];
 
   return (
     <div
       style={{
         padding: "6px 8px",
-        background: cfg.bg,
-        borderRadius: "4px",
-        border: `1px solid ${cfg.color}30`,
+        background: c.bg,
+        borderRadius: RADIUS.md,
+        border: `1px solid ${c.fg}30`,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -31,8 +33,8 @@ export default function SystemHealthTile({ name, status }: SystemHealthTileProps
     >
       <span
         style={{
-          fontSize: "9px",
-          color: "#94a3b8",
+          fontSize: FONT_SIZES.xs,
+          color: COLORS.slate,
           fontWeight: 700,
           letterSpacing: "0.5px",
         }}
@@ -41,13 +43,13 @@ export default function SystemHealthTile({ name, status }: SystemHealthTileProps
       </span>
       <span
         style={{
-          fontSize: "9px",
-          color: cfg.color,
+          fontSize: FONT_SIZES.xs,
+          color: c.fg,
           fontWeight: 700,
           letterSpacing: "1px",
         }}
       >
-        {cfg.label}
+        {label}
       </span>
     </div>
   );

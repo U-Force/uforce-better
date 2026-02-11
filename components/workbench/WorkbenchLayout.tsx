@@ -4,21 +4,23 @@ import React, { useCallback, useMemo } from "react";
 import { useWorkbench } from "./WorkbenchContext";
 import ReactorViewport from "./viewport/ReactorViewport";
 import { usePhysicsToScene } from "./viewport/hooks/usePhysicsToScene";
-import TopToolbar from "./toolbar/TopToolbar";
-import BottomTimeline from "./panels/BottomTimeline";
-import LeftTree from "./panels/LeftTree";
-import PlantStatusPanel from "./panels/PlantStatusPanel";
-import AlarmList from "./panels/AlarmList";
-import ModeBanner from "./panels/ModeBanner";
-import SystemHealthTile from "./panels/SystemHealthTile";
-import LevelBriefPanel from "./panels/LevelBriefPanel";
-import ProcedurePanel from "./panels/ProcedurePanel";
-import DebriefPanel from "./panels/DebriefPanel";
-import InspectorCard from "./overlays/InspectorCard";
-import ControlRodCard from "./controls/ControlRodCard";
-import BoronCard from "./controls/BoronCard";
-import PumpCard from "./controls/PumpCard";
-import GlassPanel from "./shared/GlassPanel";
+import { TopToolbar } from "./toolbar";
+import {
+  AlarmList,
+  BottomTimeline,
+  DebriefPanel,
+  LeftTree,
+  LevelBriefPanel,
+  ModeBanner,
+  PlantStatusPanel,
+  ProcedurePanel,
+  SystemHealthTile,
+} from "./panels";
+import { InspectorCard } from "./overlays";
+import { BoronCard, ControlRodCard, PumpCard } from "./controls";
+import { GlassPanel } from "./shared";
+import { COLORS, FONTS, FONT_SIZES, RADIUS, BLUR } from "../../lib/workbench/theme";
+import { sectionHeader } from "../../lib/workbench/styles";
 import type { TrainingScenario } from "../../lib/training/types";
 
 export default function WorkbenchLayout() {
@@ -253,11 +255,10 @@ export default function WorkbenchLayout() {
               >
                 <div
                   style={{
-                    fontSize: "10px",
-                    letterSpacing: "1.5px",
-                    color: "#6ee7b7",
-                    fontWeight: 700,
+                    ...sectionHeader(COLORS.teal),
                     marginBottom: "2px",
+                    borderBottom: "none",
+                    paddingBottom: 0,
                   }}
                 >
                   SYSTEM HEALTH
@@ -335,10 +336,10 @@ const rightScroll: React.CSSProperties = {
   height: "100%",
   overflowY: "auto",
   padding: "8px",
-  background: "rgba(12, 17, 23, 0.75)",
-  border: "1px solid rgba(255, 255, 255, 0.06)",
-  borderRadius: "8px",
-  backdropFilter: "blur(12px)",
+  background: COLORS.bgMedium,
+  border: `1px solid ${COLORS.borderSubtle}`,
+  borderRadius: RADIUS.xl,
+  backdropFilter: BLUR.lg,
 };
 
 const bottomRow: React.CSSProperties = {

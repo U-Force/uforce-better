@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp, Play } from "lucide-react";
 import LevelBriefTabs from "./LevelBriefTabs";
+import { COLORS, FONTS, FONT_SIZES, RADIUS } from "../../../lib/workbench/theme";
+import { primaryButton, ghostButton } from "../../../lib/workbench/styles";
 import type { TrainingScenario } from "../../../lib/training/types";
 
 interface LevelBriefPanelProps {
@@ -12,7 +14,7 @@ interface LevelBriefPanelProps {
 }
 
 const DIFFICULTY_LABELS = ["", "Beginner", "Intermediate", "Advanced", "Expert"];
-const DIFFICULTY_COLORS = ["", "#10b981", "#3b82f6", "#f59e0b", "#ef4444"];
+const DIFFICULTY_COLORS = ["", COLORS.emerald, COLORS.blue, COLORS.amber, COLORS.red];
 
 export default function LevelBriefPanel({
   scenario,
@@ -39,15 +41,15 @@ export default function LevelBriefPanel({
             >
               {DIFFICULTY_LABELS[scenario.difficulty]}
             </span>
-            <span style={{ color: "#64748b" }}>
+            <span style={{ color: COLORS.slateDark }}>
               ~{scenario.estimatedDuration} min
             </span>
           </div>
         </div>
         {expanded ? (
-          <ChevronUp size={14} style={{ color: "#64748b" }} />
+          <ChevronUp size={14} style={{ color: COLORS.slateDark }} />
         ) : (
-          <ChevronDown size={14} style={{ color: "#64748b" }} />
+          <ChevronDown size={14} style={{ color: COLORS.slateDark }} />
         )}
       </button>
 
@@ -74,8 +76,8 @@ export default function LevelBriefPanel({
 
 const panel: React.CSSProperties = {
   background: "rgba(10, 15, 20, 0.92)",
-  border: "1px solid rgba(16, 185, 129, 0.25)",
-  borderRadius: "8px",
+  border: `1px solid ${COLORS.borderEmeraldLight}`,
+  borderRadius: RADIUS.xl,
   overflow: "hidden",
 };
 
@@ -89,60 +91,41 @@ const header: React.CSSProperties = {
   border: "none",
   cursor: "pointer",
   textAlign: "left",
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: FONTS.sans,
 };
 
 const title: React.CSSProperties = {
   fontSize: "13px",
   fontWeight: 700,
-  color: "#10b981",
+  color: COLORS.emerald,
   marginBottom: "2px",
 };
 
 const meta: React.CSSProperties = {
   display: "flex",
   gap: "12px",
-  fontSize: "10px",
+  fontSize: FONT_SIZES.sm,
 };
 
 const desc: React.CSSProperties = {
   padding: "0 12px 8px",
-  fontSize: "11px",
+  fontSize: FONT_SIZES.md,
   lineHeight: 1.5,
-  color: "#94a3b8",
+  color: COLORS.slate,
 };
 
 const actions: React.CSSProperties = {
   display: "flex",
   gap: "8px",
   padding: "8px 12px",
-  borderTop: "1px solid rgba(255,255,255,0.06)",
+  borderTop: `1px solid ${COLORS.borderSubtle}`,
 };
 
 const startBtn: React.CSSProperties = {
+  ...primaryButton,
   flex: 1,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "6px",
-  padding: "8px",
-  background: "rgba(16, 185, 129, 0.15)",
-  border: "1px solid rgba(16, 185, 129, 0.4)",
-  borderRadius: "4px",
-  color: "#10b981",
-  fontSize: "11px",
-  fontWeight: 700,
-  letterSpacing: "1px",
-  cursor: "pointer",
 };
 
 const dismissBtn: React.CSSProperties = {
-  padding: "8px 12px",
-  background: "transparent",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "4px",
-  color: "#64748b",
-  fontSize: "11px",
-  fontWeight: 600,
-  cursor: "pointer",
+  ...ghostButton,
 };

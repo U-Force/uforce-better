@@ -3,6 +3,8 @@
 import React, { useRef } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
+import { COLORS } from "../../../../lib/workbench/theme";
+import { useSelectionHighlight } from "../hooks/useSelectionHighlight";
 
 interface CoolantPumpProps {
   pumpOn: boolean;
@@ -23,7 +25,7 @@ function CoolantPump({
   onSelect,
 }: CoolantPumpProps) {
   const impellerRef = useRef<THREE.Group>(null);
-  const bodyMatRef = useRef<THREE.MeshStandardMaterial>(null);
+  const bodyMatRef = useSelectionHighlight(selected, 0.25);
   const currentSpeed = useRef(0);
 
   useFrame((_, delta) => {
@@ -37,16 +39,6 @@ function CoolantPump({
 
     if (impellerRef.current) {
       impellerRef.current.rotation.y += currentSpeed.current * delta;
-    }
-
-    // Selection highlight
-    if (bodyMatRef.current) {
-      const target = selected ? 0.25 : 0;
-      bodyMatRef.current.emissiveIntensity = THREE.MathUtils.lerp(
-        bodyMatRef.current.emissiveIntensity,
-        target,
-        0.08
-      );
     }
   });
 
@@ -71,7 +63,7 @@ function CoolantPump({
           color="#505050"
           metalness={0.85}
           roughness={0.3}
-          emissive="#335599"
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={0}
         />
       </mesh>
@@ -82,7 +74,7 @@ function CoolantPump({
         <mesh>
           <cylinderGeometry args={[0.08, 0.08, 0.15, 12, 1]} />
           <meshStandardMaterial
-            color="#888888"
+            color={COLORS.metalLight}
             metalness={0.9}
             roughness={0.2}
           />

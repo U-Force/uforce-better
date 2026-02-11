@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
+import { COLORS, FONTS, FONT_SIZES } from "../../../lib/workbench/theme";
 import GlassPanel from "../shared/GlassPanel";
 import ParameterGauge from "../shared/ParameterGauge";
 import SparklineTrend from "./SparklineTrend";
@@ -83,7 +84,7 @@ export default function PlantStatusPanel({
         />
         <SparklineTrend
           data={tfHistory}
-          color="#f59e0b"
+          color={COLORS.amber}
           warningLevel={1500}
           dangerLevel={1800}
           min={293}
@@ -104,7 +105,7 @@ export default function PlantStatusPanel({
         />
         <SparklineTrend
           data={tcHistory}
-          color="#3b82f6"
+          color={COLORS.blue}
           warningLevel={580}
           dangerLevel={620}
           min={293}
@@ -117,11 +118,11 @@ export default function PlantStatusPanel({
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
           <StatusRow label="ROD POSITION" value={`${(rodActual * 100).toFixed(1)}%`} />
           <StatusRow label="BORON" value={`${boronActual.toFixed(0)} ppm`} />
-          <StatusRow label="DECAY HEAT" value={`${decayHeatPct.toFixed(2)}%`} color="#f59e0b" />
+          <StatusRow label="DECAY HEAT" value={`${decayHeatPct.toFixed(2)}%`} color={COLORS.amber} />
           <StatusRow
             label="RCP STATUS"
             value={pumpOn ? "RUNNING" : "OFF"}
-            color={pumpOn ? "#10b981" : "#ef4444"}
+            color={pumpOn ? COLORS.emerald : COLORS.red}
           />
           <StatusRow
             label="SIM TIME"
@@ -136,7 +137,7 @@ export default function PlantStatusPanel({
 function StatusRow({
   label,
   value,
-  color = "#10b981",
+  color = COLORS.emerald,
 }: {
   label: string;
   value: string;
@@ -150,13 +151,13 @@ function StatusRow({
         alignItems: "center",
       }}
     >
-      <span style={{ fontSize: "9px", color: "#6ee7b7", letterSpacing: "1px", fontWeight: 700 }}>
+      <span style={{ fontSize: FONT_SIZES.xs, color: COLORS.teal, letterSpacing: "1px", fontWeight: 700 }}>
         {label}
       </span>
       <span
         style={{
-          fontSize: "12px",
-          fontFamily: "'Share Tech Mono', monospace",
+          fontSize: FONT_SIZES.lg,
+          fontFamily: FONTS.mono,
           fontWeight: 700,
           color,
         }}
@@ -168,12 +169,12 @@ function StatusRow({
 }
 
 const headerStyle: React.CSSProperties = {
-  fontSize: "11px",
+  fontSize: FONT_SIZES.md,
   letterSpacing: "1.5px",
-  color: "#6ee7b7",
+  color: COLORS.teal,
   fontWeight: 700,
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: FONTS.sans,
   paddingBottom: "4px",
-  borderBottom: "1px solid rgba(16, 185, 129, 0.2)",
+  borderBottom: `1px solid ${COLORS.borderEmeraldLight}`,
   marginBottom: "4px",
 };

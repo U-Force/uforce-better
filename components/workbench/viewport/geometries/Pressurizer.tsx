@@ -3,6 +3,8 @@
 import React, { useRef } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
+import { COLORS } from "../../../../lib/workbench/theme";
+import { useSelectionHighlight } from "../hooks/useSelectionHighlight";
 
 interface PressurizerProps {
   /** Normalized heater power 0-1, drives bottom glow */
@@ -24,21 +26,11 @@ function Pressurizer({
   onSelect,
   position = [3.5, 2, 0],
 }: PressurizerProps) {
-  const bodyMatRef = useRef<THREE.MeshStandardMaterial>(null);
+  const bodyMatRef = useSelectionHighlight(selected, 0.25);
   const heaterMatRef = useRef<THREE.MeshStandardMaterial>(null);
   const currentHeaterIntensity = useRef(0);
 
   useFrame(() => {
-    // Body selection highlight
-    if (bodyMatRef.current) {
-      const bodyTarget = selected ? 0.25 : 0;
-      bodyMatRef.current.emissiveIntensity = THREE.MathUtils.lerp(
-        bodyMatRef.current.emissiveIntensity,
-        bodyTarget,
-        0.08
-      );
-    }
-
     // Heater glow driven by power
     if (heaterMatRef.current) {
       const p = THREE.MathUtils.clamp(power, 0, 1);
@@ -67,7 +59,7 @@ function Pressurizer({
           color="#3d3d3d"
           metalness={0.85}
           roughness={0.3}
-          emissive="#335599"
+          emissive={COLORS.highlightEmissive}
           emissiveIntensity={0}
         />
       </mesh>

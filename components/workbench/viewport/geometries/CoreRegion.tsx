@@ -3,6 +3,7 @@
 import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { COLORS } from "../../../../lib/workbench/theme";
 
 interface CoreRegionProps {
   /** Normalized reactor power, 0 to 1 */
@@ -13,9 +14,9 @@ const CORE_RADIUS = 1.2;
 const CORE_HEIGHT = 4;
 
 // Power-to-color mapping thresholds
-const COLOR_LOW = new THREE.Color("#1a237e"); // dim blue
-const COLOR_MID = new THREE.Color("#4a148c"); // blue-purple
-const COLOR_HIGH = new THREE.Color("#ff6f00"); // bright orange-red
+const COLOR_LOW = new THREE.Color(COLORS.coreGlowLow); // dim blue
+const COLOR_MID = new THREE.Color(COLORS.coreGlowMid); // blue-purple
+const COLOR_HIGH = new THREE.Color(COLORS.coreGlowHigh); // bright orange-red
 
 const EMISSIVE_LOW = 0.1;
 const EMISSIVE_MID = 0.5;
@@ -23,7 +24,7 @@ const EMISSIVE_HIGH = 2.0;
 
 function CoreRegion({ power }: CoreRegionProps) {
   const matRef = useRef<THREE.MeshStandardMaterial>(null);
-  const currentColor = useMemo(() => new THREE.Color("#1a237e"), []);
+  const currentColor = useMemo(() => new THREE.Color(COLORS.coreGlowLow), []);
   const targetColor = useMemo(() => new THREE.Color(), []);
   const currentIntensity = useRef(EMISSIVE_LOW);
 
@@ -65,8 +66,8 @@ function CoreRegion({ power }: CoreRegionProps) {
       <cylinderGeometry args={[CORE_RADIUS, CORE_RADIUS, CORE_HEIGHT, 24, 1]} />
       <meshStandardMaterial
         ref={matRef}
-        color="#1a237e"
-        emissive="#1a237e"
+        color={COLORS.coreGlowLow}
+        emissive={COLORS.coreGlowLow}
         emissiveIntensity={EMISSIVE_LOW}
         metalness={0.1}
         roughness={0.6}

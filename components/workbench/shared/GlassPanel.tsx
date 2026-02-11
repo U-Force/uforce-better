@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { COLORS, RADIUS, BLUR } from "../../../lib/workbench/theme";
 
 interface GlassPanelProps {
   children: React.ReactNode;
@@ -10,31 +11,31 @@ interface GlassPanelProps {
   noPadding?: boolean;
 }
 
+const VARIANT_BG: Record<string, string> = {
+  default: COLORS.bgMedium,
+  dark: COLORS.bgLight,
+  accent: COLORS.emeraldBgLight,
+};
+
 export default function GlassPanel({
   children,
   style,
   variant = "default",
   noPadding = false,
 }: GlassPanelProps) {
-  const bg =
-    variant === "dark"
-      ? "rgba(5, 10, 15, 0.85)"
-      : variant === "accent"
-      ? "rgba(16, 185, 129, 0.08)"
-      : "rgba(12, 17, 23, 0.75)";
-
+  const bg = VARIANT_BG[variant];
   const border =
     variant === "accent"
-      ? "1px solid rgba(16, 185, 129, 0.4)"
-      : "1px solid rgba(255, 255, 255, 0.06)";
+      ? `1px solid ${COLORS.borderEmerald}`
+      : `1px solid ${COLORS.borderSubtle}`;
 
   return (
     <div
       style={{
         background: bg,
         border,
-        borderRadius: "8px",
-        backdropFilter: "blur(12px)",
+        borderRadius: RADIUS.xl,
+        backdropFilter: BLUR.lg,
         padding: noPadding ? 0 : "12px",
         ...style,
       }}

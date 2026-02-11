@@ -2,6 +2,8 @@
 
 import React from "react";
 import { CheckCircle2, Circle } from "lucide-react";
+import { COLORS, FONTS, FONT_SIZES } from "../../../lib/workbench/theme";
+import { sectionHeader } from "../../../lib/workbench/styles";
 import type { ProcedureStep } from "../../../lib/training/types";
 
 interface ProcedurePanelProps {
@@ -28,9 +30,9 @@ export default function ProcedurePanel({
               key={step.step}
               style={{
                 ...stepRow,
-                background: isCurrent ? "rgba(16, 185, 129, 0.08)" : "transparent",
+                background: isCurrent ? COLORS.emeraldBgLight : "transparent",
                 borderLeft: isCurrent
-                  ? "2px solid #10b981"
+                  ? `2px solid ${COLORS.emerald}`
                   : isComplete
                   ? "2px solid rgba(16, 185, 129, 0.3)"
                   : "2px solid transparent",
@@ -38,20 +40,20 @@ export default function ProcedurePanel({
               onClick={() => onStepClick(step.step)}
             >
               {isComplete ? (
-                <CheckCircle2 size={14} style={{ color: "#10b981", flexShrink: 0 }} />
+                <CheckCircle2 size={14} style={{ color: COLORS.emerald, flexShrink: 0 }} />
               ) : (
                 <Circle
                   size={14}
                   style={{
-                    color: isCurrent ? "#10b981" : "#475569",
+                    color: isCurrent ? COLORS.emerald : "#475569",
                     flexShrink: 0,
                   }}
                 />
               )}
               <span
                 style={{
-                  fontSize: "11px",
-                  color: isComplete ? "#6ee7b7" : isCurrent ? "#e2e8f0" : "#94a3b8",
+                  fontSize: FONT_SIZES.md,
+                  color: isComplete ? COLORS.teal : isCurrent ? COLORS.white : COLORS.slate,
                   textDecoration: isComplete ? "line-through" : "none",
                   textAlign: "left",
                   lineHeight: 1.4,
@@ -73,12 +75,11 @@ const container: React.CSSProperties = {
 };
 
 const header: React.CSSProperties = {
-  fontSize: "10px",
-  letterSpacing: "1.5px",
-  color: "#6ee7b7",
-  fontWeight: 700,
+  ...sectionHeader(COLORS.teal),
   padding: "8px 12px",
-  borderBottom: "1px solid rgba(255,255,255,0.06)",
+  borderBottom: `1px solid ${COLORS.borderSubtle}`,
+  marginBottom: 0,
+  paddingBottom: "8px",
 };
 
 const list: React.CSSProperties = {
@@ -97,7 +98,7 @@ const stepRow: React.CSSProperties = {
   padding: "6px 12px",
   border: "none",
   cursor: "pointer",
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: FONTS.sans,
   width: "100%",
   transition: "background 0.1s",
 };
