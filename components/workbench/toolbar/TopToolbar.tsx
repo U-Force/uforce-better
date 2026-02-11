@@ -5,6 +5,7 @@ import ToolButton from "./ToolButton";
 import type { ToolMode, ViewMode } from "../WorkbenchContext";
 import { LearningTooltip } from "../shared";
 import { TOOLBAR_HELP } from "../../../lib/workbench/learning-content";
+import { useRouter } from "next/navigation";
 import {
   MousePointer2,
   Move,
@@ -12,6 +13,7 @@ import {
   Eye,
   Layers,
   BookOpen,
+  GraduationCap,
 } from "lucide-react";
 
 interface TopToolbarProps {
@@ -31,6 +33,8 @@ export default function TopToolbar({
   onViewModeChange,
   onLearningModeToggle,
 }: TopToolbarProps) {
+  const router = useRouter();
+
   return (
     <div style={bar}>
       {/* Tool Mode Group */}
@@ -87,6 +91,13 @@ export default function TopToolbar({
 
       {/* Spacer pushes Learn button to the right */}
       <div style={{ flex: 1 }} />
+
+      {/* Training Mode */}
+      <ToolButton
+        icon={<GraduationCap size={14} />}
+        label="Training"
+        onClick={() => router.push("/train")}
+      />
 
       {/* Learning Mode */}
       <ToolButton

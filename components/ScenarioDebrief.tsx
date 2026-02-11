@@ -168,7 +168,6 @@ export default function ScenarioDebrief({
 const container: React.CSSProperties = {
   maxWidth: '900px',
   margin: '0 auto',
-  marginLeft: '340px', // Account for sidebar (320px + 20px spacing)
   padding: '32px 24px',
   paddingTop: '92px', // Account for 60px nav bar + 32px spacing
 };

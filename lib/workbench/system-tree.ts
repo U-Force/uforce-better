@@ -103,41 +103,4 @@ export const PLANT_TREE: TreeNodeData[] = [
     label: "Containment",
     componentId: "containment",
   },
-  {
-    id: "training",
-    label: "Training Scenarios",
-    trainingNode: true,
-    children: [
-      {
-        id: "train-basics",
-        label: "Basics",
-        trainingNode: true,
-        scenarioIds: ["INTRO_CONTROLS_01", "REACTIVITY_BASICS_01"],
-      },
-      {
-        id: "train-systems",
-        label: "Systems",
-        trainingNode: true,
-        scenarioIds: ["COOLANT_SYSTEM_01"],
-      },
-      {
-        id: "train-ops",
-        label: "Normal Operations",
-        trainingNode: true,
-        scenarioIds: ["PWR_STARTUP_01", "POWER_MANEUVERING_01"],
-      },
-      {
-        id: "train-transients",
-        label: "Transients",
-        trainingNode: true,
-        scenarioIds: ["PUMP_TRIP_01", "FEEDWATER_LOSS_01"],
-      },
-      {
-        id: "train-emergency",
-        label: "Emergency",
-        trainingNode: true,
-        scenarioIds: ["LOCA_01"],
-      },
-    ],
-  },
 ];
