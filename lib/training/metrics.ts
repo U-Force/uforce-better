@@ -26,6 +26,7 @@ export class MetricsCollector {
   private maxPowerRate: number = 0; // Maximum power change rate in %/min
   private lastPowerRateCheckTime: number = 0;
   private lastPowerForRate: number = 0;
+  private finalized: boolean = false;
 
   constructor(scenarioId: string, sessionId: string = crypto.randomUUID()) {
     this.metrics = {
@@ -146,32 +147,32 @@ export class MetricsCollector {
       });
     }
 
-    // Check for safety limit violations
+    // Check for safety limit violations (only count NEW violation episodes, not every tick)
     if (state.P > 1.1) {
-      this.recordLimitViolation('power', currentTime, state.P, 1.1);
-      this.metrics.tripCount++;
+      const isNew = this.recordLimitViolation('power', currentTime, state.P, 1.1);
+      if (isNew) this.metrics.tripCount++;
     }
     if (state.Tf > 1800) {
-      this.recordLimitViolation('fuelTemp', currentTime, state.Tf, 1800);
-      this.metrics.tripCount++;
+      const isNew = this.recordLimitViolation('fuelTemp', currentTime, state.Tf, 1800);
+      if (isNew) this.metrics.tripCount++;
     }
     if (state.Tc > 620) {
-      this.recordLimitViolation('coolantTemp', currentTime, state.Tc, 620);
-      this.metrics.tripCount++;
+      const isNew = this.recordLimitViolation('coolantTemp', currentTime, state.Tc, 620);
+      if (isNew) this.metrics.tripCount++;
     }
 
     this.lastState = state;
   }
 
   /**
-   * Record a limit violation
+   * Record a limit violation. Returns true if this is a NEW violation episode.
    */
   private recordLimitViolation(
     parameter: string,
     timestamp: number,
     value: number,
     limit: number
-  ): void {
+  ): boolean {
     // Check if this is a continuation of an existing violation
     const existing = this.metrics.safetyLimitViolations.find(
       (v) => v.parameter === parameter && v.timestamp + v.duration > timestamp - 1
@@ -180,6 +181,7 @@ export class MetricsCollector {
     if (existing) {
       existing.duration = timestamp - existing.timestamp;
       existing.value = Math.max(existing.value, value);
+      return false; // Continuation, not new
     } else {
       this.metrics.safetyLimitViolations.push({
         parameter,
@@ -188,6 +190,7 @@ export class MetricsCollector {
         limit,
         duration: 0,
       });
+      return true; // New violation
     }
   }
 
@@ -239,12 +242,21 @@ export class MetricsCollector {
    * Finalize metrics and calculate score
    */
   finalize(finalState: ReactorState, scenario: TrainingScenario): PerformanceMetrics {
+    // Guard against double finalize
+    if (this.finalized) return this.metrics;
+    this.finalized = true;
+
     this.metrics.endTime = new Date();
     this.metrics.duration = (Date.now() - this.sessionStartTime) / 1000;
 
     this.metrics.finalPower = finalState.P;
     this.metrics.finalFuelTemp = finalState.Tf;
     this.metrics.finalCoolantTemp = finalState.Tc;
+
+    // Auto-evaluate objectives using graduated scoring
+    // This ensures objectives are marked complete even if LiveCheckpointPanel
+    // didn't call completeObjective (e.g. due to strict real-time evaluation)
+    this.autoEvaluateObjectives(scenario);
 
     // Calculate success
     this.metrics.success = this.evaluateSuccess(scenario);
@@ -259,41 +271,49 @@ export class MetricsCollector {
   }
 
   /**
+   * Auto-evaluate objectives using the collector's own graduated scoring.
+   * Marks objectives as completed if their criteria score well enough.
+   */
+  private autoEvaluateObjectives(scenario: TrainingScenario): void {
+    for (const objective of scenario.objectives) {
+      // Skip if already marked completed by LiveCheckpointPanel
+      if (this.metrics.objectivesCompleted.includes(objective.id)) continue;
+
+      // Evaluate each criterion with graduated scoring
+      let totalScore = 0;
+      let totalWeight = 0;
+      for (const criterion of objective.assessmentCriteria) {
+        const score = this.evaluateCriterion(criterion);
+        totalScore += score * criterion.weight;
+        totalWeight += criterion.weight;
+      }
+
+      // Mark objective as completed if weighted average score >= 0.5
+      const avgScore = totalWeight > 0 ? totalScore / totalWeight : 0;
+      if (avgScore >= 0.5) {
+        this.metrics.objectivesCompleted.push(objective.id);
+      }
+    }
+  }
+
+  /**
    * Evaluate if scenario objectives were met
    */
   private evaluateSuccess(scenario: TrainingScenario): boolean {
-    // Check failure conditions first
-    if (this.metrics.tripCount > 0) return false;
+    // Hard failure: safety limit violations
     if (this.metrics.safetyLimitViolations.length > 0) return false;
 
-    // Check if all objectives are completed
+    // Hard failure: reactor trips (actual new violation episodes, not spurious)
+    if (this.metrics.tripCount > 0) return false;
+
+    // Check if all objectives are completed (using auto-evaluated results)
     const allObjectivesCompleted = scenario.objectives.every(obj =>
       this.metrics.objectivesCompleted.includes(obj.id)
     );
-    if (!allObjectivesCompleted) return false;
 
-    // Check completion conditions
-    const conditions = scenario.completionConditions;
-
-    if (conditions.type === 'state_reached') {
-      const params = conditions.parameters;
-
-      if (params.powerMin !== undefined && this.metrics.finalPower < params.powerMin) {
-        return false;
-      }
-      if (params.powerMax !== undefined && this.metrics.finalPower > params.powerMax) {
-        return false;
-      }
-      if (
-        params.maxCoolantTemp !== undefined &&
-        this.metrics.finalCoolantTemp > params.maxCoolantTemp
-      ) {
-        return false;
-      }
-    }
-
-    // All checks passed
-    return true;
+    // Success if all objectives met. Completion conditions contribute to score
+    // but don't block success — the objectives already capture the important criteria.
+    return allObjectivesCompleted;
   }
 
   /**
@@ -428,7 +448,22 @@ export class MetricsCollector {
     if (this.metrics.success) {
       feedback.push('✓ Scenario completed successfully');
     } else {
-      feedback.push('✗ Scenario objectives not met');
+      // Give specific failure reasons
+      if (this.metrics.safetyLimitViolations.length > 0) {
+        feedback.push('✗ Failed due to safety limit violation(s)');
+      } else if (this.metrics.tripCount > 0) {
+        feedback.push('✗ Failed due to automatic reactor trip(s)');
+      } else {
+        // Check which objectives weren't met
+        const failed = scenario.objectives.filter(
+          obj => !this.metrics.objectivesCompleted.includes(obj.id)
+        );
+        if (failed.length > 0) {
+          feedback.push(`✗ ${failed.length} objective(s) not fully met`);
+        } else {
+          feedback.push('✗ Scenario not passed');
+        }
+      }
     }
 
     if (this.metrics.tripCount > 0) {
@@ -444,7 +479,7 @@ export class MetricsCollector {
     }
 
     if (this.metrics.timeToFirstAction > 30) {
-      feedback.push('⚠ Slow initial response time - consider acting more quickly');
+      feedback.push('⚠ Slow initial response time — consider acting more quickly');
     }
 
     // Objective-specific feedback

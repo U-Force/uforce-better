@@ -275,8 +275,12 @@ export default function TrainingPage() {
     const collector = metricsCollectorRef.current;
     const scenario = selectedScenarioRef.current;
     if (collector && scenario && finalState) {
+      // finalize() is guarded against double calls
       const finalMetrics = collector.finalize(finalState, scenario);
       if (finalMetrics.success) markScenarioCompleted(scenario.id);
+    }
+    // Only transition to debrief if we have a scenario (not free play)
+    if (selectedScenarioRef.current && metricsCollectorRef.current) {
       setAppState('debrief');
     }
   }, []);
@@ -312,6 +316,18 @@ export default function TrainingPage() {
       );
       const collector = new MetricsCollector(selectedScenario.id);
       setMetricsCollector(collector);
+
+      // Reset live metrics to avoid stale data from previous attempts
+      setLiveMetrics({
+        timeElapsed: 0, tripCount: 0, scramCount: 0, maxPower: 0,
+        maxFuelTemp: 0, maxCoolantTemp: 0, currentPower: 0, rodPosition: 0,
+        rodWithdrawalRate: 0, timeToFirstCriticality: -1, powerChangeCount: 0,
+        observationTime: 0, finalPower: 0, timeAt50Percent: 0, maxPowerRate: 0,
+      });
+      lastRodPositionRef.current = selectedScenario.initialState.controls.rod;
+      lastRodTimestampRef.current = 0;
+      lastPowerRef.current = 0;
+
       setAppState('running');
       handleStart();
     }
@@ -328,7 +344,8 @@ export default function TrainingPage() {
     const collector = metricsCollectorRef.current;
     const scenario = selectedScenarioRef.current;
     if (collector && scenario && sim.state) {
-      collector.finalize(sim.state, scenario);
+      const finalMetrics = collector.finalize(sim.state, scenario);
+      if (finalMetrics.success) markScenarioCompleted(scenario.id);
     }
     handleStop();
     setAppState('debrief');
