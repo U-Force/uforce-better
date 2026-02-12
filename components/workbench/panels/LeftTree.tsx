@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Atom } from "lucide-react";
 import { SYSTEM_CATEGORIES, type TreeNodeData } from "../../../lib/workbench/system-tree";
 import { getScenarioById } from "../../../lib/training";
@@ -19,8 +19,24 @@ export default function LeftTree({
   onSelectScenario,
 }: LeftTreeProps) {
   const [activeCategory, setActiveCategory] = useState<string>("core");
+  const selectedRef = useRef<HTMLButtonElement>(null);
 
-  const handleNodeSelect = (node: TreeNodeData) => {
+  // Auto-switch tab and scroll to the selected item when it changes
+  useEffect(() => {
+    if (!selectedNodeId) return;
+    const owningCategory = SYSTEM_CATEGORIES.find((cat) =>
+      cat.nodes.some((n) => n.componentId === selectedNodeId)
+    );
+    if (owningCategory && owningCategory.id !== activeCategory) {
+      setActiveCategory(owningCategory.id);
+    }
+    // Defer scroll so the tab switch renders first
+    requestAnimationFrame(() => {
+      selectedRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+  }, [selectedNodeId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleNodeSelect = useCallback((node: TreeNodeData) => {
     if (node.componentId) {
       onSelectComponent(node.componentId);
     }
@@ -30,7 +46,7 @@ export default function LeftTree({
         onSelectScenario(scenario);
       }
     }
-  };
+  }, [onSelectComponent, onSelectScenario]);
 
   const currentCategory = SYSTEM_CATEGORIES.find((c) => c.id === activeCategory);
 
@@ -67,6 +83,7 @@ export default function LeftTree({
           return (
             <button
               key={node.id}
+              ref={isSelected ? selectedRef : undefined}
               style={itemBtn(isSelected, currentCategory.color)}
               onClick={() => handleNodeSelect(node)}
             >
