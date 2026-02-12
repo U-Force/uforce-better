@@ -94,7 +94,7 @@ export default function WorkbenchLayout() {
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
         * { box-sizing: border-box; }
-        body { background: #000; margin: 0; font-family: 'Inter', sans-serif; overflow: hidden; }
+        body { background: #0a0e14; margin: 0; font-family: 'Inter', sans-serif; overflow: hidden; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
       `}</style>
@@ -317,7 +317,7 @@ const shell: React.CSSProperties = {
   inset: 0,
   display: "grid",
   gridTemplateRows: "auto 1fr 48px",
-  background: "linear-gradient(180deg, #060a0f 0%, #0c1117 100%)",
+  background: "linear-gradient(180deg, #0e1318 0%, #141b22 100%)",
   overflow: "hidden",
 };
 

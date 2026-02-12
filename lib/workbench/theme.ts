@@ -56,9 +56,9 @@ export const COLORS = {
   coreGlowLow: "#1a237e",
   coreGlowMid: "#4a148c",
   coreGlowHigh: "#ff6f00",
-  metalDark: "#3a3a3a",
-  metalMedium: "#4a4a4a",
-  metalLight: "#888888",
+  metalDark: "#505050",
+  metalMedium: "#606060",
+  metalLight: "#9a9a9a",
   highlightEmissive: "#335599",
 
   // Secondary-side 3D scene colors

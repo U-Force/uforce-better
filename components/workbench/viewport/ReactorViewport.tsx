@@ -3,6 +3,7 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, Stars } from "@react-three/drei";
+import * as THREE from "three";
 import PWRScene from "./PWRScene";
 import { CAMERA, TURBINE_ISLAND as TI } from "./layout";
 import type { SceneProps } from "./hooks/usePhysicsToScene";
@@ -19,33 +20,38 @@ function SceneContent(props: ReactorViewportProps) {
   return (
     <>
       {/* Lighting */}
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[10, 15, 10]} intensity={0.8} castShadow />
-      <directionalLight position={[-5, 10, -5]} intensity={0.3} />
-      <pointLight position={[0, 2, 0]} intensity={0.5} color="#ff6f00" distance={8} />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 15, 10]} intensity={1.1} castShadow />
+      <directionalLight position={[-5, 10, -5]} intensity={0.5} />
+      <pointLight position={[0, 2, 0]} intensity={0.6} color="#ff6f00" distance={8} />
       {/* Turbine area light */}
       <pointLight
         position={[TI.position[0], 8, TI.position[2]]}
-        intensity={0.4}
+        intensity={0.6}
         color="#ffffff"
         distance={20}
       />
 
       {/* Environment for reflections */}
-      <Environment preset="night" />
+      <Environment preset="city" />
 
       {/* Background stars */}
-      <Stars radius={100} depth={50} count={1000} factor={2} saturation={0} />
+      <Stars radius={100} depth={50} count={800} factor={2.5} saturation={0} />
 
       {/* PWR Scene */}
       <PWRScene {...sceneProps} />
 
-      {/* Camera Controls */}
+      {/* Camera Controls — left-click maps to pan or rotate based on tool mode */}
       <OrbitControls
         makeDefault
         enablePan={toolMode === "pan"}
         enableRotate={toolMode === "orbit" || toolMode === "select"}
         enableZoom
+        mouseButtons={{
+          LEFT: toolMode === "pan" ? THREE.MOUSE.PAN : THREE.MOUSE.ROTATE,
+          MIDDLE: THREE.MOUSE.DOLLY,
+          RIGHT: THREE.MOUSE.PAN,
+        }}
         minDistance={CAMERA.minDistance}
         maxDistance={CAMERA.maxDistance}
         target={CAMERA.target}

@@ -177,6 +177,24 @@ export const INSPECTOR_DATA: Record<string, InspectorMeta> = {
     educationalNote:
       "Multiple condensate pumps are typically installed in parallel for redundancy.",
   },
+  "cw-inlet": {
+    id: "cw-inlet",
+    name: "Circulating Water Inlet",
+    description:
+      "Supplies cooling water from the cooling tower or natural water source (river/ocean) to the condenser tubes. This water absorbs the waste heat from the exhaust steam and condenses it back to liquid.",
+    parameters: [],
+    educationalNote:
+      "Loss of circulating water flow degrades condenser vacuum and can force a turbine trip. Redundant CW pumps provide backup.",
+  },
+  "cw-outlet": {
+    id: "cw-outlet",
+    name: "Circulating Water Outlet",
+    description:
+      "Returns heated circulating water from the condenser back to the cooling tower or discharge canal. The temperature rise is typically 10\u201315\u00B0C across the condenser.",
+    parameters: [],
+    educationalNote:
+      "Environmental regulations limit the maximum discharge temperature to protect aquatic ecosystems.",
+  },
   containment: {
     id: "containment",
     name: "Containment Building",

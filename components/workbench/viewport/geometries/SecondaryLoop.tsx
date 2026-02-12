@@ -31,18 +31,34 @@ function SecondaryLoop({ power, pumpOn, selectedComponent, onSelect }: Secondary
   const fwRefs = useRef<(THREE.MeshStandardMaterial | null)[]>([null, null, null, null]);
   const phaseRef = useRef(0);
 
-  // SG top → common header point → turbine inlet
+  // SG top → common header → HP turbine inlet (endpoint extends INTO HP casing to avoid gaps)
   const sgTopY = SG.lowerHeight / 2 + SG.coneHeight + SG.upperHeight + SG.upperRadius * 0.5 + 0.4;
+  const hpWorldX = TI.position[0] + TI.hp.offset[0];
+  const hpWorldY = TI.position[1] + TI.hp.offset[1];
+  const hpWorldZ = TI.position[2] + TI.hp.offset[2];
   const turbineInlet: [number, number, number] = [
-    TI.position[0] - 3,
-    TI.position[1] + TI.hp.radius + 0.5,
-    TI.position[2] + TI.hp.offset[2],
+    hpWorldX,  // extend into center of HP turbine for solid visual connection
+    hpWorldY,
+    hpWorldZ,
   ];
 
-  // Feedwater return: condenser area → feed pump → SGs (enters at middle height)
-  const fwSourceY = TI.position[1] + TI.condenser.offset[1];
-  const fwSourceX = TI.position[0] + TI.condenser.offset[0] - TI.condenser.width / 2 - 1;
-  const fwSourceZ = TI.position[2] + TI.condenser.offset[2];
+  // Feedwater return: Condenser → Condensate Pump → Main FW Pump → branch to SGs
+  const condenserWorldX = TI.position[0] + TI.condenser.offset[0];
+  const condenserWorldY = TI.position[1] + TI.condenser.offset[1];
+  const condenserWorldZ = TI.position[2] + TI.condenser.offset[2];
+  const condFaceX = condenserWorldX - TI.condenser.width / 2;
+
+  // Pump positions ON the feedwater pipe path
+  const condensatePumpPos: [number, number, number] = [
+    condFaceX - 1.2,       // just outside condenser -X face
+    condenserWorldY,
+    condenserWorldZ,
+  ];
+  const feedPumpPos: [number, number, number] = [
+    17,                     // between condenser and containment boundary
+    condenserWorldY + 0.5,
+    0,                      // centered in Z (common header before branching)
+  ];
 
   const { steamGeos, fwGeos } = useMemo(() => {
     const sGeos: THREE.TubeGeometry[] = [];
@@ -51,28 +67,33 @@ function SecondaryLoop({ power, pumpOn, selectedComponent, onSelect }: Secondary
     for (const loop of LOOPS) {
       const [sx, , sz] = loop.sgPosition;
 
-      // Steam line: SG top → converge above containment → turbine inlet
+      // Steam line: SG top → rise above containment → descend to HP turbine
       const steamCurve = makeCurve([
         [sx, sgTopY, sz],
-        [sx * 0.6, sgTopY + 2, sz * 0.6],
-        [turbineInlet[0] * 0.5, sgTopY + 3, 0],
+        [sx * 0.4, sgTopY + 2.5, sz * 0.3],
+        [hpWorldX * 0.45, sgTopY + 1.5, hpWorldZ * 0.2],
+        [hpWorldX - 4, 4, hpWorldZ],
+        [hpWorldX - TI.hp.radius, hpWorldY, hpWorldZ],
         turbineInlet,
       ]);
-      sGeos.push(new THREE.TubeGeometry(steamCurve, 40, PIPING.steamLineRadius, PIPING.segments, false));
+      sGeos.push(new THREE.TubeGeometry(steamCurve, 64, PIPING.steamLineRadius, PIPING.segments, false));
 
-      // Feedwater line: source → back to SG at mid-height
+      // Feedwater line: Condenser → Condensate Pump → Main FW Pump → SG
       const sgMidY = SG.lowerHeight / 2 + SG.coneHeight * 0.5;
       const fwCurve = makeCurve([
-        [fwSourceX, fwSourceY, fwSourceZ],
-        [fwSourceX - 3, fwSourceY - 1, fwSourceZ * 0.5 + sz * 0.5],
-        [sx * 0.5, sgMidY - 1, sz * 0.5],
+        [condenserWorldX, condenserWorldY, condenserWorldZ],
+        condensatePumpPos,
+        feedPumpPos,
+        [sx * 0.5 + 2, sgMidY - 2, sz * 0.5],
         [sx, sgMidY, sz],
       ]);
-      fGeos.push(new THREE.TubeGeometry(fwCurve, 40, PIPING.feedwaterRadius, PIPING.segments, false));
+      fGeos.push(new THREE.TubeGeometry(fwCurve, 64, PIPING.feedwaterRadius, PIPING.segments, false));
     }
 
     return { steamGeos: sGeos, fwGeos: fGeos };
-  }, [sgTopY, turbineInlet, fwSourceX, fwSourceY, fwSourceZ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sgTopY, hpWorldX, hpWorldY, hpWorldZ, condenserWorldX, condenserWorldY, condenserWorldZ,
+      condFaceX, condensatePumpPos[0], feedPumpPos[1]]);
 
   useFrame((_, delta) => {
     phaseRef.current += delta * power * 2.0;
@@ -89,18 +110,6 @@ function SecondaryLoop({ power, pumpOn, selectedComponent, onSelect }: Secondary
       }
     }
   });
-
-  // Feed pump positions (between condenser and containment)
-  const feedPumpPos: [number, number, number] = [
-    TI.position[0] - 6,
-    TI.position[1] + TI.condenser.offset[1],
-    TI.position[2],
-  ];
-  const condensatePumpPos: [number, number, number] = [
-    TI.position[0] + TI.condenser.offset[0] - TI.condenser.width / 2 - 1.5,
-    TI.position[1] + TI.condenser.offset[1] - 0.5,
-    TI.position[2] + TI.condenser.offset[2],
-  ];
 
   return (
     <group>
@@ -134,21 +143,21 @@ function SecondaryLoop({ power, pumpOn, selectedComponent, onSelect }: Secondary
         </mesh>
       ))}
 
-      {/* Feed pump */}
-      <FeedwaterPump
-        pumpId="feed-pump"
-        position={feedPumpPos}
-        pumpOn={pumpOn && power > 0.01}
-        selected={selectedComponent === "feed-pump"}
-        onSelect={onSelect}
-      />
-
-      {/* Condensate pump */}
+      {/* Condensate pump — right at condenser outlet on the feedwater line */}
       <FeedwaterPump
         pumpId="condensate-pump"
         position={condensatePumpPos}
         pumpOn={pumpOn && power > 0.01}
         selected={selectedComponent === "condensate-pump"}
+        onSelect={onSelect}
+      />
+
+      {/* Main feedwater pump — on common header before branching to SGs */}
+      <FeedwaterPump
+        pumpId="feed-pump"
+        position={feedPumpPos}
+        pumpOn={pumpOn && power > 0.01}
+        selected={selectedComponent === "feed-pump"}
         onSelect={onSelect}
       />
     </group>

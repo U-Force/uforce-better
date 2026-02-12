@@ -14,10 +14,10 @@ interface FeedwaterPumpProps {
   onSelect?: (id: string) => void;
 }
 
-const PUMP_R = 0.3;
-const PUMP_H = 0.6;
-const MOTOR_R = 0.2;
-const MOTOR_H = 0.45;
+const PUMP_R = 0.65;
+const PUMP_H = 1.2;
+const MOTOR_R = 0.4;
+const MOTOR_H = 0.85;
 
 function FeedwaterPump({
   pumpId,

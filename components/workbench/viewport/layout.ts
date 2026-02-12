@@ -178,10 +178,10 @@ export const TURBINE_ISLAND = {
     ],
   },
   msr: {
-    width: 1.5,
+    width: 1.2,
     height: 1.5,
-    depth: 1.2,
-    offset: [0, 0, -0.5] as [number, number, number],
+    depth: 2.5,
+    offset: [2.5, 0, -0.5] as [number, number, number],
   },
   generator: {
     radius: 1.3,
@@ -194,7 +194,7 @@ export const TURBINE_ISLAND = {
     depth: 5,
     offset: [0, -2.5, 2.5] as [number, number, number],
   },
-  shaftRadius: 0.06,
+  shaftRadius: 0.15,
 } as const;
 
 // ============================================================================
@@ -215,7 +215,7 @@ export const CAMERA = {
 
 export const PIPING = {
   primaryRadius: 0.14,
-  steamLineRadius: 0.12,
-  feedwaterRadius: 0.10,
-  segments: 8,
+  steamLineRadius: 0.2,
+  feedwaterRadius: 0.16,
+  segments: 10,
 } as const;
