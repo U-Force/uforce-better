@@ -9,7 +9,7 @@ import type { TrainingScenario } from "../../lib/training/types";
 // ============================================================================
 
 export type ToolMode = "select" | "pan" | "orbit";
-export type ViewMode = "normal" | "xray" | "section";
+export type ViewMode = "normal" | "xray" | "section" | "interior";
 export type PlantMode = "normal" | "abnormal" | "emergency";
 
 export interface Alarm {
@@ -87,7 +87,7 @@ interface WorkbenchProviderProps {
 export function WorkbenchProvider({ sim, children }: WorkbenchProviderProps) {
   const [ui, setUI] = useState<WorkbenchUIState>({
     toolMode: "orbit",
-    viewMode: "normal",
+    viewMode: "interior",
     plantMode: "normal",
     selectedComponent: null,
     inspectorOpen: false,

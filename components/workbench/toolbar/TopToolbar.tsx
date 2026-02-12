@@ -12,6 +12,7 @@ import {
   RotateCcw,
   Eye,
   Layers,
+  Building,
   BookOpen,
   GraduationCap,
 } from "lucide-react";
@@ -80,6 +81,12 @@ export default function TopToolbar({
           label="X-Ray"
           active={viewMode === "xray"}
           onClick={() => onViewModeChange("xray")}
+        />
+        <ToolButton
+          icon={<Building size={14} />}
+          label="Interior"
+          active={viewMode === "interior"}
+          onClick={() => onViewModeChange("interior")}
         />
         <LearningTooltip
           visible={learningMode}

@@ -153,7 +153,14 @@ export const NOZZLE = {
 // ============================================================================
 
 export const CONTAINMENT = {
-  radius: 16,
+  /** Outer wall radius of the cylindrical containment building */
+  radius: 14.5,
+  /** Bottom of cylinder (below grade) */
+  baseY: -7,
+  /** Top of cylinder / dome spring line */
+  springLineY: 12,
+  /** Vertical dome flattening (0.5 = dome height is half the radius) */
+  domeYScale: 0.5,
 } as const;
 
 // ============================================================================
@@ -207,6 +214,13 @@ export const CAMERA = {
   target: [2, 0, 0] as [number, number, number],
   minDistance: 8,
   maxDistance: 60,
+
+  /** Camera position when inside the containment building */
+  interiorPosition: [10, 4, 8] as [number, number, number],
+  /** Camera look-at target for interior view */
+  interiorTarget: [0, 1, 0] as [number, number, number],
+  interiorMinDistance: 2,
+  interiorMaxDistance: 13,
 } as const;
 
 // ============================================================================

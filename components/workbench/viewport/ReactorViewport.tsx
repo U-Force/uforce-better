@@ -20,9 +20,11 @@ function SceneContent(props: ReactorViewportProps) {
   return (
     <>
       {/* Lighting */}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 15, 10]} intensity={1.1} castShadow />
-      <directionalLight position={[-5, 10, -5]} intensity={0.5} />
+      <hemisphereLight args={["#b1d8ff", "#7a7060", 0.35]} />
+      <ambientLight intensity={0.45} />
+      <directionalLight position={[15, 22, 10]} intensity={1.3} castShadow />
+      <directionalLight position={[-12, 16, -10]} intensity={0.6} />
+      <directionalLight position={[5, 3, 18]} intensity={0.3} />
       <pointLight position={[0, 2, 0]} intensity={0.6} color="#ff6f00" distance={8} />
       {/* Turbine area light */}
       <pointLight
@@ -41,7 +43,7 @@ function SceneContent(props: ReactorViewportProps) {
       {/* PWR Scene */}
       <PWRScene {...sceneProps} />
 
-      {/* Camera Controls — left-click maps to pan or rotate based on tool mode */}
+      {/* Camera Controls */}
       <OrbitControls
         makeDefault
         enablePan={toolMode === "pan"}
